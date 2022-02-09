@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dev-recruiters
+bases:
+- ../workload
+images:
+- name: devlaunchers/dev-recruiters
+  newName: devlaunchers/dev-recruiters
+  newTag: "8eca340-202111030319" # {"$imagepolicy": "dev-recruiters:dev-recruiters:tag"}
