@@ -1,11 +1,10 @@
 const withPlugins = require("next-compose-plugins");
 const imagesPlugin = require("next-optimized-images");
 
-
 /**
  * @type {import('next').NextConfig}
-* */
-const nextConfig = {  
+ * */
+const nextConfig = {
   async rewrites() {
     return [
       {
@@ -15,24 +14,28 @@ const nextConfig = {
       {
         source: "/",
         destination: "https://devlaunchers.org/",
-        basePath: false
+        basePath: false,
       },
       {
         source: "/create",
         destination: "https://devlaunchers.org/create",
-        basePath: false
+        basePath: false,
       },
       {
         source: "/learn",
         destination: `https://devlaunchers.org/learn`,
-        basePath: false
+        basePath: false,
       },
       {
         source: "/support-us",
         destination: `https://devlaunchers.org/support-us`,
-        basePath: false
+        basePath: false,
       },
     ];
+  },
+  compiler: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
   },
 
   images: {
