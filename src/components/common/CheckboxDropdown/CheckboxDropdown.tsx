@@ -7,6 +7,7 @@ import {
   ListContainer,
   List,
   ListItem,
+  Title,
 } from "./StyledCheckboxDropdown";
 
 /**
@@ -75,7 +76,7 @@ export default function CheckboxDropdown({
   return (
     <Wrapper ref={node}>
       <Toggle type="button" onClick={() => setIsOpen((prev) => !prev)}>
-        <p>{title}</p>
+        <Title>{title}</Title>
         <Icon viewBox="0 0 24 24" height={24} width={24}>
           <polyline
             points={isOpen ? "6 15 12 9 18 15" : "6 9 12 15 18 9"}
@@ -87,7 +88,7 @@ export default function CheckboxDropdown({
       <ListContainer isOpen={isOpen}>
         <List>
           {items.map((item, index) => (
-            <ListItem key={index} value={item}>
+            <ListItem key={index} value={item} checked={isChecked(item)}>
               <Checkbox
                 label={nameProperty ? item[nameProperty] : item}
                 id={`${title}${item}${index}`}

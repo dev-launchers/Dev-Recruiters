@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import FilteringComponent from "../components/common/filtering/FilteringComponent";
 
 const IndexPage = () => (
   <>
@@ -43,6 +43,8 @@ const IndexPage = () => (
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
     <h1>hello from page index</h1>
+
+    <FilteringComponent />
   </>
 );
 

@@ -1,22 +1,22 @@
-import React from 'react'
+import React from "react";
 import {
   CheckboxContainer,
   HiddenCheckbox,
   StyledCheckbox,
   Icon,
   Label,
-} from './StyledCheckbox'
+} from "./StyledCheckbox";
 
 interface Props {
-  id: string
-  label: any
-  checked: boolean
-  className?: string
-  checkedBg?: string
-  uncheckedBg?: string
-  strokeColor?: string
-  width?: number | undefined
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  id: string;
+  label: any;
+  checked: boolean;
+  className?: string;
+  checkedBg?: string;
+  uncheckedBg?: string;
+  strokeColor?: string;
+  width?: number | undefined;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Checkbox({
@@ -24,9 +24,9 @@ export default function Checkbox({
   label,
   checked,
   className,
-  strokeColor = '#000',
-  checkedBg = '#FFF',
-  uncheckedBg = '#FFF',
+  strokeColor = "#000",
+  checkedBg = "#FFF",
+  uncheckedBg = "#FFF",
   width = undefined,
   onChange,
 }: Props) {
@@ -47,5 +47,5 @@ export default function Checkbox({
         </StyledCheckbox>
       </CheckboxContainer>
     </Label>
-  )
+  );
 }

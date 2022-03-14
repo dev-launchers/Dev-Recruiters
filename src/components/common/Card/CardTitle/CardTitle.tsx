@@ -6,18 +6,18 @@ import { Heading, Title } from "./StyledCardTitle";
 
 interface Props {
   data?: {
-    titleAlignment?: string,
-    titleSize?: string,
-    titleUnderlineColor?: string,
-    titleUnderlineThickness?: string,
-    titleUnderlineType?: string,
-    href?: string,
-    title?: string,
-    repoUrl?: string
-  },
-  attachment?: boolean,
-  isLinkingInside?: boolean,
-  pathname?: string,
+    titleAlignment?: string;
+    titleSize?: string;
+    titleUnderlineColor?: string;
+    titleUnderlineThickness?: string;
+    titleUnderlineType?: string;
+    href?: string;
+    title?: string;
+    repoUrl?: string;
+  };
+  attachment?: boolean;
+  isLinkingInside?: boolean;
+  pathname?: string;
 }
 
 export default function CardTitle({
@@ -47,7 +47,7 @@ export default function CardTitle({
       )}
 
       {attachment && (
-        <a href={data.repoUrl} target="_blank" rel="noreferrer">
+        <a title="github" href={data.repoUrl} target="_blank" rel="noreferrer">
           <Image
             alt="github"
             height="32"
