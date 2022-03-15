@@ -117,14 +117,12 @@ export function FilterProjects(projects: Project[], params: ProjectParams) {
       list = list.filter((project) =>
         project.openPositions.some((op) => params.position.includes(op.title))
       );
-      console.log(list);
     }
 
     if (params.commitment && params.commitment.length > 0) {
       list = list.filter((project) =>
         params.commitment.includes(project.commitmentLevel)
       );
-      console.log(list);
     }
 
     // if (params.platform && params.platform.length > 0) {

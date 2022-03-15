@@ -5,4 +5,6 @@ list-style-type: none;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;

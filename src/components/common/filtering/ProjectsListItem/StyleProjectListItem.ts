@@ -5,36 +5,34 @@ export const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  //justify-content: space-between;
   height: 100%;
   background: rgba(211, 212, 214, 0.9);
   border-radius: 40px;
 `
 
 export const TitleSection = styled.div`
+flex: 1 0 30%;
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+ 
 `
 
-export const Grid = styled.div`
-  display: flex;
-  flex-direction: row;
- // grid-template-columns: repeat(3, minmax(0, 1fr));
-`
 
-export const GridSection = styled.div<{ bgColor: string; alignItems?: string }>`
+
+export const ItemSection = styled.div<{ bgColor: string; alignItems?: string, flex?: string }>`
   display: flex;
   flex-direction: column;
+  flex: ${(props) => (props.flex ? props.flex : '1 1 auto')};
   justify-content: center;
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
   padding: 2rem 1.25rem;
   padding-right: 1.25rem;
   padding-top: 1.25rem;
-  height: 100%;
+  
   background: ${(props) => props.bgColor};
 `
 
@@ -62,6 +60,7 @@ export const PositionLevel = styled.span`
 `
 
 export const Title = styled.p`
+margin: 0;
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
@@ -81,4 +80,5 @@ export const Button = styled.button`
   background: rgba(84, 87, 91, 0.2);
   border-radius: 20px;
   margin-top: 1rem;
+  font-size: 1rem;
 `

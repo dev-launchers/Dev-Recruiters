@@ -95,13 +95,6 @@ const requests = {
     }).then(responseBody),
 }
 
-const strapiURL = process.env.NEXT_PUBLIC_STRAPI_URL;
-
-const Account = {
-    logout: axios.get(`${strapiURL}auth/logout`, { withCredentials: true }).then(responseBody),
-
-}
-
 const Projects = {
     list: () => requests.get<Project[]>('projects'),
 }
@@ -110,7 +103,6 @@ const Ideas = {
 }
 
 const agent = {
-    Account,
     Ideas,
     Projects,
 }

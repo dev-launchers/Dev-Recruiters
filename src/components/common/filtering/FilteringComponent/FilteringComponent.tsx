@@ -79,24 +79,23 @@ export default function FilteringComponent() {
         )}
       </Container>
 
-      {!projectsLoading ? (
-        projects && projects.length > 0 ? (
-          <ProjectsList projects={projects} />
+      <ListWrapper>
+        {!projectsLoading ? (
+          projects && projects.length > 0 ? (
+            <ProjectsList projects={projects} />
+          ) : (
+            <p>The projects list is empty</p>
+          )
         ) : (
-          <p>The projects list is empty</p>
-        )
-      ) : (
-        <p>loading</p>
-      )}
+          <p>loading</p>
+        )}
+      </ListWrapper>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   background-color: #454d58;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 `;
 
 const Container = styled.div`
@@ -108,4 +107,10 @@ const Container = styled.div`
   justify-content: space-around;
   column-gap: 1rem;
   width: 100%;
+`;
+
+const ListWrapper = styled.div`
+  max-height: 55vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
