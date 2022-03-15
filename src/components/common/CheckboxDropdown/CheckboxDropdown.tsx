@@ -27,6 +27,7 @@ interface Props {
   valueProperty?: any | undefined;
   keyValueReturn?: boolean | undefined;
   items: any[];
+  selectedItems?: any[];
   onChange: (value: any) => void;
 }
 
@@ -35,6 +36,7 @@ export default function CheckboxDropdown({
   items,
   nameProperty,
   valueProperty,
+  selectedItems = [],
   onChange,
 }: Props) {
   const node = useRef(null);
@@ -64,7 +66,9 @@ export default function CheckboxDropdown({
         : value[nameProperty]
       : value;
 
-    return addedItems.includes(item);
+    return selectedItems
+      ? selectedItems.some((i) => i === item)
+      : addedItems.some((i) => i === item);
   };
 
   const handleCloseMenu = () => {

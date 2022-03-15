@@ -3,7 +3,7 @@ import {
   TitleSection,
   Wrapper,
   Title,
-  ItemSection,
+  CommitmentSection,
   Subtitle,
   Paragraph,
   PositionsList,
@@ -11,6 +11,8 @@ import {
   Button,
   PositionLevel,
   PositionTitle,
+  TypeSection,
+  PositionsSection,
 } from "./StyleProjectListItem";
 
 interface Props {
@@ -24,34 +26,37 @@ export default function ProjectListItem({ project }: Props) {
         <Title>{project.title}</Title>
         <Paragraph>{project.catchPhrase}</Paragraph>
       </TitleSection>
-      <ItemSection bgColor="rgba(123, 123, 123, 0.4)" flex="0 1 15%">
+      <TypeSection>
         <Subtitle>Type</Subtitle>
         <Paragraph>Idea - Platform</Paragraph>
-      </ItemSection>
-      <ItemSection
-        bgColor="rgba(192, 192, 192, 1)"
-        alignItems="start"
-        flex="0 1 20%"
-      >
-        <Subtitle>Positions Available / Level</Subtitle>
-        {project.openPositions.length > 0 ? (
-          <PositionsList>
-            {project.openPositions.map((position) => (
-              <PositionsListItem key={position.id}>
-                <PositionTitle>{position.title}</PositionTitle>
-                <PositionLevel>Advanced</PositionLevel>
-              </PositionsListItem>
-            ))}
-          </PositionsList>
-        ) : (
-          <Paragraph>No open positions for the moment</Paragraph>
+      </TypeSection>
+      <PositionsSection>
+        <div>
+          <Subtitle>Positions Available / Level</Subtitle>
+          {project.openPositions.length > 0 ? (
+            <>
+              <PositionsList>
+                {project.openPositions.slice(0, 3).map((position) => (
+                  <PositionsListItem key={position.id}>
+                    <PositionTitle>{position.title}</PositionTitle>
+                    <PositionLevel>Advanced</PositionLevel>
+                  </PositionsListItem>
+                ))}
+              </PositionsList>
+            </>
+          ) : (
+            <Paragraph>No open positions for the moment</Paragraph>
+          )}
+        </div>
+        {project.openPositions.length > 4 && (
+          <Button>More available positions</Button>
         )}
-      </ItemSection>
-      <ItemSection bgColor="transparent" flex="0 1 15%">
+      </PositionsSection>
+      <CommitmentSection>
         <Subtitle>Time Commitment</Subtitle>
         <Paragraph>{project.commitmentLevel}</Paragraph>
         <Button>See More</Button>
-      </ItemSection>
+      </CommitmentSection>
     </Wrapper>
   );
 }

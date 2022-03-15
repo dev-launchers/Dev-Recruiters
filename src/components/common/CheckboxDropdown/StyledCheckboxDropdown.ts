@@ -7,8 +7,9 @@ interface DropdownProps {
 export const Wrapper = styled.div`
     position: relative;
     font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
-    width: 100%;
-    max-width: 24rem;
+    width: auto;
+    
+   
   `
 
 export const Icon = styled.svg`
@@ -30,6 +31,7 @@ export const Toggle = styled.button`
     padding-top: 4px;
     justify-content: space-between;
     align-items: center;
+    max-width: 12rem;
     width: 100%;
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -51,6 +53,7 @@ export const ListContainer = styled.div<DropdownProps>`
     margin-top: .75rem ;
     padding: 6px;
     background-color: rgb(91 96 104);
+    min-width: 18rem;
     color: white;
     width: 100%;
     border-radius: .75rem;

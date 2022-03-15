@@ -22,8 +22,6 @@ export default function useProjects() {
   const fetchProjects = useCallback(async () => {
     try {
       const result = await agent.Projects.list();
-      console.log(result);
-
       if (result.length > 0) {
         setProjects(result);
         setFilteredProjects(result);
@@ -133,7 +131,6 @@ export function FilterProjects(projects: Project[], params: ProjectParams) {
     //     )
     //   );
     // }
-
     return list;
   }
 }

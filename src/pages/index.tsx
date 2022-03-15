@@ -1,4 +1,5 @@
 import Head from "next/head";
+import styled from "styled-components";
 import FilteringComponent from "../components/common/filtering/FilteringComponent";
 
 const IndexPage = () => (
@@ -44,8 +45,15 @@ const IndexPage = () => (
     </Head>
     <h1>hello from page index</h1>
 
-    <FilteringComponent />
+    <Wrapper>
+      <FilteringComponent />
+    </Wrapper>
   </>
 );
 
 export default IndexPage;
+
+const Wrapper = styled.div`
+  background-color: #454d58;
+  padding: 40px 60px;
+`;
