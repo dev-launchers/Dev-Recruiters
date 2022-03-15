@@ -1,9 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { Project } from "../components/common/filtering/project";
 
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+
 
 // In case cross-site Access-Control requests should be made using credentials
 //axios.defaults.withCredentials = true;
@@ -100,7 +102,7 @@ const requests = {
 }
 
 const Projects = {
-    list: () => requests.get('projects'),
+    list: () => requests.get<Project[]>('projects'),
 }
 
 const Ideas = {

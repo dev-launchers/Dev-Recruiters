@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { Project } from "./project";
-
-const projectsApiPath = "https://api.devlaunchers.org/projects";
+import agent from "../../../utils/agent";
+import { Project, ProjectParams } from "./project";
 
 export default function useProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -15,18 +13,24 @@ export default function useProjects() {
   const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
 
   const SetProjectParams = (value: ProjectParams) => {
-    console.log(value);
     setFilteredProjects(FilterProjects(projects, value));
   };
 
+  /**
+   * Request the projects from the API
+   */
   const fetchProjects = useCallback(async () => {
     try {
-      const { data }: { data: Project[] } = await axios.get(projectsApiPath);
-      setProjects(data);
-      setFilteredProjects(data);
-      setProjectsLoaded(true);
-      fetchPositions(data);
-      fetchCommitments(data);
+      const result = await agent.Projects.list();
+      console.log(result);
+
+      if (result.length > 0) {
+        setProjects(result);
+        setFilteredProjects(result);
+        setProjectsLoaded(true);
+        fetchPositions(result);
+        fetchCommitments(result);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -34,7 +38,11 @@ export default function useProjects() {
     }
   }, []);
 
+  /**
+   * Extract the Open Positions from the projects entities
+   */
   function fetchPositions(projects: Project[]) {
+    if (projects.length <= 0) return;
     const items = projects
       .flatMap((p) => p.openPositions.map((po) => po.title))
       .sort();
@@ -43,7 +51,11 @@ export default function useProjects() {
     setPositionsLoaded(true);
   }
 
+  /**
+   * Extract the Commitment levels from the projects entities
+   */
   function fetchCommitments(projects: Project[]) {
+    if (projects.length <= 0) return;
     const items = projects
       .filter((p) => p.commitmentLevel)
       .map((p) => p.commitmentLevel)
@@ -53,6 +65,9 @@ export default function useProjects() {
     setCommitmentsLoaded(true);
   }
 
+  /**
+   * Load projects automatically at the first use
+   */
   useEffect(() => {
     if (!projectsLoaded) {
       setProjectsLoading(true);
@@ -72,18 +87,21 @@ export default function useProjects() {
   };
 }
 
-export interface ProjectParams {
-  platform: string[] | null;
-  position: string[] | null;
-  level: string[] | null;
-  commitment: string[] | null;
-}
-
+/**
+ * Filters projects
+ * @param projects the initial list of projects received from the API
+ * @param params  contains the filtering criteria
+ * @param params.level:string[] filter projects by level (unavailable)
+ * @param params.position:string[] filter projects by open positions (available)
+ * @param params.commitment:string[] filter projects by commitment level (available)
+ * @param params.platform:string[] filter projects by platform (unavailable)
+ * @returns project[] a filtered list;
+ */
 export function FilterProjects(projects: Project[], params: ProjectParams) {
   if (projects.length > 0 && params) {
     let list: Project[] = [...projects];
 
-    // No way to filter level (inexistent property)
+    // Levels must be filtered before positions
 
     // if (params.level && params.level.length > 0) {
     //   params.level.forEach((level) => {
@@ -109,8 +127,6 @@ export function FilterProjects(projects: Project[], params: ProjectParams) {
       console.log(list);
     }
 
-    // No way to filter platform (inexistent property)
-
     // if (params.platform && params.platform.length > 0) {
     //   list = list.filter((project) =>
     //     params.platform.forEach(
@@ -123,24 +139,3 @@ export function FilterProjects(projects: Project[], params: ProjectParams) {
     return list;
   }
 }
-
-// export function getAxiosParams(projectParams: ProjectParams) {
-//   const params = new URLSearchParams();
-//   params.append("pageNumber", projectParams.pageNumber.toString());
-//   params.append("pageSize", projectParams.pageSize.toString());
-//   if (projectParams.position && projectParams.position.length > 0) {
-//     params.append("position", projectParams.position.toString());
-//   }
-//   if (projectParams.platform && projectParams.platform.length > 0) {
-//     params.append("platform", projectParams.platform.toString());
-//   }
-
-//   if (projectParams.level && projectParams.level.length > 0) {
-//     params.append("level", projectParams.level.toString());
-//   }
-
-//   if (projectParams.commitment && projectParams.commitment.length > 0) {
-//     params.append("commitment", projectParams.commitment.toString());
-//   }
-//   return params;
-// }

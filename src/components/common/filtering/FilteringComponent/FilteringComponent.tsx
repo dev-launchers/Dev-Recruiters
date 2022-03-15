@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { EnumToArray } from "../../../../utils/enumToArray";
 import CheckboxDropdown from "../../CheckboxDropdown";
+import { ProjectParams } from "../project";
 import { PlatformType, PositionLevel } from "../projectEnums";
 import ProjectsList from "../ProjectsList";
-import useProjects, { ProjectParams } from "../useProject";
+import useProjects from "../useProject";
 
 export default function FilteringComponent() {
   const [projectParams, setProjectParams] = useState<ProjectParams>({
@@ -78,7 +79,15 @@ export default function FilteringComponent() {
         )}
       </Container>
 
-      {!projectsLoading ? <ProjectsList projects={projects} /> : <p>loading</p>}
+      {!projectsLoading ? (
+        projects && projects.length > 0 ? (
+          <ProjectsList projects={projects} />
+        ) : (
+          <p>The projects list is empty</p>
+        )
+      ) : (
+        <p>loading</p>
+      )}
     </Wrapper>
   );
 }
