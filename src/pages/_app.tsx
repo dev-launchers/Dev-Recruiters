@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </div>
             <div>
               <Header />
-              <Component {...pageProps} />
+               <Component {...pageProps} /> 
               <Footer />
             </div>
           </UserDataProvider>
