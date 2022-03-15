@@ -1,3 +1,10 @@
+export interface ProjectParams {
+    platform: string[] | null;
+    position: string[] | null;
+    level: string[] | null;
+    commitment: string[] | null;
+}
+
 export interface Formats {
 }
 
