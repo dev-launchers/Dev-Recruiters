@@ -8,8 +8,6 @@ export const Wrapper = styled.div`
     position: relative;
     font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
     width: auto;
-    
-   
   `
 
 export const Icon = styled.svg`
@@ -38,6 +36,7 @@ export const Toggle = styled.button`
     border-radius: 45px;
     width: 100%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border:none;
   `
 
 export const Title = styled.p`
