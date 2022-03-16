@@ -120,7 +120,7 @@ export default function FilteringComponent() {
                 key={`position${index + 1}`}
               >
                 <p>{item}</p>
-                <button>X</button>
+                <button type="button">x</button>
               </ChipsListItem>
             ))}
           {projectParams.platform &&
@@ -130,7 +130,7 @@ export default function FilteringComponent() {
                 key={`platform${index + 1}`}
               >
                 <p>{item}</p>
-                <button>x</button>
+                <button type="button">x</button>
               </ChipsListItem>
             ))}
           {projectParams.level &&
@@ -140,7 +140,7 @@ export default function FilteringComponent() {
                 key={`level${index + 1}`}
               >
                 <p>{item}</p>
-                <button>x</button>
+                <button type="button">x</button>
               </ChipsListItem>
             ))}
 
@@ -151,7 +151,7 @@ export default function FilteringComponent() {
                 onClick={() => handleRemoveCommitment(item)}
               >
                 <p>{item}</p>
-                <button>x</button>
+                <button type="button">x</button>
               </ChipsListItem>
             ))}
         </ChipsList>

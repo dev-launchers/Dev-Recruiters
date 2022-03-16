@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import agent from "../../../utils/agent";
-import { Project, ProjectParams } from "./project";
+import { Project, ProjectLite, ProjectParams } from "./project";
 
 export default function useProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<ProjectLite[]>([]);
   const [projectsLoaded, setProjectsLoaded] = useState(false);
   const [projectsLoading, setProjectsLoading] = useState(false);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<ProjectLite[]>([]);
   const [positions, setPositions] = useState<string[]>([]);
   const [positionsLoaded, setPositionsLoaded] = useState(false);
   const [commitments, setCommitments] = useState<string[]>([]);
@@ -21,10 +21,19 @@ export default function useProjects() {
    */
   const fetchProjects = useCallback(async () => {
     try {
-      const result = await agent.Projects.list();
+      const result: Project[] = await agent.Projects.list();
       if (result.length > 0) {
-        setProjects(result);
-        setFilteredProjects(result);
+        const list = result.map((item: Project) => ({
+          id: item.id,
+          slug: item.slug,
+          catchPhrase: item.catchPhrase,
+          title: item.title,
+          description: item.description,
+          commitmentLevel: item.commitmentLevel,
+          openPositions: item.openPositions,
+        }));
+        setProjects(list);
+        setFilteredProjects(list);
         setProjectsLoaded(true);
         fetchPositions(result);
         fetchCommitments(result);
@@ -95,9 +104,9 @@ export default function useProjects() {
  * @param params.platform:string[] filter projects by platform (unavailable)
  * @returns project[] a filtered list;
  */
-export function FilterProjects(projects: Project[], params: ProjectParams) {
+export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
   if (projects.length > 0 && params) {
-    let list: Project[] = [...projects];
+    let list: ProjectLite[] = [...projects];
 
     // Levels must be filtered before positions
 

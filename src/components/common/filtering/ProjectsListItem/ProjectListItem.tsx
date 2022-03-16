@@ -1,4 +1,4 @@
-import { Project } from "../project";
+import { ProjectLite } from "../project";
 import {
   TitleSection,
   Wrapper,
@@ -16,7 +16,7 @@ import {
 } from "./StyleProjectListItem";
 
 interface Props {
-  project: Project;
+  project: ProjectLite;
 }
 
 export default function ProjectListItem({ project }: Props) {

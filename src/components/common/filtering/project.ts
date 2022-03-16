@@ -310,6 +310,16 @@ export interface GoogleMeet {
     updated_by: string;
 }
 
+export interface ProjectLite {
+    id: string;
+    slug: string;
+    catchPhrase: string;
+    title: string;
+    description: string;
+    commitmentLevel: string;
+    openPositions: OpenPosition[];
+}
+
 export interface Project {
     id: string;
     slug: string;

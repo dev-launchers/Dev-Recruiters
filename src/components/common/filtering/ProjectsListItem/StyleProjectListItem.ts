@@ -58,6 +58,7 @@ export const PositionsSection = styled.div`
     padding: 6px 32px;
     background-color:#9399A0;
     border: none;
+    cursor: pointer;
   }
  
 `
@@ -139,4 +140,5 @@ export const Button = styled.button`
   margin-top: .5rem;
   font-size: 1rem;
   border: none;
+  cursor: pointer;
 `

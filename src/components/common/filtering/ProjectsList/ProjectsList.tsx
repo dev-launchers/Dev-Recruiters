@@ -1,9 +1,9 @@
-import { Project } from "../project";
+import { ProjectLite } from "../project";
 import ProjectListItem from "../ProjectsListItem";
 import { List } from "./StyledProjectsList";
 
 interface Props {
-  projects: Project[];
+  projects: ProjectLite[];
   projectsLoaded: boolean;
 }
 
