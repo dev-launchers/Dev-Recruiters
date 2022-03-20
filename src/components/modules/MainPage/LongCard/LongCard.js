@@ -26,7 +26,7 @@ import { Layout,ProjectContainer } from "../MainCom/StyledMainCom";
  *  - imageHolderBackgroundColor: changes bgColor if passed otherwise it defaults to black bgColor
  *  - cardFlexDirection: changes flex-direction if existed otherwise delete flex-direction
  */
- class LonCard extends React.Component {
+ class LongCard extends React.Component {
   constructor(props) {
     super(props);
   }

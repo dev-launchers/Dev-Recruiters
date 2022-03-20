@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   margin: 0.5%;
   border-radius:45px;
-  width: ${({ size }) => (size === "large" ? "90%" : "50%")};
+  width: ${({ size }) => (size === "large" ? "90%" : "30%")};
   background-color: White;
   /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
   display: flex;
