@@ -82,6 +82,9 @@ class ShortCard extends React.Component {
                   })}
                   </ul>
                   </SectionDiv>
+                  <button>
+                    
+                  </button>
                   <SectionDiv>
                 <TextBold>{this.props.cardDatas.time}</TextBold>
                      <div>{this.props.cardDatas.hour}</div> 
