@@ -22,9 +22,9 @@ export const Toggle = styled.button`
     display: inline-flex;
     background: #F1F4F5;
     color: #000000;
-    border-radius: 45px;
-    padding-left: 24px;
-    padding-right: 16px;
+    border-radius: 2.9rem;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
     padding-bottom: 4px;
     padding-top: 4px;
     justify-content: space-between;
@@ -33,7 +33,7 @@ export const Toggle = styled.button`
     width: 100%;
     font-size: 1.125rem;
     line-height: 1.75rem;
-    border-radius: 45px;
+    border-radius: 2.8rem;
     width: 100%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border:none;
@@ -41,7 +41,7 @@ export const Toggle = styled.button`
   `
 
 export const Title = styled.p`
-  padding: 4px 8px;
+  padding: .25rem .5rem;
   margin:0;
   font-size: 1.25rem;
   `
@@ -51,7 +51,7 @@ export const ListContainer = styled.div<DropdownProps>`
     position: absolute;
     z-index: 5;
     margin-top: .75rem ;
-    padding: 6px;
+    padding: .37rem;
     background-color: rgb(91 96 104);
     min-width: 18rem;
     color: white;
@@ -76,7 +76,7 @@ export const List = styled.ul`
   `
 
 export const ListItem = styled.li<{ checked: boolean }>`
-    padding:  8px;
+    padding:  .5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -84,5 +84,5 @@ export const ListItem = styled.li<{ checked: boolean }>`
     font-size: 1.12rem;
     background-color: ${(props) =>
     props.checked ? 'rgba(196, 196, 196, 0.2)' : "inherit"};
-    border-radius: 4px;
+    border-radius: .25rem;
   `

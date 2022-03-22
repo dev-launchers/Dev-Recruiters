@@ -25,8 +25,8 @@ export const Icon = styled.svg`
   fill: none;
   stroke: white;
   stroke-width: 2px;
-  height:17.5px;
-  width:17.5px;
+  height:1.1rem;
+  width:1.1rem;
 `
 
 export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -44,11 +44,11 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 
 export const StyledCheckbox = styled.div<StyledCheckboxProps>`
   display: block;
-  width: ${({ width }) => (width ? `${width}em` : '17.5px')};
-  height: ${({ width }) => (width ? `${width}em` : '17.5px')};
+  width: ${({ width }) => (width ? `${width}rem` : '1rem')};
+  height: ${({ width }) => (width ? `${width}rem` : '1rem')};
   background: ${(props) =>
     props.checked ? props.checkedBg : props.uncheckedBg};
-  border-radius: 3px;
+  border-radius: .18rem;
   transition: all 150ms;
 
   ${HiddenCheckbox}:focus + & {
