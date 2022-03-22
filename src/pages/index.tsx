@@ -45,15 +45,15 @@ const IndexPage = () => (
     </Head>
     <h1>hello from page index</h1>
 
-    <Wrapper>
+    <FilteredProjects>
       <FilteringComponent />
-    </Wrapper>
+    </FilteredProjects>
   </>
 );
 
 export default IndexPage;
 
-const Wrapper = styled.div`
+const FilteredProjects = styled.div`
   background-color: #454d58;
   padding: 40px 60px;
 `;
