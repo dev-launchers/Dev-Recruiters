@@ -1,6 +1,6 @@
 const PROD = {
   envType: "PROD",
-  API_URL: "https://api.devlaunchers.com",
+  API_URL: "https://api.devlaunchers.org",
   STRAPI_URL: "http://localhost:1337",
   GOOGLE_AUTH_URL: "https://api.devlaunchers.org/connect/google",
   DISCORD_AUTH_URL:
@@ -9,7 +9,7 @@ const PROD = {
 
 const STAGING = {
   envType: "STAGING",
-  API_URL: "https://api-staging.devlaunchers.com",
+  API_URL: "https://api-staging.devlaunchers.org",
   STRAPI_URL: "https://api-staging.devlaunchers.org",
   GOOGLE_AUTH_URL: "https://api-staging.devlaunchers.org/connect/google",
   DISCORD_AUTH_URL:
