@@ -33,19 +33,15 @@ export default function ProjectListItem({ project }: Props) {
       <PositionsSection>
         <div>
           <Subtitle>Positions Available / Level</Subtitle>
-          {project.openPositions.length > 0 ? (
-            <>
-              <PositionsList>
-                {project.openPositions.slice(0, 3).map((position) => (
-                  <PositionsListItem key={position.id}>
-                    <PositionTitle>{position.title}</PositionTitle>
-                    <PositionLevel>Advanced</PositionLevel>
-                  </PositionsListItem>
-                ))}
-              </PositionsList>
-            </>
-          ) : (
-            <Paragraph>No open positions for the moment</Paragraph>
+          {project.openPositions.length > 0 && (
+            <PositionsList>
+              {project.openPositions.slice(0, 3).map((position) => (
+                <PositionsListItem key={position.id}>
+                  <PositionTitle>{position.title}</PositionTitle>
+                  <PositionLevel>Advanced</PositionLevel>
+                </PositionsListItem>
+              ))}
+            </PositionsList>
           )}
         </div>
         {project.openPositions.length > 4 && (

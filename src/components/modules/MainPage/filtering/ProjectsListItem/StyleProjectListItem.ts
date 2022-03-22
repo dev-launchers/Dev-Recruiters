@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: row;
   height: 100%;
   background: rgba(211, 212, 214, 0.9);
-  border-radius: 40px;
+  border-radius: 2.5rem;
 `
 
 export const TitleSection = styled.div`
@@ -55,7 +55,7 @@ export const PositionsSection = styled.div`
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    padding: 6px 32px;
+    padding: .375rem 2rem;
     background-color:#9399A0;
     border: none;
     cursor: pointer;
@@ -76,18 +76,6 @@ export const CommitmentSection = styled.div`
   }
  
 `
-
-// export const ItemSection = styled.div<{ bgColor: string; alignItems?: string, flex?: string }>`
-//   display: flex;
-//   flex-direction: column;
-//   flex: ${(props) => (props.flex ? props.flex : '1 1 auto')};
-//   justify-content: center;
-//   align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
-//   padding: 2rem 1.25rem;
-//   padding-right: 1.25rem;
-//   padding-top: 1.25rem;
-//   background: ${(props) => props.bgColor};
-// `
 
 export const PositionsList = styled.ul`
   padding-left: 1.25rem;
@@ -134,9 +122,9 @@ export const Paragraph = styled.p`
 `
 
 export const Button = styled.button`
-  padding: 10px 8px;
+  padding: .625rem .5rem;
   background: rgba(84, 87, 91, 0.2);
-  border-radius: 20px;
+  border-radius: 1.25rem;
   margin-top: .5rem;
   font-size: 1rem;
   border: none;

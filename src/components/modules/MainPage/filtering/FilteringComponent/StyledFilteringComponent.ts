@@ -5,9 +5,9 @@ export const FiltersWrapper = styled.div`
 `;
 
 export const FilterTitle = styled.p`
-  font-size: 26px;
+  font-size: 1.6rem;
   color: #fff;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   padding-left: 1.5rem;
   margin: 0;
 `;
@@ -34,8 +34,8 @@ export const ChipsList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 20px;
+  column-gap: 1.25rem;
+  row-gap: 1.25rem;
 `;
 
 export const ChipsListItem = styled.li`
@@ -47,9 +47,9 @@ export const ChipsListItem = styled.li`
   list-style: none;
   background-color: #9399a0;
   font-size: 1rem;
-  padding: 8px 24px;
+  padding: .5rem 1.5rem;
   padding-right: 0;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   width: full;
 
   &:hover {

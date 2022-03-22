@@ -1,8 +1,25 @@
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import styled from "styled-components";
+import PositionCard from "../components/modules/IdeaRecruitPage/PositionCard";
 import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
+import { Project } from "../components/modules/MainPage/filtering/project";
 
-const IndexPage = () => (
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch("https://api.devlaunchers.org/projects");
+  const projects = await res.json();
+
+  return {
+    props: {
+      projects,
+    },
+  };
+};
+
+interface Props {
+  projects: Project[];
+}
+
+const IndexPage = ({ projects }: Props) => (
   <>
     <Head>
       <title>Our Projects</title>
@@ -44,16 +61,27 @@ const IndexPage = () => (
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
     <h1>hello from page index</h1>
+    {/* testing postion Card */}
+    <PositionCard position={position} />
 
-    <FilteredProjects>
-      <FilteringComponent />
-    </FilteredProjects>
+    {projects && <FilteringComponent projects={projects} />}
   </>
 );
 
 export default IndexPage;
 
-const FilteredProjects = styled.div`
-  background-color: #454d58;
-  padding: 40px 60px;
-`;
+const position = {
+  title: "Web Developer",
+  level: "Beginner Level",
+  stack: ["React", "html", "css"],
+  expectations: [
+    "Self Sufficient learner",
+    "Hands on learning experience",
+    "Weekly meetings",
+  ],
+  description: ` We are looking for a web developer who has some knowledge of
+  React.js, HTML, and CSS. Experience using API's is appreciated but
+  not required. All experience levels welcome, provided you are a
+  willing and self-sufficient learner and a good communicator. You
+  will:`,
+};

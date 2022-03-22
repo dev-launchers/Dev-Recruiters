@@ -1,6 +1,6 @@
 export enum PlatformType {
     Independent,
-    Product,
+    Platform,
 }
 
 export enum PositionLevel {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { EnumToArray } from "../../../../../utils/enumToArray";
 import CheckboxDropdown from "../../../../common/CheckboxDropdown";
-import { ProjectParams } from "../project";
+import { Project } from "../project";
 import { PlatformType, PositionLevel } from "../projectEnums";
 import ProjectsList from "../ProjectsList";
 import useProjects from "../useProject";
@@ -14,62 +14,35 @@ import {
   ChipsListItem,
 } from "./StyledFilteringComponent";
 
-export default function FilteringComponent() {
-  const [projectParams, setProjectParams] = useState<ProjectParams>({
-    platform: [],
-    position: [],
-    level: [],
-    commitment: [],
-  });
+interface Props {
+  projects: Project[];
+}
+
+export default function FilteringComponent({ projects }: Props) {
   const {
-    filteredProjects: projects,
+    filteredProjects,
     projectsLoaded,
     commitments,
     commitmentsLoaded,
     positions,
     positionsLoaded,
-    SetProjectParams: setParams,
+    projectParams,
+    handlePlatformChange,
+    handleRemovePlatform,
+    handlePositionChange,
+    handleRemovePosition,
+    handleLevelChange,
+    handleRemoveLevel,
+    handleCommitmentChange,
+    handleRemoveCommitment,
+    fetchProjects,
   } = useProjects();
 
-  const handlePlatformChange = (value: string[]) => {
-    setProjectParams({ ...projectParams, platform: value });
-  };
-
-  const handleRemovePlatform = (value: string) => {
-    const platform = projectParams.platform.filter((p) => p !== value);
-    setProjectParams({ ...projectParams, platform });
-  };
-
-  const handlePositionChange = (value: string[]) => {
-    setProjectParams({ ...projectParams, position: value });
-  };
-
-  const handleRemovePosition = (value: string) => {
-    const position = projectParams.position.filter((p) => p !== value);
-    setProjectParams({ ...projectParams, position });
-  };
-
-  const handleLevelChange = (value: string[]) => {
-    setProjectParams({ ...projectParams, level: value });
-  };
-
-  const handleRemoveLevel = (value: string) => {
-    const level = projectParams.level.filter((p) => p !== value);
-    setProjectParams({ ...projectParams, level });
-  };
-
-  const handleCommitmentChange = (value: string[]) => {
-    setProjectParams({ ...projectParams, commitment: value });
-  };
-
-  const handleRemoveCommitment = (value: string) => {
-    const commitment = projectParams.commitment.filter((p) => p !== value);
-    setProjectParams({ ...projectParams, commitment });
-  };
-
   useEffect(() => {
-    setParams(projectParams);
-  }, [projectParams]);
+    if (projects && !projectsLoaded) {
+      fetchProjects(projects);
+    }
+  }, [projects, fetchProjects, projectsLoaded]);
 
   return (
     <Wrapper>
@@ -154,7 +127,13 @@ export default function FilteringComponent() {
             ))}
         </ChipsList>
       </FiltersWrapper>
-      <ProjectsList projects={projects} projectsLoaded={projectsLoaded} />
+
+      {projectsLoaded && (
+        <ProjectsList
+          projects={filteredProjects}
+          projectsLoaded={projectsLoaded}
+        />
+      )}
     </Wrapper>
   );
 }

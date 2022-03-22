@@ -1,16 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
-import agent from "../../../../utils/agent";
+import { useState } from "react";
 import { Project, ProjectLite, ProjectParams } from "./project";
 
 export default function useProjects() {
   const [projects, setProjects] = useState<ProjectLite[]>([]);
   const [projectsLoaded, setProjectsLoaded] = useState(false);
-  const [projectsLoading, setProjectsLoading] = useState(false);
   const [filteredProjects, setFilteredProjects] = useState<ProjectLite[]>([]);
   const [positions, setPositions] = useState<string[]>([]);
   const [positionsLoaded, setPositionsLoaded] = useState(false);
   const [commitments, setCommitments] = useState<string[]>([]);
   const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
+  const [projectParams, setProjectParams] = useState<ProjectParams>({
+    platform: [],
+    position: [],
+    level: [],
+    commitment: [],
+  });
 
   const SetProjectParams = (value: ProjectParams) => {
     setFilteredProjects(FilterProjects(projects, value));
@@ -19,31 +23,25 @@ export default function useProjects() {
   /**
    * Request the projects from the API
    */
-  const fetchProjects = useCallback(async () => {
-    try {
-      const result: Project[] = await agent.Projects.list();
-      if (result.length > 0) {
-        const list = result.map((item: Project) => ({
-          id: item.id,
-          slug: item.slug,
-          catchPhrase: item.catchPhrase,
-          title: item.title,
-          description: item.description,
-          commitmentLevel: item.commitmentLevel,
-          openPositions: item.openPositions,
-        }));
-        setProjects(list);
-        setFilteredProjects(list);
-        setProjectsLoaded(true);
-        fetchPositions(result);
-        fetchCommitments(result);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setProjectsLoading(false);
+
+  const fetchProjects = (projectsList: Project[]) => {
+    if (projectsList.length > 0) {
+      const list = projectsList.map((item: Project) => ({
+        id: item.id,
+        slug: item.slug,
+        catchPhrase: item.catchPhrase,
+        title: item.title,
+        description: item.description,
+        commitmentLevel: item.commitmentLevel,
+        openPositions: item.openPositions,
+      }));
+      setProjects(list);
+      setFilteredProjects(list);
+      fetchPositions(projectsList);
+      fetchCommitments(projectsList);
+      setProjectsLoaded(true);
     }
-  }, []);
+  };
 
   /**
    * Extract the Open Positions from the projects entities
@@ -72,25 +70,65 @@ export default function useProjects() {
     setCommitmentsLoaded(true);
   }
 
-  /**
-   * Load projects automatically at the first use
-   */
-  useEffect(() => {
-    if (!projectsLoaded) {
-      setProjectsLoading(true);
-      fetchProjects();
-    }
-  }, [projectsLoaded]);
+  const handleParamsChange = (params: ProjectParams) => {
+    setProjectParams(params);
+    setFilteredProjects(FilterProjects(projects, params));
+  };
+
+  const handlePlatformChange = (value: string[]) => {
+    handleParamsChange({ ...projectParams, platform: value });
+  };
+
+  const handleRemovePlatform = (value: string) => {
+    const platform = projectParams.platform.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, platform });
+  };
+
+  const handlePositionChange = (value: string[]) => {
+    handleParamsChange({ ...projectParams, position: value });
+  };
+
+  const handleRemovePosition = (value: string) => {
+    const position = projectParams.position.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, position });
+  };
+
+  const handleLevelChange = (value: string[]) => {
+    handleParamsChange({ ...projectParams, level: value });
+  };
+
+  const handleRemoveLevel = (value: string) => {
+    const level = projectParams.level.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, level });
+  };
+
+  const handleCommitmentChange = (value: string[]) => {
+    handleParamsChange({ ...projectParams, commitment: value });
+  };
+
+  const handleRemoveCommitment = (value: string) => {
+    const commitment = projectParams.commitment.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, commitment });
+  };
 
   return {
+    projectParams,
     filteredProjects,
     projectsLoaded,
-    projectsLoading,
     positions,
     positionsLoaded,
     commitments,
     commitmentsLoaded,
+    fetchProjects,
     SetProjectParams,
+    handlePlatformChange,
+    handleRemovePlatform,
+    handlePositionChange,
+    handleRemovePosition,
+    handleLevelChange,
+    handleRemoveLevel,
+    handleCommitmentChange,
+    handleRemoveCommitment,
   };
 }
 
@@ -105,7 +143,7 @@ export default function useProjects() {
  * @returns project[] a filtered list;
  */
 export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
-  if (projects.length > 0 && params) {
+  if (projects.length > 0) {
     let list: ProjectLite[] = [...projects];
 
     // Levels must be filtered before positions
