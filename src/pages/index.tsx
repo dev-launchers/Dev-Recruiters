@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
-import FilteringComponent from "../components/common/filtering/FilteringComponent";
+import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
 
 const IndexPage = () => (
   <>

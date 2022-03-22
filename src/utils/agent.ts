@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { Project } from "../components/common/filtering/project";
+import { Project } from "../components/modules/MainPage/filtering/project";
 
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;

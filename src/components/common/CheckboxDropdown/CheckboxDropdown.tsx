@@ -14,18 +14,17 @@ import {
  * Takes an array of object/string and return selected items
  * @param title the dropdown list label
  * @param items  array string/object  (object => must provide nameProperty, valueProperty is optional)
- * @param nameProperty  the value to display as checkbox label
+ * @param keyProperty  the value to display as checkbox label
  * @param valueProperty  the return value of checkbox
- * @param keyValueReturn  precise the return type [{key, value}] or  [value]
+ * Ex {prop1, prop2, prop3} => (key=prop1, value= prop3) => {prop1, prop3}
  * @param onChange return an array of checked items
- * @returns (name, value) => Value , (name, !value) => name, (!name,!value) => item
+ * @returns (key, value) => Value , (ket, !value) => key, (!key,!value) => item
  */
 
 interface Props {
   title: string;
-  nameProperty?: any | undefined;
+  keyProperty?: any | undefined;
   valueProperty?: any | undefined;
-  keyValueReturn?: boolean | undefined;
   items: any[];
   selectedItems?: any[];
   onChange: (value: any) => void;
@@ -34,7 +33,7 @@ interface Props {
 export default function CheckboxDropdown({
   title,
   items,
-  nameProperty,
+  keyProperty,
   valueProperty,
   selectedItems = [],
   onChange,
@@ -45,10 +44,10 @@ export default function CheckboxDropdown({
 
   const handleOnSelectItem = (value: any) => {
     let items = [...addedItems];
-    var item = nameProperty
+    var item = keyProperty
       ? valueProperty
         ? value[valueProperty]
-        : value[nameProperty]
+        : value[keyProperty]
       : value;
     if (items.includes(item)) {
       items = items.filter((i) => i !== item);
@@ -60,10 +59,10 @@ export default function CheckboxDropdown({
   };
 
   const isChecked = (value: any) => {
-    const item = nameProperty
+    const item = keyProperty
       ? valueProperty
         ? value[valueProperty]
-        : value[nameProperty]
+        : value[keyProperty]
       : value;
 
     return selectedItems
@@ -94,7 +93,7 @@ export default function CheckboxDropdown({
           {items.map((item, index) => (
             <ListItem key={index} value={item} checked={isChecked(item)}>
               <Checkbox
-                label={nameProperty ? item[nameProperty] : item}
+                label={keyProperty ? item[keyProperty] : item}
                 id={`${title}${item}${index}`}
                 checked={isChecked(item)}
                 onChange={() => handleOnSelectItem(item)}

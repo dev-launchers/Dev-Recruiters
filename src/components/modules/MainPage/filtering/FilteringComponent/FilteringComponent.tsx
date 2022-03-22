@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { EnumToArray } from "../../../../utils/enumToArray";
-import CheckboxDropdown from "../../CheckboxDropdown";
+import { EnumToArray } from "../../../../../utils/enumToArray";
+import CheckboxDropdown from "../../../../common/CheckboxDropdown";
 import { ProjectParams } from "../project";
 import { PlatformType, PositionLevel } from "../projectEnums";
 import ProjectsList from "../ProjectsList";
@@ -78,8 +78,7 @@ export default function FilteringComponent() {
         <Container>
           <CheckboxDropdown
             title="Platform"
-            nameProperty={"name"}
-            valueProperty={"name"}
+            keyProperty={"name"}
             items={EnumToArray(PlatformType)}
             onChange={handlePlatformChange}
             selectedItems={projectParams.platform}
@@ -95,8 +94,7 @@ export default function FilteringComponent() {
 
           <CheckboxDropdown
             title="Level"
-            nameProperty={"name"}
-            valueProperty={"name"}
+            keyProperty={"name"}
             items={EnumToArray(PositionLevel)}
             onChange={handleLevelChange}
             selectedItems={projectParams.level}
