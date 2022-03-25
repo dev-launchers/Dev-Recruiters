@@ -9,7 +9,6 @@ import {
   PositionsList,
   PositionsListItem,
   Button,
-  PositionLevel,
   PositionTitle,
   TypeSection,
   PositionsSection,
@@ -38,7 +37,7 @@ export default function ProjectListItem({ project }: Props) {
               {project.openPositions.slice(0, 3).map((position) => (
                 <PositionsListItem key={position.id}>
                   <PositionTitle>{position.title}</PositionTitle>
-                  <PositionLevel>Advanced</PositionLevel>
+                  {/* <PositionLevel>Advanced</PositionLevel> */}
                 </PositionsListItem>
               ))}
             </PositionsList>
