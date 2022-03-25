@@ -21,7 +21,7 @@ interface Props {
 }
 
 export default function PositionCard({ position }: Props) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <Card>
       <CardSection>
