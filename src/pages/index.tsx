@@ -1,10 +1,10 @@
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import PositionCard from "../components/modules/IdeaRecruitPage/PositionCard";
 import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
 import { Project } from "../components/modules/MainPage/filtering/project";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch("https://api.devlaunchers.org/projects");
   const projects = await res.json();
 
@@ -12,6 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       projects,
     },
+    revalidate: 10,
   };
 };
 
