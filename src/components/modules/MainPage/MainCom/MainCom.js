@@ -1,21 +1,10 @@
-import { Layout,ProjectContainer } from "./StyledMain";
-import LongCard from "../src/component/LongCard";
-import CARDDATA from "../src/CardData";
-import {connect} from 'react-redux';
 import React from "react";
-import {withRouter} from "react-router-dom";
+import ShortCard from '../ShortCard';
+import LongCard from "../LongCard";
 
 
-class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          cardData: CARDDATA
-        }   
-    }
-
-    render(){
-        return(
+ const Main = ()=>{
+   return (
           <div
           style={{
           width: "90%",
@@ -34,32 +23,59 @@ class Main extends React.Component {
         >
           <h1>Join Us!</h1>
           </div>
-          <Layout>
-          {this.state.cardData.map((data,i)=>( 
-          <ProjectContainer key={i}>
-            <LongCard 
-            style={{ margin: 0, width: "100%", height: "100%" }}
-            cardDatas={data} 
-            />
-           </ProjectContainer>))   
-             }
-          </Layout>
-         </div>   
-            );         
-            }
+      
+          <ShortCard cardDatas ={{
+              titleText:"Thought Process",
+              smallText:"An online,community based idea or problem solving tool",
+              type:"Type",
+                content:[
+                  {
+                      id:11,
+                      cont:"Product"
+                  },
+                  {
+                      id:22,
+                      cont:"Platform"
+                  }
+                ],
+                  position:"Position Available",
+                  study: [
+                      { 
+                          id:111,
+                          stud:"Developer"
+                        },
+                        { 
+                          id:222,
+                          stud:"Digital Artist"
+                        },
+                        { 
+                          id:333,
+                          stud:"UX/UI"
+                        },
+                  ],
+                  time:"Time Commitment",
+                  hour:"5 hrs"   
+            
+    }}/>
+  
+    <LongCard cardDatas = {{ 
+      description:"DESCRIPTION",
+      details:[
+        {
+          id:1,
+          detail:"Social media is constantly changing and coming up with somthing new, so come right in and expose us to your fresh ideas! We accept people of ALL skill levels, and want YOU to help us make this possible!",
+        },
+        {
+          id:2,
+          detail:"You! Yes,you! The one who understands the importance of building relationships and tailoring a unique experience for individuals.You will be helping to develop the social network and media that allows our users to be connected tp both projects and other users across the plattform"
+        }
+      ]
+   }}/> 
+   <br />
+  
+         </div>    
+   )       
+            
 }
 
-const mapStateToProps = state => {
-  return {
-    cardDatas: state.cardData,
-  }
- }
-
-const mapDispatchToProps = dispatch => ({
-   
-    
-     
-});
-
-
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));
+export default Main;

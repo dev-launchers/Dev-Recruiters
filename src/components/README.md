@@ -1,4 +1,4 @@
-Our STUFF should be relatively aligned with the Smart vs Dumb aka Container component pattern seen here: https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
+Components should be relatively aligned with the Smart vs Dumb aka Container component pattern seen here: https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
 
 The 'modules' directory contains specialty components grouped by feature or domain.
 

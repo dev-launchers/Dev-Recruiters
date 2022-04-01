@@ -2,17 +2,14 @@ import React from "react";
 import {
   Container,
   Content,
-  Image,
-  Description,
-  ButtonSty,
+  ImageHolder,
+  DataHolder,
+  FooterContent,
   TextBold,
-  SectionDiv1,
-  SectionDiv2,
-  SectionDiv3,
-  SectionDiv4,
+  SectionDiv,
   HeadLine
 } from "./StyledLongCard";
-import { Layout,ProjectContainer } from "../MainCom/StyledMainCom";
+import CardTitle from "../../../common/Card/CardTitle";
 /**
  * Props:
  *  - title:
@@ -26,56 +23,46 @@ import { Layout,ProjectContainer } from "../MainCom/StyledMainCom";
  *  - imageHolderBackgroundColor: changes bgColor if passed otherwise it defaults to black bgColor
  *  - cardFlexDirection: changes flex-direction if existed otherwise delete flex-direction
  */
- class LongCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render(){
-        return (
-         <Layout  length = "900px" lengthMax = "900px">
-          <Container
-          style={this.props.style}
-          size={this.props.size}
-          key={this.props.i}
-          >
-          <Content
-           size={this.props.size}
-           >
-              <SectionDiv1> 
-                <HeadLine>{this.props.cardDatas.titleText}</HeadLine>
-               <Description>{this.props.cardDatas.smallText}</Description>
-               </SectionDiv1>
-                 <SectionDiv2>
-                <TextBold>{this.props.cardDatas.type}</TextBold> 
-                 <ul>
-                 {this.props.cardDatas.content.map((e)=>{
-                     <li key={e.id}></li>
-                     return (
-                     <div>{e.cont}</div> 
-                     )  
-                  })}
-                  </ul>
-                  </SectionDiv2>
-                  <SectionDiv3>
-                <TextBold>{this.props.cardDatas.position}</TextBold>
-                <ul>
-                 {this.props.cardDatas.study.map((e)=>{
-                     <li key={e.id}></li>
-                     return (
-                     <div>{e.stud}</div> 
-                     )  
-                  })}
-                  </ul>
-                  </SectionDiv3>
-                  <SectionDiv4>
-                <TextBold>{this.props.cardDatas.time}</TextBold>
-                     <div>{this.props.cardDatas.hour}</div> 
-                 <ButtonSty>See More</ButtonSty>
-                  </SectionDiv4>
-                  </Content>
-              </Container>   
-              </Layout>      
-        )    
-                } 
-}
+ const LongCard =(props)=>{
+   const {cardDatas} = props;
+  return (
+    <Container
+    style={props.style}
+    size={props.size}
+    key={props.i}
+    >
+    <Content
+     size={props.size}
+     >
+        <ImageHolder
+          size={props.size}
+         >
+         <HeadLine>{cardDatas.description}</HeadLine>
+        </ImageHolder> 
+        
+        <DataHolder size={props.size}>
+        <CardTitle
+           data={cardDatas}
+           isLinkingInside={props.isLinkingInside}
+          />
+          <FooterContent>
+           <SectionDiv>
+           <ul>
+          <TextBold>
+           {cardDatas.details.map((e)=>{
+               <li key={e.id}></li>
+               return (
+               <div> <li>{e.detail} </li></div> 
+               )  
+            })}
+            </TextBold> 
+           
+            </ul>
+            </SectionDiv>
+            </FooterContent>
+            </DataHolder>
+            </Content>
+        </Container>             
+  ) 
+ }             
 export default LongCard;

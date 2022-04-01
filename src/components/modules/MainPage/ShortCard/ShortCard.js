@@ -27,37 +27,34 @@ import CardTitle from "../../../common/Card/CardTitle";
  *  - imageHolderBackgroundColor: changes bgColor if passed otherwise it defaults to black bgColor
  *  - cardFlexDirection: changes flex-direction if existed otherwise delete flex-direction
  */
-class ShortCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render(){
+ const ShortCard =(props)=> {
+        const {cardDatas} = props;
         return (
           <Container
-          style={this.props.style}
-          size={this.props.size}
-          key={this.props.i}
+          style={props.style}
+          size={props.size}
+          key={props.i}
           >
           <Content
-           size={this.props.size}
+           size={props.size}
            >
               <ImageHolder
-              size={this.props.size}
+                size={props.size}
                >
-               <HeadLine>{this.props.cardDatas.titleText}</HeadLine>
-               <Description>{this.props.cardDatas.smallText}</Description>
+               <HeadLine>{cardDatas.titleText}</HeadLine>
+               <Description>{cardDatas.smallText}</Description>
               </ImageHolder> 
               
-              <DataHolder size={this.props.size}>
+              <DataHolder size={props.size}>
               <CardTitle
-                 data={this.props.cardDatas}
-                 isLinkingInside={this.props.isLinkingInside}
+                 data={cardDatas}
+                 isLinkingInside={props.isLinkingInside}
                 />
                 <FooterContent>
                  <SectionDiv>
                  <ul>
-                <TextBold>{this.props.cardDatas.type}</TextBold> 
-                 {this.props.cardDatas.content.map((e)=>{
+                <TextBold>{cardDatas.type}</TextBold> 
+                 {cardDatas.study.map((e)=>{
                      <li key={e.id}></li>
                      return (
                      <div>{e.cont}</div> 
@@ -67,14 +64,14 @@ class ShortCard extends React.Component {
                   </SectionDiv>
 
                   <SectionDiv>
-                <TextBold>{this.props.cardDatas.position}</TextBold>
+                <TextBold>{cardDatas.position}</TextBold>
                 <ul
                   style={{
                   margin:"0 10px 10px 0",
                   padding:"0 10px 10px 0",
                   }}
                 >
-                 {this.props.cardDatas.study.map((e)=>{
+                 {cardDatas.study.map((e)=>{
                      <li key={e.id}></li>
                      return (
                      <div>{e.stud}</div> 
@@ -82,18 +79,17 @@ class ShortCard extends React.Component {
                   })}
                   </ul>
                   </SectionDiv>
-                  <button>
-                    
-                  </button>
                   <SectionDiv>
-                <TextBold>{this.props.cardDatas.time}</TextBold>
-                     <div>{this.props.cardDatas.hour}</div> 
+                <TextBold>{cardDatas.time}</TextBold>
+                     <div>{cardDatas.hour}</div> 
                  <ButtonSty>See More</ButtonSty>
                   </SectionDiv>
                   </FooterContent>
                   </DataHolder>
                   </Content>
-              </Container>         
-        )     
-}}
+              </Container>             
+        ) 
+          
+                
+}
 export default ShortCard;
