@@ -4,11 +4,8 @@ export const HeaderBlock = styled.div`
   background-color: #30363e;
   min-height: 7.5vh;
   font-family: "Roboto", sans-serif;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 25px 25px 0 0;
-  a {
-    color: ${({ theme }) => theme.colors.NEUTRAL_2};
-  }
 `;
 
 export const Column = styled.div`
@@ -50,7 +47,7 @@ export const ProfileId = styled.div`
 `;
 export const Date = styled.div`
   color: #c4c4c4;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 400;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -58,7 +55,7 @@ export const Date = styled.div`
 `;
 export const Time = styled.div`
   color: #c4c4c4;
-  font-size: 1rem;
+  font-size: 1.875rem;
   font-weight: 400;
   margin-top: 3rem;
   margin-right: 1rem;
