@@ -11,23 +11,38 @@ import {
   Time,
 } from "./StyledProductHeader";
 
-export default function ProductHeader() {
+interface Project {
+  title: string;
+  subtitle: string;
+  tags: string[];
+  date: string;
+  commitment: string;
+  username: string;
+}
+export default function ProductHeader({
+  title,
+  subtitle,
+  tags,
+  date,
+  commitment,
+  username,
+}: Project) {
   return (
     <HeaderBlock>
       <Row>
         <Column>
-          <HeaderTitle>Dev Socials</HeaderTitle>
-          <HeaderSubtitle>Idea platform</HeaderSubtitle>
+          <HeaderTitle>{title}</HeaderTitle>
+          <HeaderSubtitle>{subtitle}</HeaderSubtitle>
           <Row>
-            <TechonlogyTags>Beginner</TechonlogyTags>
-            <TechonlogyTags>Javascript</TechonlogyTags>
-            <TechonlogyTags>React</TechonlogyTags>
+            {tags.map((tag: string, index: number) => (
+              <TechonlogyTags key={index}>{tag}</TechonlogyTags>
+            ))}
           </Row>
         </Column>
         <Column>
-          <ProfileId>Andrew Lead</ProfileId>
-          <Date>May 10, 2021</Date>
-          <Time>3-5 Hrs/week</Time>
+          <ProfileId>{username}</ProfileId>
+          <Date>{date}</Date>
+          <Time>{commitment}</Time>
         </Column>
       </Row>
     </HeaderBlock>
