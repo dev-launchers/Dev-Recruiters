@@ -19,7 +19,6 @@ export const Column = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
 `;
 
@@ -43,7 +42,6 @@ export const HeaderSubtitle = styled.div`
 `;
 export const ProfileId = styled.div`
   color: #c4c4c4;
-  flex-basis: auto;
   font-size: 1.5rem;
   font-weight: 400;
   margin-top: 1rem;
