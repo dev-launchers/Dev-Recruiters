@@ -3,12 +3,12 @@ import {
   HeaderBlock,
   HeaderTitle,
   HeaderSubtitle,
-  ProfileId,
-  TechonlogyTags,
+  Username,
+  Tags,
   Date,
   Column,
   Row,
-  Time,
+  Commitment,
 } from "./StyledProductHeader";
 
 interface Project {
@@ -35,14 +35,14 @@ export default function ProductHeader({
           <HeaderSubtitle>{subtitle}</HeaderSubtitle>
           <Row>
             {tags.map((tag: string, index: number) => (
-              <TechonlogyTags key={index}>{tag}</TechonlogyTags>
+              <Tags key={index}>{tag}</Tags>
             ))}
           </Row>
         </Column>
         <Column>
-          <ProfileId>{username}</ProfileId>
+          <Username>{username}</Username>
           <Date>{date}</Date>
-          <Time>{commitment}</Time>
+          <Commitment>{commitment}</Commitment>
         </Column>
       </Row>
     </HeaderBlock>

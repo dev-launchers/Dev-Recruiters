@@ -37,7 +37,7 @@ export const HeaderSubtitle = styled.div`
   margin-left: 1rem;
   line-height: 40px;
 `;
-export const ProfileId = styled.div`
+export const Username = styled.div`
   color: #c4c4c4;
   font-size: 1.5rem;
   font-weight: 400;
@@ -53,7 +53,7 @@ export const Date = styled.div`
   margin-right: 1rem;
   line-height: 18px;
 `;
-export const Time = styled.div`
+export const Commitment = styled.div`
   color: #c4c4c4;
   font-size: 1.875rem;
   font-weight: 400;
@@ -61,7 +61,7 @@ export const Time = styled.div`
   margin-right: 1rem;
   line-height: 18px;
 `;
-export const TechonlogyTags = styled.div`
+export const Tags = styled.div`
   color: #c4c4c4;
   font-size: 1.125rem;
   font-weight: 400;
