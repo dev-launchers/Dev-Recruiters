@@ -60,6 +60,12 @@ export const Username = styled.div`
   margin-right: 1rem;
   line-height: 18px;
 `;
+export const UsernameAvatar = styled.div`
+  width: 2.1875rem;
+  height: 2.1875rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+`;
 export const Date = styled.div`
   color: #c4c4c4;
   font-size: 1.125rem;
