@@ -1,3 +1,4 @@
+import NoProjects from "../NoProjects";
 import { ProjectLite } from "../project";
 import ProjectListItem from "../ProjectsListItem";
 import { List } from "./StyledProjectsList";
@@ -11,13 +12,15 @@ export default function ProjectsList({ projects, projectsLoaded }: Props) {
   if (!projectsLoaded) return <div>loading please wait</div>;
   return (
     <List>
-      {projects &&
-        projects.length > 0 &&
+      {projects && projects.length > 0 ? (
         projects.map((project) => (
           <li key={project.id}>
             <ProjectListItem project={project} />
           </li>
-        ))}
+        ))
+      ) : (
+        <NoProjects />
+      )}
     </List>
   );
 }
