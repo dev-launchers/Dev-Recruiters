@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Tags = styled.div`
+  color: #c4c4c4;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 21px;
+  padding: 6px;
+  border: 1px solid rgba(211, 212, 214, 0.9);
+  border-radius: 20px;
+`;
+
 export const HeaderBlock = styled.div`
   background-color: #30363e;
   min-height: 7.5vh;
@@ -17,6 +27,11 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  & > ${Tags} {
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
 `;
 
 export const HeaderTitle = styled.div`
@@ -60,15 +75,4 @@ export const Commitment = styled.div`
   margin-top: 3rem;
   margin-right: 1rem;
   line-height: 18px;
-`;
-export const Tags = styled.div`
-  color: #c4c4c4;
-  font-size: 1.125rem;
-  font-weight: 400;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  line-height: 21px;
-  padding: 6px;
-  border: 1px solid rgba(211, 212, 214, 0.9);
-  border-radius: 20px;
 `;

@@ -34,7 +34,7 @@ export default function ProductHeader({
           <HeaderTitle>{title}</HeaderTitle>
           <HeaderSubtitle>{subtitle}</HeaderSubtitle>
           <Row>
-            {tags.map((tag: string, index: number) => (
+            {tags.map((tag, index) => (
               <Tags key={index}>{tag}</Tags>
             ))}
           </Row>

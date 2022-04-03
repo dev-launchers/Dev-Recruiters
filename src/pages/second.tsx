@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ProductHeader from "../components/modules/DetailedPage/ProductHeader";
 
 
 const SecondPage = () => (
@@ -43,6 +44,14 @@ const SecondPage = () => (
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
     <h1>hello from page second</h1>
+    <ProductHeader 
+      title="Some product"
+      subtitle="some subtitle"
+      commitment="11 hours a week"
+      date="22/11/2009"
+      tags={["Javascript", "React", "Node.js"]}
+      username="Mohammed"
+    />
   </>
 );
 
