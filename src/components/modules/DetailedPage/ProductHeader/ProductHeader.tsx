@@ -9,6 +9,7 @@ import {
   Column,
   Row,
   Commitment,
+  UsernameAvatar,
 } from "./StyledProductHeader";
 
 interface ProductHeaderProps {
@@ -18,6 +19,7 @@ interface ProductHeaderProps {
   date: string;
   commitment: string;
   username: string;
+  usernameAvatar: string;
 }
 
 export default function ProductHeader({
@@ -27,6 +29,7 @@ export default function ProductHeader({
   date,
   commitment,
   username,
+  usernameAvatar,
 }: ProductHeaderProps) {
   return (
     <HeaderBlock>
@@ -41,7 +44,10 @@ export default function ProductHeader({
           </Row>
         </Column>
         <Column>
-          <Username>{username}</Username>
+          <Row>
+            <UsernameAvatar>{usernameAvatar}</UsernameAvatar>
+            <Username>{username}</Username>
+          </Row>
           <Date>{date}</Date>
           <Commitment>{commitment}</Commitment>
         </Column>
