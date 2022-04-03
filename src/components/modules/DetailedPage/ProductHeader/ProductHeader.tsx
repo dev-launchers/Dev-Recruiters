@@ -11,7 +11,7 @@ import {
   Commitment,
 } from "./StyledProductHeader";
 
-interface Project {
+interface ProductHeaderProps {
   title: string;
   subtitle: string;
   tags: string[];
@@ -19,6 +19,7 @@ interface Project {
   commitment: string;
   username: string;
 }
+
 export default function ProductHeader({
   title,
   subtitle,
@@ -26,7 +27,7 @@ export default function ProductHeader({
   date,
   commitment,
   username,
-}: Project) {
+}: ProductHeaderProps) {
   return (
     <HeaderBlock>
       <Row>
