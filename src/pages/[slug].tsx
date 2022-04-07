@@ -1,7 +1,13 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
+<<<<<<< HEAD:src/pages/[slug].tsx
 import PositionCard from "../components/modules/DetailedPage/PositionCard";
 import { Project } from "../components/modules/MainPage/filtering/project";
+=======
+import { position } from "polished";
+import PositionCard from "../components/modules/IdeaRecruitPage/PositionCard";
+import { Project } from "../models/project";
+>>>>>>> e55aa9e (Created  Models):src/pages/detailedPage.tsx
 
 export const getProjectsSlugs = async () => {
   const res = await fetch("https://api.devlaunchers.org/projects");

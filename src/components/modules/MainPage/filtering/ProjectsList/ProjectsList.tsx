@@ -1,5 +1,5 @@
 import NoProjects from "../NoProjects";
-import { ProjectLite } from "../project";
+import { ProjectLite } from "../../../../../models/project";
 import ProjectListItem from "../ProjectsListItem";
 import { List } from "./StyledProjectsList";
 

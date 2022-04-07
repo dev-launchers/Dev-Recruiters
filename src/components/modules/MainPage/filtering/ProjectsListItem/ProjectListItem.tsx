@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import Link from "next/link";
 import { ProjectLite } from "../project";
+=======
+import { ProjectLite } from "../../../../../models/project";
+>>>>>>> e55aa9e (Created  Models)
 import {
   TitleSection,
   Wrapper,
