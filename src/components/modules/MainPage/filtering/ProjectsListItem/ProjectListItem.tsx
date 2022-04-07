@@ -1,4 +1,4 @@
-import { ProjectLite } from "../project";
+import { ProjectLite } from "../../../../../models/project";
 import {
   TitleSection,
   Wrapper,

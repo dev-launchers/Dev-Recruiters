@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { EnumToArray } from "../../../../../utils/enumToArray";
 import CheckboxDropdown from "../../../../common/CheckboxDropdown";
-import { Project } from "../project";
+import { Project } from "../../../../../models/project";
 import { PlatformType, PositionLevel } from "../projectEnums";
 import ProjectsList from "../ProjectsList";
 import useProjects from "../useProject";

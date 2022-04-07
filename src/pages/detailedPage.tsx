@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import { position } from "polished";
 import PositionCard from "../components/modules/IdeaRecruitPage/PositionCard";
-import { Project } from "../components/modules/MainPage/filtering/project";
+import { Project } from "../models/project";
 
 // Load the first project for testing purpose
 export const getStaticProps: GetStaticProps = async (context) => {

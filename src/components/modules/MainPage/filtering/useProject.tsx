@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Project, ProjectLite, ProjectParams } from "./project";
+import { Project, ProjectLite, ProjectParams } from "../../../../models/project";
 
 export default function useProjects() {
   const [projects, setProjects] = useState<ProjectLite[]>([]);
