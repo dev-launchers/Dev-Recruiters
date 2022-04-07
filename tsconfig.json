@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/modules/MainPage/ShortCard/StyledShortCard.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,30 +1,16 @@
 import React from "react";
 import ShortCard from '../ShortCard';
 import LongCard from "../LongCard";
-
+import {SectionOne,SectionTwo} from "../MainCom/StyledMainCom"
 
  const Main = ()=>{
    return (
-          <div
-          style={{
-          width: "90%",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: "3rem",
-        }}
-      >
-        <div
-            style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+          <SectionOne>
+          <SectionTwo>
           <h1>Join Us!</h1>
-          </div>
-      
-          <ShortCard cardDatas ={{
+          </SectionTwo>
+          <ShortCard cardDatas ={[{
+              id:1,
               titleText:"Thought Process",
               smallText:"An online,community based idea or problem solving tool",
               type:"Type",
@@ -54,10 +40,80 @@ import LongCard from "../LongCard";
                         },
                   ],
                   time:"Time Commitment",
-                  hour:"5 hrs"   
+                  hour:"5 hrs",
+                  href:"http://localhost:3000",   
             
-    }}/>
-  
+    },
+    {
+      id:2,
+      titleText:"Thought Process",
+      smallText:"An online,community based idea or problem solving tool",
+      type:"Type",
+        content:[
+          {
+              id:11,
+              cont:"Product"
+          },
+          {
+              id:22,
+              cont:"Platform"
+          }
+        ],
+          position:"Position Available",
+          study: [
+              { 
+                  id:111,
+                  stud:"Developer"
+                },
+                { 
+                  id:222,
+                  stud:"Digital Artist"
+                },
+                { 
+                  id:333,
+                  stud:"UX/UI"
+                },
+          ],
+          time:"Time Commitment",
+          hour:"5 hrs",  
+          href:"http://localhost:3000"
+  },
+  {
+    id:3,
+    titleText:"Thought Process",
+    smallText:"An online,community based idea or problem solving tool",
+    type:"Type",
+      content:[
+        {
+            id:11,
+            cont:"Product"
+        },
+        {
+            id:22,
+            cont:"Platform"
+        }
+      ],
+        position:"Position Available",
+        study: [
+            { 
+                id:111,
+                stud:"Developer"
+              },
+              { 
+                id:222,
+                stud:"Digital Artist"
+              },
+              { 
+                id:333,
+                stud:"UX/UI"
+              },
+        ],
+        time:"Time Commitment",
+        hour:"5 hrs",
+        href:"http://localhost:3000"
+      }
+]}/>
+ 
     <LongCard cardDatas = {{ 
       description:"DESCRIPTION",
       details:[
@@ -72,8 +128,7 @@ import LongCard from "../LongCard";
       ]
    }}/> 
    <br />
-  
-         </div>    
+         </SectionOne>    
    )       
             
 }

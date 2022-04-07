@@ -1,120 +1,98 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-  margin: 0.5%;
-  border-radius:45px;
-  width: ${({ size }) => (size === "large" ? "90%" : "30%")};
-  background-color: White;
-  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
-  display: flex;
-  flex-direction: column;
-  @media (orientation: portrait) {
-    width: 100%;
-    margin-bottom: 5%;
-  }
-`;
-
-export const Content = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: ${({ flexDirection }) => flexDirection || "column"};
-  ${({ size }) =>
-    size === "large" &&
-    css`
-      flex-direction: row;
-      justify-content: space-around;
-    `}
-  && {
-    flex-direction: ${({ flexDirection }) => flexDirection || "column"};
-  }
-  align-content: center;
-  text-align: ${({ textAlignment }) => textAlignment || "center"};
-`;
-
-export const ImageHolder = styled.div`
-  position: relative;
-  border-radius:45px;
-  width: 100%;
-  height: 25vh;
-  overflow: hidden;
-  background-color:#3a7ca5;
-  text-align: center;
-  a {
+    margin:0.5%;
+    border-radius: 40px;
     display: flex;
-    width: 100%;
-    height: 100%;
-  }
+    flex-direction: column;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23); 
+    background-color:#C4C4C4;
+    width: ${({width}) => (width === "large" ? "90%" : "30%")};
+    @media (orientation: portrait){
+      width: 100%;
+      margin-bottom:10%;
+    }
+    
 `;
 
-export const TagsContainer = styled.div`
+export const CardHeader = styled.div`
+   border-radius: 40px;
+   padding: 30px 10px;
+   background-color: #59687B;
+   text-align: center;
+   color: white;
+   font-size: ${({cardSize})=> cardSize || "1.2rem"};
+   font-size:1.2rem;
+`;
+
+
+export const CardBottom = styled.div`
+  display: flex;
+  flex:1;
+  justify-content: space-between; 
+  flex-direction:row;
+  background-color: #C4C4C4;
   text-align: center;
-  position: absolute;
-  top: 3%;
-  right: 1%;
-  display: grid;
-  gap: 0.5rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  padding: 10px 10px;
+  font-size: ${({cardSize})=> cardSize || "1.2rem"};
+  font-size:1.2rem;
 `;
-export const Image = styled.div`
-  background-color: lightgray;
-  width: 100%;
-  height: 100%;
-  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
-  cursor: pointer;
-  vertical-align: top;
-  margin-left: auto;
-  margin-right: auto;
-
-  background-image: url(${(props) => props.imageSrc});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* outline: 2px solid black; */
+   
+export const Title = styled.div`
+   font-size:2rem;
 `;
 
-export const DataHolder = styled.div`
-  margin-top: 0.5em;
-  padding: 0.5rem;
-  width: 95%;
-  ${({ size }) =>
-    size === "large" &&
-    css`
-      width: 76%;
-      padding: 6.75%;
-    `}
+export const Type = styled.div`
+    margin: 0 1rem 2rem 1rem;
 `;
-
 export const Description = styled.div`
+   font-size:1rem;
+`;
+
+export const Commitment = styled.div`
+     display:flex;
+     margin-bottom:1rem;
+     width: 30%;
+    `;
+export const CommitmentContainer = styled.div`
+     font-size:1.2rem;
+`;
+export const CommitmentContent = styled.div`
+    font-size:1.2rem;
+`;
+
+export const Position = styled.div`
+     margin-bottom: 2rem;
+`;
+export const PositionContainer = styled.div`
+    font-size:1.2rem;
+`;
+export const PositionContent = styled.div`
+    font-size:1.2rem;  
+`;
+export const TypeContainer = styled.div`
+    font-size:1.2rem;
+`;
+export const TypeContent = styled.div`
+    font-size:1.2rem;
+`;
+export const Input = styled.button`
+  color:#418CBF;
+  margin: 0.5rem 0.5rem 1rem 1rem;
+  padding: 1px 1px;
+  border-radius: 50px;
+  background-color: rgba(123, 123, 123,0.2)
+`;
+
+export const ProjectContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-radius:40px;
   width: 100%;
-  font-size: 1.2rem;
-  padding-top: 1%;
-  color: #ffff;
-`;
-
-
-export const FooterContent = styled.div`
-  columns: auto;
-  columns: 3;
-
-`;
-
-export const ButtonSty = styled.div`
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  color:#3a7ca5;
-`;
-
-export const TextBold = styled.div`
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 5px;
-`;
-
-export const SectionDiv = styled.div`
-  text-align : left;
-`;
-
-export const HeadLine = styled.div`
-  color: White;
-  margin-top: 2rem;
-  font-size: 2.5rem;
+  @media (orientation:portrait) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
