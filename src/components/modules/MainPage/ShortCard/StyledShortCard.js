@@ -86,13 +86,3 @@ export const Input = styled.button`
   background-color: rgba(123, 123, 123,0.2)
 `;
 
-export const ProjectContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-radius:40px;
-  width: 100%;
-  @media (orientation:portrait) {
-    width: 100%;
-    flex-direction: column;
-  }
-`;
