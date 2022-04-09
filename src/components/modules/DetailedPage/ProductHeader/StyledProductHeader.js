@@ -59,28 +59,26 @@ export const Row = styled.div`
   justify-content: space-between;
 
   & > ${Tags} {
-    margin-top: 1rem;
+    margin-top: 1.375rem;
     margin-left: 1rem;
   }
 `;
 
-export const HeaderSubtitle = styled.div`
+export const Interests = styled.div`
   color: #d3d4d6;
   font-size: 1.5rem;
   font-weight: 400;
   font-style: italic;
-  margin-top: 1rem;
   margin-left: 1rem;
-  line-height: 40px;
+  margin-top: 0.875rem;
+  line-height: 2.5rem;
 `;
 
-export const Description = styled.div`
+export const Vision = styled.div`
   color: #d3d4d6;
   font-family: Noto Sans;
   font-size: 1.5rem;
-  font-weight: 400;
-  font-style: italic;
-  margin-top: 1rem;
+  font-weight: 500;
   margin-left: 1rem;
   line-height: 2.5rem;
 `;
@@ -88,30 +86,30 @@ export const Description = styled.div`
 export const Username = styled.div`
   color: #c4c4c4;
   font-size: 1.5rem;
+  font-family: Noto Sans;
   font-weight: 400;
-  margin-top: 1rem;
   margin-right: 1rem;
-  line-height: 18px;
+  line-height: 2.1875rem;
 `;
-export const UsernameAvatar = styled.div`
+export const UsernameAvatar = styled.img`
   width: 2.1875rem;
   height: 2.1875rem;
-  margin-top: 1rem;
   margin-right: 1rem;
 `;
 export const Date = styled.div`
   color: #c4c4c4;
-  font-size: 1.125rem;
+  font-family: Noto Sans;
+  font-size: 1.5rem;
   font-weight: 400;
-  margin-top: 1rem;
   margin-right: 1rem;
-  line-height: 18px;
+  line-height: 2.1875rem;
 `;
 export const Commitment = styled.div`
   color: #c4c4c4;
-  font-size: 1.875rem;
+  font-family: Noto Sans;
+  font-size: 1.5rem;
+
   font-weight: 400;
-  margin-top: 3rem;
   margin-right: 1rem;
-  line-height: 18px;
+  line-height: 2.1875rem;
 `;
