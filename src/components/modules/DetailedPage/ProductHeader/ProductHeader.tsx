@@ -1,56 +1,65 @@
 import React from "react";
 import {
   HeaderBlock,
-  HeaderTitle,
+  ColumnTitle,
   HeaderSubtitle,
   Username,
   Tags,
   Date,
-  Column,
+  Column1,
+  Column2,
+  Column3,
   Row,
   Commitment,
+  Description,
   UsernameAvatar,
 } from "./StyledProductHeader";
 
 interface ProductHeaderProps {
   title: string;
-  subtitle: string;
-  tags: string[];
+  vision: string;
+  description: string;
+  keywords: string[];
   date: string;
-  commitment: string;
+  commitmentLevel: string;
   username: string;
   usernameAvatar: string;
 }
 
 export default function ProductHeader({
   title,
-  subtitle,
-  tags,
+  vision,
+  keywords = [],
   date,
-  commitment,
+  commitmentLevel,
   username,
   usernameAvatar,
+  description,
 }: ProductHeaderProps) {
   return (
     <HeaderBlock>
       <Row>
-        <Column>
-          <HeaderTitle>{title}</HeaderTitle>
-          <HeaderSubtitle>{subtitle}</HeaderSubtitle>
+        <Column1>
+          <ColumnTitle>{title}</ColumnTitle>
+          <HeaderSubtitle>{vision}</HeaderSubtitle>
+          <Description>Description</Description>
+        </Column1>
+        <Column2>
+          <ColumnTitle>Tags</ColumnTitle>
           <Row>
-            {tags.map((tag, index) => (
-              <Tags key={index}>{tag}</Tags>
+            {keywords.map((keyword, index) => (
+              <Tags key={index}>{keyword}</Tags>
             ))}
           </Row>
-        </Column>
-        <Column>
+        </Column2>
+        <Column3>
           <Row>
             <UsernameAvatar>{usernameAvatar}</UsernameAvatar>
-            <Username>{username}</Username>
+            <Username>{username}Username</Username>
           </Row>
-          <Date>{date}</Date>
-          <Commitment>{commitment}</Commitment>
-        </Column>
+          <Date>{date}date</Date>
+          <Commitment>{commitmentLevel}5hrs</Commitment>
+        </Column3>
       </Row>
     </HeaderBlock>
   );
