@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ProjectLite } from "../project";
 import {
   TitleSection,
@@ -19,6 +20,12 @@ interface Props {
 }
 
 export default function ProjectListItem({ project }: Props) {
+  const router = useRouter();
+
+  const handleOnClick = () => {
+    router.push(`/${encodeURIComponent(project.title)}`);
+  };
+
   return (
     <Wrapper>
       <TitleSection>
@@ -50,7 +57,7 @@ export default function ProjectListItem({ project }: Props) {
       <CommitmentSection>
         <Subtitle>Time Commitment</Subtitle>
         <Paragraph>{project.commitmentLevel}</Paragraph>
-        <Button>See More</Button>
+        <Button onClick={() => handleOnClick()}>See More</Button>
       </CommitmentSection>
     </Wrapper>
   );
