@@ -10,6 +10,7 @@ interface ButtonProps {
   hero?: boolean
   modal?: boolean
   intro?: boolean
+  onClick: () => void
 }
 
 
