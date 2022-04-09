@@ -1,8 +1,9 @@
 import React from "react";
+import avatar from "../../../../images/avatar.png";
 import {
   HeaderBlock,
   ColumnTitle,
-  HeaderSubtitle,
+  Interests,
   Username,
   Tags,
   Date,
@@ -11,14 +12,14 @@ import {
   Column3,
   Row,
   Commitment,
-  Description,
+  Vision,
   UsernameAvatar,
 } from "./StyledProductHeader";
 
 interface ProductHeaderProps {
   title: string;
   vision: string;
-  description: string;
+  interests: string;
   keywords: string[];
   date: string;
   commitmentLevel: string;
@@ -29,32 +30,33 @@ interface ProductHeaderProps {
 export default function ProductHeader({
   title,
   vision,
+  interests,
   keywords = [],
   date,
   commitmentLevel,
   username,
   usernameAvatar,
-  description,
 }: ProductHeaderProps) {
   return (
     <HeaderBlock>
       <Row>
         <Column1>
-          <ColumnTitle>{title}</ColumnTitle>
-          <HeaderSubtitle>{vision}</HeaderSubtitle>
-          <Description>Description</Description>
+          <ColumnTitle>{title} This is a project title</ColumnTitle>
+          <Interests>{interests}This is an interest</Interests>
+          <Vision>{vision}This is a vision</Vision>
         </Column1>
         <Column2>
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
-            {keywords.map((keyword, index) => (
+            {keywords.map((keyword) => (
               <Tags key={index}>{keyword}</Tags>
             ))}
+            <Tags>Tag</Tags>
           </Row>
         </Column2>
         <Column3>
-          <Row>
-            <UsernameAvatar>{usernameAvatar}</UsernameAvatar>
+          <Row style={{ marginTop: "1rem" }}>
+            <UsernameAvatar src={avatar} />
             <Username>{username}Username</Username>
           </Row>
           <Date>{date}date</Date>
