@@ -9,20 +9,25 @@ ButtonSection,
 } from '../LongCard/StyledLongCard'
 
 export interface Props {
-    cardDatas: any;
-    id:number;
-    detail: string;
+    longCard: {
+        description: string;
+        details: [{
+            id:number;
+            detail: string;
+        }]
+    }
+   
 }
 
-export default function LongCard ({cardDatas}:Props){
+export default function LongCard ({longCard}:Props){
     const [readMore, setReadMore] = useState(false);
   return(
       <>
             <Container>
             <HeaderCard>
-            <TextBold>{cardDatas.description}</TextBold>
+            <TextBold>{longCard.description}</TextBold>
             </HeaderCard>
-            {cardDatas.details.map(data =>(
+            {longCard.details.map(data =>(
             <FooterCard key={data.id}>
             <li>{readMore? data.detail: `${data.detail.substring(0,100)}...`}</li>
             </FooterCard>

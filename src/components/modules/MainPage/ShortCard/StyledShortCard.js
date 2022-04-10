@@ -28,7 +28,6 @@ export const CardHeader = styled.div`
 
 export const CardBottom = styled.div`
   display: flex;
-  flex:1;
   justify-content: space-between; 
   flex-direction:row;
   background-color: #C4C4C4;
@@ -58,6 +57,7 @@ export const Commitment = styled.div`
     `;
 export const CommitmentContainer = styled.div`
      font-size:1.2rem;
+    
 `;
 export const CommitmentContent = styled.div`
     font-size:1.2rem;
@@ -68,6 +68,7 @@ export const Position = styled.div`
 `;
 export const PositionContainer = styled.div`
     font-size:1.2rem;
+   
 `;
 export const PositionContent = styled.div`
     font-size:1.2rem;  
@@ -86,13 +87,15 @@ export const Input = styled.button`
   background-color: rgba(123, 123, 123,0.2)
 `;
 
-export const ProjectContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-radius:40px;
-  width: 100%;
-  @media (orientation:portrait) {
-    width: 100%;
-    flex-direction: column;
-  }
+export const Section = styled.div`
+&:before{
+    content:'';
+    margin-left:15px;
+    padding-left:15px;
+    border-left:1px solid rgba(69,77,88,0.58);
+    height:7rem;
+    display:inline-block;
+    vertical-align:middle;
+ }
 `;
+
