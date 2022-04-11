@@ -7,9 +7,7 @@ import {
   Username,
   Tags,
   Date,
-  Column1,
-  Column2,
-  Column3,
+  Column,
   Row,
   Commitment,
   Vision,
@@ -40,28 +38,27 @@ export default function ProductHeader({
   return (
     <HeaderBlock>
       <Row>
-        <Column1>
-          <ColumnTitle>{title} This is a project title</ColumnTitle>
-          <Interests>{interests}This is an interest</Interests>
-          <Vision>{vision}This is a vision</Vision>
-        </Column1>
-        <Column2>
+        <Column>
+          <ColumnTitle>{title}</ColumnTitle>
+          <Interests>{interests}</Interests>
+          <Vision>{vision}</Vision>
+        </Column>
+        <Column tagsColumn>
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
             {keywords.map((keyword) => (
-              <Tags key={index}>{keyword}</Tags>
+              <Tags key={keyword}>{keyword}</Tags>
             ))}
-            <Tags>Tag</Tags>
           </Row>
-        </Column2>
-        <Column3>
+        </Column>
+        <Column userColumn>
           <Row style={{ marginTop: "1rem" }}>
             <UsernameAvatar src={avatar} />
-            <Username>{username}Username</Username>
+            <Username>{username}</Username>
           </Row>
-          <Date>{date}date</Date>
-          <Commitment>{commitmentLevel}5hrs</Commitment>
-        </Column3>
+          <Date>{date}</Date>
+          <Commitment>{commitmentLevel}</Commitment>
+        </Column>
       </Row>
     </HeaderBlock>
   );
