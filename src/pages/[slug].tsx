@@ -10,7 +10,7 @@ export const getProjectsSlugs = async () => {
 
   const projectsSlugs = projects.map((project) => ({
     params: {
-      slug: project.title,
+      slug: project.slug,
     },
   }));
 
@@ -19,7 +19,7 @@ export const getProjectsSlugs = async () => {
 
 // Load the first project for testing purpose
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch("https://api.devlaunchers.org/projects/dev-launchers-platform");
+  const res = await fetch(`https://api.devlaunchers.org/projects/${params.slug}`);
   const project: Project = await res.json();
 
   return {
@@ -34,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProjectsSlugs();
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
