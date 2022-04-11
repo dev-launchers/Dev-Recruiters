@@ -1,12 +1,12 @@
 import { Expectation } from "./expectation";
-import { Level } from "./level";
+import { SkillLevel } from "./level";
 import { Skill } from "./skill";
 
 export interface Opportunity {
     id: string;
     title: string;
     skills: Skill[];
-    level: Level;
+    level: SkillLevel;
     commitmentHoursPerWeek: number;
     description: string;
     expectations: Expectation[];

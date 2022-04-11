@@ -1,4 +1,4 @@
-import { ProjectLite } from "../../../../../models/project";
+import { ProjectLite } from '../../../../../models/project';
 import {
   TitleSection,
   Wrapper,
@@ -12,7 +12,8 @@ import {
   PositionTitle,
   TypeSection,
   PositionsSection,
-} from "./StyleProjectListItem";
+  PositionLevel,
+} from './StyleProjectListItem';
 
 interface Props {
   project: ProjectLite;
@@ -27,23 +28,25 @@ export default function ProjectListItem({ project }: Props) {
       </TitleSection>
       <TypeSection>
         <Subtitle>Type</Subtitle>
-        <Paragraph>Idea - Platform</Paragraph>
+        <Paragraph>
+          Idea - {project.isPlatform ? 'Platform' : 'Independent'}
+        </Paragraph>
       </TypeSection>
       <PositionsSection>
         <div>
           <Subtitle>Positions Available / Level</Subtitle>
-          {project.openPositions.length > 0 && (
+          {project.opportunities?.length > 0 && (
             <PositionsList>
-              {project.openPositions.slice(0, 3).map((position) => (
-                <PositionsListItem key={position.id}>
-                  <PositionTitle>{position.title}</PositionTitle>
-                  {/* <PositionLevel>Advanced</PositionLevel> */}
+              {project.opportunities.slice(0, 3).map((opportunity) => (
+                <PositionsListItem key={opportunity.id}>
+                  <PositionTitle>{opportunity.title}</PositionTitle>
+                  <PositionLevel>{opportunity.level}</PositionLevel>
                 </PositionsListItem>
               ))}
             </PositionsList>
           )}
         </div>
-        {project.openPositions.length > 4 && (
+        {project.opportunities?.length > 4 && (
           <Button>More available positions</Button>
         )}
       </PositionsSection>

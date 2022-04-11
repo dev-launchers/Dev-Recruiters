@@ -1,9 +1,9 @@
-export interface ProjectParams {
-    platform: string[] | null;
-    position: string[] | null;
-    level: string[] | null;
-    commitment: string[] | null;
-}
+import { Opportunity } from "./opportunity";
+
+
+
+
+
 
 export interface Formats {
 }
@@ -30,36 +30,6 @@ export interface HeroImage {
     related: string;
     created_by: string;
     updated_by: string;
-}
-
-export interface MeetingLinkURL {
-    id: string;
-    roomName: string;
-    url: string;
-}
-
-export interface MeetingTime {
-    id: string;
-    title: string;
-    dateTime: string;
-}
-
-export interface Keyword {
-    id: string;
-    keyword: string;
-}
-
-export interface ProjectReferenceURL {
-    id: string;
-    title: string;
-    url: string;
-}
-
-export interface OpenPosition {
-    id: string;
-    title: string;
-    description: string;
-    isHidden: boolean;
 }
 
 export interface Leader2 {
@@ -248,11 +218,6 @@ export interface SubProject {
     description: string;
     commitmentLevel: string;
     signupFormUrl: string;
-    meetingLinkURLs: string;
-    meetingTimes: string;
-    keywords: string;
-    projectReferenceURLs: string;
-    openPositions: string;
     team: string;
     user: string;
     Images: string;
@@ -263,6 +228,9 @@ export interface SubProject {
     subProjects: string[];
     parentProject: string;
     google_meet: string;
+    newMeetingTimes: string;
+    opportunities: string[];
+    isPlatform: boolean;
     published_at: string;
     created_by: string;
     updated_by: string;
@@ -278,11 +246,6 @@ export interface ParentProject {
     description: string;
     commitmentLevel: string;
     signupFormUrl: string;
-    meetingLinkURLs: string;
-    meetingTimes: string;
-    keywords: string;
-    projectReferenceURLs: string;
-    openPositions: string;
     team: string;
     user: string;
     Images: string;
@@ -293,6 +256,9 @@ export interface ParentProject {
     subProjects: string[];
     parentProject: string;
     google_meet: string;
+    newMeetingTimes: string;
+    opportunities: string[];
+    isPlatform: boolean;
     published_at: string;
     created_by: string;
     updated_by: string;
@@ -310,14 +276,12 @@ export interface GoogleMeet {
     updated_by: string;
 }
 
-export interface ProjectLite {
+export interface NewMeetingTime {
     id: string;
-    slug: string;
-    catchPhrase: string;
-    title: string;
-    description: string;
-    commitmentLevel: string;
-    openPositions: OpenPosition[];
+    recurringDate: string;
+    startTime: Date;
+    IANA_timeZone: string;
+    endTime: Date;
 }
 
 export interface Project {
@@ -330,11 +294,6 @@ export interface Project {
     description: string;
     commitmentLevel: string;
     signupFormUrl: string;
-    meetingLinkURLs: MeetingLinkURL[];
-    meetingTimes: MeetingTime[];
-    keywords: Keyword[];
-    projectReferenceURLs: ProjectReferenceURL[];
-    openPositions: OpenPosition[];
     team: Team;
     user: User;
     Images: Image[];
@@ -345,5 +304,19 @@ export interface Project {
     subProjects: SubProject[];
     parentProject: ParentProject;
     google_meet: GoogleMeet;
+    newMeetingTimes: NewMeetingTime[];
+    opportunities: Opportunity[];
+    isPlatform: boolean;
     published_at: Date;
+}
+
+export interface ProjectLite {
+    id: string;
+    slug: string;
+    catchPhrase: string;
+    title: string;
+    description: string;
+    commitmentLevel: string;
+    opportunities: Opportunity[];
+    isPlatform: boolean;
 }
