@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProjectLite } from "../project";
 import {
   TitleSection,
@@ -50,7 +51,9 @@ export default function ProjectListItem({ project }: Props) {
       <CommitmentSection>
         <Subtitle>Time Commitment</Subtitle>
         <Paragraph>{project.commitmentLevel}</Paragraph>
-        <Button>See More</Button>
+        <Link href={`/${encodeURIComponent(project.slug)}`} passHref>
+          <Button>See More</Button>
+        </Link>
       </CommitmentSection>
     </Wrapper>
   );
