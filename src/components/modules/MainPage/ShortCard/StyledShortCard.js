@@ -7,11 +7,9 @@ export const Container = styled.div`
     flex-direction: column;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23); 
     background-color:#C4C4C4;
-    width: ${({width}) => (width === "large" ? "90%" : "30%")};
-    @media (orientation: portrait){
-      width: 100%;
-      margin-bottom:10%;
-    }
+    // @media (orientation: portrait){
+    //   margin-bottom:10%;
+    // }
     
 `;
 
@@ -28,14 +26,13 @@ export const CardHeader = styled.div`
 
 export const CardBottom = styled.div`
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-around;
   flex-direction:row;
   background-color: #C4C4C4;
   text-align: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding: 10px 10px;
-  font-size: ${({cardSize})=> cardSize || "1.2rem"};
   font-size:1.2rem;
 `;
    
@@ -44,7 +41,7 @@ export const Title = styled.div`
 `;
 
 export const Type = styled.div`
-    margin: 0 1rem 2rem 1rem;
+    margin-bottom: 2rem;
 `;
 export const Description = styled.div`
    font-size:1rem;
@@ -53,31 +50,23 @@ export const Description = styled.div`
 export const Commitment = styled.div`
      display:flex;
      margin-bottom:1rem;
-     width: 30%;
     `;
 export const CommitmentContainer = styled.div`
-     font-size:1.2rem;
-    
 `;
 export const CommitmentContent = styled.div`
-    font-size:1.2rem;
 `;
 
 export const Position = styled.div`
      margin-bottom: 2rem;
 `;
 export const PositionContainer = styled.div`
-    font-size:1.2rem;
-   
 `;
 export const PositionContent = styled.div`
-    font-size:1.2rem;  
 `;
 export const TypeContainer = styled.div`
     font-size:1.2rem;
 `;
 export const TypeContent = styled.div`
-    font-size:1.2rem;
 `;
 export const Input = styled.button`
   color:#418CBF;

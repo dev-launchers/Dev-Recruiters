@@ -3,14 +3,12 @@ import ShortCard from '../ShortCard';
 import LongCard from "../LongCard";
 import {featuredCardData} from './data';
 import { descriptionCardData } from "./data";
-import {SectionOne,SectionTwo, ProjectContainer} from "../MainCom/StyledMainCom"
+import {ProjectContainer} from "../MainCom/StyledMainCom"
 
  const Main = ()=>{
    return (
-          <SectionOne>
-          <SectionTwo>
+        <>
           <h1>Join Us!</h1>
-          </SectionTwo>
           <ProjectContainer>
           {featuredCardData.map((cardData)=>{
             return (
@@ -24,14 +22,13 @@ import {SectionOne,SectionTwo, ProjectContainer} from "../MainCom/StyledMainCom"
           )}
           
      </ProjectContainer>
-     
      {descriptionCardData.map((longCard)=>{
        return (
         <LongCard longCard = {longCard}/> 
        )
      })}
    <br />
-         </SectionOne>    
+        </>
    )       
             
 }
