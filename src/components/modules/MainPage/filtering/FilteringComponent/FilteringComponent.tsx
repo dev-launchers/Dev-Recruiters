@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { EnumToArray } from "../../../../../utils/enumToArray";
-import CheckboxDropdown from "../../../../common/CheckboxDropdown";
-import { Project } from "../../../../../models/project";
-import { PlatformType, PositionLevel } from "../projectEnums";
-import ProjectsList from "../ProjectsList";
-import useProjects from "../useProject";
+import { useEffect, useState } from 'react';
+import { EnumToArray } from '../../../../../utils/enumToArray';
+import CheckboxDropdown from '../../../../common/CheckboxDropdown';
+import { Project } from '../../../../../models/project';
+import { ProjectType } from '../projectEnums';
+import ProjectsList from '../ProjectsList';
+import useProjects from '../useProject';
 import {
   Wrapper,
   FiltersWrapper,
@@ -12,29 +12,32 @@ import {
   Container,
   ChipsList,
   ChipsListItem,
-} from "./StyledFilteringComponent";
+} from './StyledFilteringComponent';
+import { Opportunity } from '../../../../../models/opportunity';
+import { SkillLevel } from '../../../../../models/level';
+import MultiRangeDropDown from '../../../../common/MultiRangeDropdown';
 
 interface Props {
   projects: Project[];
+  opportunities: Opportunity[];
 }
 
-export default function FilteringComponent({ projects }: Props) {
+export default function FilteringComponent({ projects, opportunities }: Props) {
+  const [commitment, setCommitment] = useState({ min: 0, max: 1 });
   const {
     filteredProjects,
     projectsLoaded,
-    commitments,
     commitmentsLoaded,
-    positions,
-    positionsLoaded,
+    opportunitiesLoaded,
     projectParams,
+    fetchOpportunities,
     handlePlatformChange,
     handleRemovePlatform,
-    handlePositionChange,
-    handleRemovePosition,
+    handleOpportunityChange,
+    handleRemoveOpportunity,
     handleLevelChange,
     handleRemoveLevel,
     handleCommitmentChange,
-    handleRemoveCommitment,
     fetchProjects,
   } = useProjects();
 
@@ -44,87 +47,104 @@ export default function FilteringComponent({ projects }: Props) {
     }
   }, [projects, fetchProjects, projectsLoaded]);
 
+  const getCommitments = (opportunities: Opportunity[]) => {
+    const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
+    if (commitments && commitments.length > 0) {
+      const min = Math.min(...commitments);
+      const max = Math.max(...commitments);
+      setCommitment({ min, max });
+    }
+  };
+
+  useEffect(() => {
+    if (opportunities && !opportunitiesLoaded) {
+      fetchOpportunities(opportunities);
+      getCommitments(opportunities);
+    }
+  }, [opportunities, fetchOpportunities, opportunitiesLoaded, getCommitments]);
+
   return (
     <Wrapper>
       <FiltersWrapper>
         <FilterTitle>Filters</FilterTitle>
         <Container>
           <CheckboxDropdown
-            title="Platform"
-            keyProperty={"name"}
-            items={EnumToArray(PlatformType)}
+            title='Type'
+            keyProperty={'name'}
+            items={EnumToArray(ProjectType)}
             onChange={handlePlatformChange}
-            selectedItems={projectParams.platform}
+            selectedItems={projectParams.projectType}
           />
-          {positionsLoaded && (
+          {opportunitiesLoaded && (
             <CheckboxDropdown
-              title="Positions"
-              items={positions}
-              onChange={handlePositionChange}
-              selectedItems={projectParams.position}
+              title='Positions'
+              keyProperty={'title'}
+              items={opportunities}
+              onChange={handleOpportunityChange}
+              selectedItems={projectParams.opportunity}
             />
           )}
 
           <CheckboxDropdown
-            title="Level"
-            keyProperty={"name"}
-            items={EnumToArray(PositionLevel)}
+            title='Level'
+            keyProperty={'name'}
+            items={EnumToArray(SkillLevel)}
             onChange={handleLevelChange}
             selectedItems={projectParams.level}
           />
 
           {commitmentsLoaded && (
-            <CheckboxDropdown
-              title="Commitment"
-              items={commitments}
+            <MultiRangeDropDown
+              title='Commitment'
+              min={commitment.min ?? 0}
+              max={commitment.max ?? 0}
               onChange={handleCommitmentChange}
-              selectedItems={projectParams.commitment}
             />
           )}
         </Container>
 
         <ChipsList>
-          {projectParams.position &&
-            projectParams.position.map((item, index) => (
+          {projectParams.opportunity &&
+            projectParams.opportunity.map((item, index) => (
               <ChipsListItem
-                onClick={() => handleRemovePosition(item)}
+                onClick={() => handleRemoveOpportunity(item)}
                 key={`position${index + 1}`}
               >
                 <p>{item}</p>
-                <button type="button">x</button>
+                <button type='button'>x</button>
               </ChipsListItem>
             ))}
-          {projectParams.platform &&
-            projectParams.platform.map((item, index) => (
+          {projectParams.projectType &&
+            projectParams.projectType.map((item, index) => (
               <ChipsListItem
                 onClick={() => handleRemovePlatform(item)}
                 key={`platform${index + 1}`}
               >
                 <p>{item}</p>
-                <button type="button">x</button>
+                <button type='button'>x</button>
               </ChipsListItem>
             ))}
           {projectParams.level &&
             projectParams.level.map((item, index) => (
               <ChipsListItem
-                onClick={() => handleRemoveLevel(item)}
+                onClick={() => handleRemoveLevel(SkillLevel[item])}
                 key={`level${index + 1}`}
               >
                 <p>{item}</p>
-                <button type="button">x</button>
+                <button type='button'>x</button>
               </ChipsListItem>
             ))}
 
-          {projectParams.commitment &&
+          {/* {projectParams.commitment &&
             projectParams.commitment.map((item, index) => (
               <ChipsListItem
                 key={`commitment${index + 1}`}
                 onClick={() => handleRemoveCommitment(item)}
               >
                 <p>{item}</p>
-                <button type="button">x</button>
+                <button type='button'>x</button>
               </ChipsListItem>
-            ))}
+            ))} */}
         </ChipsList>
       </FiltersWrapper>
 
