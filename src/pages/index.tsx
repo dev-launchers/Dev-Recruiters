@@ -3,19 +3,18 @@ import Head from 'next/head';
 import FilteringComponent from '../components/modules/MainPage/filtering/FilteringComponent';
 import { Opportunity } from '../models/opportunity';
 import { Project } from '../models/project';
+import { env } from '../utils/EnvironmentVariables';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const projectsData = await fetch('https://api.devlaunchers.org/projects');
+  const apiUrl = env().API_URL;
+  const projectsData = await fetch(`${apiUrl}/projects`);
+  const projectsList: Project[] = await projectsData.json();
 
-  //Enable this filter when opportunities related object is implemented
-  const projects: Project[] = await projectsData.json(); //.filter((p) => p.opportunities.length > 0);
+  const projects = projectsList.filter((p) => p.opportunities.length > 0);
 
-  const opportunitiesData = await fetch(
-    'https://api.devlaunchers.org/opportunities'
-  );
+  const opportunitiesData = await fetch(`${apiUrl}/opportunities`);
 
-  // Enable when Opportunities endpoint is available.
-  const opportunities: Opportunity[] = []; //await opportunitiesData.json();
+  const opportunities: Opportunity[] = await opportunitiesData.json();
 
   return {
     props: {
