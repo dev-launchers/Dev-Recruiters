@@ -12,7 +12,7 @@ export const Tags = styled.div`
 
 export const ColumnTitle = styled.div`
   margin-top: 1rem;
-  font-family: Abel;
+  font-family: ${({ theme }) => theme.fonts.headline};
   color: #f1f4f5;
   font-size: 3rem;
   font-weight: 400;
@@ -22,32 +22,31 @@ export const ColumnTitle = styled.div`
 
 export const HeaderBlock = styled.div`
   min-height: 7.5vh;
-  font-family: Noto Sans;
+  font-family: ${({ theme }) => theme.fonts.normal};
 `;
 
-export const Column1 = styled.div`
-  background-color: #30363e;
+export const Column = styled.div`
+  ${(props) => {
+    if (props.tagsColumn) {
+      return `
+     background-color: #4f5154;
+     width: 30%;
+  `;
+    } else if (props.userColumn) {
+      return `
+     background-color: #59687b;
+     width: 20%;
+     align-items: flex-end;
+  `;
+    } else {
+      return `
+      background: #30363E;
+      width: 50%;
+      align-items: flex-start;
+  `;
+    }
+  }}
   display: flex;
-  width: 50%;
-  lign-items: flex-start;
-  flex-direction: column;
-  border-radius: 25px 25px 0px 0px;
-  padding: 1rem;
-`;
-export const Column2 = styled.div`
-  background-color: #4f5154;
-  display: flex;
-  width: 30%;
-  align-items: flex-start;
-  flex-direction: column;
-  border-radius: 25px 25px 0px 0px;
-  padding: 1rem;
-`;
-export const Column3 = styled.div`
-  background-color: #59687b;
-  display: flex;
-  width: 20%;
-  align-items: flex-end;
   flex-direction: column;
   border-radius: 25px 25px 0px 0px;
   padding: 1rem;
@@ -76,7 +75,6 @@ export const Interests = styled.div`
 
 export const Vision = styled.div`
   color: #d3d4d6;
-  font-family: Noto Sans;
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 1rem;
@@ -86,7 +84,6 @@ export const Vision = styled.div`
 export const Username = styled.div`
   color: #c4c4c4;
   font-size: 1.5rem;
-  font-family: Noto Sans;
   font-weight: 400;
   margin-right: 1rem;
   line-height: 2.1875rem;
@@ -98,7 +95,6 @@ export const UsernameAvatar = styled.img`
 `;
 export const Date = styled.div`
   color: #c4c4c4;
-  font-family: Noto Sans;
   font-size: 1.5rem;
   font-weight: 400;
   margin-right: 1rem;
@@ -106,9 +102,7 @@ export const Date = styled.div`
 `;
 export const Commitment = styled.div`
   color: #c4c4c4;
-  font-family: Noto Sans;
   font-size: 1.5rem;
-
   font-weight: 400;
   margin-right: 1rem;
   line-height: 2.1875rem;
