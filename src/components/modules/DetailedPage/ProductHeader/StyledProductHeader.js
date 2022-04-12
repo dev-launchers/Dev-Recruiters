@@ -63,7 +63,7 @@ export const Row = styled.div`
   }
 `;
 
-export const Interests = styled.div`
+export const Type = styled.div`
   color: #d3d4d6;
   font-size: 1.5rem;
   font-weight: 400;
