@@ -6,7 +6,7 @@ import { Project } from '../models/project';
 import { env } from '../utils/EnvironmentVariables';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const apiUrl = env().API_URL;
+  const apiUrl = 'http://localhost:1337'; //env().API_URL;
   const projectsData = await fetch(`${apiUrl}/projects`);
   const projectsList: Project[] = await projectsData.json();
 
