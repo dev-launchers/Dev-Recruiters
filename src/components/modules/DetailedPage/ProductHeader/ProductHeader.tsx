@@ -3,7 +3,7 @@ import avatar from "../../../../images/avatar.png";
 import {
   HeaderBlock,
   ColumnTitle,
-  Interests,
+  Type,
   Username,
   Tags,
   Date,
@@ -17,7 +17,7 @@ import {
 interface ProductHeaderProps {
   title: string;
   vision: string;
-  interests: string;
+  type: string;
   keywords: string[];
   date: string;
   commitmentLevel: string;
@@ -28,7 +28,7 @@ interface ProductHeaderProps {
 export default function ProductHeader({
   title,
   vision,
-  interests,
+  type,
   keywords = [],
   date,
   commitmentLevel,
@@ -40,7 +40,7 @@ export default function ProductHeader({
       <Row>
         <Column>
           <ColumnTitle>{title}</ColumnTitle>
-          <Interests>{interests}</Interests>
+          <Type>{type}</Type>
           <Vision>{vision}</Vision>
         </Column>
         <Column tagsColumn>
