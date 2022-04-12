@@ -4,7 +4,7 @@ export const Container = styled.div`
   font-size:1.2rem;
   border-bottom-right-radius:40px;
   border-bottom-left-radius:40px;
-  background-color:#C3C0C0;
+  background-color:${({theme}) => theme.colors.NEUTRAL_6};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ export const HeaderCard = styled.div`
   font-weight: 500; 
   font-size: 24px;
   height: 102px;
-  background-color:#89969F;
+  background-color:${({theme}) =>theme.colors.NEUTRAL_5};
   text-align: left;
   // @media (orientation: portrait) {
   // }
@@ -29,6 +29,8 @@ export const HeaderCard = styled.div`
 
 export const FooterCard = styled.ul`
   padding:1rem 0 1rem 0.5rem;
+  list-style: disc!important;
+  width:50%;
   // @media (orientation: portrait) {
   // }
 `;

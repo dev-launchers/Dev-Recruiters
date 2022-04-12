@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
     margin:0.5%;
@@ -6,7 +6,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23); 
-    background-color:#C4C4C4;
+    background-color:${({theme}) => theme.colors.NEUTRAL_4};
     // @media (orientation: portrait){
     //   margin-bottom:10%;
     // }
@@ -16,19 +16,20 @@ export const Container = styled.div`
 export const CardHeader = styled.div`
    border-radius: 40px;
    padding: 30px 10px;
-   background-color: #59687B;
+   background-color:${({theme}) => theme.colors.NEUTRAL_3};
    text-align: center;
    color: white;
-   font-size: ${({cardSize})=> cardSize || "1.2rem"};
+   font-size: 1.2rem;
    font-size:1.2rem;
 `;
 
 
 export const CardBottom = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: certer;
+  gap:2rem;
   flex-direction:row;
-  background-color: #C4C4C4;
+  background-color: ${({theme}) => theme.colors.NEUTRAL_4};
   text-align: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;

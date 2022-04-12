@@ -8,6 +8,10 @@ const theme = {
     ACCENT_5: "#ffc30f", // orange-yellow
     ACCENT_6: "#C5B1A0", // beige
     NEUTRAL_2: "#f0edee", // light
+    NEUTRAL_3:"#59687B",
+    NEUTRAL_4:"#C4C4C4",
+    NEUTRAL_5:"#89969F",
+    NEUTRAL_6:"#C3C0C0",
   },
   fonts: {
     headline: "Abel",

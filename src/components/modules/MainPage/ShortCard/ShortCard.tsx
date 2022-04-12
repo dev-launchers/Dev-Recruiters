@@ -33,6 +33,7 @@ import {
     isPlatform: boolean;
     commitmentHours:number;
  }
+ 
 }
  
  export default function ShortCard ({cardData}:Props) {

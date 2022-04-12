@@ -27,17 +27,17 @@ export default function LongCard ({longCard}:Props){
             <HeaderCard>
             <TextBold>{longCard.description}</TextBold>
             </HeaderCard>
+            <ul>
             {longCard.details.map(data =>(
             <FooterCard key={data.id}>
-            <li>{readMore? data.detail: `${data.detail.substring(0,100)}...`}</li>
+            <li>{readMore? data.detail: `${data.detail.substring(0,90)}...`}</li>
             </FooterCard>
             ))}
+            </ul>
             <ButtonSection>
-            <Input onClick={()=> setReadMore(!readMore)}><a>Read Full Description</a></Input>
+            <Input onClick={()=> setReadMore(!readMore)}><a>Collaborate Description</a></Input>
             </ButtonSection>
             </Container>
-
-     
       </>
   )
 }
