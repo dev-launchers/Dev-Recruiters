@@ -17,7 +17,7 @@ import {
 interface ProductHeaderProps {
   title: string;
   vision: string;
-  type: string;
+  type: boolean;
   keywords: string[];
   date: string;
   commitmentLevel: string;
