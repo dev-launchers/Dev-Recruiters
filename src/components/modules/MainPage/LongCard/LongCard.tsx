@@ -20,22 +20,19 @@ export interface Props {
 }
 
 export default function LongCard ({longCard}:Props){
-    const [readMore, setReadMore] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
   return(
       <>
             <Container>
             <HeaderCard>
-            <TextBold>{longCard.description}</TextBold>
+            <TextBold>Description</TextBold>
+        
             </HeaderCard>
-            <ul>
-            {longCard.details.map(data =>(
-            <FooterCard key={data.id}>
-            <li>{readMore? data.detail: `${data.detail.substring(0,90)}...`}</li>
+            <FooterCard>
+                {isExpanded ? longCard.details.map(data => <li>{data.detail}</li>) : <li>{longCard.details[0].detail}</li>}
             </FooterCard>
-            ))}
-            </ul>
             <ButtonSection>
-            <Input onClick={()=> setReadMore(!readMore)}><a>Collaborate Description</a></Input>
+            <Input onClick={()=> setIsExpanded(!isExpanded)}><a>{isExpanded ? "Collapse" : "Read Full"} Description</a></Input>
             </ButtonSection>
             </Container>
       </>

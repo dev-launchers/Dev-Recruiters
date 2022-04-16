@@ -29,8 +29,12 @@ export const HeaderCard = styled.div`
 
 export const FooterCard = styled.ul`
   padding:1rem 0 1rem 0.5rem;
-  list-style: disc!important;
   width:50%;
+
+  & > li {
+    margin-left: 3rem;
+    list-style: disc!important;
+  }
   // @media (orientation: portrait) {
   // }
 `;

@@ -18,7 +18,7 @@ export const featuredCardData = [
                     positonType:"UX/UI"
                   },
             ],
-            commitmentHours:5,
+            commitmentHours:"5 hrs",
             href:"http://localhost:3000",   
       
 },
@@ -26,7 +26,6 @@ export const featuredCardData = [
 
 export const descriptionCardData = [
   {
-          description:"DESCRIPTION",
           details:[
             {
               id:1,

@@ -31,7 +31,7 @@ import {
       positonType:string;
      }];
     isPlatform: boolean;
-    commitmentHours:number;
+    commitmentHours:string;
  }
  
 }
@@ -56,7 +56,7 @@ import {
              <PositionContainer>
              <Position>Position Available</Position>
               {cardData.positionsAvailable.map((e)=>(
-               <PositionContent key={e.id}>{e.positonType}</PositionContent>
+              <PositionContent key={e.id}>{e.positonType}</PositionContent>
              )
                )}
              </PositionContainer>
@@ -65,7 +65,7 @@ import {
              <Commitment>Time Commitment</Commitment>
              <CommitmentContent>{cardData.commitmentHours}</CommitmentContent>
              <Link href={cardData.href}>
-               <Input>See More</Input>
+               <Input>Project and Position Details</Input>
               </Link>
              </CommitmentContainer>
              </CardBottom>
