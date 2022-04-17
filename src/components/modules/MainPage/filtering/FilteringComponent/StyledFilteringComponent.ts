@@ -45,12 +45,13 @@ export const ChipsListItem = styled.li`
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  background-color: #9399a0;
+  background-color: #7E8288;
   font-size: 1rem;
   padding: .5rem 1.5rem;
   padding-right: 0;
   border-radius: 1.25rem;
   width: full;
+  color: #F1F4F5;
 
   &:hover {
     filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
@@ -61,10 +62,12 @@ export const ChipsListItem = styled.li`
     padding: 0;
     margin: 0;
     width: 100%;
+  
   }
 
   & button {
     background-color: transparent;
+    color: #F1F4F5;
     border: none;
     padding-right: 1rem;
   }

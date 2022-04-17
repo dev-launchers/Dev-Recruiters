@@ -18,6 +18,7 @@ export default function useProjects() {
     level: [],
     minCommit: 0,
     maxCommit: 1,
+    searchTerm: '',
   });
 
   const SetProjectParams = (value: ProjectParams) => {

@@ -49,9 +49,18 @@ export default function ProjectListItem({ project }: Props) {
         )}
       </PositionsSection>
       <CommitmentSection>
-        <Subtitle>Time Commitment</Subtitle>
-        <Paragraph>{project.commitmentLevel}</Paragraph>
-        <Button>See More</Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Subtitle>Time Commitment</Subtitle>
+          <Paragraph>{project.commitmentLevel}</Paragraph>
+        </div>
+        <Button>Project and Position Details</Button>
       </CommitmentSection>
     </Wrapper>
   );

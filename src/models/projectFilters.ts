@@ -6,4 +6,5 @@ export interface ProjectParams {
     level: SkillLevel[] | null;
     minCommit: number;
     maxCommit: number;
+    searchTerm: string | null;
 }
