@@ -13,8 +13,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const projects = projectsList.filter((p) => p.opportunities.length > 0);
 
   const opportunitiesData = await fetch(`${apiUrl}/opportunities`);
+  const opportunitiesJson: Opportunity[] = await opportunitiesData.json();
 
-  const opportunities: Opportunity[] = await opportunitiesData.json();
+  const opportunities: Opportunity[] = opportunitiesJson.filter(
+    (o) => o.projects.length > 0
+  );
 
   return {
     props: {

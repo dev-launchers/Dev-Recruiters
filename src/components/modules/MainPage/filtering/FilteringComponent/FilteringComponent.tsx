@@ -28,10 +28,10 @@ interface Props {
 
 export default function FilteringComponent({ projects, opportunities }: Props) {
   const [commitment, setCommitment] = useState({ min: 0, max: 1 });
+  const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
   const {
     filteredProjects,
     projectsLoaded,
-    commitmentsLoaded,
     opportunitiesLoaded,
     projectParams,
     fetchOpportunities,
@@ -58,6 +58,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
       const min = Math.min(...commitments);
       const max = Math.max(...commitments);
       setCommitment({ min, max });
+      setCommitmentsLoaded(true);
     }
   };
 
@@ -153,17 +154,6 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
                 <button type='button'>x</button>
               </ChipsListItem>
             ))}
-
-          {/* {projectParams.commitment &&
-            projectParams.commitment.map((item, index) => (
-              <ChipsListItem
-                key={`commitment${index + 1}`}
-                onClick={() => handleRemoveCommitment(item)}
-              >
-                <p>{item}</p>
-                <button type='button'>x</button>
-              </ChipsListItem>
-            ))} */}
         </ChipsList>
       </FiltersWrapper>
 
