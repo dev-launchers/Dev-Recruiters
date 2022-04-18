@@ -20,9 +20,10 @@ interface ProductHeaderProps {
   type: boolean;
   keywords: string[];
   date: string;
-  commitmentLevel: string;
   username: string;
   usernameAvatar: string;
+  minCommitmentHours: number;
+  maxCommitmentHours: number;
 }
 
 export default function ProductHeader({
@@ -31,9 +32,10 @@ export default function ProductHeader({
   type,
   keywords = [],
   date,
-  commitmentLevel,
   username,
   usernameAvatar,
+  minCommitmentHours,
+  maxCommitmentHours,
 }: ProductHeaderProps) {
   return (
     <HeaderBlock>
@@ -57,7 +59,9 @@ export default function ProductHeader({
             <Username>{username}</Username>
           </Row>
           <Date>{date}</Date>
-          <Commitment>{commitmentLevel}</Commitment>
+          <Commitment>
+            {minCommitmentHours} to {maxCommitmentHours} hours a week
+          </Commitment>
         </Column>
       </Row>
     </HeaderBlock>
