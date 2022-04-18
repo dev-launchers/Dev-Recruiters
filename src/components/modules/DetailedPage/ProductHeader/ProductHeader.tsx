@@ -46,8 +46,8 @@ export default function ProductHeader({
         <Column tagsColumn>
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
-            {keywords.map((keyword) => (
-              <Tags key={keyword}>{keyword}</Tags>
+            {keywords.map((keyword, id) => (
+              <Tags key={id}>{keyword}</Tags>
             ))}
           </Row>
         </Column>
