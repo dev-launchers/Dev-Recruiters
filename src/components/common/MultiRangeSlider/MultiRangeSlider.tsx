@@ -73,7 +73,7 @@ export default function MultiRangeSlider({ min, max, onChange }: Props) {
           const value = Math.min(+event.target.value, maxVal - 1);
           setMinVal(value);
           event.target.value = value.toString();
-          onChange({ min: minVal, max: maxVal });
+          onChange({ min: value, max: maxVal });
         }}
       />
       <ThumbRight
@@ -86,7 +86,7 @@ export default function MultiRangeSlider({ min, max, onChange }: Props) {
           const value = Math.max(+event.target.value, minVal + 1);
           setMaxVal(value);
           event.target.value = value.toString();
-          onChange({ min: minVal, max: maxVal });
+          onChange({ min: minVal, max: value });
         }}
       />
 

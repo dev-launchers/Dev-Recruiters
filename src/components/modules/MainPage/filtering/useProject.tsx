@@ -10,8 +10,6 @@ export default function useProjects() {
   const [filteredProjects, setFilteredProjects] = useState<ProjectLite[]>([]);
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [opportunitiesLoaded, setOpportunitiesLoaded] = useState(false);
-  const [commitments, setCommitments] = useState<string[]>([]);
-  const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
   const [projectParams, setProjectParams] = useState<ProjectParams>({
     projectType: [],
     opportunity: [],
@@ -43,7 +41,6 @@ export default function useProjects() {
       }));
       setProjects(list);
       setFilteredProjects(list);
-      fetchCommitments(projectsList);
       setProjectsLoaded(true);
     }
   };
@@ -55,20 +52,6 @@ export default function useProjects() {
     if (opportunities.length <= 0) return;
     setOpportunities(opportunities);
     setOpportunitiesLoaded(true);
-  }
-
-  /**
-   * Extract the Commitment levels from the projects entities
-   */
-  function fetchCommitments(projects: Project[]) {
-    if (projects.length <= 0) return;
-    const items = projects
-      .filter((p) => p.commitmentLevel)
-      .map((p) => p.commitmentLevel)
-      .sort();
-    const distinct = Array.from(new Set(items));
-    setCommitments(distinct);
-    setCommitmentsLoaded(true);
   }
 
   const handleParamsChange = (params: ProjectParams) => {
@@ -95,8 +78,6 @@ export default function useProjects() {
   };
 
   const handleLevelChange = (value: SkillLevel[]) => {
-    console.log(value);
-
     handleParamsChange({ ...projectParams, level: value });
   };
 
@@ -120,19 +101,12 @@ export default function useProjects() {
     });
   };
 
-  // const handleRemoveCommitment = (value: string) => {
-  //   const commitment = projectParams.commitment.filter((p) => p !== value);
-  //   handleParamsChange({ ...projectParams, commitment });
-  // };
-
   return {
     projectParams,
     filteredProjects,
     projectsLoaded,
     opportunities,
     opportunitiesLoaded,
-    commitments,
-    commitmentsLoaded,
     fetchProjects,
     fetchOpportunities,
     SetProjectParams,
@@ -163,7 +137,7 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
 
     if (params.searchTerm) {
       list = list.filter((p) =>
-        p.title.toLowerCase().includes(params.searchTerm)
+        p.title.toLowerCase().includes(params.searchTerm.toLowerCase())
       );
     }
 
@@ -182,7 +156,6 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
     }
 
     if (params.maxCommit > params.minCommit) {
-      console.log(params);
       list = list.filter((project) =>
         project.opportunities.some(
           (op) =>
