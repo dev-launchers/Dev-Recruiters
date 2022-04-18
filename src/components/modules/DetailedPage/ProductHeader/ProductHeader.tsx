@@ -60,7 +60,7 @@ export default function ProductHeader({
           </Row>
           <Date>{date}</Date>
           <Commitment>
-            {minCommitmentHours} to {maxCommitmentHours} hours a week
+            {minCommitmentHours} - {maxCommitmentHours} hrs/week
           </Commitment>
         </Column>
       </Row>
