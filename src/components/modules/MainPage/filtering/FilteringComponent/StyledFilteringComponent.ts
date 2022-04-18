@@ -4,7 +4,8 @@ export const FiltersWrapper = styled.div`
   padding-left: 2rem;
 `;
 
-export const FilterTitle = styled.p`
+export const SectionTitle = styled.p`
+ font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
   font-size: 1.6rem;
   color: #fff;
   padding-bottom: 1.25rem;
@@ -20,15 +21,27 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
+  
   padding: 0rem 0;
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  column-gap: 1.5rem;
+  justify-content: space-between;
+  
   width: 100%;
 `;
 
+export const Section = styled.div`
+
+`
+
+export const DropDownContainer = styled.div`
+display: flex;
+flex-direction: row;
+column-gap: 1.5rem;
+`
+
 export const ChipsList = styled.ul`
+  padding-top: 2rem;
   padding-left: 0;
   list-style: none;
   display: flex;

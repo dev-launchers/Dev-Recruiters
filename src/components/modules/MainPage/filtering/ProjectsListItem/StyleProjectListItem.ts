@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
 
 export const TitleSection = styled.div`
   position: relative;
-  flex: 1 0 40%;
+  flex: 1 0 30%;
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   display: flex;
@@ -44,12 +45,13 @@ export const TitleSection = styled.div`
 
 export const TypeSection = styled.div`
   position: relative;
-  flex: 1 0 10%;
+  flex: 1 0 15%;
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  
   align-items: center;
   background-color: #cacaca;
   padding: 2rem 1.25rem;
@@ -60,8 +62,7 @@ export const TypeSection = styled.div`
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-   
+    right: 0;  
     background: #c2c2c2;
     border-radius:0 40px 40px 0;
     z-index: -1;
@@ -79,7 +80,7 @@ position: relative;
   padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #d9d9d9;
   z-index: 1;
@@ -110,7 +111,7 @@ position: relative;
 
 export const CommitmentSection = styled.div`
   background-color: #d9d9d9;
-  flex: 1 0 10%;
+  flex: 1 0 15%;
   padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -121,6 +122,13 @@ export const CommitmentSection = styled.div`
     margin: 0;
   }
  
+`
+
+export const SectionTextContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 `
 
 export const PositionsList = styled.ul`
@@ -168,16 +176,32 @@ export const Paragraph = styled.p`
  
 `
 
-export const Button = styled.button`
+export const PositionsSectionButton = styled.button`
 font-size: 1.125rem;
-  padding: .625rem .5rem;
+ 
+  background: #6f747b;
+  color:#FFFFFF;
+  border-radius: 1.25rem;
+  border: none;
+  cursor: pointer;
+  width: 14.375rem;
+  padding-top: 0.25rem;
+  padding-left: 1.0625rem;
+  padding-right: 0.375rem;
+  padding-bottom: 0.375rem;
+`
+
+export const CommitmentSectionButton = styled.button`
+
+  font-size: 1.125rem;
   background: #59687B;
   color:#FFFFFF;
-  border-radius: 20px;
   border-radius: 1.25rem;
-  margin-top: .5rem;
-  font-size: 1rem;
   border: none;
   cursor: pointer;
   width: 15.7rem;
+  padding-top: 9px;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-bottom: 6px;
 `

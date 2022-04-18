@@ -29,7 +29,7 @@ export const Toggle = styled.button`
     padding-top: 4px;
     justify-content: space-between;
     align-items: center;
-    max-width: 12rem;
+    /* max-width: 12rem; */
     width: 100%;
     font-size: 1.125rem;
     line-height: 1.75rem;
