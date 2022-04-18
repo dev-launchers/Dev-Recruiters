@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
+margin-top: 34px;
 position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
-  min-height: 4.5rem;
+  width: 100%;
+  /* min-height: 4.5rem; */
 `;
 
 export const Slider = styled.div`
@@ -18,7 +21,7 @@ export const SliderTrack = styled.div`
   position: absolute;
   border-radius: 3px;
   height: 5px;
-  background-color: #ced4da;
+  background-color: #5B6068;
   width: 100%;
   z-index: 1;
 `;
@@ -34,7 +37,7 @@ export const SliderRange = styled.div`
 export const SliderLeftValue = styled.div`
   position: absolute;
   color: #dee2e6;
-  font-size: 12px;
+  font-size: 20px;
   margin-top: 20px;
   left: 6px;
 `;
@@ -42,44 +45,50 @@ export const SliderLeftValue = styled.div`
 export const SliderRightValue = styled.div`
   position: absolute;
   color: #dee2e6;
-  font-size: 12px;
+  font-size: 20px;
   margin-top: 20px;
   right: -4px;
 `;
 
-export const ThumbRight = styled.input`
-  color: red;
+export const ThumbRight = styled.input.attrs({ type: 'range' })`
+  
   pointer-events: none;
   position: absolute;
   height: 0;
   width: 200px;
   outline: none;
   z-index: 4;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  
   
   &::-webkit-slider-thumb {
-    background: #f1f5f7;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    background: #59687B;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 1.125rem;
-    width: 1.125rem;
+    height:1.8125rem;
+    width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
   }
   &::-moz-range-thumb {
-    background-color: #f1f5f7;
+    background: #59687B;
     color: yellow;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 1.125rem;
-    width: 1.125rem;
+    height:1.8125rem;
+    width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
+    -webkit-appearance: none;
   }
 `;
 
@@ -89,28 +98,32 @@ export const ThumbLeft = styled.input<{ minVal: number; maxVal: number }>`
   height: 0;
   width: 12.5rem;
   outline: none;
+  -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
   z-index: ${(props) => (props.minVal > props.maxVal - 100 ? 5 : 3)};
   &::-webkit-slider-thumb {
-    background-color: #f1f5f7;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    background: #59687B;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 1.125rem;
-    width: 1.125rem;
+    height:1.8125rem;
+    width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
   }
 
   &::-moz-range-thumb {
-    background-color: #f1f5f7;
+    background: #59687B;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 18px;
-    width: 18px;
+    height:1.8125rem;
+    width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
     position: relative;

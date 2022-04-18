@@ -8,14 +8,18 @@ import useProjects from '../useProject';
 import {
   Wrapper,
   FiltersWrapper,
-  FilterTitle,
+  SectionTitle,
   Container,
   ChipsList,
   ChipsListItem,
+  DropDownContainer,
+  Section,
 } from './StyledFilteringComponent';
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
 import MultiRangeDropDown from '../../../../common/MultiRangeDropdown';
+import SearchComponent from '../SearchComponent';
+import MultiRangeSlider from '../../../../common/MultiRangeSlider';
 
 interface Props {
   projects: Project[];
@@ -38,6 +42,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     handleLevelChange,
     handleRemoveLevel,
     handleCommitmentChange,
+    handleSearchTermChange,
     fetchProjects,
   } = useProjects();
 
@@ -66,41 +71,55 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
   return (
     <Wrapper>
       <FiltersWrapper>
-        <FilterTitle>Filters</FilterTitle>
         <Container>
-          <CheckboxDropdown
-            title='Type'
-            keyProperty={'name'}
-            items={EnumToArray(ProjectType)}
-            onChange={handlePlatformChange}
-            selectedItems={projectParams.projectType}
-          />
-          {opportunitiesLoaded && (
-            <CheckboxDropdown
-              title='Positions'
-              keyProperty={'title'}
-              items={opportunities}
-              onChange={handleOpportunityChange}
-              selectedItems={projectParams.opportunity}
-            />
-          )}
+          <Section>
+            <SectionTitle>Filters</SectionTitle>
+            <DropDownContainer>
+              <CheckboxDropdown
+                title='Platform or Independent'
+                keyProperty={'name'}
+                items={EnumToArray(ProjectType)}
+                onChange={handlePlatformChange}
+                selectedItems={projectParams.projectType}
+              />
+              {opportunitiesLoaded && (
+                <CheckboxDropdown
+                  title='Positions'
+                  keyProperty={'title'}
+                  items={opportunities}
+                  onChange={handleOpportunityChange}
+                  selectedItems={projectParams.opportunity}
+                />
+              )}
 
-          <CheckboxDropdown
-            title='Level'
-            keyProperty={'name'}
-            items={EnumToArray(SkillLevel)}
-            onChange={handleLevelChange}
-            selectedItems={projectParams.level}
-          />
+              <CheckboxDropdown
+                title='Level'
+                keyProperty={'name'}
+                items={EnumToArray(SkillLevel)}
+                onChange={handleLevelChange}
+                selectedItems={projectParams.level}
+              />
+            </DropDownContainer>
+          </Section>
 
-          {commitmentsLoaded && (
-            <MultiRangeDropDown
-              title='Commitment'
-              min={commitment.min ?? 0}
-              max={commitment.max ?? 0}
-              onChange={handleCommitmentChange}
+          <Section>
+            <SectionTitle>Time Commitment</SectionTitle>
+            {commitmentsLoaded && (
+              <MultiRangeSlider
+                min={commitment.min ?? 0}
+                max={commitment.max ?? 10}
+                onChange={handleCommitmentChange}
+              />
+            )}
+          </Section>
+
+          <Section>
+            <SectionTitle>Search</SectionTitle>
+            <SearchComponent
+              value={projectParams.searchTerm}
+              onChange={handleSearchTermChange}
             />
-          )}
+          </Section>
         </Container>
 
         <ChipsList>

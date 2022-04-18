@@ -8,11 +8,13 @@ import {
   Paragraph,
   PositionsList,
   PositionsListItem,
-  Button,
+  CommitmentSectionButton,
   PositionTitle,
   TypeSection,
   PositionsSection,
   PositionLevel,
+  PositionsSectionButton,
+  SectionTextContainer,
 } from './StyleProjectListItem';
 
 interface Props {
@@ -45,22 +47,21 @@ export default function ProjectListItem({ project }: Props) {
           </PositionsList>
         </div>
         {project.opportunities?.length > 4 && (
-          <Button>More available positions</Button>
+          <PositionsSectionButton>
+            More available positions
+          </PositionsSectionButton>
         )}
       </PositionsSection>
       <CommitmentSection>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Subtitle>Time Commitment</Subtitle>
-          <Paragraph>{project.commitmentLevel}</Paragraph>
-        </div>
-        <Button>Project and Position Details</Button>
+        <SectionTextContainer>
+          <SectionTextContainer>
+            <Subtitle>Time Commitment</Subtitle>
+            <Paragraph>{project.commitmentLevel}</Paragraph>
+          </SectionTextContainer>
+        </SectionTextContainer>
+        <CommitmentSectionButton>
+          Project and Position Details
+        </CommitmentSectionButton>
       </CommitmentSection>
     </Wrapper>
   );

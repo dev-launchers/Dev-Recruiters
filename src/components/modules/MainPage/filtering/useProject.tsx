@@ -113,6 +113,13 @@ export default function useProjects() {
     });
   };
 
+  const handleSearchTermChange = (searchTerm: any) => {
+    handleParamsChange({
+      ...projectParams,
+      searchTerm,
+    });
+  };
+
   // const handleRemoveCommitment = (value: string) => {
   //   const commitment = projectParams.commitment.filter((p) => p !== value);
   //   handleParamsChange({ ...projectParams, commitment });
@@ -136,6 +143,7 @@ export default function useProjects() {
     handleLevelChange,
     handleRemoveLevel,
     handleCommitmentChange,
+    handleSearchTermChange,
   };
 }
 
@@ -153,6 +161,12 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
   if (projects.length > 0) {
     let list: ProjectLite[] = [...projects];
 
+    if (params.searchTerm) {
+      list = list.filter((p) =>
+        p.title.toLowerCase().includes(params.searchTerm)
+      );
+    }
+
     if (params.level && params.level.length > 0) {
       list = list.filter((project) =>
         project.opportunities.some((op) => params.level.includes(op.level))
@@ -168,10 +182,11 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
     }
 
     if (params.maxCommit > params.minCommit) {
+      console.log(params);
       list = list.filter((project) =>
-        project.opportunities?.some(
+        project.opportunities.some(
           (op) =>
-            op.commitmentHoursPerWeek >= params.minCommit ||
+            op.commitmentHoursPerWeek >= params.minCommit &&
             op.commitmentHoursPerWeek <= params.maxCommit
         )
       );
