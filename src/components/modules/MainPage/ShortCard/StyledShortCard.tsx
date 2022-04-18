@@ -1,94 +1,88 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    margin:0.5%;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23); 
-    background-color:${({theme}) => theme.colors.NEUTRAL_4};
-    // @media (orientation: portrait){
-    //   margin-bottom:10%;
-    // }
-    
+  display: flex;
+  border-radius: 40px;
+  flex-direction: column;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_4};
+  flex-grow: 1;
 `;
 
 export const CardHeader = styled.div`
-   border-radius: 40px;
-   padding: 30px 10px;
-   background-color:${({theme}) => theme.colors.NEUTRAL_3};
-   text-align: center;
-   color: white;
-   font-size: 1.2rem;
-   font-size:1.2rem;
+  border-radius: 40px;
+  padding: 30px 10px;
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_3};
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
 `;
-
 
 export const CardBottom = styled.div`
   display: flex;
   justify-content: center;
-  // gap:1rem;
-  flex-direction:row;
-  background-color: ${({theme}) => theme.colors.NEUTRAL_4};
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_4};
   text-align: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding: 10px 10px;
-  font-size:1.2rem;
+  font-size: 1.2rem;
+
+  & > * {
+    flex: 1;
+  }
 `;
-   
+
 export const Title = styled.div`
-   font-size:2rem;
+  font-size: 2.25rem;
+  font-weight: 700;
 `;
 
 export const Type = styled.div`
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 `;
 export const Description = styled.div`
-   font-size:1rem;
+  font-size: 1.125rem;
+  font-weight: 400;
 `;
 
-export const Commitment = styled.div`
-     display:flex;
-     margin: 0 0 1rem 3rem;
-    `;
+export const Commitment = styled.div``;
 export const CommitmentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
-export const CommitmentContent = styled.div`
-`;
+export const CommitmentContent = styled.div``;
 
-export const Position = styled.div`
-     margin: 0 0 2rem 3rem;
-`;
+export const Position = styled.div``;
 export const PositionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 `;
-export const PositionContent = styled.ul`
-    display: flex;
-    justify-content:flex-start;
-    margin-left: 2rem
-`; 
+export const PositionContent = styled.li`
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  ::before {
+    content: "•";
+  }
+`;
 export const TypeContainer = styled.div`
-    font-size:1.2rem;
+  font-size: 1.2rem;
 `;
-export const TypeContent = styled.div`
-`;
-export const Input = styled.button`
-  color:#418CBF;
-  margin: 3rem 0.5rem 0 1rem;
-  padding: 1px 1px;
+export const TypeContent = styled.div``;
+export const Input = styled.a`
+  display: block;
+  cursor: pointer;
+  color: white;
   border-radius: 50px;
-  background-color: rgba(123, 123, 123,0.2)
+  margin-top: auto;
+  padding: 0.5rem;
+  background-color: #59687b;
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
 `;
-
-export const Section = styled.div`
-// &:before{
-//     content:'';
-//     margin-left:15px;
-//     padding-left:15px;
-//     border-left:1px solid rgba(69,77,88,0.58);
-//     height:7rem;
-//     display:inline-block;
-//     vertical-align:middle;
-//  }
-`;
-
