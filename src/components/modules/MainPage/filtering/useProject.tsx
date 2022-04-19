@@ -155,7 +155,7 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
       );
     }
 
-    if (params.maxCommit > params.minCommit) {
+    if (params.maxCommit > params.minCommit && params.minCommit > 0) {
       list = list.filter((project) =>
         project.opportunities.some(
           (op) =>
