@@ -17,7 +17,6 @@ import {
 } from './StyledFilteringComponent';
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
-import MultiRangeDropDown from '../../../../common/MultiRangeDropdown';
 import SearchComponent from '../SearchComponent';
 import MultiRangeSlider from '../../../../common/MultiRangeSlider';
 
@@ -27,7 +26,7 @@ interface Props {
 }
 
 export default function FilteringComponent({ projects, opportunities }: Props) {
-  const [commitment, setCommitment] = useState({ min: 0, max: 1 });
+  const [commitment, setCommitment] = useState({ min: 0, max: 0 });
   const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
   const {
     filteredProjects,
