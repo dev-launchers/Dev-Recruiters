@@ -26,26 +26,9 @@ export const HeaderBlock = styled.div`
 `;
 
 export const Column = styled.div`
-  ${(props) => {
-    if (props.tagsColumn) {
-      return `
-     background-color: #4f5154;
-     width: 30%;
-  `;
-    } else if (props.userColumn) {
-      return `
-     background-color: #59687b;
-     width: 20%;
-     align-items: flex-end;
-  `;
-    } else {
-      return `
-      background: #30363E;
-      width: 50%;
-      align-items: flex-start;
-  `;
-    }
-  }}
+  background-color: ${({ bg }) => (bg ? bg : "#30363E")};
+  width: ${({ w }) => (w ? w : "50%")};
+  align-items: ${({ fa }) => (fa ? fa : "flex-start")};
   display: flex;
   flex-direction: column;
   border-radius: 25px 25px 0px 0px;

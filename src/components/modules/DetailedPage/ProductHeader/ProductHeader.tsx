@@ -40,12 +40,12 @@ export default function ProductHeader({
   return (
     <HeaderBlock>
       <Row>
-        <Column>
+        <Column bg="#30363E" w="50%" fa>
           <ColumnTitle>{title}</ColumnTitle>
           <Type>{type}</Type>
           <Vision>{vision}</Vision>
         </Column>
-        <Column tagsColumn>
+        <Column bg="#4f5154" w="30%" fa>
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
             {keywords.map((keyword, id) => (
@@ -53,7 +53,7 @@ export default function ProductHeader({
             ))}
           </Row>
         </Column>
-        <Column userColumn>
+        <Column bg="#30363e" w="30%" fa="flex-end">
           <Row style={{ marginTop: "1rem" }}>
             <UsernameAvatar src={avatar} />
             <Username>{username}</Username>
