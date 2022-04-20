@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../../../images/avatar.png";
+// import Avatar from "../../../../images/avatar.png";
 import {
   HeaderBlock,
   ColumnTitle,
@@ -55,7 +55,7 @@ export default function ProductHeader({
         </Column>
         <Column bg="#30363e" w="30%" fa="flex-end">
           <Row style={{ marginTop: "1rem" }}>
-            <UsernameAvatar src={avatar} />
+            {/* <UsernameAvatar src={Avatar} /> */}
             <Username>{username}</Username>
           </Row>
           <Date>{date}</Date>
