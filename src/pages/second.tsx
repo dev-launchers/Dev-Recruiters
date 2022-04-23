@@ -46,10 +46,13 @@ const SecondPage = () => (
     <h1>hello from page second</h1>
     <ProductHeader 
       title="Some product"
-      subtitle="some subtitle"
-      commitment="11 hours a week"
-      date="22/11/2009"
-      tags={["Javascript", "React", "Node.js"]}
+      vision="some subtitle"
+      type="Product"
+      isPlatform
+      minCommitmentHours={5}
+      maxCommitmentHours={11}
+      date="2022-02-10T04:47:32.472Z"
+      keywords={["Javascript", "React", "Node.js"]}
       username="Mohammed"
     />
   </>
