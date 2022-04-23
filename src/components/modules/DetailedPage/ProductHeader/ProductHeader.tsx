@@ -1,12 +1,12 @@
 import React from "react";
-// import Avatar from "../../../../images/avatar.png";
+import Avatar from "../../../../images/avatar.png";
 import {
   HeaderBlock,
   ColumnTitle,
   Type,
   Username,
   Tags,
-  Date,
+  CreationDate,
   Column,
   Row,
   Commitment,
@@ -17,11 +17,12 @@ import {
 interface ProductHeaderProps {
   title: string;
   vision: string;
-  type: boolean;
+  isPlatform: boolean;
+  type: "Product" | "Project" | "Idea";
   keywords: string[];
   date: string;
   username: string;
-  usernameAvatar: string;
+  userAvatar?: string;
   minCommitmentHours: number;
   maxCommitmentHours: number;
 }
@@ -29,23 +30,28 @@ interface ProductHeaderProps {
 export default function ProductHeader({
   title,
   vision,
+  isPlatform = false,
   type,
   keywords = [],
   date,
   username,
-  usernameAvatar,
+  // userAvatar,
   minCommitmentHours,
   maxCommitmentHours,
 }: ProductHeaderProps) {
+  const formattedDate = new Date(date).toDateString().split(" ").slice(1).join(" ");
+
   return (
     <HeaderBlock>
       <Row>
-        <Column bg="#30363E" w="50%" fa>
+        <Column bgColor="#30363E" w="50%">
           <ColumnTitle>{title}</ColumnTitle>
-          <Type>{type}</Type>
+          <Type>
+            {isPlatform ? "Platform" : "Independent"} {type}
+          </Type>
           <Vision>{vision}</Vision>
         </Column>
-        <Column bg="#4f5154" w="30%" fa>
+        <Column bgColor="#4f5154" w="30%">
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
             {keywords.map((keyword, id) => (
@@ -53,12 +59,15 @@ export default function ProductHeader({
             ))}
           </Row>
         </Column>
-        <Column bg="#30363e" w="30%" fa="flex-end">
+        <Column bgColor="#59687B" w="30%" fa="flex-end">
           <Row style={{ marginTop: "1rem" }}>
-            {/* <UsernameAvatar src={Avatar} /> */}
+            <UsernameAvatar src={Avatar} />
             <Username>{username}</Username>
           </Row>
-          <Date>{date}</Date>
+          <CreationDate>
+            Product Created:{" "}
+            {formattedDate}
+          </CreationDate>
           <Commitment>
             {minCommitmentHours} - {maxCommitmentHours} hrs/week
           </Commitment>
