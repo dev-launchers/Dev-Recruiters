@@ -1,49 +1,76 @@
 import React from "react";
+import Avatar from "../../../../images/avatar.png";
 import {
   HeaderBlock,
-  HeaderTitle,
-  HeaderSubtitle,
+  ColumnTitle,
+  Type,
   Username,
   Tags,
-  Date,
+  CreationDate,
   Column,
   Row,
   Commitment,
+  Vision,
+  UsernameAvatar,
 } from "./StyledProductHeader";
 
 interface ProductHeaderProps {
   title: string;
-  subtitle: string;
-  tags: string[];
+  vision: string;
+  isPlatform: boolean;
+  type: "Product" | "Project" | "Idea";
+  keywords: string[];
   date: string;
-  commitment: string;
   username: string;
+  userAvatar?: string;
+  minCommitmentHours: number;
+  maxCommitmentHours: number;
 }
 
 export default function ProductHeader({
   title,
-  subtitle,
-  tags,
+  vision,
+  isPlatform = false,
+  type,
+  keywords = [],
   date,
-  commitment,
   username,
+  // userAvatar,
+  minCommitmentHours,
+  maxCommitmentHours,
 }: ProductHeaderProps) {
+  const formattedDate = new Date(date).toDateString().split(" ").slice(1).join(" ");
+
   return (
     <HeaderBlock>
       <Row>
-        <Column>
-          <HeaderTitle>{title}</HeaderTitle>
-          <HeaderSubtitle>{subtitle}</HeaderSubtitle>
+        <Column bgColor="#30363E" w="50%">
+          <ColumnTitle>{title}</ColumnTitle>
+          <Type>
+            {isPlatform ? "Platform" : "Independent"} {type}
+          </Type>
+          <Vision>{vision}</Vision>
+        </Column>
+        <Column bgColor="#4f5154" w="30%">
+          <ColumnTitle>Tags</ColumnTitle>
           <Row>
-            {tags.map((tag, index) => (
-              <Tags key={index}>{tag}</Tags>
+            {keywords.map((keyword, id) => (
+              <Tags key={id}>{keyword}</Tags>
             ))}
           </Row>
         </Column>
-        <Column>
-          <Username>{username}</Username>
-          <Date>{date}</Date>
-          <Commitment>{commitment}</Commitment>
+        <Column bgColor="#59687B" w="30%" fa="flex-end">
+          <Row style={{ marginTop: "1rem" }}>
+            <UsernameAvatar src={Avatar} />
+            <Username>{username}</Username>
+          </Row>
+          <CreationDate>
+            Product Created:{" "}
+            {formattedDate}
+          </CreationDate>
+          <Commitment>
+            {minCommitmentHours} - {maxCommitmentHours} hrs/week
+          </Commitment>
         </Column>
       </Row>
     </HeaderBlock>
