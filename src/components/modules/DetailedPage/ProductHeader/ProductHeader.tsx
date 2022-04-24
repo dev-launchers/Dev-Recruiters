@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../../../../images/avatar.png";
+const Avatar = require("../../../../images/avatar.png");
 import {
   HeaderBlock,
   ColumnTitle,

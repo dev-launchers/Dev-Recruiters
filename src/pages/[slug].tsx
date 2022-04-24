@@ -88,7 +88,7 @@ export default function DetailedPage({ project }: Props) {
       <h1>hello from project details page</h1>
       {/* testing postion Card */}
 
-      <div
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -97,7 +97,7 @@ export default function DetailedPage({ project }: Props) {
       >
         {project &&
           project.openPositions.map((position) => <PositionCard key={position.id} position={samplePosition} />)}
-      </div>
+      </div> */}
     </>
   );
 }
