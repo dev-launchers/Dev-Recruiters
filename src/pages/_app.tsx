@@ -11,6 +11,7 @@ import theme from "../styles/theme";
 import { UserDataProvider } from "../context/UserDataContext";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import PageWrapper from "../components/common/PageWrapper";
 
 const hashRedirect = (router) => {
   // Strip out hash from url (if any) so we can transition from HashRouter to BrowserRouter

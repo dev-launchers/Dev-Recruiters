@@ -20,7 +20,7 @@ import RainbowBar from "../RainbowBar";
 
 import CardTitle from "./CardTitle";
 import Attachments from "./Attachments";
-import { Cards } from "../../modules/Projects/Project/Role/RoleCards/StyledRoleCards";
+//import { Cards } from "../../modules/Projects/Project/Role/RoleCards/StyledRoleCards";
 
 /**
  * Props:
@@ -36,31 +36,29 @@ import { Cards } from "../../modules/Projects/Project/Role/RoleCards/StyledRoleC
  *  - cardFlexDirection: changes flex-direction if existed otherwise delete flex-direction
  */
 
-
 export interface CardProps {
-  size?: number,
-  style?: React.CSSProperties,
+  size?: number;
+  style?: React.CSSProperties;
   cardData?: {
-    onClick?: React.MouseEventHandler<HTMLDivElement>,
-    textAlignment?: string,
-    flexDirection?: string,
-    imageSrc?: string,
-    imageHolderBackgroundColor?: string,
-    tags?: string[],
-    href?: string,
-    secondaryText?: string,
-    description?: string,
-    actions?: boolean,
-    attachments?: boolean,
-    items?: {}
-  },
-  bgColor?: string,
-  isLinkingInside?: boolean,
-  attachment?: string
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    textAlignment?: string;
+    flexDirection?: string;
+    imageSrc?: string;
+    imageHolderBackgroundColor?: string;
+    tags?: string[];
+    href?: string;
+    secondaryText?: string;
+    description?: string;
+    actions?: boolean;
+    attachments?: boolean;
+    items?: {};
+  };
+  bgColor?: string;
+  isLinkingInside?: boolean;
+  attachment?: string;
 }
 
 const Card: React.FC<CardProps> = (props) => {
-
   const router = useRouter();
 
   return (
@@ -93,6 +91,7 @@ const Card: React.FC<CardProps> = (props) => {
             </Link>
           ) : (
             <a
+              title={props.cardData.description}
               href={props.cardData.href}
               target="_blank"
               rel="noopener noreferrer"
@@ -124,6 +123,6 @@ const Card: React.FC<CardProps> = (props) => {
       )}
     </Container>
   );
-}
+};
 
-export default Card; 
+export default Card;
