@@ -10,11 +10,9 @@ body {
   margin: 0;
   /*font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
-  font-family: sans-serif;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
+  font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
   color: ${({ theme }) => theme.colors.NEUTRAL_1};
-  background-color: #f0edee;
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_2};
 }
 
 html {
@@ -27,7 +25,6 @@ html {
 
 body {
   min-height: 100%;
-  margin: 0px;
   width: 100%;
   height: 100%;
   font-size: 1.5rem;
@@ -51,10 +48,19 @@ body {
   overflow-x: hidden;
 }
 
-.App {
-  font-family: sans-serif;
-  font-family: "Nunito Sans", sans-serif;
-  text-align: left;
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+li {
+  /* display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  ::before {
+    content: "•";
+  } */
 }
 
 a {
@@ -66,7 +72,6 @@ a {
     color: ${({ theme }) => theme.colors.ACCENT_4};
   }
 }
-h1,
 h2,
 h3,
 h4,
@@ -91,17 +96,17 @@ h1 {
 }
 
 h2 {
-  font-family: "Abel", sans-serif;
+  font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
 }
 
 h3 {
-  font-family: "Abel", sans-serif;
+  font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
 }
 
 h4 {
-  font-family: "Abel", sans-serif;
+  font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
 }
 
 strong {

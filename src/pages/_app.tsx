@@ -52,9 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </div>
             <div>
               <Header />
-              <PageWrapper>
-                <Component {...pageProps} />
-              </PageWrapper>
+               <Component {...pageProps} /> 
               <Footer />
             </div>
           </UserDataProvider>

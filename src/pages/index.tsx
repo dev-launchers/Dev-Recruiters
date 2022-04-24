@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Main from '../components/modules/MainPage/MainCom';
 // import PositionCard from "../components/modules/DetailedPage/PositionCard";
 import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
 import { Project } from "../components/modules/MainPage/filtering/project";
@@ -60,8 +61,7 @@ function IndexPage({ projects }: Props) {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <h1>hello from page index</h1>
-
+      <Main />
       {projects && <FilteringComponent projects={projects} />}
     </>
   );
