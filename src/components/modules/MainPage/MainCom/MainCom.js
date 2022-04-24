@@ -1,5 +1,5 @@
 import React from "react";
-import ShortCard from '../ShortCard';
+import ShortCard from "../ShortCard";
 import LongCard from "../LongCard";
 import {featuredCardData} from './data';
 import { descriptionCardData } from "./data";
