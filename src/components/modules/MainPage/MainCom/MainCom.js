@@ -8,7 +8,7 @@ import {ProjectContainer} from "../MainCom/StyledMainCom"
  const Main = ()=>{
    return (
         <>
-          <h1>Join Us!</h1>
+          {/* <h1>Join Us!</h1> */}
           <ProjectContainer>
           {featuredCardData.map((cardData)=>{
             return (

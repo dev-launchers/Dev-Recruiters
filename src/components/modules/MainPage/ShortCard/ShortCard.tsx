@@ -5,73 +5,73 @@ import {
   CardBottom,
   Title,
   Description,
-  Type,
-  Position,
-  Commitment,
-  TypeContainer,
   TypeContent,
-  CommitmentContainer,
   CommitmentContent,
   PositionContent,
-  PositionContainer,
   Input,
-  Section
+  Category,
+  CategoryContainer,
+  ButtonsContainer,
+  CategoriesContainer,
 } from "./StyledShortCard";
 
-
- export interface Props {
+export interface Props {
   cardData: {
     titleText: string;
-    id:number;
-    smallText:string;
-    type:string;
-    href:string;
-    positionsAvailable: [{
-      id: number;
-      positonType:string;
-     }];
+    id: number;
+    smallText: string;
+    type: string;
+    href: string;
+    positionsAvailable: [
+      {
+        id: number;
+        positonType: string;
+      }
+    ];
     isPlatform: boolean;
-    commitmentHours:string;
- }
- 
-}
- 
- export default function ShortCard ({cardData}:Props) {
-        return (
-           <>
-             <Container 
-              key={cardData.id}>
-             <CardHeader>
-             <Title>{cardData.titleText}</Title>
-             <Description>{cardData.smallText}</Description>
-             </CardHeader>
-             <CardBottom>
-             <TypeContainer>
-             <Type>Type</Type>
-             <TypeContent>{cardData.type}</TypeContent>
-             <TypeContent>{cardData.isPlatform? "Platform":"Independent"}
-             </TypeContent>
-             </TypeContainer>
-             <Section></Section>
-             <PositionContainer>
-             <Position>Position Available</Position>
-              {cardData.positionsAvailable.map((e)=>(
-              <PositionContent key={e.id}>{e.positonType}</PositionContent>
-             )
-               )}
-             </PositionContainer>
-             <Section></Section>
-             <CommitmentContainer>
-             <Commitment>Time Commitment</Commitment>
-             <CommitmentContent>{cardData.commitmentHours}</CommitmentContent>
-             <Link href={cardData.href}>
-               <Input>Project and Position Details</Input>
-              </Link>
-             </CommitmentContainer>
-             </CardBottom>
-            </Container>
-           </>
-        )      
-                
+    commitmentHours: string;
+  };
 }
 
+export default function ShortCard({ cardData }: Props) {
+  return (
+    <>
+      <Container key={cardData.id}>
+        <CardHeader>
+          <Title>{cardData.titleText}</Title>
+          <Description>{cardData.smallText}</Description>
+        </CardHeader>
+        <CardBottom>
+          <CategoriesContainer>
+            <CategoryContainer>
+              <Category>Type</Category>
+              <TypeContent>{cardData.type}</TypeContent>
+              <TypeContent>
+                {cardData.isPlatform ? "Platform" : "Independent"}
+              </TypeContent>
+            </CategoryContainer>
+            <CategoryContainer>
+              <Category>Position Available</Category>
+              <ul>
+                {cardData.positionsAvailable.map((e) => (
+                  <PositionContent key={e.id}>
+                    <span>{e.positonType}</span>
+                  </PositionContent>
+                ))}
+              </ul>
+            </CategoryContainer>
+            <CategoryContainer>
+              <Category>Time Commitment</Category>
+              <CommitmentContent>{cardData.commitmentHours}</CommitmentContent>
+            </CategoryContainer>
+          </CategoriesContainer>
+          <ButtonsContainer>
+            <Link href={cardData.href}>
+              <Input>Project Details</Input>
+            </Link>
+          </ButtonsContainer>
+        </CardBottom>
+      </Container>
+    </>
+  );
+}
