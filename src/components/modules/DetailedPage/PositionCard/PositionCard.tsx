@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CardTag from "../../../common/CardTag/CardTag";
-import RoundedButton from "../../../common/RoundedButton";
+import CardTag from "@components/common/CardTag/CardTag";
+import RoundedButton from "@components/common/RoundedButton";
 import {
   Card,
   CardSection,
