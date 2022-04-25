@@ -2,7 +2,7 @@ import React from "react";
 import constate from "constate"; // State Context Object Creator
 import axios from "axios";
 
-import { env } from "../utils/EnvironmentVariables";
+import { env } from "@utils/EnvironmentVariables";
 
 const DEFAULT_USER = {
   id: 0,
