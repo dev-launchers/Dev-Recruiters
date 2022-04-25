@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 // import PositionCard from "../components/modules/DetailedPage/PositionCard";
-import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
-import { Project } from "../components/modules/MainPage/filtering/project";
+import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
+import { Project } from "@components/modules/MainPage/filtering/project";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch("https://api.devlaunchers.org/projects");
