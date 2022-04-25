@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { slide as SlideHamburgerMenu } from "react-burger-menu";
 import style from "./HamburgerMenu.module.css";
-import logoMonogramImage from "../../../images/logo-monogram.png?webp";
-import Logout from "../../../utils/Logout";
-import { env } from "../../../utils/EnvironmentVariables";
-import { useUserDataContext } from "../../../contexts/UserDataContext";
+import logoMonogramImage from "@images/logo-monogram.png?webp";
+import Logout from "@utils/Logout";
+import { env } from "@utils/EnvironmentVariables";
+import { useUserDataContext } from "@contexts/UserDataContext";
 
 const HamburgerMenu: React.FC = () => {
   const { userData } = useUserDataContext();
