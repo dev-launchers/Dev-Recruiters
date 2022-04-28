@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { Opportunity } from "../models/opportunity";
 import { Project } from "../models/project";
 
 
@@ -99,11 +100,15 @@ const Projects = {
     list: () => requests.get<Project[]>('projects'),
 }
 
+const Opportunities = {
+    list: () => requests.get<Opportunity[]>('opportunities'),
+}
+
 const Ideas = {
 }
 
 const agent = {
-    Ideas,
+    Opportunities,
     Projects,
 }
 
