@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RoundedButtonProps } from "../../../common/RoundedButton/StyledRoundedButton";
+import { RoundedButtonProps } from "@components/common/RoundedButton/StyledRoundedButton";
 
 export const Card = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ProductHeader from "../components/modules/DetailedPage/ProductHeader";
+import ProductHeader from "@components/modules/DetailedPage/ProductHeader";
 
 
 const SecondPage = () => (

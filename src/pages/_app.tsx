@@ -3,15 +3,15 @@ import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 import type { AppProps } from "next/app";
-import GlobalStyle from "../styles/globals";
+import GlobalStyle from "@styles/globals";
 
 import "react-toastify/dist/ReactToastify.css";
-import theme from "../styles/theme";
+import theme from "@styles/theme";
 
-import { UserDataProvider } from "../context/UserDataContext";
-import Header from "../components/common/Header";
-import Footer from "../components/common/Footer";
-import PageWrapper from "../components/common/PageWrapper";
+import Header from "@components/common/Header";
+import Footer from "@components/common/Footer";
+import PageWrapper from "@components/common/PageWrapper";
+import { UserDataProvider } from "@contexts/UserDataContext";
 
 const hashRedirect = (router) => {
   // Strip out hash from url (if any) so we can transition from HashRouter to BrowserRouter
@@ -25,8 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   hashRedirect(router);
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
         <GlobalStyle />
         <div>
           <Script
@@ -58,7 +57,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           </UserDataProvider>
         </div>
       </ThemeProvider>
-    </>
   );
 }
 
