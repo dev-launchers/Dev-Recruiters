@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import FilteringComponent from '../components/modules/MainPage/filtering/FilteringComponent';
+import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
 import { Opportunity } from '../models/opportunity';
 import { Project } from '../models/project';
-import { env } from '../utils/EnvironmentVariables';
+import { env } from '@utils/EnvironmentVariables';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const apiUrl = 'http://localhost:1337'; //env().API_URL;
