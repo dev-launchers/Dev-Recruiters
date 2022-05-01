@@ -1,13 +1,15 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 // import PositionCard from "../components/modules/DetailedPage/PositionCard";
-import FilteringComponent from "../components/modules/MainPage/filtering/FilteringComponent";
-import { Project } from "../components/modules/MainPage/filtering/project";
+import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
+import { Project } from "@components/modules/MainPage/filtering/project";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch("https://api.devlaunchers.org/projects");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/projects?_publicationState=live`);
+  
   const result: Project[] = await res.json();
-  const projects = result.filter((p) => p.openPositions.length > 0);
+  const projects = result?.filter((p) => p.openPositions?.length > 0);
+
 
   return {
     props: {
