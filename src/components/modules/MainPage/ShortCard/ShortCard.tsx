@@ -5,8 +5,7 @@ import {
   CardBottom,
   Title,
   Description,
-  TypeContent,
-  CommitmentContent,
+  Content,
   PositionContent,
   Input,
   Category,
@@ -45,24 +44,24 @@ export default function ShortCard({ cardData }: Props) {
           <CategoriesContainer>
             <CategoryContainer>
               <Category>Type</Category>
-              <TypeContent>{cardData.type}</TypeContent>
-              <TypeContent>
+              <Content>
                 {cardData.isPlatform ? "Platform" : "Independent"}
-              </TypeContent>
+              </Content>
+              <Content>{cardData.type}</Content>
             </CategoryContainer>
             <CategoryContainer>
               <Category>Position Available</Category>
               <ul>
                 {cardData.positionsAvailable.map((e) => (
-                  <PositionContent key={e.id}>
+                  <Content as={PositionContent} key={e.id}>
                     <span>{e.positonType}</span>
-                  </PositionContent>
+                  </Content>
                 ))}
               </ul>
             </CategoryContainer>
             <CategoryContainer>
               <Category>Time Commitment</Category>
-              <CommitmentContent>{cardData.commitmentHours}</CommitmentContent>
+              <Content>{cardData.commitmentHours}</Content>
             </CategoryContainer>
           </CategoriesContainer>
           <ButtonsContainer>

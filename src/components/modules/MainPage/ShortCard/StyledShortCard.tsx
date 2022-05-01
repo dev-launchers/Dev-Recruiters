@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 0.5%;
-  border-radius: 50px;
+  border-radius: 35px 35px 30px 30px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -14,7 +14,7 @@ export const CardHeader = styled.div`
   font-size: 1.6875rem;
   text-align: left;
   padding: 1rem 2.5625rem 1rem 2.5625rem;
-  border-radius: 40px;
+  border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.Crayola};
   color: ${({ theme }) => theme.colors.White};
   /* font-weight: 400; */
@@ -41,11 +41,12 @@ export const Title = styled.div`
 `;
 
 export const Description = styled.div`
-  font-size: 0.84375rem;
+  font-size: 1rem;
   padding-top: 0.5rem;
 `;
 
 export const Category = styled.div`
+  font-size: 1rem;
   font-weight: 700;
 `;
 export const CategoryContainer = styled.div`
@@ -55,20 +56,21 @@ export const CategoryContainer = styled.div`
   font-size: 0.8125rem;
 `;
 
-export const CommitmentContent = styled.div``;
+export const Content = styled.div`
+  font-size: 0.875rem;
+`;
 
 export const PositionContent = styled.li`
+  display: flex;
+  gap: 0.5rem;
   margin-left: 0.5rem;
 
-  display: flex;
   list-style: none;
-  gap: 0.5rem;
   ::before {
     content: "•";
   }
 `;
 
-export const TypeContent = styled.div``;
 export const Input = styled.a`
   padding: 0.3rem 0.5rem;
   border-radius: 30px;
@@ -79,5 +81,5 @@ export const Input = styled.a`
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: end;
-  font-size: 0.664375rem;
+  font-size: 0.8125rem;
 `;
