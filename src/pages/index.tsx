@@ -1,23 +1,26 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
+import FilteringComponent from '@components/modules/MainPage/filtering/FilteringComponent';
 import { Opportunity } from '../models/opportunity';
 import { Project } from '../models/project';
-import { env } from '@utils/EnvironmentVariables';
+import agent from '@utils/agent';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const apiUrl = 'http://localhost:1337'; //env().API_URL;
-  const projectsData = await fetch(`${apiUrl}/projects`);
-  const projectsList: Project[] = await projectsData.json();
+  let projects: Project[] = [];
+  let opportunities: Opportunity[] = [];
+  try {
+    const result = await agent.Projects.list();
+    projects = result.filter((p: Project) => p.opportunities.length > 0);
+  } catch (error) {
+    console.error('An error occurred while fetching Projects', error);
+  }
 
-  const projects = projectsList.filter((p) => p.opportunities.length > 0);
-
-  const opportunitiesData = await fetch(`${apiUrl}/opportunities`);
-  const opportunitiesJson: Opportunity[] = await opportunitiesData.json();
-
-  const opportunities: Opportunity[] = opportunitiesJson.filter(
-    (o) => o.projects.length > 0
-  );
+  try {
+    const result = await agent.Opportunities.list();
+    opportunities = result.filter((o: Opportunity) => o.projects.length > 0);
+  } catch (error) {
+    console.error('An error occurred while fetching Opportunities', error);
+  }
 
   return {
     props: {

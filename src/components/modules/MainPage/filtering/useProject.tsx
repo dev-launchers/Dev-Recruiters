@@ -136,8 +136,14 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
     let list: ProjectLite[] = [...projects];
 
     if (params.searchTerm) {
-      list = list.filter((p) =>
-        p.title.toLowerCase().includes(params.searchTerm.toLowerCase())
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(params.searchTerm.toLowerCase()) ||
+          p.opportunities.some((o) =>
+            o.skills?.some((s) =>
+              s.interest.toLowerCase().includes(params.searchTerm.toLowerCase())
+            )
+          )
       );
     }
 
