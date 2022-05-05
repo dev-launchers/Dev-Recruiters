@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import FilteringComponent from '../components/modules/MainPage/filtering/FilteringComponent';
+import FilteringComponent from '@components/modules/MainPage/filtering/FilteringComponent';
 import { Opportunity } from '../models/opportunity';
 import { Project } from '../models/project';
-import agent from '../utils/agent';
+import agent from '@utils/agent';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let projects: Project[] = [];

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { EnumToArray } from '../../../../../utils/enumToArray';
-import CheckboxDropdown from '../../../../common/CheckboxDropdown';
+import { useCallback, useEffect, useState } from "react";
 import { Project } from '../../../../../models/project';
 import { ProjectType } from '../projectEnums';
-import ProjectsList from '../ProjectsList';
-import useProjects from '../useProject';
+import ProjectsList from "../ProjectsList";
+import useProjects from "../useProject";
+import { EnumToArray } from "@utils/enumToArray";
+import CheckboxDropdown from "@components/common/CheckboxDropdown";
 import {
   Wrapper,
   FiltersWrapper,
@@ -18,7 +18,7 @@ import {
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
 import SearchComponent from '../SearchComponent';
-import MultiRangeSlider from '../../../../common/MultiRangeSlider';
+import MultiRangeSlider from '@components/common/MultiRangeSlider';
 
 interface Props {
   projects: Project[];
@@ -51,7 +51,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     }
   }, [projects, fetchProjects, projectsLoaded]);
 
-  const getCommitments = (opportunities: Opportunity[]) => {
+  const getCommitments = useCallback((opportunities: Opportunity[]) => {
     const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
     if (commitments && commitments.length > 0) {
       const min = Math.min(...commitments);
@@ -59,7 +59,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
       setCommitment({ min, max });
       setCommitmentsLoaded(true);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (opportunities && !opportunitiesLoaded) {
