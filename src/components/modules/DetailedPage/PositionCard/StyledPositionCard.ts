@@ -268,6 +268,9 @@ border-radius: 50%;
 border: none;
 margin: 1rem;
 background: none;
+@media (min-width: 641px) {
+  display: none;
+}
 `;
 
 export const Icon = styled.svg<{ Active: boolean }>`

@@ -6,7 +6,7 @@ interface DropdownProps {
 
 export const Wrapper = styled.div`
     position: relative;
-    font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
+    font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
     width: auto;
   `
 
@@ -20,8 +20,8 @@ export const Icon = styled.svg`
 
 export const Toggle = styled.button`
     display: inline-flex;
-    background: #F1F4F5;
-    color: #000000;
+    background: ${({ theme }) => theme.colors.AntiFlashWhite};;
+    color: ${({ theme }) => theme.colors.Black};
     border-radius: 2.9rem;
     padding-left: 1.5rem;
     padding-right: 1rem;
@@ -43,7 +43,7 @@ export const Toggle = styled.button`
 export const Title = styled.p`
   padding: .25rem .5rem;
   margin:0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   `
 
 export const ContentContainer = styled.div<DropdownProps>`

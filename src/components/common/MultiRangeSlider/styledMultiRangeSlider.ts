@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
-margin-top: 34px;
-position: relative;
+  font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
+  margin-top: 34px;
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -21,7 +21,7 @@ export const SliderTrack = styled.div`
   position: absolute;
   border-radius: 3px;
   height: 5px;
-  background-color: #5B6068;
+  background-color: #5b6068;
   width: 100%;
   z-index: 1;
 `;
@@ -51,7 +51,6 @@ export const SliderRightValue = styled.div`
 `;
 
 export const ThumbRight = styled.input.attrs({ type: 'range' })`
-  
   pointer-events: none;
   position: absolute;
   height: 0;
@@ -60,30 +59,29 @@ export const ThumbRight = styled.input.attrs({ type: 'range' })`
   z-index: 4;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  
-  
+
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
-    background: #59687B;
+    background: #59687b;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height:1.8125rem;
+    height: 1.8125rem;
     width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
   }
   &::-moz-range-thumb {
-    background: #59687B;
+    background: #59687b;
     color: yellow;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height:1.8125rem;
+    height: 1.8125rem;
     width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
@@ -99,17 +97,17 @@ export const ThumbLeft = styled.input<{ minVal: number; maxVal: number }>`
   width: 12.5rem;
   outline: none;
   -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   z-index: ${(props) => (props.minVal > props.maxVal - 100 ? 5 : 3)};
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
-    background: #59687B;
+    background: #59687b;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height:1.8125rem;
+    height: 1.8125rem;
     width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;
@@ -117,12 +115,12 @@ export const ThumbLeft = styled.input<{ minVal: number; maxVal: number }>`
   }
 
   &::-moz-range-thumb {
-    background: #59687B;
+    background: #59687b;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height:1.8125rem;
+    height: 1.8125rem;
     width: 1.8125rem;
     margin-top: 4px;
     pointer-events: all;

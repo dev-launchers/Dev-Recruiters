@@ -13,6 +13,11 @@ export const Container = styled.div`
   height: 2.75rem;
   width: 20.625rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @media (max-width: 640px) {
+  width: 90%;
+  margin: auto auto;
+  
+}
 `;
 
 export const Icon = styled.svg`
@@ -24,13 +29,13 @@ export const Icon = styled.svg`
 export const SearchField = styled.input`
   background-color: transparent;
   border: none;
-  font-family: 'Nunito Sans';
+  font-family: ${({ theme }) => theme.fonts.normal};
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 15.1847px;
   line-height: 15px;
   letter-spacing: 0.216667px;
-  color: #454d58;
+  color: ${({ theme }) => theme.colors.OuterSpace};;
 
   &:focus-visible {
     outline: none;

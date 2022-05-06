@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 import { Project } from '../../../../../models/project';
 import { ProjectType } from '../projectEnums';
-import ProjectsList from "../ProjectsList";
-import useProjects from "../useProject";
-import { EnumToArray } from "@utils/enumToArray";
-import CheckboxDropdown from "@components/common/CheckboxDropdown";
+import ProjectsList from '../ProjectsList';
+import useProjects from '../useProject';
+import { EnumToArray } from '@utils/enumToArray';
+import CheckboxDropdown from '@components/common/CheckboxDropdown';
 import {
   Wrapper,
   FiltersWrapper,
@@ -102,8 +102,9 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
             </DropDownContainer>
           </Section>
 
-          <Section>
-            <SectionTitle>Time Commitment</SectionTitle>
+          <Section Mobile={true}>
+            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+
             {commitmentsLoaded && (
               <MultiRangeSlider
                 min={commitment.min ?? 0}
