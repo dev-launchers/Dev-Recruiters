@@ -34,12 +34,21 @@ export const Column = styled.div<{ bgColor?: string; w?: string; fa?: string }>`
   flex-direction: column;
   border-radius: 25px 25px 0px 0px;
   padding: 1rem;
+  @media (max-width: 768px) {
+    margin: 0.5rem;
+    width: 70%;
+    border-radius: 25px 25px 20px 20px;
+  }
 `;
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   & > ${Tags} {
     margin-top: 1.375rem;
