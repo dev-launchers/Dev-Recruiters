@@ -46,7 +46,7 @@ export const Row = styled.div`
   flex-direction: row;
   justify-content: space-between;
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
   }
 
