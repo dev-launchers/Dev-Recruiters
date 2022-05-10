@@ -1,4 +1,4 @@
-export enum PlatformType {
+export enum ProjectType {
     Independent,
     Platform,
 }

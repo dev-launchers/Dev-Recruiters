@@ -6,7 +6,7 @@ interface DropdownProps {
 
 export const Wrapper = styled.div`
     position: relative;
-    font-family: ${({ theme }) => theme.fonts.headline}, sans-serif;
+    font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
     width: auto;
   `
 
@@ -20,8 +20,8 @@ export const Icon = styled.svg`
 
 export const Toggle = styled.button`
     display: inline-flex;
-    background: #F1F4F5;
-    color: #000000;
+    background: ${({ theme }) => theme.colors.AntiFlashWhite};;
+    color: ${({ theme }) => theme.colors.Black};
     border-radius: 2.9rem;
     padding-left: 1.5rem;
     padding-right: 1rem;
@@ -29,7 +29,7 @@ export const Toggle = styled.button`
     padding-top: 4px;
     justify-content: space-between;
     align-items: center;
-    max-width: 12rem;
+    /* max-width: 12rem; */
     width: 100%;
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -43,15 +43,15 @@ export const Toggle = styled.button`
 export const Title = styled.p`
   padding: .25rem .5rem;
   margin:0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   `
 
-export const ListContainer = styled.div<DropdownProps>`
+export const ContentContainer = styled.div<DropdownProps>`
     display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     position: absolute;
     z-index: 5;
-    margin-top: .75rem ;
     padding: .37rem;
+    margin-top: .75rem ;
     background-color: rgb(91 96 104);
     min-width: 18rem;
     color: white;
@@ -62,27 +62,5 @@ export const ListContainer = styled.div<DropdownProps>`
     max-height: 40vh;
     overflow-y: scroll;
     overflow-x: hidden;
-  `
-
-export const List = styled.ul`
-    padding: 0.5rem;
-    display: flex;
-    margin: 0;
-    width: auto;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.1rem;
-  `
-
-export const ListItem = styled.li<{ checked: boolean }>`
-    padding:  .5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.12rem;
-    background-color: ${(props) =>
-    props.checked ? 'rgba(196, 196, 196, 0.2)' : "inherit"};
-    border-radius: .25rem;
+    height: auto;
   `

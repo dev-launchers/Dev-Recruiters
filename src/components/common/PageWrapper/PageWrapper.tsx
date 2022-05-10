@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface Props {
   children: React.ReactElement;
@@ -9,4 +9,8 @@ export default function PageWrapper({ children }: Props) {
 const Wrapper = styled.div`
   background-color: #454d58;
   padding: 2.5rem 3.75rem;
+
+  @media (max-width: 640px) {
+    padding: 1em 1rem;
+  }
 `;

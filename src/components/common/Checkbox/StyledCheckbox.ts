@@ -13,6 +13,8 @@ export const Label = styled.label`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  font-size: 0.875rem;
+  font-family: ${({ theme }) => theme.fonts.normal};
  
 `
 

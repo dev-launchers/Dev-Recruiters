@@ -1,19 +1,22 @@
-import { useState } from "react";
-import { Project, ProjectLite, ProjectParams } from "./project";
+import { useState } from 'react';
+import { SkillLevel } from '../../../../models/level';
+import { Opportunity } from '../../../../models/opportunity';
+import { Project, ProjectLite } from '../../../../models/project';
+import { ProjectParams } from '../../../../models/projectFilters';
 
 export default function useProjects() {
   const [projects, setProjects] = useState<ProjectLite[]>([]);
   const [projectsLoaded, setProjectsLoaded] = useState(false);
   const [filteredProjects, setFilteredProjects] = useState<ProjectLite[]>([]);
-  const [positions, setPositions] = useState<string[]>([]);
-  const [positionsLoaded, setPositionsLoaded] = useState(false);
-  const [commitments, setCommitments] = useState<string[]>([]);
-  const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+  const [opportunitiesLoaded, setOpportunitiesLoaded] = useState(false);
   const [projectParams, setProjectParams] = useState<ProjectParams>({
-    platform: [],
-    position: [],
+    projectType: [],
+    opportunity: [],
     level: [],
-    commitment: [],
+    minCommit: 0,
+    maxCommit: 1,
+    searchTerm: '',
   });
 
   const SetProjectParams = (value: ProjectParams) => {
@@ -33,12 +36,11 @@ export default function useProjects() {
         title: item.title,
         description: item.description,
         commitmentLevel: item.commitmentLevel,
-        openPositions: item.openPositions,
+        opportunities: item.opportunities,
+        isPlatform: item.isPlatform,
       }));
       setProjects(list);
       setFilteredProjects(list);
-      fetchPositions(projectsList);
-      fetchCommitments(projectsList);
       setProjectsLoaded(true);
     }
   };
@@ -46,28 +48,10 @@ export default function useProjects() {
   /**
    * Extract the Open Positions from the projects entities
    */
-  function fetchPositions(projects: Project[]) {
-    if (projects.length <= 0) return;
-    const items = projects
-      .flatMap((p) => p.openPositions.map((po) => po.title))
-      .sort();
-    const distinct = Array.from(new Set(items));
-    setPositions(distinct);
-    setPositionsLoaded(true);
-  }
-
-  /**
-   * Extract the Commitment levels from the projects entities
-   */
-  function fetchCommitments(projects: Project[]) {
-    if (projects.length <= 0) return;
-    const items = projects
-      .filter((p) => p.commitmentLevel)
-      .map((p) => p.commitmentLevel)
-      .sort();
-    const distinct = Array.from(new Set(items));
-    setCommitments(distinct);
-    setCommitmentsLoaded(true);
+  function fetchOpportunities(opportunities: Opportunity[]) {
+    if (opportunities.length <= 0) return;
+    setOpportunities(opportunities);
+    setOpportunitiesLoaded(true);
   }
 
   const handleParamsChange = (params: ProjectParams) => {
@@ -76,59 +60,64 @@ export default function useProjects() {
   };
 
   const handlePlatformChange = (value: string[]) => {
-    handleParamsChange({ ...projectParams, platform: value });
+    handleParamsChange({ ...projectParams, projectType: value });
   };
 
   const handleRemovePlatform = (value: string) => {
-    const platform = projectParams.platform.filter((p) => p !== value);
-    handleParamsChange({ ...projectParams, platform });
+    const types = projectParams.projectType.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, projectType: types });
   };
 
-  const handlePositionChange = (value: string[]) => {
-    handleParamsChange({ ...projectParams, position: value });
+  const handleOpportunityChange = (value: string[]) => {
+    handleParamsChange({ ...projectParams, opportunity: value });
   };
 
-  const handleRemovePosition = (value: string) => {
-    const position = projectParams.position.filter((p) => p !== value);
-    handleParamsChange({ ...projectParams, position });
+  const handleRemoveOpportunity = (value: string) => {
+    const opportunity = projectParams.opportunity.filter((p) => p !== value);
+    handleParamsChange({ ...projectParams, opportunity });
   };
 
-  const handleLevelChange = (value: string[]) => {
+  const handleLevelChange = (value: SkillLevel[]) => {
     handleParamsChange({ ...projectParams, level: value });
   };
 
   const handleRemoveLevel = (value: string) => {
-    const level = projectParams.level.filter((p) => p !== value);
+    const level = projectParams.level.filter((p) => p !== SkillLevel[value]);
     handleParamsChange({ ...projectParams, level });
   };
 
-  const handleCommitmentChange = (value: string[]) => {
-    handleParamsChange({ ...projectParams, commitment: value });
+  const handleCommitmentChange = (value: any) => {
+    handleParamsChange({
+      ...projectParams,
+      minCommit: value.min,
+      maxCommit: value.max,
+    });
   };
 
-  const handleRemoveCommitment = (value: string) => {
-    const commitment = projectParams.commitment.filter((p) => p !== value);
-    handleParamsChange({ ...projectParams, commitment });
+  const handleSearchTermChange = (searchTerm: any) => {
+    handleParamsChange({
+      ...projectParams,
+      searchTerm,
+    });
   };
 
   return {
     projectParams,
     filteredProjects,
     projectsLoaded,
-    positions,
-    positionsLoaded,
-    commitments,
-    commitmentsLoaded,
+    opportunities,
+    opportunitiesLoaded,
     fetchProjects,
+    fetchOpportunities,
     SetProjectParams,
     handlePlatformChange,
     handleRemovePlatform,
-    handlePositionChange,
-    handleRemovePosition,
+    handleOpportunityChange,
+    handleRemoveOpportunity,
     handleLevelChange,
     handleRemoveLevel,
     handleCommitmentChange,
-    handleRemoveCommitment,
+    handleSearchTermChange,
   };
 }
 
@@ -146,38 +135,64 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
   if (projects.length > 0) {
     let list: ProjectLite[] = [...projects];
 
-    // Levels must be filtered before positions
-
-    // if (params.level && params.level.length > 0) {
-    //   params.level.forEach((level) => {
-    //     list = list.filter((project) => {
-    //       return project.positions.some(
-    //         (p) => p.level === PositionLevel[level]
-    //       );
-    //     });
-    //   });
-    // }
-
-    if (params.position && params.position.length > 0) {
-      list = list.filter((project) =>
-        project.openPositions.some((op) => params.position.includes(op.title))
+    if (params.searchTerm) {
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(params.searchTerm.toLowerCase()) ||
+          p.opportunities.some((o) =>
+            o.skills?.some((s) =>
+              s.interest.toLowerCase().includes(params.searchTerm.toLowerCase())
+            )
+          )
       );
     }
 
-    if (params.commitment && params.commitment.length > 0) {
+    if (params.level && params.level.length > 0) {
       list = list.filter((project) =>
-        params.commitment.includes(project.commitmentLevel)
+        project.opportunities.some((op) => params.level.includes(op.level))
       );
     }
 
-    // if (params.platform && params.platform.length > 0) {
-    //   list = list.filter((project) =>
-    //     params.platform.forEach(
-    //       (platform) =>
-    //         PlatformType[project.platform] === PlatformType[platform]
-    //     )
-    //   );
-    // }
-    return list;
+    if (params.opportunity && params.opportunity.length > 0) {
+      list = list.filter((project) =>
+        project.opportunities?.some((op) =>
+          params.opportunity.includes(op.title)
+        )
+      );
+    }
+
+    if (params.maxCommit > params.minCommit && params.minCommit > 0) {
+      list = list.filter((project) =>
+        project.opportunities.some(
+          (op) =>
+            op.commitmentHoursPerWeek >= params.minCommit &&
+            op.commitmentHoursPerWeek <= params.maxCommit
+        )
+      );
+    }
+
+    if (params.projectType && params.projectType.length > 0) {
+      let items = [];
+      const isPlatform = params.projectType.includes('Platform');
+      const isIndependent = params.projectType.includes('Independent');
+
+      if (isPlatform) {
+        items = [...items, ...list.filter((p) => p.isPlatform)];
+      }
+      if (isIndependent) {
+        items = [...items, ...list.filter((p) => !p.isPlatform)];
+      }
+
+      list = [...items];
+    }
+    return list.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
   }
 }
