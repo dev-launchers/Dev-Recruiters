@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  max-width: 435px;
   margin: 0.5%;
   border-radius: 35px 35px 30px 30px;
   display: flex;
@@ -11,7 +12,7 @@ export const Container = styled.div`
 
 export const CardHeader = styled.div`
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: 1.6875rem;
+  font-size: 27px;
   text-align: left;
   padding: 1rem 2.5625rem 1rem 2.5625rem;
   border-radius: 30px;
@@ -24,11 +25,12 @@ export const CardBottom = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.NEUTRAL_4};
+  color: ${({ theme }) => theme.colors.Black};
   text-align: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding: 0.8125rem 1.0625rem 0.6875rem 2.5625rem;
-  font-size: 1.2rem;
+  font-size: 19.2px;
 `;
 export const CategoriesContainer = styled.div`
   display: flex;
@@ -41,23 +43,23 @@ export const Title = styled.div`
 `;
 
 export const Description = styled.div`
-  font-size: 1rem;
+  font-size: 16px;
   padding-top: 0.5rem;
 `;
 
 export const Category = styled.div`
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 700;
 `;
 export const CategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 13px;
 `;
 
 export const Content = styled.div`
-  font-size: 0.875rem;
+  font-size: 14px;
 `;
 
 export const PositionContent = styled.li`
@@ -81,5 +83,5 @@ export const Input = styled.a`
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: end;
-  font-size: 0.8125rem;
+  font-size: 13px;
 `;

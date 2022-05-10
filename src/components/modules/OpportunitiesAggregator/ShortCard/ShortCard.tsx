@@ -14,7 +14,7 @@ import {
   CategoriesContainer,
 } from "./StyledShortCard";
 
-export interface Props {
+export interface ShortCardProps {
   cardData: {
     titleText: string;
     id: number;
@@ -32,7 +32,7 @@ export interface Props {
   };
 }
 
-export default function ShortCard({ cardData }: Props) {
+export default function ShortCard({ cardData }: ShortCardProps) {
   return (
     <>
       <Container key={cardData.id}>

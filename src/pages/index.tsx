@@ -4,6 +4,7 @@ import Main from '../components/modules/MainPage/MainCom';
 // import PositionCard from "../components/modules/DetailedPage/PositionCard";
 import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
 import { Project } from "@components/modules/MainPage/filtering/project";
+import OpportunitiesAggregator from "@components/modules/OpportunitiesAggregator/OpportunitiesAggregator";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/projects?_publicationState=live`);
@@ -63,8 +64,7 @@ function IndexPage({ projects }: Props) {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <Main />
-      {projects && <FilteringComponent projects={projects} />}
+      <OpportunitiesAggregator />
     </>
   );
 }

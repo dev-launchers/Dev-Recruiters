@@ -14,11 +14,11 @@ import {
   ChipsListItem,
 } from "./StyledFilteringComponent";
 
-interface Props {
+export interface FilteringComponentProps {
   projects: Project[];
 }
 
-export default function FilteringComponent({ projects }: Props) {
+export default function FilteringComponent({ projects }: FilteringComponentProps) {
   const {
     filteredProjects,
     projectsLoaded,
