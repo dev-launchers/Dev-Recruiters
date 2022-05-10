@@ -3,12 +3,27 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  color: ${({ theme }) => theme.colors.LightGray};
+  align-items: center;
+  position: relative;
+  z-index: 1;
   background-color: ${({ theme }) => theme.colors.OuterSpace};
+
+  & > #background {
+    position: absolute;
+    right: 0;
+    top: 18%;
+    z-index: -1;
+    height: 368.23px;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.BlackCoral};
+  }
+  & > :not(#background) {
+    max-width: 1440px;
+  }
 `;
 
 export const HeadingContainer = styled.div`
+  color: ${({ theme }) => theme.colors.LightGray};
   text-align: center;
 `;
 
@@ -23,13 +38,13 @@ export const Heading = styled.h1`
 
 export const FeaturedProductsSection = styled.div`
   margin-top: 1rem;
-  padding-block: 1rem;
-  background-color: ${({ theme }) => theme.colors.BlackCoral};
+  padding-block: 1.2rem;
 `;
 
 export const FeaturedProducts = styled.div`
   margin: auto;
   width: 20%;
+  color: ${({ theme }) => theme.colors.LightGray};
   background-color: ${({ theme }) => theme.colors.BlackT38};
   padding: 1.4rem 2rem;
   border-radius: 1.875rem;

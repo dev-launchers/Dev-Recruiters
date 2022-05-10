@@ -18,6 +18,7 @@ interface Props extends FilteringComponentProps, ShortCardProps {}
 
 const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
   projects,
+  opportunities,
   cardData,
 }) => {
   return (
@@ -26,6 +27,7 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
         <Heading>Join Us!</Heading>
         <span>Find a Project to Join!</span>
       </HeadingContainer>
+      <div id="background" />
       <FeaturedProductsSection>
         <FeaturedProducts>
           <h2>Featured Products</h2>
@@ -36,7 +38,8 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           ))}
         </CardsContainer>
       </FeaturedProductsSection>
-      {/* <FilteringComponent />  */} {/* filtering component goes here! */}
+      <FilteringComponent projects={projects} opportunities={opportunities} />{" "}
+      {/* filtering component goes here! */}
     </Wrapper>
   );
 };
