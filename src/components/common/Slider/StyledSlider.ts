@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: 100%;
   overflow: hidden;
   padding: 0 2rem;
+  user-select: none; 
 
   @media (max-width:640px) {
     padding:.5rem 0;
@@ -59,6 +60,7 @@ export const SliderInput = styled.input.attrs({ type: 'range' })`
     border-radius: 50%;
     cursor: pointer;
   }
+
 `;
 
 export const LabelsContainer = styled.div`

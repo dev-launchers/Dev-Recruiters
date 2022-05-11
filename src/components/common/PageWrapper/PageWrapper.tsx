@@ -12,11 +12,10 @@ export default function PageWrapper({ children }: Props) {
 }
 const Wrapper = styled.div`
   background-color: #454d58;
-  /* padding: 2.5rem 3.75rem;
 
   @media (max-width: 640px) {
-    padding: 1em 1rem;
-  } */
+    padding: 0 16px;
+  }
 `;
 
 const Container = styled.div`

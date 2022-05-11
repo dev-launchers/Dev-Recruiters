@@ -35,6 +35,12 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
 
+
+  @media (max-width: 1280px) {
+    flex-direction: column-reverse;
+    
+  }
+
   @media (max-width: 640px) {
     flex-direction: column-reverse;
     row-gap: 2rem;

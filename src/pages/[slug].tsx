@@ -104,7 +104,7 @@ export default function DetailedPage({ project }: Props) {
         />
         <meta content='#ff7f0e' data-react-helmet='true' name='theme-color' />
       </Head>
-      <h1>hello from project details page</h1>
+      <h1 style={{ marginTop: '0' }}>hello from project details page</h1>
       {/* testing postion Card */}
 
       <Container>

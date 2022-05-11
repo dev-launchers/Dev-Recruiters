@@ -14,7 +14,6 @@ export default function useProjects() {
     projectType: [],
     opportunity: [],
     level: [],
-    minCommit: 0,
     maxCommit: 1,
     searchTerm: '',
   });
@@ -87,11 +86,8 @@ export default function useProjects() {
   };
 
   const handleCommitmentChange = (value: any) => {
-    console.log('values', value);
-
     handleParamsChange({
       ...projectParams,
-      minCommit: value.min,
       maxCommit: value.max,
     });
   };

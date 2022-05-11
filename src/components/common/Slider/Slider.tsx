@@ -21,7 +21,7 @@ export default function Slider({
   onChange,
   prefix,
 }: Props) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(max);
 
   const handleOnChange = (value: number) => {
     setValue(value);
