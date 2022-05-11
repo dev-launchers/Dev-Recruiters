@@ -6,6 +6,7 @@
     "@types/react-burger-menu": "^2.8.2",
     "axios": "^0.21.4",
     "constate": "^3.3.0",
+    "formik": "^2.2.9",
     "fuse.js": "^6.4.6",
     "luxon": "^2.0.2",
     "next": "11.1.0",
