@@ -19,6 +19,7 @@ import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
 import SearchComponent from '../SearchComponent';
 import MultiRangeSlider from '@components/common/MultiRangeSlider';
+import Slider from '@components/common/Slider';
 
 interface Props {
   projects: Project[];
@@ -102,7 +103,19 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
             </DropDownContainer>
           </Section>
 
-          <Section Mobile={true}>
+          <Section>
+            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+            <Slider
+              min={commitment.min ?? 0}
+              max={commitment.max ?? 10}
+              onChange={(value) =>
+                handleCommitmentChange({ min: 1, max: value })
+              }
+              prefix='hrs'
+            />
+          </Section>
+
+          {/* <Section Mobile={true}>
             <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
 
             {commitmentsLoaded && (
@@ -112,7 +125,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
                 onChange={handleCommitmentChange}
               />
             )}
-          </Section>
+          </Section> */}
 
           <Section>
             <SectionTitle>Search</SectionTitle>

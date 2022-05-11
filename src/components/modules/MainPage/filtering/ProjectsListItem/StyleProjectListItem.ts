@@ -221,11 +221,8 @@ text-align: center;
   border-radius: 1.25rem;
   border: none;
   cursor: pointer;
-  width: 15.7rem;
-  padding-top: 0.5625rem;
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
-  padding-bottom: 0.375rem;
+  //width: 15.7rem;
+  padding: 0.5rem 1rem;
   margin-top: auto;
   &:hover{
     color: ${({ theme }) => theme.colors.White};
