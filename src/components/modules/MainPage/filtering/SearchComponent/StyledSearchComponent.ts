@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-
+import styled from 'styled-components';
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
@@ -14,10 +12,11 @@ export const Container = styled.div`
   width: 20.625rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media (max-width: 640px) {
-  width: 90%;
-  margin: auto auto;
-  
-}
+    width: 90%;
+    margin: auto auto;
+    border-radius: 10px;
+    box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 export const Icon = styled.svg`
@@ -35,7 +34,7 @@ export const SearchField = styled.input`
   font-size: 15.1847px;
   line-height: 15px;
   letter-spacing: 0.216667px;
-  color: ${({ theme }) => theme.colors.OuterSpace};;
+  color: ${({ theme }) => theme.colors.OuterSpace};
 
   &:focus-visible {
     outline: none;
