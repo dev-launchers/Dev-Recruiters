@@ -87,6 +87,8 @@ export default function useProjects() {
   };
 
   const handleCommitmentChange = (value: any) => {
+    console.log('values', value);
+
     handleParamsChange({
       ...projectParams,
       minCommit: value.min,
@@ -161,12 +163,10 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
       );
     }
 
-    if (params.maxCommit > params.minCommit && params.minCommit > 0) {
+    if (params.maxCommit > 0) {
       list = list.filter((project) =>
         project.opportunities.some(
-          (op) =>
-            op.commitmentHoursPerWeek >= params.minCommit &&
-            op.commitmentHoursPerWeek <= params.maxCommit
+          (op) => op.commitmentHoursPerWeek <= params.maxCommit
         )
       );
     }
