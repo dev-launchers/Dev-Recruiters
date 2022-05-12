@@ -46,6 +46,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     handleCommitmentChange,
     handleSearchTermChange,
     fetchProjects,
+    resetFilters,
   } = useProjects();
 
   useEffect(() => {
@@ -116,6 +117,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
           ) : (
             <>
               <FiltersMenu
+                resetFilters={resetFilters}
                 projectParams={projectParams}
                 handleLevelChange={handleLevelChange}
                 handleOpportunityChange={handleOpportunityChange}
@@ -136,6 +138,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
                 handleCommitmentChange({ min: 1, max: value })
               }
               prefix='hrs'
+              initialValue={commitment.max}
             />
           </Section>
           {Mobile && (

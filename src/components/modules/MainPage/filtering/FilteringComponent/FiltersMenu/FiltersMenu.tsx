@@ -15,6 +15,7 @@ interface Props {
   handlePlatformChange: (value: any) => void;
   handleOpportunityChange: (value: any) => void;
   handleLevelChange: (value: any) => void;
+  resetFilters: () => void;
   onClose: () => void;
 }
 
@@ -33,15 +34,20 @@ export default function FiltersMenu({
   handleLevelChange,
   handleOpportunityChange,
   handlePlatformChange,
+  resetFilters,
   onClose,
 }: Props) {
+  const handleClose = () => {
+    resetFilters();
+    onClose();
+  };
   return (
     <FilterMenu visible={isVisible}>
       <Container>
         <Header>
-          <ResetButton>Reset</ResetButton>
+          <ResetButton onClick={resetFilters}>Reset</ResetButton>
           <p>Filters</p>
-          <CloseButton onClick={onClose}>
+          <CloseButton onClick={handleClose}>
             <CloseIcon
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -137,7 +143,7 @@ export default function FiltersMenu({
           </List> */}
         </Section>
 
-        <FilterButton>Apply Filters</FilterButton>
+        <FilterButton onClick={onClose}>Apply Filters</FilterButton>
       </Container>
     </FilterMenu>
   );

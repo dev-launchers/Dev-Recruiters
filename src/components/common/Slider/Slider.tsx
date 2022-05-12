@@ -12,16 +12,18 @@ interface Props {
   min: number;
   max: number;
   prefix?: string;
+  initialValue?: number;
   onChange: (value: number) => void;
 }
 
 export default function Slider({
   min = 0,
   max = 100,
-  onChange,
   prefix,
+  initialValue = 0,
+  onChange,
 }: Props) {
-  const [value, setValue] = useState(max);
+  const [value, setValue] = useState(initialValue);
 
   const handleOnChange = (value: number) => {
     setValue(value);
@@ -31,6 +33,7 @@ export default function Slider({
   const getBubblePosition = () => {
     return value > 0 ? Number(((value - min) * 90) / (max - min)) : 0;
   };
+
   return (
     <div>
       <Container>

@@ -99,6 +99,16 @@ export default function useProjects() {
     });
   };
 
+  const resetFilters = () => {
+    handleParamsChange({
+      projectType: [],
+      opportunity: [],
+      level: [],
+      maxCommit: 0,
+      searchTerm: '',
+    });
+  };
+
   return {
     projectParams,
     filteredProjects,
@@ -116,6 +126,7 @@ export default function useProjects() {
     handleRemoveLevel,
     handleCommitmentChange,
     handleSearchTermChange,
+    resetFilters,
   };
 }
 
@@ -160,8 +171,6 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
     }
 
     if (params.maxCommit > 0) {
-      console.log('max', params.maxCommit);
-
       list = list.filter((project) =>
         project.opportunities.some(
           (op) => op.commitmentHoursPerWeek <= params.maxCommit

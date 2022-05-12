@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const NoResult = styled.div`
+box-sizing: border-box;
   background: #c3c0c0;
   border-radius: 2.5rem;
   min-height: 18.75rem;
-  max-width: 61rem;
+  //max-width: 61rem;
   width: 100%;
   padding: 1.625rem;
   display: flex;
