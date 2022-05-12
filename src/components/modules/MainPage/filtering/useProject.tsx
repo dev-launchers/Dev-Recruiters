@@ -18,14 +18,12 @@ export default function useProjects() {
     searchTerm: '',
   });
 
+  // Apply Filters
   const SetProjectParams = (value: ProjectParams) => {
     setFilteredProjects(FilterProjects(projects, value));
   };
 
-  /**
-   * Request the projects from the API
-   */
-
+  //#region Fetching Operations
   const fetchProjects = (projectsList: Project[]) => {
     if (projectsList.length > 0) {
       const list = projectsList.map((item: Project) => ({
@@ -44,14 +42,15 @@ export default function useProjects() {
     }
   };
 
-  /**
-   * Extract the Open Positions from the projects entities
-   */
   function fetchOpportunities(opportunities: Opportunity[]) {
     if (opportunities.length <= 0) return;
     setOpportunities(opportunities);
     setOpportunitiesLoaded(true);
   }
+
+  //#endregion
+
+  //#region Filters Handlers
 
   const handleParamsChange = (params: ProjectParams) => {
     setProjectParams(params);
@@ -108,6 +107,7 @@ export default function useProjects() {
       searchTerm: '',
     });
   };
+  //#endregion
 
   return {
     projectParams,
@@ -130,76 +130,84 @@ export default function useProjects() {
   };
 }
 
+//#region Single Project Filtering
+function FilterBySearchTerm(project: ProjectLite, params: ProjectParams) {
+  if (params.searchTerm) {
+    return (
+      project.title.toLowerCase().includes(params.searchTerm.toLowerCase()) ||
+      project.opportunities.some((o) =>
+        o.skills?.some((s) =>
+          s.interest.toLowerCase().includes(params.searchTerm.toLowerCase())
+        )
+      )
+    );
+  }
+  return true;
+}
+
+function FilterByLevel(project: ProjectLite, params: ProjectParams) {
+  if (params.level && params.level.length > 0) {
+    return project.opportunities.some((op) => params.level.includes(op.level));
+  }
+  return true;
+}
+function FilterByOpportunities(project: ProjectLite, params: ProjectParams) {
+  if (params.opportunity && params.opportunity.length > 0) {
+    return project.opportunities.some((op) =>
+      params.opportunity.includes(op.title)
+    );
+  }
+  return true;
+}
+function FilterByCommitment(project: ProjectLite, params: ProjectParams) {
+  if (params.maxCommit > 0) {
+    return project.opportunities.some(
+      (op) => op.commitmentHoursPerWeek <= params.maxCommit
+    );
+  }
+  return true;
+}
+function FilterByProjectType(project: ProjectLite, params: ProjectParams) {
+  if (params.projectType && params.projectType.length > 0) {
+    const isPlatform =
+      params.projectType.includes('Platform') && project.isPlatform;
+    const isIndependent =
+      params.projectType.includes('Independent') && !project.isPlatform;
+
+    return isPlatform || isIndependent;
+  }
+  return true;
+}
+
+function FilterProject(project: ProjectLite, params: ProjectParams) {
+  return (
+    FilterBySearchTerm(project, params) &&
+    FilterByLevel(project, params) &&
+    FilterByOpportunities(project, params) &&
+    FilterByCommitment(project, params) &&
+    FilterByProjectType(project, params)
+  );
+}
+//#endregion
+
 /**
  * Filters projects
  * @param projects the initial list of projects received from the API
  * @param params  contains the filtering criteria
- * @param params.level:string[] filter projects by level (unavailable)
- * @param params.position:string[] filter projects by open positions (available)
- * @param params.commitment:string[] filter projects by commitment level (available)
- * @param params.platform:string[] filter projects by platform (unavailable)
  * @returns project[] a filtered list;
  */
 export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
   if (projects.length > 0) {
-    let list: ProjectLite[] = [...projects];
-
-    if (params.searchTerm) {
-      list = list.filter(
-        (p) =>
-          p.title.toLowerCase().includes(params.searchTerm.toLowerCase()) ||
-          p.opportunities.some((o) =>
-            o.skills?.some((s) =>
-              s.interest.toLowerCase().includes(params.searchTerm.toLowerCase())
-            )
-          )
-      );
-    }
-
-    if (params.level && params.level.length > 0) {
-      list = list.filter((project) =>
-        project.opportunities.some((op) => params.level.includes(op.level))
-      );
-    }
-
-    if (params.opportunity && params.opportunity.length > 0) {
-      list = list.filter((project) =>
-        project.opportunities?.some((op) =>
-          params.opportunity.includes(op.title)
-        )
-      );
-    }
-
-    if (params.maxCommit > 0) {
-      list = list.filter((project) =>
-        project.opportunities.some(
-          (op) => op.commitmentHoursPerWeek <= params.maxCommit
-        )
-      );
-    }
-
-    if (params.projectType && params.projectType.length > 0) {
-      let items = [];
-      const isPlatform = params.projectType.includes('Platform');
-      const isIndependent = params.projectType.includes('Independent');
-
-      if (isPlatform) {
-        items = [...items, ...list.filter((p) => p.isPlatform)];
-      }
-      if (isIndependent) {
-        items = [...items, ...list.filter((p) => !p.isPlatform)];
-      }
-
-      list = [...items];
-    }
-    return list.sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
-      return 0;
-    });
+    return projects
+      .filter((project) => FilterProject(project, params))
+      .sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      });
   }
 }
