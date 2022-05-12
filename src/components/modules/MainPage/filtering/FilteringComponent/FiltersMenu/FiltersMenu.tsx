@@ -110,7 +110,7 @@ export default function FiltersMenu({
         </Section>
 
         <Section>
-          <Collapsible title='Positions'>
+          <Collapsible title='Positions' transparent>
             <CheckboxList
               title='Positions'
               keyProperty={'title'}
