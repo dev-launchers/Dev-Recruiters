@@ -120,4 +120,38 @@ export const ChipsListItem = styled.li`
   }
 `;
 
+export const FilterMenuButton = styled.button`
+display: none;
+flex-direction: row;
+align-items: center;
+width: auto;
+margin-right: auto;
+
+font-style: normal;
+font-weight: 400;
+font-size: 1em;
+line-height: 22px;
+text-transform: capitalize;
+
+box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+
+color: ${({ theme }) => theme.colors.OuterSpace};
+background: ${({ theme }) => theme.colors.BrightGray};
+border: none;
+padding: 5px 10px;
+padding-right: 32px;
+
+& svg {
+  stroke: ${({ theme }) => theme.colors.OuterSpace};
+  margin-right: 5px;
+  height: 25px;
+  width: 25px;
+}
+
+@media (max-width: 640px) {
+    display: flex;
+  }
+`;
+
 

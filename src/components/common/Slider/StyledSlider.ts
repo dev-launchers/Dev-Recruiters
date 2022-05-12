@@ -12,14 +12,10 @@ export const Container = styled.div`
   user-select: none; 
 
   @media (max-width:640px) {
-    //padding:.5rem 0;
-    //background: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.Black};
-    //border-radius: 10px;
   }
 `;
 export const SliderInputContainer = styled.div`
-  /* padding: 0 1rem; */
   width:90%;
   min-width: 350px;
   margin: 0 5%;

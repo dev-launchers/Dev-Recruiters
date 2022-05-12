@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Bubble,
   BubbleContainer,
@@ -33,6 +33,12 @@ export default function Slider({
   const getBubblePosition = () => {
     return value > 0 ? Number(((value - min) * 90) / (max - min)) : 0;
   };
+
+  // useEffect(() => {
+  //   if (initialValue && initialValue > 0) {
+  //     setValue(initialValue);
+  //   }
+  // }, []);
 
   return (
     <div>

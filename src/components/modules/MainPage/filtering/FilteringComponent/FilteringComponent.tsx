@@ -15,6 +15,7 @@ import {
   DropDownContainer,
   Section,
   CommitmentSection,
+  FilterMenuButton,
 } from './StyledFilteringComponent';
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
@@ -130,25 +131,26 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
             </>
           )}
 
-          <CommitmentSection>
-            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
-            <Slider
-              min={commitment.min ?? 0}
-              max={commitment.max ?? 10}
-              onChange={(value) =>
-                handleCommitmentChange({ min: 1, max: value })
-              }
-              prefix='hrs'
-              initialValue={commitment.max}
-            />
-          </CommitmentSection>
+          {commitment.max > 0 && (
+            <CommitmentSection>
+              <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+              <Slider
+                min={commitment.min ?? 0}
+                max={commitment.max ?? 10}
+                onChange={(value) =>
+                  handleCommitmentChange({ min: 1, max: value })
+                }
+                prefix='hrs'
+                initialValue={commitment.max}
+              />
+            </CommitmentSection>
+          )}
           {Mobile && (
             <FilterMenuButton onClick={() => setVisible(true)}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
                 viewBox='0 0 24 24'
-                stroke='currentColor'
                 strokeWidth={2}
               >
                 <path
@@ -212,31 +214,3 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     </Wrapper>
   );
 }
-
-const FilterMenuButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: auto;
-  margin-right: auto;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  text-transform: capitalize;
-
-  box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-
-  background: ${({ theme }) => theme.colors.BrightGray};
-  border: none;
-  padding: 5px 10px;
-  padding-right: 32px;
-
-  & svg {
-    margin-right: 5px;
-    height: 20px;
-    width: 20px;
-  }
-`;

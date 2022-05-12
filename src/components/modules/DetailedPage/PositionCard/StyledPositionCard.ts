@@ -92,6 +92,7 @@ display: ${(props) => (props.Mobile ? 'none' : 'block')};
 }
 
 @media (max-width: 640px) {
+  padding: 0 1rem;
   display: ${(props) => (props.Mobile ? 'block' : 'none')};
   & p {
     padding: 0 1rem;
