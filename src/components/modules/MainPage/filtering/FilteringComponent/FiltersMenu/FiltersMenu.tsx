@@ -96,17 +96,6 @@ export default function FiltersMenu({
             onChange={handlePlatformChange}
             selectedItems={projectParams.projectType}
           />
-          {/* <List>
-            {EnumToArray(ProjectType).map((opportunity, index) => (
-              <ListItem key={index}>
-                <CheckboxContainer>
-                  <Checkbox type='checkbox' name='' id='' />
-                  <CheckMark className='checkmark' />
-                  {opportunity.name}
-                </CheckboxContainer>
-              </ListItem>
-            ))}
-          </List> */}
         </Section>
 
         <Section>
@@ -118,30 +107,7 @@ export default function FiltersMenu({
               onChange={handleOpportunityChange}
               selectedItems={projectParams.opportunity}
             />
-            {/* <List>
-              {opportunities.map((opportunity, index) => (
-                <ListItem key={index}>
-                  <CheckboxContainer>
-                    <Checkbox type='checkbox' name='' id='' />
-                    <CheckMark className='checkmark' />
-                    {opportunity.title}
-                  </CheckboxContainer>
-                </ListItem>
-              ))}
-            </List> */}
           </Collapsible>
-          {/* <SectionTitle>Position</SectionTitle>
-          <List>
-            {opportunities.map((opportunity, index) => (
-              <ListItem key={index}>
-                <CheckboxContainer>
-                  <Checkbox type='checkbox' name='' id='' />
-                  <CheckMark className='checkmark' />
-                  {opportunity.title}
-                </CheckboxContainer>
-              </ListItem>
-            ))}
-          </List> */}
         </Section>
 
         <FilterButton onClick={onClose}>Apply Filters</FilterButton>
