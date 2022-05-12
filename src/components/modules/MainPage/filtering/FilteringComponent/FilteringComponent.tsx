@@ -18,8 +18,9 @@ import {
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
 import SearchComponent from '../SearchComponent';
-import MultiRangeSlider from '@components/common/MultiRangeSlider';
 import Slider from '@components/common/Slider';
+import FiltersMenu from './FiltersMenu';
+import styled from 'styled-components';
 
 interface Props {
   projects: Project[];
@@ -28,7 +29,8 @@ interface Props {
 
 export default function FilteringComponent({ projects, opportunities }: Props) {
   const [commitment, setCommitment] = useState({ min: 0, max: 0 });
-  const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
+  const [Mobile, setMobile] = useState(false);
+  const [visible, setVisible] = useState(false);
   const {
     filteredProjects,
     projectsLoaded,
@@ -58,7 +60,8 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
       const min = Math.min(...commitments);
       const max = Math.max(...commitments);
       setCommitment({ min, max });
-      setCommitmentsLoaded(true);
+
+      //setCommitmentsLoaded(true);
     }
   }, []);
 
@@ -69,39 +72,60 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     }
   }, [opportunities, fetchOpportunities, opportunitiesLoaded, getCommitments]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      setMobile(isMobile);
+    }
+  }, []);
+
   return (
     <Wrapper>
       <FiltersWrapper>
         <Container>
-          <Section>
-            <SectionTitle>Filters</SectionTitle>
-            <DropDownContainer>
-              <CheckboxDropdown
-                title='Platform or Independent'
-                keyProperty={'name'}
-                items={EnumToArray(ProjectType)}
-                onChange={handlePlatformChange}
-                selectedItems={projectParams.projectType}
-              />
-              {opportunitiesLoaded && (
+          {!Mobile ? (
+            <Section>
+              <SectionTitle>Filters</SectionTitle>
+              <DropDownContainer>
                 <CheckboxDropdown
-                  title='Positions'
-                  keyProperty={'title'}
-                  items={opportunities}
-                  onChange={handleOpportunityChange}
-                  selectedItems={projectParams.opportunity}
+                  title='Platform or Independent'
+                  keyProperty={'name'}
+                  items={EnumToArray(ProjectType)}
+                  onChange={handlePlatformChange}
+                  selectedItems={projectParams.projectType}
                 />
-              )}
+                {opportunitiesLoaded && (
+                  <CheckboxDropdown
+                    title='Positions'
+                    keyProperty={'title'}
+                    items={opportunities}
+                    onChange={handleOpportunityChange}
+                    selectedItems={projectParams.opportunity}
+                  />
+                )}
 
-              <CheckboxDropdown
-                title='Level'
-                keyProperty={'name'}
-                items={EnumToArray(SkillLevel)}
-                onChange={handleLevelChange}
-                selectedItems={projectParams.level}
+                <CheckboxDropdown
+                  title='Level'
+                  keyProperty={'name'}
+                  items={EnumToArray(SkillLevel)}
+                  onChange={handleLevelChange}
+                  selectedItems={projectParams.level}
+                />
+              </DropDownContainer>
+            </Section>
+          ) : (
+            <>
+              <FiltersMenu
+                projectParams={projectParams}
+                handleLevelChange={handleLevelChange}
+                handleOpportunityChange={handleOpportunityChange}
+                handlePlatformChange={handlePlatformChange}
+                opportunities={opportunities}
+                isVisible={visible}
+                onClose={() => setVisible(false)}
               />
-            </DropDownContainer>
-          </Section>
+            </>
+          )}
 
           <Section>
             <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
@@ -114,19 +138,24 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
               prefix='hrs'
             />
           </Section>
-
-          {/* <Section Mobile={true}>
-            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
-
-            {commitmentsLoaded && (
-              <MultiRangeSlider
-                min={commitment.min ?? 0}
-                max={commitment.max ?? 10}
-                onChange={handleCommitmentChange}
-              />
-            )}
-          </Section> */}
-
+          {Mobile && (
+            <FilterMenuButton onClick={() => setVisible(true)}>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
+                />
+              </svg>
+              Filters
+            </FilterMenuButton>
+          )}
           <Section>
             <SectionTitle>Search</SectionTitle>
             <SearchComponent
@@ -179,3 +208,31 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
     </Wrapper>
   );
 }
+
+const FilterMenuButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  margin-right: auto;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: capitalize;
+
+  box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  background: ${({ theme }) => theme.colors.BrightGray};
+  border: none;
+  padding: 5px 10px;
+  padding-right: 32px;
+
+  & svg {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+  }
+`;

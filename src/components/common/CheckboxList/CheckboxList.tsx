@@ -57,7 +57,6 @@ export default function CheckboxList({
             id={`${title}${item}${index}`}
             checked={isChecked(item)}
             onChange={() => handleOnSelectItem(item)}
-            checkedBg='#C3C0C0'
           />
         </ListItem>
       ))}

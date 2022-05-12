@@ -14,7 +14,7 @@ export default function useProjects() {
     projectType: [],
     opportunity: [],
     level: [],
-    maxCommit: 1,
+    maxCommit: 0,
     searchTerm: '',
   });
 
@@ -160,6 +160,8 @@ export function FilterProjects(projects: ProjectLite[], params: ProjectParams) {
     }
 
     if (params.maxCommit > 0) {
+      console.log('max', params.maxCommit);
+
       list = list.filter((project) =>
         project.opportunities.some(
           (op) => op.commitmentHoursPerWeek <= params.maxCommit
