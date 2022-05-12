@@ -14,6 +14,7 @@ import {
   ChipsListItem,
   DropDownContainer,
   Section,
+  CommitmentSection,
 } from './StyledFilteringComponent';
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
@@ -129,7 +130,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
             </>
           )}
 
-          <Section>
+          <CommitmentSection>
             <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
             <Slider
               min={commitment.min ?? 0}
@@ -140,7 +141,7 @@ export default function FilteringComponent({ projects, opportunities }: Props) {
               prefix='hrs'
               initialValue={commitment.max}
             />
-          </Section>
+          </CommitmentSection>
           {Mobile && (
             <FilterMenuButton onClick={() => setVisible(true)}>
               <svg

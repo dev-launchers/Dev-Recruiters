@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
  // min-width: 350px;
+ box-sizing: border-box;
   position: relative;
   font-family: ${({ theme }) => theme.fonts.normal};
   color: ${({ theme }) => theme.colors.White};
@@ -11,10 +12,10 @@ export const Container = styled.div`
   user-select: none; 
 
   @media (max-width:640px) {
-    padding:.5rem 0;
-    background: ${({ theme }) => theme.colors.White};
+    //padding:.5rem 0;
+    //background: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.Black};
-    border-radius: 10px;
+    //border-radius: 10px;
   }
 `;
 export const SliderInputContainer = styled.div`

@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+box-sizing: border-box;
   font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #ededed;
+  background-color: ${({ theme }) => theme.colors.BrightGray};
   padding: 0 12px;
   border-radius: 1.25rem;
   height: 2.75rem;
   width: 20.625rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media (max-width: 640px) {
-    width: 90%;
+    height: 40px;
+    width: 100%;
     margin: auto auto;
     border-radius: 10px;
     box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
@@ -26,6 +28,8 @@ export const Icon = styled.svg`
 `;
 
 export const SearchField = styled.input`
+box-sizing: border-box;
+width: 100%;
   background-color: transparent;
   border: none;
   font-family: ${({ theme }) => theme.fonts.normal};

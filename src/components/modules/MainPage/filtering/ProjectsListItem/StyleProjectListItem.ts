@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 
 export const ItemContainer = styled.div`
+box-sizing: border-box;
   width: 100%;
   height: auto;
   background: ${({ theme }) => theme.colors.White};
   display: flex;
   flex-direction: row;
-
   border-radius: 1.875rem;
   min-height: 168px;
 
@@ -49,6 +49,7 @@ export const InfoSection = styled.div`
   & h2 {
     font-family: ${({ theme }) => theme.fonts.headline};
     font-size: 1.6875em;
+    font-weight: 600;
   }
   & h3 {
     font-family: ${({ theme }) => theme.fonts.normal};
@@ -61,6 +62,7 @@ export const InfoSection = styled.div`
     font-family: ${({ theme }) => theme.fonts.normal};
     font-size: 1rem;
     max-width: 24rem;
+    font-weight: 400;
   }
 `;
 export const DetailsSection = styled.div``;

@@ -10,7 +10,7 @@ export const FiltersWrapper = styled.div`
 export const SectionTitle = styled.p<{ Mobile?: boolean }>`
 
   font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
-  font-size: 1.1387rem;
+  font-size: 1em;
   color: ${({ theme }) => theme.colors.White};
   padding-bottom: 1.25rem;
   padding-left: 1.5rem;
@@ -47,11 +47,22 @@ export const Container = styled.div`
   }
 `;
 
-export const Section = styled.div<{ Mobile?: boolean }>`
-  /* @media (max-width: 640px) {
-    background-color: ${({ Mobile, theme }) =>
-    Mobile ? theme.colors.White : 'transparent'};
-  } */
+export const Section = styled.div`
+ 
+`;
+
+export const CommitmentSection = styled.div`
+box-sizing: border-box;
+ @media (max-width:640px) {
+    padding:10px 0;
+    background-color: ${({ theme }) => theme.colors.BrightGray};
+    color: ${({ theme }) => theme.colors.Black};
+    border-radius: 10px;
+
+    & p {
+      color: ${({ theme }) => theme.colors.Black};
+    }
+  }
 `;
 
 export const DropDownContainer = styled.div`
