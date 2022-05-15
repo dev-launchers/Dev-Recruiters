@@ -11,6 +11,7 @@ export default function PageWrapper({ children }: Props) {
   );
 }
 const Wrapper = styled.div`
+  box-sizing: border-box;
   background-color: #454d58;
 
   @media (max-width: 640px) {
@@ -19,8 +20,11 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
+  box-sizing: border-box;
   width: 100%;
   margin: auto auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   @media (min-width: 640px) {
     max-width: 640px;
   }
