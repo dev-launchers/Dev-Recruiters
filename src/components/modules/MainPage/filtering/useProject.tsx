@@ -145,6 +145,24 @@ function FilterBySearchTerm(project: ProjectLite, params: ProjectParams) {
   return true;
 }
 
+// Filter Projects by Level, Opportunities and commitments at once, reducing enumerations of project opportunities
+function FilterProjectOpportunities(
+  project: ProjectLite,
+  params: ProjectParams
+) {
+  const filterByLevel = params.level && params.level.length > 0;
+  const filterByOpportunity =
+    params.opportunity && params.opportunity.length > 0;
+  const filterByCommitment = params.maxCommit > 0;
+
+  return project.opportunities.some(
+    (op) =>
+      (!filterByLevel || params.level.includes(op.level)) &&
+      (!filterByOpportunity || params.opportunity.includes(op.title)) &&
+      (!filterByCommitment || op.commitmentHoursPerWeek <= params.maxCommit)
+  );
+}
+
 function FilterByLevel(project: ProjectLite, params: ProjectParams) {
   if (params.level && params.level.length > 0) {
     return project.opportunities.some((op) => params.level.includes(op.level));
@@ -182,9 +200,10 @@ function FilterByProjectType(project: ProjectLite, params: ProjectParams) {
 function FilterProject(project: ProjectLite, params: ProjectParams) {
   return (
     FilterBySearchTerm(project, params) &&
-    FilterByLevel(project, params) &&
-    FilterByOpportunities(project, params) &&
-    FilterByCommitment(project, params) &&
+    FilterProjectOpportunities(project, params) &&
+    // FilterByLevel(project, params) &&
+    // FilterByOpportunities(project, params) &&
+    // FilterByCommitment(project, params) &&
     FilterByProjectType(project, params)
   );
 }
