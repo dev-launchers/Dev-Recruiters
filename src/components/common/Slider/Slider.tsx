@@ -64,9 +64,9 @@ export default function Slider({
           <p>
             {min} {prefix}
           </p>
-          {max % 2 === 0 && (
+          {(max - min) % 2 === 0 && (
             <p>
-              {min + max / 2} {prefix}
+              {min + (max - min) / 2} {prefix}
             </p>
           )}
           <p>

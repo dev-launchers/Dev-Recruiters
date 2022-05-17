@@ -68,7 +68,9 @@ export const CheckboxContainer = styled.label`
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -114,11 +116,11 @@ export const CheckMark = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 18px;
+  width: 18px;
   background-color: ${({ theme }) => theme.colors.White};
   border: 1px solid ${({ theme }) => theme.colors.Crayola};
-  border-radius: 10px;
+  border-radius: 6px;
   &:after {
     content: '';
     position: absolute;
