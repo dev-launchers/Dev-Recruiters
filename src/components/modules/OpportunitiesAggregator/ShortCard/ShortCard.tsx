@@ -22,12 +22,10 @@ export interface ShortCardProps {
     smallText: string;
     type: string;
     href: string;
-    positionsAvailable: [
-      {
-        id: number;
-        positonType: string;
-      }
-    ];
+    positionsAvailable: {
+      id: number;
+      positonType: string;
+    }[];
     isPlatform: boolean;
     commitmentHours: string;
   };
@@ -76,4 +74,4 @@ const ShortCard = ({ cardData, theme }: ShortCardProps) => {
     </>
   );
 };
-export default withTheme(ShortCard as never);
+export default withTheme(ShortCard);

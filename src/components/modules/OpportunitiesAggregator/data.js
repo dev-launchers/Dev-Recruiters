@@ -1,5 +1,6 @@
 export const featuredCardData = [
   {
+    id: 1,
     titleText: "Thought Process",
     smallText: "An online,community based idea or problem solving tool",
     isPlatform: true,
@@ -22,6 +23,7 @@ export const featuredCardData = [
     href: "http://localhost:3000",
   },
   {
+    id: 2,
     titleText: "Thought Process",
     smallText: "An online,community based idea or problem solving tool",
     isPlatform: true,
@@ -44,6 +46,7 @@ export const featuredCardData = [
     href: "http://localhost:3000",
   },
   {
+    id: 3,
     titleText: "Thought Process",
     smallText: "An online,community based idea or problem solving tool",
     isPlatform: true,
