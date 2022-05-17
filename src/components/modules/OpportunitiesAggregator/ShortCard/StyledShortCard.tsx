@@ -74,6 +74,7 @@ export const PositionContent = styled.li`
 `;
 
 export const Input = styled.a`
+  cursor: pointer;
   padding: 0.3rem 0.5rem;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.DarkElectricBlue};

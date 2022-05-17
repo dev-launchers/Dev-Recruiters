@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withTheme } from "styled-components";
 import {
   Container,
   CardHeader,
@@ -32,23 +33,24 @@ export interface ShortCardProps {
   };
 }
 
-export default function ShortCard({ cardData }: ShortCardProps) {
+const ShortCard = ({ cardData, theme }: ShortCardProps) => {
   return (
     <>
       <Container key={cardData.id}>
         <CardHeader>
           <Title>{cardData.titleText}</Title>
+          <Content
+            css={`
+              color: ${theme.colors.LightGray};
+              font-size: 16px;
+            `}
+          >
+            {cardData.isPlatform ? "Platform" : "Independent"} {cardData.type}
+          </Content>
           <Description>{cardData.smallText}</Description>
         </CardHeader>
         <CardBottom>
           <CategoriesContainer>
-            <CategoryContainer>
-              <Category>Type</Category>
-              <Content>
-                {cardData.isPlatform ? "Platform" : "Independent"}
-              </Content>
-              <Content>{cardData.type}</Content>
-            </CategoryContainer>
             <CategoryContainer>
               <Category>Position Available</Category>
               <ul>
@@ -73,4 +75,5 @@ export default function ShortCard({ cardData }: ShortCardProps) {
       </Container>
     </>
   );
-}
+};
+export default withTheme(ShortCard as never);
