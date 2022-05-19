@@ -2,23 +2,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ProjectLite } from '../../../../../models/project';
 import {
-  TitleSection,
-  Wrapper,
+  ItemContainer,
+  Section,
+  InfoSection,
+  DetailsSection,
+  DetailsWrapper,
+  PositionsContainer,
   Title,
-  CommitmentSection,
-  Subtitle,
-  Paragraph,
-  PositionsList,
-  PositionsListItem,
-  CommitmentSectionButton,
   PositionTitle,
-  TypeSection,
-  PositionsSection,
+  CommitmentContainer,
+  ButtonsContainer,
+  PositionsButton,
+  DetailsButton,
   PositionLevel,
-  PositionsSectionButton,
-  SectionTextContainer,
-  LikeButton,
-  Icon,
 } from './StyleProjectListItem';
 
 interface Props {
@@ -26,69 +22,57 @@ interface Props {
 }
 
 export default function ProjectListItem({ project }: Props) {
+  const [expanded, setExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   return (
-    <Wrapper>
-      <TitleSection>
-        <LikeButton onClick={() => setLiked((prev) => !prev)}>
-          <Icon
-            Active={liked}
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-5 w-5'
-            viewBox='0 0 20 20'
-            fill='currentColor'
-          >
-            <path
-              fillRule='evenodd'
-              d='M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z'
-              clipRule='evenodd'
-            />
-          </Icon>
-        </LikeButton>
-        <Title>{project.title}</Title>
-        <Paragraph>{project.catchPhrase}</Paragraph>
-        <Paragraph Mobile={true}>
-          Product - {project.isPlatform ? 'Platform' : 'Independent'}
-        </Paragraph>
-      </TitleSection>
-      <TypeSection>
-        <Subtitle>Type</Subtitle>
-        <Paragraph>
-          Product - {project.isPlatform ? 'Platform' : 'Independent'}
-        </Paragraph>
-      </TypeSection>
-      <PositionsSection>
-        <div>
-          <Subtitle>Positions Available / Level</Subtitle>
-          <PositionsList>
-            {project.opportunities.slice(0, 3).map((opportunity) => (
-              <PositionsListItem key={opportunity.id}>
-                <PositionTitle>{opportunity.title}</PositionTitle>
-                <PositionLevel>{opportunity.level}</PositionLevel>
-              </PositionsListItem>
-            ))}
-          </PositionsList>
-        </div>
-        {project.opportunities?.length > 4 && (
-          <PositionsSectionButton>
-            More available positions
-          </PositionsSectionButton>
-        )}
-      </PositionsSection>
-      <CommitmentSection>
-        <Paragraph Mobile={true}>{project.catchPhrase}</Paragraph>
-        <SectionTextContainer>
-          <SectionTextContainer>
-            <Subtitle>Time Commitment</Subtitle>
-            <Paragraph>{project.commitmentLevel}</Paragraph>
-          </SectionTextContainer>
-        </SectionTextContainer>
-        <Link href={`/${project.slug}`} passHref>
-          <CommitmentSectionButton>
-            Project and Position Details
-          </CommitmentSectionButton>
-        </Link>
-      </CommitmentSection>
-    </Wrapper>
+    <ItemContainer>
+      <Section bgColor='Crayola' color='White'>
+        <InfoSection>
+          <h2>{project.title}</h2>
+          <h3>Product - {project.isPlatform ? 'Platform' : 'Independent'}</h3>
+          <p>{project.catchPhrase}</p>
+        </InfoSection>
+      </Section>
+      <Section>
+        <DetailsSection>
+          <DetailsWrapper>
+            <PositionsContainer>
+              <Title>Available Positions / Level</Title>
+              <ul>
+                {expanded
+                  ? project.opportunities.slice(0, 3).map((opportunity) => (
+                      <li key={opportunity.id}>
+                        <PositionTitle>{opportunity.title}</PositionTitle>
+                        <PositionLevel>{opportunity.level}</PositionLevel>
+                      </li>
+                    ))
+                  : project.opportunities.slice(0, 3).map((opportunity) => (
+                      <li key={opportunity.id}>
+                        <PositionTitle>{opportunity.title}</PositionTitle>
+                        <PositionLevel>{opportunity.level}</PositionLevel>
+                      </li>
+                    ))}
+              </ul>
+            </PositionsContainer>
+
+            <CommitmentContainer>
+              <Title>Time Commitment</Title>
+              <p>Min-Max</p>
+              <p>{project.commitmentLevel}</p>
+            </CommitmentContainer>
+          </DetailsWrapper>
+          <ButtonsContainer>
+            {!expanded && project.opportunities?.length > 4 && (
+              <PositionsButton onClick={() => setExpanded((prev) => !prev)}>
+                More Available Positions
+              </PositionsButton>
+            )}
+            <Link href={`/${project.slug}`} passHref>
+              <DetailsButton>Project Details</DetailsButton>
+            </Link>
+          </ButtonsContainer>
+        </DetailsSection>
+      </Section>
+    </ItemContainer>
   );
 }

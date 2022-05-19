@@ -1,6 +1,9 @@
+import Link from 'next/link';
 import { useState } from 'react';
+import { Opportunity } from 'src/models/opportunity';
 
 import {
+  ApplyButton,
   Button,
   ButtonsSection,
   CommitmentSection,
@@ -22,10 +25,11 @@ import {
 } from './StyledPositionCard';
 
 interface Props {
+  projectSlug: string;
   position: any;
 }
 
-export default function PositionCard({ position }: Props) {
+export default function PositionCard({ position, projectSlug }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   return (
@@ -52,7 +56,7 @@ export default function PositionCard({ position }: Props) {
           </TitleSection>
           <PositionDetailsMobile>
             <p>{position.level}</p>
-            <p>{position.commitment}</p>
+            <p>{position.commitmentHoursPerWeek}</p>
           </PositionDetailsMobile>
           <ButtonsSection Mobile={true}>
             <Button
@@ -63,18 +67,21 @@ export default function PositionCard({ position }: Props) {
             </Button>
             <Button color='DarkElectricBlue'>Apply</Button>
           </ButtonsSection>
-          <DescriptionSection Mobile={false} Expanded={isExpanded}>
-            <h3>Position Description</h3>
-            <p>
-              {isExpanded
-                ? position.description
-                : `${position.description.substring(0, 320)}...`}
-            </p>
-          </DescriptionSection>
         </OpportunityInfoContainer>
       </Section>
 
-      <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
+      <Section Mobile={true} color={'Light'}>
+        <DescriptionSection Mobile={false} Expanded={isExpanded}>
+          <h3>Position Description</h3>
+          <p>
+            {isExpanded
+              ? position.description
+              : `${position.description.substring(0, 320)}...`}
+          </p>
+        </DescriptionSection>
+      </Section>
+
+      <Section Mobile={true} color={'Light'}>
         <OpportunityDetailsContainer>
           <TagsSection>
             <h4>Position Tags</h4>
@@ -87,10 +94,26 @@ export default function PositionCard({ position }: Props) {
               ))}
             </TagsList>
           </TagsSection>
+        </OpportunityDetailsContainer>
+      </Section>
+
+      <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
+        <OpportunityDetailsContainer>
+          {/* <TagsSection>
+            <h4>Position Tags</h4>
+            <TagsList>
+              <TagsListItem color='Dark'>{position.level}</TagsListItem>
+              {position.skills.map((skill, index) => (
+                <TagsListItem color='Light' key={index}>
+                  {skill}
+                </TagsListItem>
+              ))}
+            </TagsList>
+          </TagsSection> */}
           <div>
             <CommitmentSection>
               <h4>Time Commitment</h4>
-              <p>{position.commitment}</p>
+              <p>{position.commitmentHoursPerWeek}</p>
             </CommitmentSection>
             <ExpectationsSection Expanded={isExpanded}>
               <h4>Expectations</h4>
@@ -112,14 +135,23 @@ export default function PositionCard({ position }: Props) {
               : `${position.description.substring(0, 320)}...`}
           </p>
         </DescriptionSection>
-        <ButtonsSection Mobile={false}>
+        <ButtonsSection expanded={isExpanded} Mobile={false}>
           <Button
             color='SonicSilver'
             onClick={() => setIsExpanded((prev) => !prev)}
           >
-            {`${isExpanded ? 'Collapse' : 'Display'} Positions`}
+            {`${
+              isExpanded
+                ? 'Collapse Position'
+                : 'Expectations and Full Description'
+            }`}
           </Button>
-          <Button color='DarkElectricBlue'>Apply</Button>
+          <Link
+            href={`/${projectSlug}/apply?position=${position.title}`}
+            passHref
+          >
+            <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
+          </Link>
         </ButtonsSection>
       </Section>
     </Container>

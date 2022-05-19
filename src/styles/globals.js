@@ -1,9 +1,13 @@
-import { createGlobalStyle } from "styled-components";
-import { normalize } from "styled-normalize";
+import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
     ${normalize}
 
+
+*{
+  box-sizing: border-box;
+}    
 html,
 body {
   padding: 0;
@@ -120,7 +124,7 @@ li {
 @media (orientation: portrait) {
   html {
     /* Scale all font down */
-    font-size: 75%;
+    /* font-size: 75%; */
   }
 
   h1 {

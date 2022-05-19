@@ -2,21 +2,20 @@ import styled from 'styled-components';
 
 export const FiltersWrapper = styled.div`
   padding-left: 2rem;
-  @media (max-width: 640px) {
+  @media (max-width: 760px) {
     padding-left: 0;
   }
 `;
 
 export const SectionTitle = styled.p<{ Mobile?: boolean }>`
-
   font-family: ${({ theme }) => theme.fonts.normal}, sans-serif;
-  font-size: 1.1387rem;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.White};
-  padding-bottom: 1.25rem;
-  padding-left: 1.5rem;
+  padding-bottom: 20.5px;
+
   margin: 0;
-  @media (max-width: 640px) {
-    display: ${({ Mobile }) => Mobile ? "block" : "none"};
+  @media (max-width: 760px) {
+    display: ${({ Mobile }) => (Mobile ? 'block' : 'none')};
   }
 `;
 
@@ -35,17 +34,30 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media (max-width: 640px) {
+  /* @media (max-width: 1280px) {
+    flex-direction: column-reverse;
+  } */
+
+  @media (max-width: 760px) {
     flex-direction: column-reverse;
     row-gap: 2rem;
   }
 `;
 
-export const Section = styled.div<{ Mobile?: boolean }>`
-  /* @media (max-width: 640px) {
-    background-color: ${({ Mobile, theme }) =>
-    Mobile ? theme.colors.White : 'transparent'};
-  } */
+export const Section = styled.div``;
+
+export const CommitmentSection = styled.div`
+  box-sizing: border-box;
+  @media (max-width: 760px) {
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.BrightGray};
+    color: ${({ theme }) => theme.colors.Black};
+    border-radius: 10px;
+
+    & p {
+      color: ${({ theme }) => theme.colors.Black};
+    }
+  }
 `;
 
 export const DropDownContainer = styled.div`
@@ -53,7 +65,7 @@ export const DropDownContainer = styled.div`
   flex-direction: row;
   column-gap: 1.5rem;
 
-  @media (max-width: 640px) {
+  @media (max-width: 760px) {
     display: none;
   }
 `;
@@ -103,4 +115,36 @@ export const ChipsListItem = styled.li`
   }
 `;
 
+export const FilterMenuButton = styled.button`
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  margin-right: auto;
 
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: capitalize;
+
+  box-shadow: 0px 1.33333px 1.33333px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  color: ${({ theme }) => theme.colors.OuterSpace};
+  background: ${({ theme }) => theme.colors.BrightGray};
+  border: none;
+  padding: 5px 10px;
+  padding-right: 32px;
+
+  & svg {
+    stroke: ${({ theme }) => theme.colors.OuterSpace};
+    margin-right: 5px;
+    height: 25px;
+    width: 25px;
+  }
+
+  @media (max-width: 760px) {
+    display: flex;
+  }
+`;

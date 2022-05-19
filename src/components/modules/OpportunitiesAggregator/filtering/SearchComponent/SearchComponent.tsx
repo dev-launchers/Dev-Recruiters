@@ -1,5 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
 import { Container, Icon, SearchField } from './StyledSearchComponent';
+import { _, debounce } from 'lodash';
 
 interface Props {
   value: string;
@@ -8,6 +9,13 @@ interface Props {
 
 export default function SearchComponent({ value, onChange }: Props) {
   const [searchTerm, setSearchTerm] = useState(value);
+
+  const handleOnInputChange = (value: string) => {
+    setSearchTerm(value);
+    setTimeout(() => {
+      onChange(searchTerm);
+    }, 1000);
+  };
 
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -31,7 +39,7 @@ export default function SearchComponent({ value, onChange }: Props) {
         />
       </Icon>
       <SearchField
-        onChange={({ target }) => setSearchTerm(target.value)}
+        onChange={({ target }) => handleOnInputChange(target.value)}
         placeholder='Search'
         type='text'
         onKeyDown={handleOnKeyDown}

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import PositionCard from '@components/modules/DetailedPage/PositionCard';
 import { Project } from '../models/project';
 import styled from 'styled-components';
+import BoxContainer from '@components/common/BoxContainer';
 
 export const getProjectsSlugs = async () => {
   const res = await fetch(
@@ -56,7 +57,7 @@ const samplePosition = {
   title: 'Web Developer',
   level: 'Beginner',
   skills: ['React', 'html', 'css'],
-  commitment: '5 hrs per week',
+  commitmentHoursPerWeek: '5 hrs per week',
   expectations: [
     'Self Sufficient learner',
     'Hands on learning experience',
@@ -104,21 +105,24 @@ export default function DetailedPage({ project }: Props) {
         />
         <meta content='#ff7f0e' data-react-helmet='true' name='theme-color' />
       </Head>
-      <h1>hello from project details page</h1>
-      {/* testing postion Card */}
+      <BoxContainer bgColor='OuterSpace'>
+        <h1 style={{ marginTop: '0' }}>hello from project details page</h1>
+        {/* testing postion Card */}
 
-      <Container>
-        <p>Available Positions</p>
-        {/* {project.opportunities?.length > 0 &&
-          project.opportunities.map((position) => (
-            <PositionCard key={position.id} position={samplePosition} />
-          ))} */}
-        <PositionsList>
-          {[1, 2, 4, 5].map((position) => (
-            <PositionCard key={position} position={samplePosition} />
-          ))}
-        </PositionsList>
-      </Container>
+        <Container>
+          <p>Available Positions</p>
+          
+          <PositionsList>
+            {[1, 2, 4, 5].map((position) => (
+              <PositionCard
+                key={position}
+                position={samplePosition}
+                projectSlug={project.slug}
+              />
+            ))}
+          </PositionsList>
+        </Container>
+      </BoxContainer>
     </>
   );
 }

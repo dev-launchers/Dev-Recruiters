@@ -14,11 +14,15 @@ import {
   ChipsListItem,
   DropDownContainer,
   Section,
+  CommitmentSection,
+  FilterMenuButton,
 } from './StyledFilteringComponent';
 import { Opportunity } from '../../../../../models/opportunity';
 import { SkillLevel } from '../../../../../models/level';
 import SearchComponent from '../SearchComponent';
-import MultiRangeSlider from '@components/common/MultiRangeSlider';
+import Slider from '@components/common/Slider';
+import FiltersMenu from './FiltersMenu';
+import styled from 'styled-components';
 
 export interface FilteringComponentProps {
   projects: Project[];
@@ -27,7 +31,8 @@ export interface FilteringComponentProps {
 
 export default function FilteringComponent({ projects, opportunities }: FilteringComponentProps) {
   const [commitment, setCommitment] = useState({ min: 0, max: 0 });
-  const [commitmentsLoaded, setCommitmentsLoaded] = useState(false);
+  const [Mobile, setMobile] = useState(false);
+  const [visible, setVisible] = useState(false);
   const {
     filteredProjects,
     projectsLoaded,
@@ -43,6 +48,7 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
     handleCommitmentChange,
     handleSearchTermChange,
     fetchProjects,
+    resetFilters,
   } = useProjects();
 
   useEffect(() => {
@@ -57,7 +63,8 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
       const min = Math.min(...commitments);
       const max = Math.max(...commitments);
       setCommitment({ min, max });
-      setCommitmentsLoaded(true);
+
+      //setCommitmentsLoaded(true);
     }
   }, []);
 
@@ -68,52 +75,91 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
     }
   }, [opportunities, fetchOpportunities, opportunitiesLoaded, getCommitments]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      setMobile(isMobile);
+    }
+  }, []);
+
   return (
     <Wrapper>
       <FiltersWrapper>
         <Container>
-          <Section>
-            <SectionTitle>Filters</SectionTitle>
-            <DropDownContainer>
-              <CheckboxDropdown
-                title='Platform or Independent'
-                keyProperty={'name'}
-                items={EnumToArray(ProjectType)}
-                onChange={handlePlatformChange}
-                selectedItems={projectParams.projectType}
-              />
-              {opportunitiesLoaded && (
+          {!Mobile ? (
+            <Section>
+              <SectionTitle>Filters</SectionTitle>
+              <DropDownContainer>
                 <CheckboxDropdown
-                  title='Positions'
-                  keyProperty={'title'}
-                  items={opportunities}
-                  onChange={handleOpportunityChange}
-                  selectedItems={projectParams.opportunity}
+                  title='Platform or Independent'
+                  keyProperty={'name'}
+                  items={EnumToArray(ProjectType)}
+                  onChange={handlePlatformChange}
+                  selectedItems={projectParams.projectType}
                 />
-              )}
+                {opportunitiesLoaded && (
+                  <CheckboxDropdown
+                    title='Positions'
+                    keyProperty={'title'}
+                    items={opportunities}
+                    onChange={handleOpportunityChange}
+                    selectedItems={projectParams.opportunity}
+                  />
+                )}
 
-              <CheckboxDropdown
-                title='Level'
-                keyProperty={'name'}
-                items={EnumToArray(SkillLevel)}
-                onChange={handleLevelChange}
-                selectedItems={projectParams.level}
+                <CheckboxDropdown
+                  title='Level'
+                  keyProperty={'name'}
+                  items={EnumToArray(SkillLevel)}
+                  onChange={handleLevelChange}
+                  selectedItems={projectParams.level}
+                />
+              </DropDownContainer>
+            </Section>
+          ) : (
+            <>
+              <FiltersMenu
+                resetFilters={resetFilters}
+                projectParams={projectParams}
+                handleLevelChange={handleLevelChange}
+                handleOpportunityChange={handleOpportunityChange}
+                handlePlatformChange={handlePlatformChange}
+                opportunities={opportunities}
+                isVisible={visible}
+                onClose={() => setVisible(false)}
               />
-            </DropDownContainer>
-          </Section>
+            </>
+          )}
 
-          <Section Mobile={true}>
-            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
-
-            {commitmentsLoaded && (
-              <MultiRangeSlider
+          {commitment.max > 0 && (
+            <CommitmentSection>
+              <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+              <Slider
                 min={commitment.min ?? 0}
                 max={commitment.max ?? 10}
-                onChange={handleCommitmentChange}
+                onChange={(value) =>
+                  handleCommitmentChange({ min: 1, max: value })
+                }
+                prefix='hrs'
+                initialValue={commitment.max}
               />
-            )}
-          </Section>
-
+            </CommitmentSection>
+          )}
+          <FilterMenuButton onClick={() => setVisible(true)}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
+              />
+            </svg>
+            Filters
+          </FilterMenuButton>
           <Section>
             <SectionTitle>Search</SectionTitle>
             <SearchComponent
