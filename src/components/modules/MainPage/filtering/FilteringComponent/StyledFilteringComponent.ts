@@ -34,9 +34,9 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media (max-width: 1280px) {
+  /* @media (max-width: 1280px) {
     flex-direction: column-reverse;
-  }
+  } */
 
   @media (max-width: 760px) {
     flex-direction: column-reverse;

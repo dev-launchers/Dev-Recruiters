@@ -6,6 +6,7 @@ interface Props {
   paddingVertical?: number;
   marginTop?: number;
   marginBottom?: number;
+  children: JSX.Element | JSX.Element[];
 }
 
 export default function BoxContainer({
@@ -14,6 +15,7 @@ export default function BoxContainer({
   marginBottom,
   paddingHorizontal,
   paddingVertical,
+  children,
 }: Props) {
   return (
     <Container
@@ -24,7 +26,9 @@ export default function BoxContainer({
       <Content
         paddingHorizontal={paddingHorizontal}
         paddingVertical={paddingVertical}
-      ></Content>
+      >
+        {children}
+      </Content>
     </Container>
   );
 }

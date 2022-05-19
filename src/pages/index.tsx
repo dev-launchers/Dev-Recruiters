@@ -4,6 +4,7 @@ import FilteringComponent from '@components/modules/MainPage/filtering/Filtering
 import { Opportunity } from '../models/opportunity';
 import { Project } from '../models/project';
 import agent from '@utils/agent';
+import BoxContainer from '@components/common/BoxContainer';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let projects: Project[] = [];
@@ -77,11 +78,13 @@ const IndexPage = ({ projects, opportunities }: Props) => (
       ></meta>
       <meta content='#ff7f0e' data-react-helmet='true' name='theme-color' />
     </Head>
-    <h1 style={{ marginTop: '0' }}>hello from page index</h1>
 
-    {projects && (
-      <FilteringComponent projects={projects} opportunities={opportunities} />
-    )}
+    <BoxContainer bgColor='OuterSpace'>
+      <h1 style={{ marginTop: '0' }}>hello from page index</h1>
+      {projects && (
+        <FilteringComponent projects={projects} opportunities={opportunities} />
+      )}
+    </BoxContainer>
   </>
 );
 

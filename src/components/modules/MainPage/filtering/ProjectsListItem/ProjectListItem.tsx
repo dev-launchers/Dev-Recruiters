@@ -62,7 +62,7 @@ export default function ProjectListItem({ project }: Props) {
             </CommitmentContainer>
           </DetailsWrapper>
           <ButtonsContainer>
-            {!expanded && project.opportunities?.length > 0 && (
+            {!expanded && project.opportunities?.length > 4 && (
               <PositionsButton onClick={() => setExpanded((prev) => !prev)}>
                 More Available Positions
               </PositionsButton>

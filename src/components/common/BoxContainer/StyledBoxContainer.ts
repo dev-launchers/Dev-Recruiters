@@ -1,29 +1,32 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{
-    bgColor?: string;
-    marginTop?: number;
-    marginBottom?: number;
+  bgColor?: string;
+  marginTop?: number;
+  marginBottom?: number;
 }>`
+overflow: hidden;
+width: 100;
+height: 100%;
     background: ${({ theme, bgColor }) =>
-        bgColor ? theme.colors[bgColor] : 'transparent'};
+    bgColor ? theme.colors[bgColor] : 'transparent'};
   `;
 
 export const Content = styled.div<{
-    paddingHorizontal?: number;
-    paddingVertical?: number;
+  paddingHorizontal?: number;
+  paddingVertical?: number;
 }>`
     box-sizing: border-box;
     width: 100%;
     margin: auto auto;
     padding-top: ${({ paddingVertical }) =>
-        paddingVertical ? `${paddingVertical}px` : 0};
+    paddingVertical ? `${paddingVertical}px` : 0};
     padding-bottom: ${({ paddingVertical }) =>
-        paddingVertical ? `${paddingVertical}px` : 0};
+    paddingVertical ? `${paddingVertical}px` : 0};
     padding-left: ${({ paddingHorizontal }) =>
-        paddingHorizontal ? `${paddingHorizontal}px` : 0};
+    paddingHorizontal ? `${paddingHorizontal}px` : 0};
     padding-right: ${({ paddingHorizontal }) =>
-        paddingHorizontal ? `${paddingHorizontal}px` : 0};
+    paddingHorizontal ? `${paddingHorizontal}px` : 0};
   
     @media (min-width: 640px) {
       max-width: 640px;
