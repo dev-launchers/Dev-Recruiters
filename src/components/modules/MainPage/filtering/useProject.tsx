@@ -136,7 +136,7 @@ function FilterBySearchTerm(project: ProjectLite, params: ProjectParams) {
     return (
       project.title.toLowerCase().includes(params.searchTerm.toLowerCase()) ||
       project.opportunities.some((o) =>
-        o.skills?.some((s) =>
+        o.skills.some((s) =>
           s.interest.toLowerCase().includes(params.searchTerm.toLowerCase())
         )
       )
@@ -199,12 +199,9 @@ function FilterByProjectType(project: ProjectLite, params: ProjectParams) {
 
 function FilterProject(project: ProjectLite, params: ProjectParams) {
   return (
-    FilterBySearchTerm(project, params) &&
     FilterProjectOpportunities(project, params) &&
-    // FilterByLevel(project, params) &&
-    // FilterByOpportunities(project, params) &&
-    // FilterByCommitment(project, params) &&
-    FilterByProjectType(project, params)
+    FilterByProjectType(project, params) &&
+    FilterBySearchTerm(project, params)
   );
 }
 //#endregion

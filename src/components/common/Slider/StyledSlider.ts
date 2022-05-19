@@ -1,31 +1,32 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
- // min-width: 350px;
- box-sizing: border-box;
+  // min-width: 350px;
+  box-sizing: border-box;
   position: relative;
   font-family: ${({ theme }) => theme.fonts.normal};
   color: ${({ theme }) => theme.colors.White};
   width: 100%;
   overflow: hidden;
-  padding: 0 2rem;
-  user-select: none; 
+  //padding: 0 2rem;
+  user-select: none;
+  min-width: 315px;
 
-  @media (max-width:640px) {
+  @media (max-width: 760px) {
     color: ${({ theme }) => theme.colors.Black};
   }
 `;
 export const SliderInputContainer = styled.div`
-  width:90%;
-  min-width: 350px;
-  margin: 0 5%;
-  @media (max-width:640px) {
-    
+  box-sizing: border-box;
+  width: 100%;
+
+  margin: 0 0%;
+  @media (max-width: 760px) {
     min-width: 0;
-    
   }
 `;
 export const SliderInput = styled.input.attrs({ type: 'range' })`
+  box-sizing: border-box;
   -webkit-appearance: none;
   width: 100%;
   height: 9px;
@@ -57,20 +58,20 @@ export const SliderInput = styled.input.attrs({ type: 'range' })`
     border-radius: 50%;
     cursor: pointer;
   }
-
 `;
 
 export const LabelsContainer = styled.div`
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5%;
+  padding: 0;
   & p {
     font-family: ${({ theme }) => theme.fonts.normal};
-    //color: ${({ theme }) => theme.colors.White};
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 16px;
   }
 `;
 
@@ -78,27 +79,24 @@ export const BubbleContainer = styled.div`
   position: relative;
   width: 100%;
   height: 40px;
-  
 `;
 
 export const Bubble = styled.div<{ newVal: number }>`
   position: absolute;
-  margin:0 1rem;
+  margin: 1rem;
+  margin-bottom: 5px;
   width: auto;
-  padding: 5px;
+  padding: 3px 5px;
   top: 0;
   transform: translateX(-50%);
   left: ${({ newVal }) => `calc(${newVal}% + (${8 - newVal * 0.15}px))`};
   background: ${({ theme }) => theme.colors.BlackCoral};
-  border-radius: 2rem;
+  border-radius: 30px;
   & p {
     margin: 0;
     padding: 0;
-    font-size: 1rem;
-  }
-  & span {
+    font-size: 14px;
     font-family: ${({ theme }) => theme.fonts.normal};
     color: ${({ theme }) => theme.colors.White};
   }
 `;
-

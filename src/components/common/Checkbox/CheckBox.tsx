@@ -19,14 +19,15 @@ interface Props {
 export default function Checkbox({ id, label, checked, onChange }: Props) {
   return (
     <CheckboxContainer htmlFor={id}>
+      {label}
       <CheckboxInput
         checked={checked}
         onChange={onChange}
         type='checkbox'
         id={id}
       />
+
       <CheckMark className='checkmark' />
-      {label}
     </CheckboxContainer>
   );
 }

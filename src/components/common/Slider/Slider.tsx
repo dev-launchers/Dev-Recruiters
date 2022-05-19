@@ -34,12 +34,6 @@ export default function Slider({
     return value > 0 ? Number(((value - min) * 90) / (max - min)) : 0;
   };
 
-  // useEffect(() => {
-  //   if (initialValue && initialValue > 0) {
-  //     setValue(initialValue);
-  //   }
-  // }, []);
-
   return (
     <div>
       <Container>
