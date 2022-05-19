@@ -281,3 +281,21 @@ stroke: ${(props) => props.theme.colors.White};
 height: 2rem;
 width: 2rem;
 `;
+
+export const ApplyButton = styled.a<{ color?: string }>`
+font-family: ${(props) => props.theme.fonts.normal};
+background-color: ${(props) =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.OuterSpace};
+color: ${(props) => props.theme.colors.White};
+border-radius: 1.8rem;
+padding: 0.75rem 2rem;
+margin: 0 3px;
+border: none;
+font-style: normal;
+font-weight: 400;
+font-size: 0.9rem;
+line-height: 11px;
+text-align: center;
+`;

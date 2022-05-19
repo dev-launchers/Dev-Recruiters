@@ -56,7 +56,7 @@ const samplePosition = {
   title: 'Web Developer',
   level: 'Beginner',
   skills: ['React', 'html', 'css'],
-  commitment: '5 hrs per week',
+  commitmentHoursPerWeek: '5 hrs per week',
   expectations: [
     'Self Sufficient learner',
     'Hands on learning experience',
@@ -115,7 +115,11 @@ export default function DetailedPage({ project }: Props) {
           ))} */}
         <PositionsList>
           {[1, 2, 4, 5].map((position) => (
-            <PositionCard key={position} position={samplePosition} />
+            <PositionCard
+              key={position}
+              position={samplePosition}
+              projectSlug={project.slug}
+            />
           ))}
         </PositionsList>
       </Container>

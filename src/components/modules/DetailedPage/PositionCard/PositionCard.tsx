@@ -1,6 +1,9 @@
+import Link from 'next/link';
 import { useState } from 'react';
+import { Opportunity } from 'src/models/opportunity';
 
 import {
+  ApplyButton,
   Button,
   ButtonsSection,
   CommitmentSection,
@@ -22,10 +25,11 @@ import {
 } from './StyledPositionCard';
 
 interface Props {
+  projectSlug: string;
   position: any;
 }
 
-export default function PositionCard({ position }: Props) {
+export default function PositionCard({ position, projectSlug }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   return (
@@ -52,7 +56,7 @@ export default function PositionCard({ position }: Props) {
           </TitleSection>
           <PositionDetailsMobile>
             <p>{position.level}</p>
-            <p>{position.commitment}</p>
+            <p>{position.commitmentHoursPerWeek}</p>
           </PositionDetailsMobile>
           <ButtonsSection Mobile={true}>
             <Button
@@ -90,7 +94,7 @@ export default function PositionCard({ position }: Props) {
           <div>
             <CommitmentSection>
               <h4>Time Commitment</h4>
-              <p>{position.commitment}</p>
+              <p>{position.commitmentHoursPerWeek}</p>
             </CommitmentSection>
             <ExpectationsSection Expanded={isExpanded}>
               <h4>Expectations</h4>
@@ -119,7 +123,12 @@ export default function PositionCard({ position }: Props) {
           >
             {`${isExpanded ? 'Collapse' : 'Display'} Positions`}
           </Button>
-          <Button color='DarkElectricBlue'>Apply</Button>
+          <Link
+            href={`/${projectSlug}/apply?position=${position.title}`}
+            passHref
+          >
+            <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
+          </Link>
         </ButtonsSection>
       </Section>
     </Container>
