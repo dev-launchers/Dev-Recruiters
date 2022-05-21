@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  /* flex-direction: column;
+  align-items: center; */
   position: relative;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.OuterSpace};
 
-  & > #background {
+  /* & > #background {
     position: absolute;
     right: 0;
     top: 18%;
@@ -19,12 +19,18 @@ export const Wrapper = styled.div`
   }
   & > :not(#background) {
     max-width: 1440px;
-  }
+  } */
 `;
 
 export const HeadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: ${({ theme }) => theme.colors.LightGray};
   text-align: center;
+  margin: 0;
+  row-gap: 1rem;
 `;
 
 export const Heading = styled.h1`
@@ -32,20 +38,26 @@ export const Heading = styled.h1`
   border-width: 0.75px;
   border-color: ${({ theme }) => theme.colors.AntiFlashWhiteT40};
   margin-bottom: 1rem;
-  min-width: 30.46875rem;
+  //min-width: 30.46875rem;
   margin-inline: auto;
+  margin: 0;
 `;
 
 export const FeaturedProductsSection = styled.div`
+  position: relative;
   margin-top: 1rem;
   padding-block: 1.2rem;
 `;
 
 export const FeaturedProducts = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  transform: translateY(-20%);
   margin: auto;
-  width: 20%;
+  width: auto;
   color: ${({ theme }) => theme.colors.LightGray};
-  background-color: ${({ theme }) => theme.colors.BlackT38};
+  background-color: ${({ theme }) => theme.colors.Black};
   padding: 1.4rem 2rem;
   border-radius: 1.875rem;
 
@@ -57,8 +69,14 @@ export const FeaturedProducts = styled.div`
   }
 
   @media (orientation: portrait) {
+    position: relative;
     width: initial;
     background-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    transform: translateY(0);
   }
 `;
 

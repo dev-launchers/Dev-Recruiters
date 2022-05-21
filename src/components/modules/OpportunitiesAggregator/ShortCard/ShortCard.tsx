@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { withTheme } from "styled-components";
+import Link from 'next/link';
+import { withTheme } from 'styled-components';
 import {
   Container,
   CardHeader,
@@ -13,7 +13,7 @@ import {
   CategoryContainer,
   ButtonsContainer,
   CategoriesContainer,
-} from "./StyledShortCard";
+} from './StyledShortCard';
 
 export interface ShortCardProps {
   cardData: {
@@ -43,7 +43,7 @@ const ShortCard = ({ cardData, theme }: ShortCardProps) => {
               font-size: 16px;
             `}
           >
-            {cardData.isPlatform ? "Platform" : "Independent"} {cardData.type}
+            {cardData.isPlatform ? 'Platform' : 'Independent'} {cardData.type}
           </Content>
           <Description>{cardData.smallText}</Description>
         </CardHeader>
@@ -65,7 +65,7 @@ const ShortCard = ({ cardData, theme }: ShortCardProps) => {
             </CategoryContainer>
           </CategoriesContainer>
           <ButtonsContainer>
-            <Link href={cardData.href}>
+            <Link href={cardData.href} passHref>
               <Input>Project Details</Input>
             </Link>
           </ButtonsContainer>

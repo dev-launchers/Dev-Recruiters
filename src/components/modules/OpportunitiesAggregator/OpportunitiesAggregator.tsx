@@ -5,14 +5,15 @@ import {
   FeaturedProducts,
   CardsContainer,
   HeadingContainer,
-} from "@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator";
+} from '@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator';
 
-import * as React from "react";
-import ShortCard, { ShortCardProps } from "./ShortCard";
-import { featuredCardData } from "./data";
+import * as React from 'react';
+import ShortCard, { ShortCardProps } from './ShortCard';
+import { featuredCardData } from './data';
 import FilteringComponent, {
   FilteringComponentProps,
-} from "./filtering/FilteringComponent";
+} from './filtering/FilteringComponent';
+import BoxContainer from '@components/common/BoxContainer';
 
 interface Props extends FilteringComponentProps, ShortCardProps {}
 
@@ -23,22 +24,32 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <Wrapper>
-      <HeadingContainer>
-        <Heading>Join Us!</Heading>
-        <span>Find a Project to Join!</span>
-      </HeadingContainer>
-      <div id="background" />
+      <BoxContainer paddingVertical={32}>
+        <HeadingContainer>
+          <Heading>Join Us!</Heading>
+          <span>Find a Project to Join!</span>
+        </HeadingContainer>
+      </BoxContainer>
+      <div id='background' />
       <FeaturedProductsSection>
-        <FeaturedProducts>
-          <h2>Featured Products</h2>
-        </FeaturedProducts>
-        <CardsContainer>
-          {featuredCardData.map((data, index) => (
-            <ShortCard key={index} cardData={data} />
-          ))}
-        </CardsContainer>
+        <BoxContainer
+          bgColor='BlackCoral'
+          paddingVertical={35}
+          paddingHorizontal={20}
+        >
+          <FeaturedProducts>
+            <h2>Featured Products</h2>
+          </FeaturedProducts>
+          <CardsContainer>
+            {featuredCardData.map((data, index) => (
+              <ShortCard key={index} cardData={data} />
+            ))}
+          </CardsContainer>
+        </BoxContainer>
       </FeaturedProductsSection>
-      <FilteringComponent projects={projects} opportunities={opportunities} />{" "}
+      <BoxContainer paddingHorizontal={19} paddingVertical={32}>
+        <FilteringComponent projects={projects} opportunities={opportunities} />
+      </BoxContainer>
       {/* filtering component goes here! */}
     </Wrapper>
   );

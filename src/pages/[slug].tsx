@@ -1,9 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
-import PositionCard from '@components/modules/DetailedPage/PositionCard';
 import { Project } from '../models/project';
-import styled from 'styled-components';
-import BoxContainer from '@components/common/BoxContainer';
+import ProjectDetails from '@components/modules/DetailedPage';
 
 export const getProjectsSlugs = async () => {
   const res = await fetch(
@@ -52,20 +50,6 @@ interface Props {
 
 // }
 
-const samplePosition = {
-  id: '1',
-  title: 'Web Developer',
-  level: 'Beginner',
-  skills: ['React', 'html', 'css'],
-  commitmentHoursPerWeek: '5 hrs per week',
-  expectations: [
-    'Self Sufficient learner',
-    'Hands on learning experience',
-    'Weekly meetings',
-  ],
-  description: `We are looking for a web developer who has some knowledge of React.js, HTML, and CSS. Experience using API's is appreciated but not required. All experience levels welcome, provided you are a willing and self-sufficient learner and a good communicator. You will: -work on a team of 6+ people -work alongside and coordinate with Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-};
-
 export default function DetailedPage({ project }: Props) {
   return (
     <>
@@ -105,55 +89,7 @@ export default function DetailedPage({ project }: Props) {
         />
         <meta content='#ff7f0e' data-react-helmet='true' name='theme-color' />
       </Head>
-      <BoxContainer bgColor='OuterSpace'>
-        <h1 style={{ marginTop: '0' }}>hello from project details page</h1>
-        {/* testing postion Card */}
-
-        <Container>
-          <p>Available Positions</p>
-          
-          <PositionsList>
-            {[1, 2, 4, 5].map((position) => (
-              <PositionCard
-                key={position}
-                position={samplePosition}
-                projectSlug={project.slug}
-              />
-            ))}
-          </PositionsList>
-        </Container>
-      </BoxContainer>
+      <ProjectDetails project={project} />
     </>
   );
 }
-
-const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.Argent};
-  border-radius: 30px;
-  padding-bottom: 2rem;
-
-  & > p {
-    padding: 0.625rem 1.25rem;
-    margin-top: 0;
-    background-color: ${({ theme }) => theme.colors.CoolGrey};
-    border-radius: 30px;
-    font-family: ${({ theme }) => theme.fonts.normal};
-    font-style: normal;
-    font-weight: 600;
-    font-size: 19.5px;
-    line-height: 27px;
-    text-transform: capitalize;
-  }
-`;
-
-const PositionsList = styled.div`
-  padding: 0 24px;
-
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5rem;
-
-  @media (max-width: 640px) {
-    padding: 0 5px;
-  }
-`;
