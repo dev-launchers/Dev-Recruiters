@@ -13,7 +13,7 @@ import FormEntry from "./FormEntry";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import TextAreaField from "./TextAreaField";
-import { env } from "../../../utils/EnvironmentVariables";
+import { env } from "@utils/EnvironmentVariables";
 import InputAdder from "./InputAdder";
 
 function validateEmail(email) {

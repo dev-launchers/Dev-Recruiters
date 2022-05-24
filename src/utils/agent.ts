@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { Project } from "../components/modules/MainPage/filtering/project";
+import { Opportunity } from "../models/opportunity";
+import { Project } from "../models/project";
 
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -99,11 +100,15 @@ const Projects = {
     list: () => requests.get<Project[]>('projects'),
 }
 
+const Opportunities = {
+    list: () => requests.get<Opportunity[]>('opportunities'),
+}
+
 const Ideas = {
 }
 
 const agent = {
-    Ideas,
+    Opportunities,
     Projects,
 }
 
