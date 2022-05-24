@@ -3,6 +3,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useUserDataContext } from "../../../context/UserDataContext";
 import {
   Label,
   Column,
@@ -50,6 +51,9 @@ export default function SignUpForm() {
     age: Yup.number().required("Age is Required"),
   });
   const router = useRouter();
+  const { userData } = useUserDataContext();
+  console.log(router.query);
+  console.log({ userData });
 
   return (
     <Formik
@@ -75,7 +79,7 @@ export default function SignUpForm() {
       ) => {
         setSubmitting(true);
         axios
-          .post("https://api-staging.devlaunchers.org/applicants", values, {
+          .post(`${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`, values, {
             headers: {
               "Content-Type": "application/json",
               Accept: "application/json",
@@ -89,7 +93,11 @@ export default function SignUpForm() {
             setSubmitting(false);
             console.log(error);
           });
-        router.push("/confirmation");
+        if (userData.id === 1) {
+          router.push("/confirmation");
+        } else {
+          router.push("/");
+        }
       }}
     >
       {({ touched, errors, handleChange, handleSubmit }) => (
