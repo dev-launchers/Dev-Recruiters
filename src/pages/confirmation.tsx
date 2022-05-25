@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import ConfirmationPage from "@components/modules/ConfirmationPage/confirmationPage";
 function confirmation() {
   return (
     <>
@@ -12,12 +12,15 @@ function confirmation() {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devlaunchers.org/projects" />
+        <meta
+          property="og:url"
+          content="https://devlaunchers.org/confirmation"
+        />
         <meta
           property="og:image"
           content="/images/DevlaunchersGitHubThumb.png"
         />
-        <meta property="og:title" content="Our Projects" />
+        <meta property="og:title" content="Form submission confirmation" />
         <meta
           property="og:description"
           content="Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!"
@@ -39,14 +42,7 @@ function confirmation() {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <h1>Apply with Dev Launchers!</h1>
-      <p>Thank you for applying to Dev Launchers!</p>
-      <p>
-        Your application has been sent to the product owner and is now in
-        review. After the product owner reviews your application they will reach
-        out through the email address you have provided.
-      </p>
-      <button>Return to Recruiting Main Page</button>
+      <ConfirmationPage />
     </>
   );
 }

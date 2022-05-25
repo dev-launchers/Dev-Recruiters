@@ -8,7 +8,7 @@ export const Label = styled.label`
   margin: 1rem;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fonts.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 export const Input = styled.input<{ height?: string; width?: string }>`
   background-color: ${({ theme }) => theme.colors.SilverSand};
@@ -106,12 +106,12 @@ export const FileUpload = styled.input.attrs({ type: "file" })`
 export const Statement = styled.p`
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fonts.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 export const ErrorMsg = styled.div`
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fonts.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
   margin-left: 1rem;
 `;
 
