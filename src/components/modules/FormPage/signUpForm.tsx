@@ -3,7 +3,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useUserDataContext } from "../../../context/UserDataContext";
+import { useUserDataContext } from "@contexts/UserDataContext";
 import {
   Label,
   Column,
@@ -41,6 +41,8 @@ interface FormProps {
   accepted: boolean;
   zip: number;
   role: string;
+  id: number;
+  project: any;
 }
 
 export default function SignUpForm() {
@@ -52,8 +54,6 @@ export default function SignUpForm() {
   });
   const router = useRouter();
   const { userData } = useUserDataContext();
-  console.log(router.query);
-  console.log({ userData });
 
   return (
     <Formik
@@ -71,6 +71,8 @@ export default function SignUpForm() {
         reason: "",
         zip: 0,
         role: "",
+        id: userData.id,
+        project: router.query.project,
       }}
       validationSchema={SignupSchema}
       onSubmit={(
@@ -88,16 +90,18 @@ export default function SignUpForm() {
           .then((res) => {
             setSubmitting(false);
             console.log(res);
+            if (res.status === 200) {
+              if (userData.id === 1) {
+                router.push("/confirmation");
+              } else {
+                router.push("/");
+              }
+            }
           })
           .catch((error) => {
             setSubmitting(false);
             console.log(error);
           });
-        if (userData.id === 1) {
-          router.push("/confirmation");
-        } else {
-          router.push("/");
-        }
       }}
     >
       {({ touched, errors, handleChange, handleSubmit }) => (
