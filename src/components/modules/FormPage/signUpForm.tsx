@@ -53,12 +53,8 @@ export default function SignUpForm() {
     email: Yup.string().email("Invalid email").required("Email is Required"),
     age: Yup.number().required("Age is Required"),
   });
-  const [role, setRole] = React.useState("");
   const router = useRouter();
   const { userData } = useUserDataContext();
-  React.useEffect(() => {
-    setRole(router.query.position as string);
-  }, []);
   console.log(router.query.position);
   return (
     <Formik
