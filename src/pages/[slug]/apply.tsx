@@ -4,8 +4,8 @@ function apply() {
   return (
     <>
       <Head>
-        <title>Confirmation</title>
-        <meta name="Confirmation Page" content="Confirmation" />
+        <title>Apply With Us</title>
+        <meta name="Apply With Us" content="Apply With Us" />
         <meta
           name="description"
           content="Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!"

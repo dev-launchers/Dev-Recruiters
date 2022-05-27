@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
+
 import {
   Label,
   Column,
@@ -33,7 +34,7 @@ interface FormProps {
   name: string;
   email: string;
   age: number;
-  skills: any;
+  skills: Array<string>;
   commitment: number;
   additionalInfo: string;
   resumeUrl: string;
@@ -42,7 +43,7 @@ interface FormProps {
   accepted: boolean;
   zip: number;
   role: string;
-  id: number;
+  id: string;
   project: any;
 }
 
@@ -55,7 +56,6 @@ export default function SignUpForm() {
   });
   const router = useRouter();
   const { userData } = useUserDataContext();
-  console.log(router.query.position);
   return (
     <Formik
       initialValues={{
@@ -72,7 +72,7 @@ export default function SignUpForm() {
         reason: "",
         zip: 0,
         role: router.query.position as string,
-        id: 1,
+        id: router.query.slug as string,
         project: router.query.project,
       }}
       validationSchema={SignupSchema}
@@ -87,7 +87,8 @@ export default function SignUpForm() {
             {
               ...values,
               role: router.query.position as string,
-              project: "site-front-end",
+              project: router.query.project,
+              id: router.query.slug as string,
             },
             {
               headers: {
