@@ -53,9 +53,13 @@ export default function SignUpForm() {
     email: Yup.string().email("Invalid email").required("Email is Required"),
     age: Yup.number().required("Age is Required"),
   });
+  const [role, setRole] = React.useState("");
   const router = useRouter();
   const { userData } = useUserDataContext();
-
+  React.useEffect(() => {
+    setRole(router.query.position as string);
+  }, []);
+  console.log(router.query.position);
   return (
     <Formik
       initialValues={{
@@ -71,7 +75,7 @@ export default function SignUpForm() {
         experience: "",
         reason: "",
         zip: 0,
-        role: "",
+        role: router.query.position as string,
         id: 1,
         project: router.query.project,
       }}
@@ -82,12 +86,20 @@ export default function SignUpForm() {
       ) => {
         setSubmitting(true);
         axios
-          .post(`${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`, values, {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
+          .post(
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`,
+            {
+              ...values,
+              role: router.query.position as string,
+              project: "site-front-end",
             },
-          })
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          )
           .then((res) => {
             setSubmitting(false);
             console.log(res);
