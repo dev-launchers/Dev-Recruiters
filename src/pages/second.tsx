@@ -1,6 +1,6 @@
 import Head from "next/head";
 import ProductHeader from "@components/modules/DetailedPage/ProductHeader";
-
+import SignUpForm from "@components/modules/FormPage/signUpForm";
 
 const SecondPage = () => (
   <>
@@ -44,17 +44,7 @@ const SecondPage = () => (
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
     <h1>hello from page second</h1>
-    <ProductHeader 
-      title="Some product"
-      vision="some subtitle"
-      type="Product"
-      isPlatform
-      minCommitmentHours={5}
-      maxCommitmentHours={11}
-      date="2022-02-10T04:47:32.472Z"
-      keywords={["Javascript", "React", "Node.js"]}
-      username="Mohammed"
-    />
+    <SignUpForm />
   </>
 );
 

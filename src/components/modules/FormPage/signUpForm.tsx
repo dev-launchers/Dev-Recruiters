@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
+import Slider from "@components/common/Slider";
 import {
   Label,
   Column,
@@ -11,7 +12,6 @@ import {
   Row,
   RadioWrapper,
   CheckboxLabel,
-  Slider,
   Statement,
   SubmitButton,
   Input,
@@ -20,6 +20,7 @@ import {
   ErrorMsg,
   ToolTip,
 } from "./styledSignupForm";
+import { Commitment } from "../DetailedPage/ProductHeader/StyledProductHeader";
 
 enum Level {
   beginner = 1,
@@ -71,7 +72,7 @@ export default function SignUpForm() {
         reason: "",
         zip: 0,
         role: "",
-        id: userData.id,
+        id: 1,
         project: router.query.project,
       }}
       validationSchema={SignupSchema}
@@ -197,9 +198,10 @@ export default function SignUpForm() {
             </RadioWrapper>
             <Label>How many hours are you looking to commit per week?</Label>
             <Slider
-              min="3hrs"
-              max="10hrs"
+              min={0}
+              max={10}
               id="commitment"
+              value={Commitment}
               onChange={handleChange}
             />
             <Label>
