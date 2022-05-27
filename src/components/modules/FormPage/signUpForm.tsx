@@ -53,6 +53,13 @@ export default function SignUpForm() {
     username: Yup.string().required("Username is Required"),
     email: Yup.string().email("Invalid email").required("Email is Required"),
     age: Yup.number().required("Age is Required"),
+    skills: Yup.array().required("Skills are Required"),
+    commitment: Yup.number().required("Commitment is Required"),
+    additionalInfo: Yup.string().required("Additional Info is Required"),
+    resumeUrl: Yup.string().required("Resume Url is Required"),
+    experience: Yup.string().required("Experience is Required"),
+    reason: Yup.string().required("Reason is Required"),
+    accepted: Yup.boolean().required("Acceptance is Required"),
   });
   const router = useRouter();
   const { userData } = useUserDataContext();
