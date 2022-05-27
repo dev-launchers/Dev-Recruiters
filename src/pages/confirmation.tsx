@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ConfirmationPage from "@components/modules/ConfirmationPage/confirmationPage";
+import BoxContainer from "@components/common/BoxContainer";
 function confirmation() {
   return (
     <>
@@ -42,7 +43,9 @@ function confirmation() {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <ConfirmationPage />
+      <BoxContainer bgColor="OuterSpace">
+        <ConfirmationPage />
+      </BoxContainer>
     </>
   );
 }

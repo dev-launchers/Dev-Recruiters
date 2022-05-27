@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SignUpForm from "@components/modules/FormPage/signUpForm";
+import BoxContainer from "@components/common/BoxContainer";
 function apply() {
   return (
     <>
@@ -39,7 +40,9 @@ function apply() {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <SignUpForm />
+      <BoxContainer bgColor="OuterSpace">
+        <SignUpForm />
+      </BoxContainer>
     </>
   );
 }

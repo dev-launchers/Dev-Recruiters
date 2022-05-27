@@ -1,7 +1,7 @@
 import Head from "next/head";
 import ProductHeader from "@components/modules/DetailedPage/ProductHeader";
 import SignUpForm from "@components/modules/FormPage/signUpForm";
-
+import BoxContainer from "@components/common/BoxContainer";
 const SecondPage = () => (
   <>
     <Head>
@@ -44,7 +44,9 @@ const SecondPage = () => (
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
     <h1>hello from page second</h1>
-    <SignUpForm />
+    <BoxContainer bgColor="OuterSpace">
+      <SignUpForm />
+    </BoxContainer>
   </>
 );
 
