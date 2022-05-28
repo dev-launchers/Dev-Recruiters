@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import FilteringComponent from "@components/modules/MainPage/filtering/FilteringComponent";
 import { Opportunity } from "../models/opportunity";
 import { Project } from "../models/project";
 import agent from "@utils/agent";

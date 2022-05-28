@@ -1,5 +1,9 @@
-import Link from 'next/link';
-import { withTheme } from 'styled-components';
+import { Project } from "@models/project";
+import Link from "next/link";
+import { Id } from "react-toastify";
+import { useTheme } from "styled-components";
+
+
 import {
   Container,
   CardHeader,
@@ -13,59 +17,56 @@ import {
   CategoryContainer,
   ButtonsContainer,
   CategoriesContainer,
-} from './StyledShortCard';
+} from "./StyledShortCard";
 
-export interface ShortCardProps {
-  cardData: {
-    titleText: string;
-    id: number;
-    smallText: string;
-    type: string;
-    href: string;
-    positionsAvailable: {
-      id: number;
-      positonType: string;
-    }[];
-    isPlatform: boolean;
-    commitmentHours: string;
-  };
-}
-
-const ShortCard = ({ cardData, theme }: ShortCardProps) => {
+const ShortCard = ({
+  id,
+  title,
+  isPlatform,
+  commitmentLevel,
+  opportunities,
+  catchPhrase,
+  slug,
+}: Pick<
+  Project,
+  | "id"
+  | "title"
+  | "isPlatform"
+  | "commitmentLevel"
+  | "opportunities"
+  | "catchPhrase"
+  | "slug"
+>) => {
+  const theme = useTheme();
   return (
     <>
-      <Container key={cardData.id}>
+      <Container key={id}>
         <CardHeader>
-          <Title>{cardData.titleText}</Title>
-          <Content
-            css={`
-              color: ${theme.colors.LightGray};
-              font-size: 16px;
-            `}
-          >
-            {cardData.isPlatform ? 'Platform' : 'Independent'} {cardData.type}
+          <Title>{title}</Title>
+          <Content style={{ color: theme.colors.LightGray, fontSize: "1rem" }}>
+            {isPlatform ? "Platform" : "Independent"} Product
           </Content>
-          <Description>{cardData.smallText}</Description>
+          <Description>{catchPhrase}</Description>
         </CardHeader>
         <CardBottom>
           <CategoriesContainer>
             <CategoryContainer>
               <Category>Position Available</Category>
               <ul>
-                {cardData.positionsAvailable.map((e) => (
+                {opportunities.map((e) => (
                   <Content as={PositionContent} key={e.id}>
-                    <span>{e.positonType}</span>
+                    <span>{e.title}</span>
                   </Content>
                 ))}
               </ul>
             </CategoryContainer>
             <CategoryContainer>
               <Category>Time Commitment</Category>
-              <Content>{cardData.commitmentHours}</Content>
+              <Content>{commitmentLevel}</Content>
             </CategoryContainer>
           </CategoriesContainer>
           <ButtonsContainer>
-            <Link href={cardData.href} passHref>
+            <Link href={slug} passHref>
               <Input>Project Details</Input>
             </Link>
           </ButtonsContainer>
@@ -74,4 +75,4 @@ const ShortCard = ({ cardData, theme }: ShortCardProps) => {
     </>
   );
 };
-export default withTheme(ShortCard);
+export default ShortCard;

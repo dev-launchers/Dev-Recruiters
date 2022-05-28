@@ -57,6 +57,7 @@ const theme = {
     medium: '2em',
     large: '3em',
   },
-};
-
+} as const;
+type Theme = typeof theme;
+export type { Theme };
 export default theme;

@@ -1,4 +1,4 @@
-import { Opportunity } from "./opportunity";
+import { Opportunity } from "@models/opportunity"
 
 
 
