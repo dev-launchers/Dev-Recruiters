@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
 import { Container, Icon, SearchField } from './StyledSearchComponent';
-import { _, debounce } from 'lodash';
+import _, { debounce } from 'lodash';
 
 interface Props {
   value: string;
