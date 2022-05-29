@@ -125,7 +125,7 @@ export default function SignUpForm() {
         <Form>
           <Column>
             <Row>
-              <Column wc="50%">
+              <Column fx="1">
                 <Label>Your Full Legal Name</Label>
                 {errors.name && touched.name ? (
                   <ErrorMsg>{errors.name}</ErrorMsg>
@@ -142,7 +142,7 @@ export default function SignUpForm() {
             </Row>
 
             <Row>
-              <Column wc="50%">
+              <Column fx="1">
                 <Label>Discord Name</Label>
                 {errors.username && touched.username ? (
                   <ErrorMsg>{errors.username}</ErrorMsg>

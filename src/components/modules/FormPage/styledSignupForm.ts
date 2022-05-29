@@ -43,7 +43,6 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: ${({ wr }) => wr || "100%"};
   @media (max-width: 768px) {
     flex-wrap: wrap;
     align-items: center;
@@ -52,9 +51,10 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   display: flex;
+  flex 1;
+  flex: ${({ fx }) => fx || "1"};
   flex-direction: column;
   align-items: flex-start;
-  width: ${({ wc }) => wc || "100%"};
 `;
 export const RadioWrapper = styled.div`
   display: flex;
@@ -88,8 +88,8 @@ export const ToolTip = styled.div`
   border-radius: 30px;
   margin-bottom: 1rem;
   margin-left: 1rem;
+  flex: 1 2;
   padding: 1rem;
-  width: 30%;
   font-size: ${({ theme }) => theme.fonts.small};
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
