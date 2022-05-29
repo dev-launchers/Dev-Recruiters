@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Header = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.medium};
-  line-height: 11.25px;
   color: ${({ theme }) => theme.colors.LightGray};
   font-family: ${({ theme }) => theme.fonts.headline};
   border-bottom: none;
