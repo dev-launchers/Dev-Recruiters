@@ -61,199 +61,205 @@ export default function SignUpForm() {
   });
   const router = useRouter();
   const { userData } = useUserDataContext();
-  // useEffect(() => {
-  //   if (userData.id !== 0) {
-  return (
-    <Formik
-      initialValues={{
-        username: "",
-        name: "",
-        email: "",
-        age: 0,
-        skills: [],
-        accepted: false,
-        commitment: 0,
-        additionalInfo: "",
-        resumeUrl: "",
-        experience: "",
-        reason: "",
-        zip: 0,
-        role: router.query.position as string,
-        id: router.query.slug as string,
-        project: router.query.project,
-      }}
-      validationSchema={SignupSchema}
-      onSubmit={(
-        values: FormProps,
-        { setSubmitting }: FormikHelpers<FormProps>
-      ) => {
-        setSubmitting(true);
-        axios
-          .post(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`,
-            {
-              ...values,
-              role: router.query.position as string,
-              project: router.query.project,
-              id: router.query.slug as string,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          )
-          .then((res) => {
-            setSubmitting(false);
-            console.log(res);
-          })
-          .catch((error) => {
-            setSubmitting(false);
-            console.log(error);
-          });
-      }}
-    >
-      {({ touched, errors, handleChange, handleSubmit }) => (
-        <Form>
-          <Column>
-            <Label>
-              Your Full Legal Name <br />
-              Why do I need to enter my full legal name?
-              <br />
-              At Dev Launchers part of our on-boarding process involves a
-              background check as a precaution to keep our members safe!
-            </Label>
-            {errors.name && touched.name ? (
-              <ErrorMsg>{errors.name}</ErrorMsg>
-            ) : null}
-            <Input id="name" name="name" onChange={handleChange} />
+  useEffect(() => {
+    if (userData.id !== 0) {
+      return (
+        <Formik
+          initialValues={{
+            username: "",
+            name: "",
+            email: "",
+            age: 0,
+            skills: [],
+            accepted: false,
+            commitment: 0,
+            additionalInfo: "",
+            resumeUrl: "",
+            experience: "",
+            reason: "",
+            zip: 0,
+            role: router.query.position as string,
+            id: router.query.slug as string,
+            project: router.query.project,
+          }}
+          validationSchema={SignupSchema}
+          onSubmit={(
+            values: FormProps,
+            { setSubmitting }: FormikHelpers<FormProps>
+          ) => {
+            setSubmitting(true);
+            axios
+              .post(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`,
+                {
+                  ...values,
+                  role: router.query.position as string,
+                  project: router.query.project,
+                  id: router.query.slug as string,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                  },
+                }
+              )
+              .then((res) => {
+                setSubmitting(false);
+                console.log(res);
+              })
+              .catch((error) => {
+                setSubmitting(false);
+                console.log(error);
+              });
+          }}
+        >
+          {({ touched, errors, handleChange, handleSubmit }) => (
+            <Form>
+              <Column>
+                <Label>
+                  Your Full Legal Name <br />
+                  Why do I need to enter my full legal name?
+                  <br />
+                  At Dev Launchers part of our on-boarding process involves a
+                  background check as a precaution to keep our members safe!
+                </Label>
+                {errors.name && touched.name ? (
+                  <ErrorMsg>{errors.name}</ErrorMsg>
+                ) : null}
+                <Input id="name" name="name" onChange={handleChange} />
 
-            <Label>
-              Discord Name
-              <br />
-              Why do I need to enter my Discord name?
-              <br />
-              We use Discord to connect with our members and to provide feedback
-              on their progress.
-            </Label>
-            {errors.username && touched.username ? (
-              <ErrorMsg>{errors.username}</ErrorMsg>
-            ) : null}
-            <Input id="username" name="username" onChange={handleChange} />
+                <Label>
+                  Discord Name
+                  <br />
+                  Why do I need to enter my Discord name?
+                  <br />
+                  We use Discord to connect with our members and to provide
+                  feedback on their progress.
+                </Label>
+                {errors.username && touched.username ? (
+                  <ErrorMsg>{errors.username}</ErrorMsg>
+                ) : null}
+                <Input id="username" name="username" onChange={handleChange} />
 
-            <Label>Your Email</Label>
-            {errors.email && touched.email ? (
-              <ErrorMsg>{errors.email}</ErrorMsg>
-            ) : null}
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              onChange={handleChange}
-            />
-            <Label>What is your Age?</Label>
-            <Input id="age" name="age" onChange={handleChange} />
-            {errors.age && touched.age ? (
-              <ErrorMsg>{errors.age}</ErrorMsg>
-            ) : null}
-            <Label>
-              What are your Skills? <br />
-              (Please enter skills separated with a comma and a space)
-            </Label>
-
-            <Input id="skills" name="skills" onChange={handleChange} />
-            <Label>What is your Level of Skill?</Label>
-            <RadioWrapper>
-              <CheckboxLabel>
-                <Label>Please Choose One</Label>
-              </CheckboxLabel>
-              <Row>
-                <Label htmlFor="beginner">Beginner</Label>
-                <Radio
-                  id="beginner"
-                  name="level"
-                  value={Level[1]}
+                <Label>Your Email</Label>
+                {errors.email && touched.email ? (
+                  <ErrorMsg>{errors.email}</ErrorMsg>
+                ) : null}
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
                   onChange={handleChange}
                 />
-              </Row>
-              <Row>
-                <Label htmlFor="intermediate">Intermediate</Label>
-                <Radio
-                  name="level"
-                  id="intermediate"
-                  value={Level[2]}
-                  onChange={handleChange}
-                />
-              </Row>
-              <Row>
-                <Label htmlFor="advanced">Advanced</Label>
-                <Radio
-                  id="advanced"
-                  name="level"
-                  value={Level[3]}
-                  onChange={handleChange}
-                />
-              </Row>
-            </RadioWrapper>
-            <Label>How many hours are you looking to commit per week?</Label>
-            <SliderInput
-              initialValue={0}
-              min={0}
-              max={10}
-              id="commitment"
-              value={Commitment}
-              onChange={handleChange}
-            />
+                <Label>What is your Age?</Label>
+                <Input id="age" name="age" onChange={handleChange} />
+                {errors.age && touched.age ? (
+                  <ErrorMsg>{errors.age}</ErrorMsg>
+                ) : null}
+                <Label>
+                  What are your Skills? <br />
+                  (Please enter skills separated with a comma and a space)
+                </Label>
 
-            <Label>
-              Please briefly describe any relevant experience you have in
-              development or design.
-            </Label>
-            <TextArea
-              id="experience"
-              name="experience"
-              onChange={handleChange}
-            />
-            <Label>
-              Why would you like to be a Dev Launcher/ Volunteer? <br />
-              (This can help us guide you to meet your goals!)
-            </Label>
-            <TextArea id="reason" name="reason" onChange={handleChange} />
-            <Label>Anything else you want to share with us?</Label>
-            <TextArea
-              id="additionalInfo"
-              name="additionalInfo"
-              onChange={handleChange}
-            />
-            <Label> Optional - Upload your Resume or Portfolio</Label>
-            <Row>
-              <Label> Link from the Web </Label>
-              <Input id="resumeUrl" name="resumeUrl" onChange={handleChange} />
-            </Row>
-            <Statement>
-              I understand that all members are expected to attend weekly
-              meetings and honor commitments they have made when joining a
-              product team. If for any reason you have a conflict in your
-              schedule to attend any of your commitments please let your team
-              lead know within a reasonable time frame so that they may adjust
-              the plan and reassign the tasks.
-            </Statement>
-            <Row>
-              <Checkbox />
-              <Label id="accepted" name="accepted" onChange={handleChange}>
-                I Understand
-              </Label>
-            </Row>
-            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
-          </Column>
-          <Column />
-        </Form>
-      )}
-    </Formik>
-  );
-  //   } else {
-  //     router.push("/");
-  //   }
-  // });
+                <Input id="skills" name="skills" onChange={handleChange} />
+                <Label>What is your Level of Skill?</Label>
+                <RadioWrapper>
+                  <CheckboxLabel>
+                    <Label>Please Choose One</Label>
+                  </CheckboxLabel>
+                  <Row>
+                    <Label htmlFor="beginner">Beginner</Label>
+                    <Radio
+                      id="beginner"
+                      name="level"
+                      value={Level[1]}
+                      onChange={handleChange}
+                    />
+                  </Row>
+                  <Row>
+                    <Label htmlFor="intermediate">Intermediate</Label>
+                    <Radio
+                      name="level"
+                      id="intermediate"
+                      value={Level[2]}
+                      onChange={handleChange}
+                    />
+                  </Row>
+                  <Row>
+                    <Label htmlFor="advanced">Advanced</Label>
+                    <Radio
+                      id="advanced"
+                      name="level"
+                      value={Level[3]}
+                      onChange={handleChange}
+                    />
+                  </Row>
+                </RadioWrapper>
+                <Label>
+                  How many hours are you looking to commit per week?
+                </Label>
+                <SliderInput
+                  initialValue={0}
+                  min={0}
+                  max={10}
+                  id="commitment"
+                  value={Commitment}
+                  onChange={handleChange}
+                />
+
+                <Label>
+                  Please briefly describe any relevant experience you have in
+                  development or design.
+                </Label>
+                <TextArea
+                  id="experience"
+                  name="experience"
+                  onChange={handleChange}
+                />
+                <Label>
+                  Why would you like to be a Dev Launcher/ Volunteer? <br />
+                  (This can help us guide you to meet your goals!)
+                </Label>
+                <TextArea id="reason" name="reason" onChange={handleChange} />
+                <Label>Anything else you want to share with us?</Label>
+                <TextArea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  onChange={handleChange}
+                />
+                <Label> Optional - Upload your Resume or Portfolio</Label>
+                <Row>
+                  <Label> Link from the Web </Label>
+                  <Input
+                    id="resumeUrl"
+                    name="resumeUrl"
+                    onChange={handleChange}
+                  />
+                </Row>
+                <Statement>
+                  I understand that all members are expected to attend weekly
+                  meetings and honor commitments they have made when joining a
+                  product team. If for any reason you have a conflict in your
+                  schedule to attend any of your commitments please let your
+                  team lead know within a reasonable time frame so that they may
+                  adjust the plan and reassign the tasks.
+                </Statement>
+                <Row>
+                  <Checkbox />
+                  <Label id="accepted" name="accepted" onChange={handleChange}>
+                    I Understand
+                  </Label>
+                </Row>
+                <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+              </Column>
+              <Column />
+            </Form>
+          )}
+        </Formik>
+      );
+    } else {
+      router.push("/");
+    }
+  });
 }
