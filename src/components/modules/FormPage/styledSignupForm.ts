@@ -51,8 +51,6 @@ export const Row = styled.div`
 
 export const Column = styled.div`
   display: flex;
-  flex 1;
-  flex: ${({ fx }) => fx || "1"};
   flex-direction: column;
   align-items: flex-start;
 `;
@@ -81,18 +79,6 @@ export const Slider = styled.input.attrs({ type: "range" })`
   padding: 0.5rem;
   width: 40%;
   margin-bottom: 1.25rem;
-`;
-
-export const ToolTip = styled.div`
-  background-color: ${({ theme }) => theme.colors.Black};
-  border-radius: 30px;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  flex: 1 2;
-  padding: 1rem;
-  font-size: ${({ theme }) => theme.fonts.small};
-  color: ${({ theme }) => theme.colors.White};
-  font-family: ${({ theme }) => theme.fonts.normal};
 `;
 
 export const FileUpload = styled.input.attrs({ type: "file" })`

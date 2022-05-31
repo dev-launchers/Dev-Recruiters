@@ -1,11 +1,10 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
-import Slider from "@components/common/Slider";
-
+import SliderInput from "@components/common/Slider";
 import {
   Label,
   Column,
@@ -19,7 +18,6 @@ import {
   Radio,
   TextArea,
   ErrorMsg,
-  ToolTip,
 } from "./styledSignupForm";
 import { Commitment } from "../DetailedPage/ProductHeader/StyledProductHeader";
 
@@ -35,7 +33,7 @@ interface FormProps {
   email: string;
   age: number;
   skills: Array<string>;
-  commitment: number;
+  commitment: any;
   additionalInfo: string;
   resumeUrl: string;
   experience: string;
@@ -63,6 +61,8 @@ export default function SignUpForm() {
   });
   const router = useRouter();
   const { userData } = useUserDataContext();
+  // useEffect(() => {
+  //   if (userData.id !== 0) {
   return (
     <Formik
       initialValues={{
@@ -107,13 +107,6 @@ export default function SignUpForm() {
           .then((res) => {
             setSubmitting(false);
             console.log(res);
-            if (res.status === 200) {
-              if (userData.id === 1) {
-                router.push("/confirmation");
-              } else {
-                router.push("/");
-              }
-            }
           })
           .catch((error) => {
             setSubmitting(false);
@@ -124,44 +117,31 @@ export default function SignUpForm() {
       {({ touched, errors, handleChange, handleSubmit }) => (
         <Form>
           <Column>
-            <Row>
-              <Column fx="1">
-                <Label>Your Full Legal Name</Label>
-                {errors.name && touched.name ? (
-                  <ErrorMsg>{errors.name}</ErrorMsg>
-                ) : null}
-                <Input id="name" name="name" onChange={handleChange} wi="80%" />
-              </Column>
-              <ToolTip>
-                Why do I need to enter my full legal name?
-                <br />
-                <br />
-                At Dev Launchers part of our on-boarding process involves a
-                background check as a precaution to keep our members safe!
-              </ToolTip>
-            </Row>
+            <Label>
+              Your Full Legal Name <br />
+              Why do I need to enter my full legal name?
+              <br />
+              At Dev Launchers part of our on-boarding process involves a
+              background check as a precaution to keep our members safe!
+            </Label>
+            {errors.name && touched.name ? (
+              <ErrorMsg>{errors.name}</ErrorMsg>
+            ) : null}
+            <Input id="name" name="name" onChange={handleChange} />
 
-            <Row>
-              <Column fx="1">
-                <Label>Discord Name</Label>
-                {errors.username && touched.username ? (
-                  <ErrorMsg>{errors.username}</ErrorMsg>
-                ) : null}
-                <Input
-                  id="username"
-                  name="username"
-                  onChange={handleChange}
-                  wi="80%"
-                />
-              </Column>
-              <ToolTip>
-                Why do I need to enter my Discord name?
-                <br />
-                <br />
-                We use Discord to connect with our members and to provide
-                feedback on their progress.
-              </ToolTip>
-            </Row>
+            <Label>
+              Discord Name
+              <br />
+              Why do I need to enter my Discord name?
+              <br />
+              We use Discord to connect with our members and to provide feedback
+              on their progress.
+            </Label>
+            {errors.username && touched.username ? (
+              <ErrorMsg>{errors.username}</ErrorMsg>
+            ) : null}
+            <Input id="username" name="username" onChange={handleChange} />
+
             <Label>Your Email</Label>
             {errors.email && touched.email ? (
               <ErrorMsg>{errors.email}</ErrorMsg>
@@ -177,7 +157,11 @@ export default function SignUpForm() {
             {errors.age && touched.age ? (
               <ErrorMsg>{errors.age}</ErrorMsg>
             ) : null}
-            <Label>What are your Skills?</Label>
+            <Label>
+              What are your Skills? <br />
+              (Please enter skills separated with a comma and a space)
+            </Label>
+
             <Input id="skills" name="skills" onChange={handleChange} />
             <Label>What is your Level of Skill?</Label>
             <RadioWrapper>
@@ -213,13 +197,15 @@ export default function SignUpForm() {
               </Row>
             </RadioWrapper>
             <Label>How many hours are you looking to commit per week?</Label>
-            <Slider
+            <SliderInput
+              initialValue={0}
               min={0}
               max={10}
               id="commitment"
               value={Commitment}
               onChange={handleChange}
             />
+
             <Label>
               Please briefly describe any relevant experience you have in
               development or design.
@@ -266,4 +252,8 @@ export default function SignUpForm() {
       )}
     </Formik>
   );
+  //   } else {
+  //     router.push("/");
+  //   }
+  // });
 }
