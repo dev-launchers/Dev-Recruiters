@@ -58,5 +58,8 @@ const nextConfig = {
     // we have too many errors if you run npm run lint ,but after bug fixes we could enforce this.
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    outputStandalone: true,
+  },
 };
 module.exports = withPlugins([[imagesPlugin], nextConfig]);

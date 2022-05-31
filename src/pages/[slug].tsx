@@ -42,8 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-
-export default function DetailedPage(project: Project) {
+export default function DetailedPage({ project }: {project: Project}) {
   return (
     <>
       <Head>
