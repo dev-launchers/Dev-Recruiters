@@ -38,7 +38,7 @@ export default function ProductHeader({
   minCommitmentHours,
   maxCommitmentHours,
 }: ProductHeaderProps) {
-  const teamLeader = (team.leaders[0] as Partial<Leader2>).username;
+  const teamLeader = (team?.leaders[0] as Partial<Leader2>)?.username;
   const formattedDate = new Date(published_at)
     .toDateString()
     .split(" ")
