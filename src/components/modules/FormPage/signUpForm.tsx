@@ -1,10 +1,10 @@
-import { React, useEffect } from "react";
+import React from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
-import SliderInput from "@components/common/Slider";
+import Slider from "@components/common/Slider";
 import {
   Label,
   Column,
@@ -19,7 +19,7 @@ import {
   TextArea,
   ErrorMsg,
 } from "./styledSignupForm";
-import { Commitment } from "../DetailedPage/ProductHeader/StyledProductHeader";
+import { useState, useEffect } from "react";
 
 enum Level {
   beginner = 1,
@@ -33,7 +33,7 @@ interface FormProps {
   email: string;
   age: number;
   skills: Array<string>;
-  commitment: any;
+  commitment: number;
   additionalInfo: string;
   resumeUrl: string;
   experience: string;
@@ -60,6 +60,9 @@ export default function SignUpForm() {
     accepted: Yup.boolean().required("Acceptance is Required"),
   });
   const router = useRouter();
+  const [FormProps, setFormProps] = useState({
+    commitment: 0,
+  });
   const { userData } = useUserDataContext();
   useEffect(() => {
     if (userData.id !== 0) {
@@ -114,7 +117,7 @@ export default function SignUpForm() {
               });
           }}
         >
-          {({ touched, errors, handleChange, handleSubmit }) => (
+          {({ touched, errors, handleChange, handleSubmit, setCommitment }) => (
             <Form>
               <Column>
                 <Label>
@@ -199,15 +202,14 @@ export default function SignUpForm() {
                 <Label>
                   How many hours are you looking to commit per week?
                 </Label>
-                <SliderInput
-                  initialValue={0}
-                  min={0}
-                  max={10}
-                  id="commitment"
-                  value={Commitment}
-                  onChange={handleChange}
-                />
-
+                <div id="commitment">
+                  <Slider
+                    min={0}
+                    max={10}
+                    onChange={(value) => setFormProps(value)}
+                    prefix="hrs"
+                  />
+                </div>
                 <Label>
                   Please briefly describe any relevant experience you have in
                   development or design.
