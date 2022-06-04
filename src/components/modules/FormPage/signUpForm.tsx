@@ -42,7 +42,7 @@ interface FormProps {
   zip: number;
   role: string;
   id: string;
-  project: any;
+  project: string;
 }
 
 export default function SignUpForm() {
@@ -70,8 +70,9 @@ export default function SignUpForm() {
       name: "",
       email: "",
       age: 0,
-      skills: [],
+      skills: '',
       accepted: false,
+      commitment: 0,
       additionalInfo: "",
       resumeUrl: "",
       experience: "",
