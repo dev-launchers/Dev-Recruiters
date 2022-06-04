@@ -31,7 +31,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const Button = styled.button`
+export const Button = styled.a`
   background-color: ${({ theme }) => theme.colors.NEUTRAL_3};
   color: ${({ theme }) => theme.colors.White};
   font-size: ${({ theme }) => theme.fontSizes.small};

@@ -14,10 +14,10 @@ export default function LoginPage() {
       <MessageWrapper>
         <Header>Dev Launchers Volunteer Application</Header>
         <ButtonWrapper>
-          <Button onClick={() => router.push(`${process.env.GOOGLE_AUTH_URL}`)}>
+          <Button href={process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL}>
             Create an account
           </Button>
-          <Button onClick={() => router.push(`${process.env.GOOGLE_AUTH_URL}`)}>
+          <Button href={process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL}>
             Sign in
           </Button>
         </ButtonWrapper>
