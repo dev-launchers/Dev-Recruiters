@@ -20,6 +20,7 @@ import {
   ErrorMsg,
 } from "./styledSignupForm";
 import { useState } from "react";
+import { Commitment } from "../DetailedPage/ProductHeader/StyledProductHeader";
 
 enum Level {
   beginner = 1,
@@ -58,6 +59,7 @@ export default function SignUpForm() {
     reason: Yup.string().required("Reason is Required"),
     accepted: Yup.boolean().required("Acceptance is Required"),
   });
+
   const router = useRouter();
   const [FormProps, setFormProps] = useState({
     commitment: 0,
@@ -121,169 +123,169 @@ export default function SignUpForm() {
     },
     validationSchema: SignupSchema,
   });
-  // if (userData.id == 0) {
-  //   router.push("/login");
-  // } else {
-  return (
-    <form onSubmit={Formik.handleSubmit}>
-      <Column>
-        <Label>
-          Your Full Legal Name <br />
-          Why do I need to enter my full legal name?
-          <br />
-          At Dev Launchers part of our on-boarding process involves a background
-          check as a precaution to keep our members safe!
-        </Label>
+  if (userData.id == 0) {
+    router.push("/login");
+  } else {
+    return (
+      <form onSubmit={Formik.handleSubmit}>
+        <Column>
+          <Label>
+            Your Full Legal Name <br />
+            Why do I need to enter my full legal name?
+            <br />
+            At Dev Launchers part of our on-boarding process involves a
+            background check as a precaution to keep our members safe!
+          </Label>
 
-        <Input id="name" name="name" onChange={Formik.handleChange} />
-        {Formik.errors.name && Formik.touched.name ? (
-          <ErrorMsg>{Formik.errors.name}</ErrorMsg>
-        ) : null}
-        <Label>
-          Discord Name
-          <br />
-          Why do I need to enter my Discord name?
-          <br />
-          We use Discord to connect with our members and to provide feedback on
-          their progress.
-        </Label>
+          <Input id="name" name="name" onChange={Formik.handleChange} />
+          {Formik.errors.name && Formik.touched.name ? (
+            <ErrorMsg>{Formik.errors.name}</ErrorMsg>
+          ) : null}
+          <Label>
+            Discord Name
+            <br />
+            Why do I need to enter my Discord name?
+            <br />
+            We use Discord to connect with our members and to provide feedback
+            on their progress.
+          </Label>
 
-        <Input id="username" name="username" onChange={Formik.handleChange} />
-        {Formik.errors.username && Formik.touched.username ? (
-          <ErrorMsg>{Formik.errors.username}</ErrorMsg>
-        ) : null}
-        <Label>Your Email</Label>
+          <Input id="username" name="username" onChange={Formik.handleChange} />
+          {Formik.errors.username && Formik.touched.username ? (
+            <ErrorMsg>{Formik.errors.username}</ErrorMsg>
+          ) : null}
+          <Label>Your Email</Label>
 
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          onChange={Formik.handleChange}
-        />
-        {Formik.errors.email && Formik.touched.email ? (
-          <ErrorMsg>{Formik.errors.email}</ErrorMsg>
-        ) : null}
-        <Label>What is your Age?</Label>
-        <Input id="age" name="age" onChange={Formik.handleChange} />
-        {Formik.errors.age && Formik.touched.age ? (
-          <ErrorMsg>{Formik.errors.age}</ErrorMsg>
-        ) : null}
-        <Label>
-          What are your Skills? <br />
-          (Please enter skills separated with a comma and a space)
-        </Label>
-
-        <Input id="skills" name="skills" onChange={Formik.handleChange} />
-        {Formik.errors.skills && Formik.touched.skills ? (
-          <ErrorMsg>{Formik.errors.skills}</ErrorMsg>
-        ) : null}
-        <Label>What is your Level of Skill?</Label>
-
-        <RadioWrapper>
-          <CheckboxLabel>
-            <Label>Please Choose One</Label>
-          </CheckboxLabel>
-          <Row>
-            <Label htmlFor="beginner">Beginner</Label>
-            <Radio
-              id="beginner"
-              name="level"
-              value={Level[1]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-
-          <Row>
-            <Label htmlFor="intermediate">Intermediate</Label>
-            <Radio
-              name="level"
-              id="intermediate"
-              value={Level[2]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-          <Row>
-            <Label htmlFor="advanced">Advanced</Label>
-            <Radio
-              id="advanced"
-              name="level"
-              value={Level[3]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-        </RadioWrapper>
-        <Label>How many hours are you looking to commit per week?</Label>
-        {Formik.errors.commitment && Formik.touched.commitment ? (
-          <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
-        ) : null}
-        <div id="commitment">
-          <Slider
-            min={0}
-            max={10}
-            onChange={(value) => setFormProps({ commitment: value })}
-            prefix="hrs"
-          />
-        </div>
-        <Label>
-          Please briefly describe any relevant experience you have in
-          development or design.
-        </Label>
-        <TextArea
-          id="experience"
-          name="experience"
-          onChange={Formik.handleChange}
-        />
-        {Formik.errors.experience && Formik.touched.experience ? (
-          <ErrorMsg>{Formik.errors.experience}</ErrorMsg>
-        ) : null}
-        <Label>
-          Why would you like to be a Dev Launcher/ Volunteer? <br />
-          (This can help us guide you to meet your goals!)
-        </Label>
-        <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
-        {Formik.errors.reason && Formik.touched.reason ? (
-          <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
-        ) : null}
-        <Label>Anything else you want to share with us?</Label>
-        <TextArea
-          id="additionalInfo"
-          name="additionalInfo"
-          onChange={Formik.handleChange}
-        />
-        {Formik.errors.additionalInfo && Formik.touched.additionalInfo ? (
-          <ErrorMsg>{Formik.errors.additionalInfo}</ErrorMsg>
-        ) : null}
-        <Label> Optional - Upload your Resume or Portfolio</Label>
-        <Row>
-          <Label> Link from the Web </Label>
           <Input
-            id="resumeUrl"
-            name="resumeUrl"
+            id="email"
+            name="email"
+            type="email"
             onChange={Formik.handleChange}
           />
-        </Row>
-        <Statement>
-          I understand that all members are expected to attend weekly meetings
-          and honor commitments they have made when joining a product team. If
-          for any reason you have a conflict in your schedule to attend any of
-          your commitments please let your team lead know within a reasonable
-          time frame so that they may adjust the plan and reassign the tasks.
-        </Statement>
-        <Row>
-          <Checkbox
-            id="accepted"
-            name="accepted"
+          {Formik.errors.email && Formik.touched.email ? (
+            <ErrorMsg>{Formik.errors.email}</ErrorMsg>
+          ) : null}
+          <Label>What is your Age?</Label>
+          <Input id="age" name="age" onChange={Formik.handleChange} />
+          {Formik.errors.age && Formik.touched.age ? (
+            <ErrorMsg>{Formik.errors.age}</ErrorMsg>
+          ) : null}
+          <Label>
+            What are your Skills? <br />
+            (Please enter skills separated with a comma and a space)
+          </Label>
+
+          <Input id="skills" name="skills" onChange={Formik.handleChange} />
+          {Formik.errors.skills && Formik.touched.skills ? (
+            <ErrorMsg>{Formik.errors.skills}</ErrorMsg>
+          ) : null}
+          <Label>What is your Level of Skill?</Label>
+
+          <RadioWrapper>
+            <CheckboxLabel>
+              <Label>Please Choose One</Label>
+            </CheckboxLabel>
+            <Row>
+              <Label htmlFor="beginner">Beginner</Label>
+              <Radio
+                id="beginner"
+                name="level"
+                value={Level[1]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
+
+            <Row>
+              <Label htmlFor="intermediate">Intermediate</Label>
+              <Radio
+                name="level"
+                id="intermediate"
+                value={Level[2]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
+            <Row>
+              <Label htmlFor="advanced">Advanced</Label>
+              <Radio
+                id="advanced"
+                name="level"
+                value={Level[3]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
+          </RadioWrapper>
+          <Label>How many hours are you looking to commit per week?</Label>
+          {Formik.errors.commitment && Formik.touched.commitment ? (
+            <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
+          ) : null}
+          <div id="commitment">
+            <Slider
+              min={0}
+              max={10}
+              onChange={(value) => Formik.setFieldValue("commitment", +value)}
+              prefix="hrs"
+            />
+          </div>
+          <Label>
+            Please briefly describe any relevant experience you have in
+            development or design.
+          </Label>
+          <TextArea
+            id="experience"
+            name="experience"
             onChange={Formik.handleChange}
           />
-          <Label>I Understand</Label>
-        </Row>
-        {Formik.errors.accepted && Formik.touched.accepted ? (
-          <ErrorMsg>{Formik.errors.accepted}</ErrorMsg>
-        ) : null}
-        <SubmitButton type="submit">Submit</SubmitButton>
-      </Column>
-      <Column />
-    </form>
-  );
-  // }
+          {Formik.errors.experience && Formik.touched.experience ? (
+            <ErrorMsg>{Formik.errors.experience}</ErrorMsg>
+          ) : null}
+          <Label>
+            Why would you like to be a Dev Launcher/ Volunteer? <br />
+            (This can help us guide you to meet your goals!)
+          </Label>
+          <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
+          {Formik.errors.reason && Formik.touched.reason ? (
+            <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
+          ) : null}
+          <Label>Anything else you want to share with us?</Label>
+          <TextArea
+            id="additionalInfo"
+            name="additionalInfo"
+            onChange={Formik.handleChange}
+          />
+          {Formik.errors.additionalInfo && Formik.touched.additionalInfo ? (
+            <ErrorMsg>{Formik.errors.additionalInfo}</ErrorMsg>
+          ) : null}
+          <Label> Optional - Upload your Resume or Portfolio</Label>
+          <Row>
+            <Label> Link from the Web </Label>
+            <Input
+              id="resumeUrl"
+              name="resumeUrl"
+              onChange={Formik.handleChange}
+            />
+          </Row>
+          <Statement>
+            I understand that all members are expected to attend weekly meetings
+            and honor commitments they have made when joining a product team. If
+            for any reason you have a conflict in your schedule to attend any of
+            your commitments please let your team lead know within a reasonable
+            time frame so that they may adjust the plan and reassign the tasks.
+          </Statement>
+          <Row>
+            <Checkbox
+              id="accepted"
+              name="accepted"
+              onChange={Formik.handleChange}
+            />
+            <Label>I Understand</Label>
+          </Row>
+          {Formik.errors.accepted && Formik.touched.accepted ? (
+            <ErrorMsg>{Formik.errors.accepted}</ErrorMsg>
+          ) : null}
+          <SubmitButton type="submit">Submit</SubmitButton>
+        </Column>
+        <Column />
+      </form>
+    );
+  }
 }
