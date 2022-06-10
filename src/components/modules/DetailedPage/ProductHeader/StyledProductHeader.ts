@@ -51,8 +51,8 @@ export const Type = styled.div`
   font-size: 1.5rem;
   font-weight: 400;
   font-style: italic;
-  margin-left: 1rem;
-  margin-top: 0.875rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.875rem;
   line-height: 2.5rem;
 `;
 
