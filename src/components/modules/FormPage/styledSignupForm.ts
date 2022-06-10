@@ -16,7 +16,7 @@ export const Input = styled.input<{ height?: string; width?: string }>`
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   padding: 0.5rem;
-  width: ${({ wi }) => wi || "40%"};
+  width: ${({ width }) => width || "40%"};
   @media (max-width: 768px) {
     width: 100%;
   }
