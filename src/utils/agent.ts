@@ -97,7 +97,7 @@ const requests = {
 }
 
 const Projects = {
-    list: () => requests.get<Project[]>('projects'),
+    list: (params?: URLSearchParams) => requests.get<Project[]>('projects', params),
 }
 
 const Opportunities = {
