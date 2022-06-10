@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "constate": "^3.3.0",
+    "formik": "^2.2.9",
     "fuse.js": "^6.4.6",
     "luxon": "^2.0.2",
     "next": "11.1.0",
@@ -24,6 +25,7 @@
     "react-toastify": "^8.0.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.1",
+    "yup": "^0.32.11",
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
