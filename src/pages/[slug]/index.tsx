@@ -31,10 +31,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/projects/${params.slug}`
-  );
-  const project: Project = await res.json();
+  let project: Project;
+  let slug = params.slug as string;
+
+  try {
+    project = await agent.Projects.getDetails(slug);
+  } catch (error) {
+    console.error("An error occurred while fetching Project Details", error);
+  }
 
   return {
     props: {
