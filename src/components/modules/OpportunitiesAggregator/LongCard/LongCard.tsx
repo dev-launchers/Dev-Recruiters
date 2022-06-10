@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   FooterCard,
@@ -6,7 +6,7 @@ import {
   TextBold,
   Input,
   ButtonSection,
-} from '../LongCard/StyledLongCard';
+} from "../LongCard/StyledLongCard";
 
 export interface Props {
   longCard: {
@@ -37,7 +37,7 @@ export default function LongCard({ longCard }: Props) {
         </FooterCard>
         <ButtonSection>
           <Input onClick={() => setIsExpanded(!isExpanded)}>
-            <a>{isExpanded ? 'Collapse' : 'Read Full'} Description</a>
+            <a>{isExpanded ? "Collapse" : "Read Full"} Description</a>
           </Input>
         </ButtonSection>
       </Container>
