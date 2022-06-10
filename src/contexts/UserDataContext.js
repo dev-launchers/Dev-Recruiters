@@ -2,7 +2,6 @@ import React from "react";
 import constate from "constate"; // State Context Object Creator
 import axios from "axios";
 
-import { env } from "@utils/EnvironmentVariables";
 
 const DEFAULT_USER = {
   id: 0,
@@ -32,7 +31,7 @@ function useUserData() {
 
   React.useEffect(() => {
     // Setting timeout because of environment variable hack
-    axios(`${env().STRAPI_URL}/users/me`, {
+    axios(`${process.env.NEXT_PUBLIC_STRAPI_URL}/users/me`, {
       withCredentials: true,
     })
       .then(({ data: currentUser }) => {
