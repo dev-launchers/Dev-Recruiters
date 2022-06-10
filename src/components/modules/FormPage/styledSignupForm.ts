@@ -66,7 +66,7 @@ export const RadioWrapper = styled.div`
 `;
 
 export const CheckboxLabel = styled.label`
-  font-size: ${({ theme }) => theme.fonts.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
   background-color: ${({ theme }) => theme.colors.SilverSand};
   border-radius: 1.875rem;
   padding: 1.25rem;

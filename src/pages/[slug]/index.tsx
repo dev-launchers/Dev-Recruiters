@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
-import { Project } from "../models/project";
+import { Project } from "../../models/project";
 import ProjectDetails from "@components/modules/DetailedPage";
 
 export const getProjectsSlugs = async () => {
