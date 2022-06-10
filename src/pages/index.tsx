@@ -9,7 +9,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let projects: Project[] = [];
   let opportunities: Opportunity[] = [];
   try {
-    const result = await agent.Projects.list();
+    const result = await agent.Projects.list(new URLSearchParams("_publicationState=live"));
     projects = result.filter((p: Project) => p.opportunities.length > 0);
   } catch (error) {
     console.error("An error occurred while fetching Projects", error);
