@@ -60,9 +60,6 @@ export default function SignUpForm() {
   });
 
   const router = useRouter();
-  const [FormProps, setFormProps] = useState({
-    commitment: 0,
-  });
   const { userData } = useUserDataContext();
   const Formik = useFormik({
     initialValues: {
