@@ -11,12 +11,10 @@ export const Tags = styled.div`
 `;
 
 export const ColumnTitle = styled.div`
-  margin-top: 1rem;
   font-family: ${({ theme }) => theme.fonts.headline};
   color: ${({ theme }) => theme.colors.AntiFlashWhite};
   font-size: 3rem;
   font-weight: 400;
-  line-height: 1.125rem;
   padding: 0.375rem;
 `;
 
@@ -38,8 +36,9 @@ export const Column = styled.div<{ bgColor?: string; w?: string; fa?: string }>`
 
 export const Row = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   & > ${Tags} {
     margin-top: 1.375rem;
