@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
- background-color: ${({ theme }) => theme.colors.OuterSpace};
- padding: 2rem 0;
+  background-color: ${({ theme }) => theme.colors.OuterSpace};
+  padding: 2rem 0;
 `;
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.Argent};
@@ -37,21 +36,21 @@ export const PositionsList = styled.div`
 `;
 
 export const CardWrapper = styled.div`
-position: relative;
+  position: relative;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 26px;
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
 `;
 export const Card = styled.div`
-display: flex;
-flex-direction: column;
-position: relative;
-height: max-content;
-min-height: 234px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: max-content;
+  min-height: 234px;
   background-color: ${({ theme }) => theme.colors.White};
   border-radius: 30px;
-
+  flex: 1 1 600px;
   & > h2 {
     padding: 15px 32px;
     margin-top: 0;
@@ -63,13 +62,12 @@ min-height: 234px;
     font-size: 20px;
     line-height: 27px;
     text-transform: capitalize;
-    
   }
 `;
 
 export const CardContent = styled.div`
-height: 100%;
-flex: 1 1 auto;
+  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,12 +83,12 @@ flex: 1 1 auto;
   & p {
     display: list-item;
     flex: 1 1 auto;
-   height: 100%;
+    height: 100%;
   }
 `;
 
 export const CardButton = styled.button`
-flex: 0 1 auto; 
+  flex: 0 1 auto;
   font-family: ${({ theme }) => theme.fonts.normal};
   box-sizing: border-box;
   padding: 12px 15px;
