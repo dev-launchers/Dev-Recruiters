@@ -2,14 +2,16 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { Project } from "../../models/project";
 import ProjectDetails from "@components/modules/DetailedPage";
+import agent from "@utils/agent";
 
 export const getProjectsSlugs = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/projects?_publicationState=live`
-  );
-
-  const result: Project[] = await res.json();
-  const projects = result?.filter((p) => p.opportunities?.length > 0);
+  let projects: Project[] = [];
+  try {
+    const result = await agent.Projects.list(new URLSearchParams("_publicationState=live"));
+    projects = result.filter((p: Project) => p.opportunities.length > 0);
+  } catch (error) {
+    console.error("An error occurred while fetching Projects", error);
+  }
 
   const projectsSlugs = projects.map((project) => ({
     params: {
