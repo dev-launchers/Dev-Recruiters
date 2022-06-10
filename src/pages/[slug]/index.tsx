@@ -1,7 +1,7 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
-import { Project } from '../models/project';
-import ProjectDetails from '@components/modules/DetailedPage';
+import { GetStaticProps, GetStaticPaths } from "next";
+import Head from "next/head";
+import { Project } from "../models/project";
+import ProjectDetails from "@components/modules/DetailedPage";
 
 export const getProjectsSlugs = async () => {
   const res = await fetch(
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getProjectsSlugs();
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
@@ -42,52 +42,44 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-interface Props {
-  project: Project;
-}
-
-// export default function DetailedPage({ project }: Props) {
-
-// }
-
-export default function DetailedPage({ project }: Props) {
+export default function DetailedPage({ project }: {project: Project}) {
   return (
     <>
       <Head>
         <title>Detailed Page</title>
-        <meta name='title' content='Our Projects'></meta>
+        <meta name="title" content="Our Projects"></meta>
         <meta
-          name='description'
-          content='Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!'
+          name="description"
+          content="Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!"
         ></meta>
 
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://devlaunchers.org/projects' />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devlaunchers.org/projects" />
         <meta
-          property='og:image'
-          content='/images/DevlaunchersGitHubThumb.png'
+          property="og:image"
+          content="/images/DevlaunchersGitHubThumb.png"
         />
-        <meta property='og:title' content='Our Projects' />
+        <meta property="og:title" content="Our Projects" />
         <meta
-          property='og:description'
-          content='Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!'
+          property="og:description"
+          content="Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!"
         ></meta>
 
-        <meta property='twitter:card' content='summary_large_image' />
+        <meta property="twitter:card" content="summary_large_image" />
         <meta
-          property='twitter:url'
-          content='https://devlaunchers.org/projects'
+          property="twitter:url"
+          content="https://devlaunchers.org/projects"
         />
-        <meta property='twitter:title' content='Our Projects' />
+        <meta property="twitter:title" content="Our Projects" />
         <meta
-          property='twitter:description'
-          content='Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!'
+          property="twitter:description"
+          content="Create, discover, and join open-source software projects! We help members to contribute meaningfully and gain industry-ready experience along the way. Build epic products, tools, and games used by real people while learning valuable skills and meeting awesome people!"
         />
         <meta
-          property='twitter:image'
-          content='/images/DevlaunchersGitHubThumb.png'
+          property="twitter:image"
+          content="/images/DevlaunchersGitHubThumb.png"
         />
-        <meta content='#ff7f0e' data-react-helmet='true' name='theme-color' />
+        <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
       <ProjectDetails project={project} />
     </>

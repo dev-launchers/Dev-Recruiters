@@ -5,22 +5,20 @@ import {
   FeaturedProducts,
   CardsContainer,
   HeadingContainer,
-} from '@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator';
+} from "@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator";
 
-import * as React from 'react';
-import ShortCard, { ShortCardProps } from './ShortCard';
-import { featuredCardData } from './data';
+import * as React from "react";
+import ShortCard from "./ShortCard";
 import FilteringComponent, {
   FilteringComponentProps,
-} from './filtering/FilteringComponent';
-import BoxContainer from '@components/common/BoxContainer';
+} from "./filtering/FilteringComponent";
+import BoxContainer from "@components/common/BoxContainer";
 
-interface Props extends FilteringComponentProps, ShortCardProps {}
+interface Props extends FilteringComponentProps {}
 
 const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
   projects,
   opportunities,
-  cardData,
 }) => {
   return (
     <Wrapper>
@@ -30,10 +28,10 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           <span>Find a Project to Join!</span>
         </HeadingContainer>
       </BoxContainer>
-      <div id='background' />
+      <div id="background" />
       <FeaturedProductsSection>
         <BoxContainer
-          bgColor='BlackCoral'
+          bgColor="BlackCoral"
           paddingVertical={35}
           paddingHorizontal={20}
         >
@@ -41,8 +39,17 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
             <h2>Featured Products</h2>
           </FeaturedProducts>
           <CardsContainer>
-            {featuredCardData.map((data, index) => (
-              <ShortCard key={index} cardData={data} />
+            {projects.map((data, index) => (
+              <ShortCard
+                key={index}
+                title={data.title}
+                id={data.id}
+                catchPhrase={data.catchPhrase}
+                commitmentLevel={data.commitmentLevel}
+                isPlatform={data.isPlatform}
+                opportunities={data.opportunities}
+                slug={data.slug}
+              />
             ))}
           </CardsContainer>
         </BoxContainer>
@@ -50,7 +57,6 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
       <BoxContainer paddingHorizontal={19} paddingVertical={32}>
         <FilteringComponent projects={projects} opportunities={opportunities} />
       </BoxContainer>
-      {/* filtering component goes here! */}
     </Wrapper>
   );
 };

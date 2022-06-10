@@ -16,6 +16,9 @@
       ],
       "@contexts/*": [
         "src/contexts/*"
+      ],
+      "@models/*": [
+        "src/models/*"
       ]
     },
     "target": "es5",

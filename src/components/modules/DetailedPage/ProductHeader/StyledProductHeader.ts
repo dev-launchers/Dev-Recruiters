@@ -28,7 +28,7 @@ export const HeaderBlock = styled.div`
 export const Column = styled.div<{ bgColor?: string; w?: string; fa?: string }>`
   background-color: ${({ bgColor, theme }) =>
     bgColor ? bgColor : theme.colors.Crayola};
-  width: ${({ w }) => (w ? w : "50%")};
+  flex-basis: ${({ w }) => (w ? w : "50%")};
   align-items: ${({ fa }) => (fa ? fa : "flex-start")};
   display: flex;
   flex-direction: column;

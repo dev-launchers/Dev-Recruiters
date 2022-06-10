@@ -13,15 +13,14 @@ import {
   Vision,
   UsernameAvatar,
 } from "./StyledProductHeader";
+import { Leader2, Project, Team } from "@models/project";
 
-interface ProductHeaderProps {
-  title: string;
-  vision: string;
-  isPlatform: boolean;
+interface ProductHeaderProps
+  extends Pick<
+    Project,
+    "title" | "vision" | "isPlatform" | "interests" | "published_at" | "team"
+  > {
   type: "Product" | "Project" | "Idea";
-  keywords: string[];
-  date: string;
-  username: string;
   userAvatar?: string;
   minCommitmentHours: number;
   maxCommitmentHours: number;
@@ -32,15 +31,19 @@ export default function ProductHeader({
   vision,
   isPlatform = false,
   type,
-  keywords = [],
-  date,
-  username,
+  interests = [], //keywords = [],
+  published_at, //date,
+  team, //username,
   // userAvatar,
   minCommitmentHours,
   maxCommitmentHours,
 }: ProductHeaderProps) {
-  const formattedDate = new Date(date).toDateString().split(" ").slice(1).join(" ");
-
+  const teamLeader = (team?.leaders[0] as Partial<Leader2>)?.username;
+  const formattedDate = new Date(published_at)
+    .toDateString()
+    .split(" ")
+    .slice(1)
+    .join(" ");
   return (
     <HeaderBlock>
       <Row>
@@ -54,20 +57,20 @@ export default function ProductHeader({
         <Column bgColor="#4f5154" w="30%">
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
-            {keywords.map((keyword, id) => (
-              <Tags key={id}>{keyword}</Tags>
+            {interests.map((interest, id) => (
+              <Tags key={id}>{interest.interest}</Tags>
             ))}
           </Row>
         </Column>
         <Column bgColor="#59687B" w="30%" fa="flex-end">
+          <ColumnTitle style={{ width: "100%", textAlign: "left" }}>
+            {type} Lead
+          </ColumnTitle>
           <Row style={{ marginTop: "1rem" }}>
             <UsernameAvatar src={Avatar} />
-            <Username>{username}</Username>
+            <Username>{teamLeader}</Username>
           </Row>
-          <CreationDate>
-            Product Created:{" "}
-            {formattedDate}
-          </CreationDate>
+          <CreationDate>Product Created: {formattedDate}</CreationDate>
           <Commitment>
             {minCommitmentHours} - {maxCommitmentHours} hrs/week
           </Commitment>
