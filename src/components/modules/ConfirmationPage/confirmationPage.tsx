@@ -6,9 +6,9 @@ import {
   Message,
   Button,
 } from "./styledConfirmationPage";
-import { useRouter } from "next/router";
+
+import Link from "next/link";
 export default function ConfirmationPage() {
-  const router = useRouter();
   return (
     <Wrapper>
       <Header>Apply with Dev Launchers!</Header>
@@ -20,9 +20,9 @@ export default function ConfirmationPage() {
           review. After the product owner reviews your application they will
           reach out through the email address you have provided.
         </Message>
-        <Button onClick={() => router.push("/")}>
-          Return to Recruiting Main Page
-        </Button>
+        <Link href="/" passHref>
+          <Button as="a">Return to Recruiting Main Page</Button>
+        </Link>
       </MessageWrapper>
     </Wrapper>
   );
