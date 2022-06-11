@@ -10,6 +10,7 @@ on:
       - 'package*.json'
       - 'npm-shrinkwrap.json'
       - 'yarn.lock'
+      - 'Dockerfile'
 jobs:
   build:
     runs-on: ubuntu-latest
