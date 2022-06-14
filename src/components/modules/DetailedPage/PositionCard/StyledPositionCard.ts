@@ -31,7 +31,7 @@ export const Section = styled.div<{
 
   @media (max-width: 760px) {
     display: ${({ Mobile, Expanded }) =>
-      Mobile ? (Expanded ? 'block' : 'none') : 'block'};
+    Mobile ? (Expanded ? 'block' : 'none') : 'block'};
     width: 100%;
   }
 `;
@@ -146,12 +146,13 @@ export const TagsList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: .5rem; 
   padding: 0;
   margin: 0;
 `;
 export const TagsListItem = styled.li<{ color: sectionTheme }>`
   padding: 0.2rem 1rem;
-  margin: 0 3px;
+ 
   background-color: ${(props) =>
     props.color === 'Dark'
       ? props.theme.colors.OuterSpace
