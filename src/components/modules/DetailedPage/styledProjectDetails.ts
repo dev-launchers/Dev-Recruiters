@@ -106,3 +106,27 @@ flex: 0 1 auto;
   margin-left: auto;
   display: block;
 `;
+
+export const BackButton = styled.a`
+font-family: ${({ theme }) => theme.fonts.normal};
+font-size: 1rem;
+padding: 5px 12px;
+display: inline-flex;
+align-items: center;
+border:none;
+background: ${({ theme }) => theme.colors.DarkElectricBlue};
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+color: ${({ theme }) => theme.colors.White};
+
+&:hover{
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.White};
+}
+
+& svg{
+  margin-right: .5rem;
+  height: 20px;
+  width: 20px;
+}
+`;
