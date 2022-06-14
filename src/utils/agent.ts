@@ -102,7 +102,12 @@ const Projects = {
 }
 
 const Opportunities = {
-    list: () => requests.get<Opportunity[]>('opportunities'),
+    list: (params?: URLSearchParams) => requests.get<Opportunity[]>('opportunities', params),
+    post: (body: Opportunity) => requests.post<Opportunity>('opportunities', body),
+    getCount: () => requests.get<Object>('opportunities/count'),
+    getDetails: (id: string) => requests.get<Opportunity>(`opportunities/${id}`),
+    update: (id: string, body: Opportunity) => requests.put<Opportunity>(`opportunities/${id}`, body),
+    delete: (id: string) => requests.delete<Object>(`opportunities/${id}`),
 }
 
 const Ideas = {
