@@ -77,7 +77,7 @@ export default function SignUpForm() {
       zip: 0,
       role: router.query.position as string,
       id: router.query.slug as string,
-      project: router.query.project,
+      project: router.query.slug,
     },
     onSubmit: (
       values: FormProps,
@@ -119,11 +119,13 @@ export default function SignUpForm() {
     },
     validationSchema: SignupSchema,
   });
-  useEffect(() => {
-    if (userData.id == 0) {
-      router.push("/login");
-    }
-  }, [router, userData.id]);
+
+  //! GOING TO BE ACTIVATED AGAIN ONCE WE HAVE BACKEND REDIRECTION
+  // useEffect(() => {
+  //   if (userData.id == 0) {
+  //     router.push("/login");
+  //   }
+  // }, [router, userData.id]);
 
   return (
     <form onSubmit={Formik.handleSubmit}>
