@@ -236,7 +236,7 @@ export const ButtonsSection = styled.div<{
 }>`
   display: ${(props) => (props.Mobile ? 'none' : 'flex')};
   width: 100%;
-  flex-direction: ${({ expanded }) => (expanded ? 'row-reverse' : 'row')};
+  //flex-direction: ${({ expanded }) => (expanded ? 'row-reverse' : 'row')};
   justify-content: flex-end;
   margin-left: auto;
   margin-top: 2rem;
