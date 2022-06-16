@@ -33,7 +33,7 @@ export default function FilteringComponent({
   projects,
   opportunities,
 }: FilteringComponentProps) {
-  const [commitment, setCommitment] = useState({ min: 0, max: 0 });
+  //const [commitment, setCommitment] = useState({ min: 0, max: 0 });
   const [Mobile, setMobile] = useState(false);
   const [visible, setVisible] = useState(false);
   const {
@@ -60,23 +60,23 @@ export default function FilteringComponent({
     }
   }, [projects, fetchProjects, projectsLoaded]);
 
-  const getCommitments = useCallback((opportunities: Opportunity[]) => {
-    const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
-    if (commitments && commitments.length > 0) {
-      const min = Math.min(...commitments);
-      const max = Math.max(...commitments);
-      setCommitment({ min, max });
+  // const getCommitments = useCallback((opportunities: Opportunity[]) => {
+  //   const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
+  //   if (commitments && commitments.length > 0) {
+  //     const min = Math.min(...commitments);
+  //     const max = Math.max(...commitments);
+  //     setCommitment({ min, max });
 
-      //setCommitmentsLoaded(true);
-    }
-  }, []);
+  //     //setCommitmentsLoaded(true);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (opportunities && !opportunitiesLoaded) {
       fetchOpportunities(opportunities);
-      getCommitments(opportunities);
+      // getCommitments(opportunities);
     }
-  }, [opportunities, fetchOpportunities, opportunitiesLoaded, getCommitments]);
+  }, [opportunities, fetchOpportunities, opportunitiesLoaded]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -134,20 +134,18 @@ export default function FilteringComponent({
             </>
           )}
 
-          {commitment.max > 0 && (
-            <CommitmentSection>
-              <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
-              <Slider
-                min={3}
-                max={10}
-                onChange={(value) =>
-                  handleCommitmentChange({ min: 1, max: value })
-                }
-                prefix='hrs'
-                initialValue={commitment.max}
-              />
-            </CommitmentSection>
-          )}
+          <CommitmentSection>
+            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+            <Slider
+              min={3}
+              max={10}
+              onChange={(value) =>
+                handleCommitmentChange({ min: 1, max: value })
+              }
+              prefix='hrs'
+              initialValue={10}
+            />
+          </CommitmentSection>
           <FilterMenuButton onClick={() => setVisible(true)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
