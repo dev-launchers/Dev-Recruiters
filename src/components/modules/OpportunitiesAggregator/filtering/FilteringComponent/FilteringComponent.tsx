@@ -138,8 +138,8 @@ export default function FilteringComponent({
             <CommitmentSection>
               <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
               <Slider
-                min={commitment.min ?? 0}
-                max={commitment.max > commitment.min ? commitment.max : 10}
+                min={3}
+                max={10}
                 onChange={(value) =>
                   handleCommitmentChange({ min: 1, max: value })
                 }
