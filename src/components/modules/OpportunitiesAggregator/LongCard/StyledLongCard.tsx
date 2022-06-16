@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-  font-size:1.2rem;
-  border-bottom-right-radius:40px;
-  border-bottom-left-radius:40px;
-  background-color:${({theme}) => theme.colors.NEUTRAL_6};
+  font-size: 1.2rem;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_6};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   flex-direction: column;
@@ -13,28 +13,27 @@ export const Container = styled.div`
   // }
 `;
 
-
 export const HeaderCard = styled.div`
   position: relative;
-  border-bottom-right-radius:40px;
-  border-bottom-left-radius:40px;
-  font-weight: 500; 
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  font-weight: 500;
   font-size: 24px;
   height: 102px;
-  background-color:${({theme}) =>theme.colors.NEUTRAL_5};
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_5};
   text-align: left;
   // @media (orientation: portrait) {
   // }
 `;
 
-export const FooterCard = styled.ul`
-  padding:1rem 0 1rem 0.5rem;
-  width:50%;
+export const FooterCard = styled.div`
+  padding: 1rem 0 1rem 0.5rem;
+  width: 50%;
 
-  & > li {
+  /* & > li {
     margin-left: 3rem;
-    list-style: disc!important;
-  }
+    list-style: disc !important;
+  } */
   // @media (orientation: portrait) {
   // }
 `;
@@ -51,5 +50,5 @@ export const Input = styled.button`
   margin: 0 0.5rem 1rem 1rem;
   padding: 5px 5px;
   border-radius: 50px;
-  background-color: rgba(123, 123, 123,0.2)
+  background-color: rgba(123, 123, 123, 0.2);
 `;

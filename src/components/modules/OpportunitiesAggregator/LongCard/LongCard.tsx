@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import {
   Container,
   FooterCard,
@@ -9,16 +10,11 @@ import {
 } from '../LongCard/StyledLongCard';
 
 export interface Props {
-  longCard: {
-    description: string;
-    details: {
-      id: number;
-      detail: string;
-    }[];
-  };
+  description: string;
+  details: string;
 }
 
-export default function LongCard({ longCard }: Props) {
+export default function LongCard({ description, details }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
@@ -28,11 +24,9 @@ export default function LongCard({ longCard }: Props) {
         </HeaderCard>
         <FooterCard>
           {isExpanded ? (
-            longCard.details.map((data, index) => (
-              <li key={index}>{data.detail}</li>
-            ))
+            <ReactMarkdown children={details}></ReactMarkdown>
           ) : (
-            <li>{longCard.details[0].detail}</li>
+            <ReactMarkdown>{details.slice(0, 50)}</ReactMarkdown>
           )}
         </FooterCard>
         <ButtonSection>

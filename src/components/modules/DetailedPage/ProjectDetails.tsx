@@ -72,21 +72,8 @@ export default function ProjectDetails({ project }: Props) {
         />
 
         <LongCard
-          longCard={{
-            description: project.description,
-            details: [
-              {
-                id: 0,
-                detail: `Social media is constantly changing and coming up with something new, so come right in and expose us to your fresh ideas! We accept people of ALL skill levels, and want YOU to help us make this possible!
-                `,
-              },
-              {
-                id: 2,
-                detail: `You! Yes, you! The one who understands the importance of building relationships and tailoring a unique experience for individuals. You will ...
-                `,
-              },
-            ],
-          }}
+          description={project.description}
+          details={project.description}
         ></LongCard>
       </BoxContainer>
 

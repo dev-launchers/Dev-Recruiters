@@ -114,7 +114,7 @@ padding: 5px 12px;
 display: inline-flex;
 align-items: center;
 border:none;
-background: ${({ theme }) => theme.colors.DarkElectricBlue};
+background: ${({ theme }) => theme.colors.CoolGrey};
 box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 color: ${({ theme }) => theme.colors.White};
