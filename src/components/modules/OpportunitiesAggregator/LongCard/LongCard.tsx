@@ -26,7 +26,9 @@ export default function LongCard({ description, details }: Props) {
           {isExpanded ? (
             <ReactMarkdown children={details}></ReactMarkdown>
           ) : (
-            <ReactMarkdown>{details.slice(0, 50)}</ReactMarkdown>
+            <ReactMarkdown>
+              {details.slice(0, details.length / 2)}
+            </ReactMarkdown>
           )}
         </FooterCard>
         <ButtonSection>
