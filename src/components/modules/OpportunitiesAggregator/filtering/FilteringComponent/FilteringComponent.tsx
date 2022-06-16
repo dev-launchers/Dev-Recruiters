@@ -29,7 +29,10 @@ export interface FilteringComponentProps {
   opportunities: Opportunity[];
 }
 
-export default function FilteringComponent({ projects, opportunities }: FilteringComponentProps) {
+export default function FilteringComponent({
+  projects,
+  opportunities,
+}: FilteringComponentProps) {
   const [commitment, setCommitment] = useState({ min: 0, max: 0 });
   const [Mobile, setMobile] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -136,7 +139,7 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
               <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
               <Slider
                 min={commitment.min ?? 0}
-                max={commitment.max ?? 10}
+                max={commitment.max > commitment.min ? commitment.max : 10}
                 onChange={(value) =>
                   handleCommitmentChange({ min: 1, max: value })
                 }
