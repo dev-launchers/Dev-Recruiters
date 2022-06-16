@@ -125,7 +125,7 @@ export default function ProjectDetails({ project }: Props) {
         testing postion Card */}
 
         <Container>
-          <h2>Available Positions</h2>
+          <h2>Positions Available</h2>
 
           <PositionsList>
             {[1, 2, 4, 5].map((position) => (
