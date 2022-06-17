@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
+import { FormFields } from "@models/formFields";
 import {
   Label,
   Column,
@@ -25,24 +26,6 @@ enum Level {
   beginner = 1,
   intermediate = 2,
   advanced = 3,
-}
-
-interface FormProps {
-  username: string;
-  name: string;
-  email: string;
-  age: number;
-  skills: string;
-  commitment: number;
-  additionalInfo: string;
-  resumeUrl: string;
-  experience: string;
-  reason: string;
-  accepted: boolean;
-  zip: number;
-  role: string;
-  id: string;
-  project: string;
 }
 
 export default function SignUpForm() {
@@ -80,8 +63,8 @@ export default function SignUpForm() {
       project: router.query.slug,
     },
     onSubmit: (
-      values: FormProps,
-      { setSubmitting }: FormikHelpers<FormProps>
+      values: FormFields,
+      { setSubmitting }: FormikHelpers<FormFields>
     ) => {
       setSubmitting(true);
       axios
