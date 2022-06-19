@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
 import { FormFields } from "@models/formFields";
+import agent from "@utils/agent";
 import {
   Label,
   Column,
@@ -60,30 +61,20 @@ export default function SignUpForm() {
       zip: 0,
       role: router.query.position as string,
       id: router.query.slug as string,
-      project: router.query.slug,
+      project: router.query.slug as string,
     },
     onSubmit: (
       values: FormFields,
       { setSubmitting }: FormikHelpers<FormFields>
     ) => {
       setSubmitting(true);
-      axios
-        .post(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`,
-          {
-            ...values,
-            skills: values.skills.split(",").map((skill) => ({ skill: skill })),
-            role: router.query.position as string,
-            project: router.query.project,
-            id: router.query.slug as string,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          }
-        )
+      agent.Applicant.post({
+        ...values,
+        skills: values.skills.split(",").map((skill) => ({ skill: skill })),
+        role: router.query.position as string,
+        project: router.query.project as string,
+        id: router.query.slug as string,
+      })
         .then((res) => {
           if (res.status === 200) {
             setSubmitting(false);

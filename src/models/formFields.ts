@@ -3,7 +3,7 @@ export interface FormFields {
   name: string;
   email: string;
   age: number;
-  skills: string;
+  skills: any;
   commitment: number;
   additionalInfo: string;
   resumeUrl: string;
