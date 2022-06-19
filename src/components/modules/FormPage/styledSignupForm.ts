@@ -112,3 +112,12 @@ export const SubmitButton = styled.button.attrs({ type: "submit" })`
     width: 100%;
   }
 `;
+export const Header = styled.h1`
+  color: ${({ theme }) => theme.colors.White};
+  border-bottom: none;
+  font-family: ${({ theme }) => theme.fonts.headline};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  margin-bottom: 1rem;
+  text-align: center;
+  flex-grow: 1;
+`;
