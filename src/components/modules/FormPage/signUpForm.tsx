@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
 import { FormFields } from "@models/formFields";
+import { SkillLevel } from "@models/level";
 import agent from "@utils/agent";
 import {
   Label,
@@ -22,12 +23,6 @@ import {
   ErrorMsg,
 } from "./styledSignupForm";
 import { useState } from "react";
-
-enum Level {
-  beginner = 1,
-  intermediate = 2,
-  advanced = 3,
-}
 
 export default function SignUpForm() {
   const SignupSchema = Yup.object().shape({
@@ -154,7 +149,7 @@ export default function SignUpForm() {
         {Formik.errors.skills && Formik.touched.skills ? (
           <ErrorMsg>{Formik.errors.skills}</ErrorMsg>
         ) : null}
-        <Label>What is your Level of Skill?</Label>
+        <Label>What is your SkillLevel of Skill?</Label>
 
         <RadioWrapper>
           <CheckboxLabel>
@@ -164,8 +159,8 @@ export default function SignUpForm() {
             <Label htmlFor="beginner">Beginner</Label>
             <Radio
               id="beginner"
-              name="level"
-              value={Level[1]}
+              name="SkillLevel"
+              value={SkillLevel[1]}
               onChange={Formik.handleChange}
             />
           </Row>
@@ -173,9 +168,9 @@ export default function SignUpForm() {
           <Row>
             <Label htmlFor="intermediate">Intermediate</Label>
             <Radio
-              name="level"
+              name="SkillLevel"
               id="intermediate"
-              value={Level[2]}
+              value={SkillLevel[2]}
               onChange={Formik.handleChange}
             />
           </Row>
@@ -183,8 +178,8 @@ export default function SignUpForm() {
             <Label htmlFor="advanced">Advanced</Label>
             <Radio
               id="advanced"
-              name="level"
-              value={Level[3]}
+              name="SkillLevel"
+              value={SkillLevel[3]}
               onChange={Formik.handleChange}
             />
           </Row>
