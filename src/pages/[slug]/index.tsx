@@ -81,7 +81,7 @@ export default function DetailedPage({ project }: { project: Project }) {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <ProjectDetails project={project.project} />
+      <ProjectDetails project={project} />
     </>
   );
 }
