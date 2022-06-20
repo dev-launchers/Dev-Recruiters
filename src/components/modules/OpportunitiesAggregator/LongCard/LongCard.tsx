@@ -7,7 +7,7 @@ import {
   TextBold,
   Input,
   ButtonSection,
-} from '../LongCard/StyledLongCard';
+} from "../LongCard/StyledLongCard";
 
 export interface Props {
   description: string;
@@ -33,7 +33,7 @@ export default function LongCard({ description, details }: Props) {
         </FooterCard>
         <ButtonSection>
           <Input onClick={() => setIsExpanded(!isExpanded)}>
-            <a>{isExpanded ? 'Collapse' : 'Read Full'} Description</a>
+            <a>{isExpanded ? "Collapse" : "Read Full"} Description</a>
           </Input>
         </ButtonSection>
       </Container>

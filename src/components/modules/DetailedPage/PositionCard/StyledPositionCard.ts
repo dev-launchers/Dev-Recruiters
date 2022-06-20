@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: relative;
   display: flex;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
   background: ${(props) => props.theme.colors.White};
   border-radius: 1.8rem;
   overflow: hidden;

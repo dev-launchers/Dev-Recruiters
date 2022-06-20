@@ -307,7 +307,7 @@ export interface Project {
     newMeetingTimes: NewMeetingTime[];
     opportunities: Opportunity[];
     isPlatform: boolean;
-    published_at: Date;
+    published_at: string;
 }
 
 export interface ProjectLite {

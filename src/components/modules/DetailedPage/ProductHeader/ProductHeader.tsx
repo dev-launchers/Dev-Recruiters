@@ -38,8 +38,7 @@ export default function ProductHeader({
   minCommitmentHours,
   maxCommitmentHours,
 }: ProductHeaderProps) {
-  const teamLeader =
-    team?.leaders.length > 0 && (team.leaders[0] as Partial<Leader2>).username;
+  const teamLeader = (team?.leaders[0] as Partial<Leader2>)?.username;
   const formattedDate = new Date(published_at)
     .toDateString()
     .split(' ')
@@ -48,14 +47,14 @@ export default function ProductHeader({
   return (
     <HeaderBlock>
       <Row>
-        <Column bgColor='#30363E' w='50%'>
+        <Column bgColor="#30363E" w="614px" style={{ flexGrow: 1 }}>
           <ColumnTitle>{title}</ColumnTitle>
           <Type>
             {isPlatform ? 'Platform' : 'Independent'} {type}
           </Type>
           <Vision>{vision}</Vision>
         </Column>
-        <Column bgColor='#4f5154' w='30%'>
+        <Column bgColor="#4f5154" w="384px" style={{ flexGrow: 1 }}>
           <ColumnTitle>Tags</ColumnTitle>
           <Row>
             {interests.map((interest, id) => (
@@ -63,8 +62,8 @@ export default function ProductHeader({
             ))}
           </Row>
         </Column>
-        <Column bgColor='#59687B' w='30%' fa='flex-end'>
-          <ColumnTitle style={{ width: '100%', textAlign: 'left' }}>
+        <Column bgColor="#59687B" w="384px" fa="flex-end" style={{ flexGrow: 1 }}>
+          <ColumnTitle style={{ width: "100%", textAlign: "left" }}>
             {type} Lead
           </ColumnTitle>
           <Row style={{ marginTop: '1rem' }}>
