@@ -27,7 +27,7 @@ export const HeaderCard = styled.div`
 `;
 
 export const FooterCard = styled.div`
-  padding: 1rem 0 1rem 0.5rem;
+  padding: 1rem 2.5rem;
   width: 50%;
 
   /* & > li {
