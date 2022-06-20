@@ -83,7 +83,7 @@ const responseBody = (response: AxiosResponse) => response.data;
 //Axios requests simplified
 // the T Class type is optional but provides a better type safety for return type.
 const requests = {
-    get: <T>(url: string, params?: URLSearchParams) => axios.get<T>(url, { params }).then(responseBody),
+    get: <T>(url: string, params?: URLSearchParams) => axios.get<T>(url, { params }).then<T>(responseBody),
     post: <T>(url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
     put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
     patch: <T>(url: string, body: {}) => axios.patch<T>(url, body).then(responseBody),
@@ -104,7 +104,7 @@ const Projects = {
 const Opportunities = {
     list: (params?: URLSearchParams) => requests.get<Opportunity[]>('opportunities', params),
     post: (body: Opportunity) => requests.post<Opportunity>('opportunities', body),
-    getCount: () => requests.get<Object>('opportunities/count'),
+    getCount: () => requests.get<number>('opportunities/count'),
     getDetails: (id: string) => requests.get<Opportunity>(`opportunities/${id}`),
     update: (id: string, body: Opportunity) => requests.put<Opportunity>(`opportunities/${id}`, body),
     delete: (id: string) => requests.delete<Object>(`opportunities/${id}`),
