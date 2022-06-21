@@ -38,7 +38,7 @@ export default function LongCard({ description, details }: Props) {
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
             >
-              {details.slice(0, details.length / 1)}
+              {details.slice(0, details.length / 2)}
             </ReactMarkdown>
           )}
         </FooterCard>
