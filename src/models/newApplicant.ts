@@ -1,12 +1,15 @@
-export interface FormFields {
-  username: string;
+export interface NewApplicant {
+  discordUsername?: string;
   name: string;
   email: string;
   age: number;
-  skills: any;
+  skills: {
+    id?: string;
+    skill: string;
+  }[];
   commitment: number;
-  additionalInfo: string;
-  resumeUrl: string;
+  extraInfo?: string;
+  portfolioLink?: string;
   experience: string;
   reason: string;
   accepted: boolean;
@@ -14,4 +17,5 @@ export interface FormFields {
   role: string;
   id: string;
   project: string;
+  level: number;
 }

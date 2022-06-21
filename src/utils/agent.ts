@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Opportunity } from "../models/opportunity";
 import { Project } from "../models/project";
-import { FormFields } from "../models/formFields";
+import { NewApplicant } from "../models/newApplicant";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -107,8 +107,8 @@ const requests = {
 };
 
 const Applicant = {
-  get: () => requests.get<FormFields[]>("applicants"),
-  post: (data: FormFields) => requests.post<FormFields>("applicants", data),
+  get: () => requests.get<NewApplicant[]>("applicants"),
+  post: (data: NewApplicant) => requests.post<NewApplicant>("applicants", data),
 };
 
 const Projects = {
