@@ -37,18 +37,20 @@ export default function ProjectListItem({ project }: Props) {
         <DetailsSection>
           <DetailsWrapper>
             <PositionsContainer>
-              <Title>Available Positions / Level</Title>
+              <Title>Positions Available / Levell</Title>
               <ul>
                 {expanded
                   ? project.opportunities.map((opportunity) => (
                       <li key={opportunity.id}>
                         <PositionTitle>{opportunity.title}</PositionTitle>
+                        <span> - </span>
                         <PositionLevel>{opportunity.level}</PositionLevel>
                       </li>
                     ))
                   : project.opportunities.slice(0, 3).map((opportunity) => (
                       <li key={opportunity.id}>
                         <PositionTitle>{opportunity.title}</PositionTitle>
+                        <span> - </span>
                         <PositionLevel>{opportunity.level}</PositionLevel>
                       </li>
                     ))}
@@ -62,9 +64,9 @@ export default function ProjectListItem({ project }: Props) {
             </CommitmentContainer>
           </DetailsWrapper>
           <ButtonsContainer>
-            {!expanded && project.opportunities?.length > 4 && (
+            {project.opportunities?.length > 4 && (
               <PositionsButton onClick={() => setExpanded((prev) => !prev)}>
-                More Available Positions
+                {expanded ? 'Collapse Positions' : 'More Available Positions'}
               </PositionsButton>
             )}
             <Link href={`/${project.slug}`} passHref>

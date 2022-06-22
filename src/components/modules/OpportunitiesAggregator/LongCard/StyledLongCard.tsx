@@ -8,6 +8,7 @@ export const Container = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   flex-direction: column;
+
   // @media (orientation: portrait) {
   //   margin-bottom: 5%;
   // }
@@ -28,8 +29,12 @@ export const HeaderCard = styled.div`
 
 export const FooterCard = styled.div`
   padding: 1rem 2.5rem;
+
   width: 50%;
 
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
   /* & > li {
     margin-left: 3rem;
     list-style: disc !important;
@@ -41,14 +46,22 @@ export const FooterCard = styled.div`
 export const TextBold = styled.div`
   padding: 3rem;
 `;
-export const ButtonSection = styled.div`
-  display: flex;
-  justify-content: flex-end;
+export const ButtonSection = styled.button`
+  margin: 20px;
+  margin-left: auto;
+  padding: 12px 15px;
+  border-radius: 50px;
+  font-family: ${({ theme }) => theme.fonts.normal};
+  background-color: ${({ theme }) => theme.colors.NEUTRAL_3};
+  color: ${({ theme }) => theme.colors.White};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 11px;
+  text-align: center;
+  letter-spacing: 0.1625px;
+  border: none;
+  box-shadow: none;
 `;
 
-export const Input = styled.button`
-  margin: 0 0.5rem 1rem 1rem;
-  padding: 5px 5px;
-  border-radius: 50px;
-  background-color: rgba(123, 123, 123, 0.2);
-`;
+export const Input = styled.button``;

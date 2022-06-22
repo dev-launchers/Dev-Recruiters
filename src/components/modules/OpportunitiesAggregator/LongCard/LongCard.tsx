@@ -38,14 +38,12 @@ export default function LongCard({ description, details }: Props) {
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
             >
-              {details.slice(0, details.length / 1)}
+              {details.slice(0, details.length / 2)}
             </ReactMarkdown>
           )}
         </FooterCard>
-        <ButtonSection>
-          <Input onClick={() => setIsExpanded(!isExpanded)}>
-            <a>{isExpanded ? 'Collapse' : 'Read Full'} Description</a>
-          </Input>
+        <ButtonSection onClick={() => setIsExpanded(!isExpanded)}>
+          {isExpanded ? 'Collapse' : 'Read Full'} Description
         </ButtonSection>
       </Container>
     </>

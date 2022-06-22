@@ -22,6 +22,7 @@ import {
   TagsListItem,
   TagsSection,
   TitleSection,
+  CommitmentContainer,
 } from './StyledPositionCard';
 
 interface Props {
@@ -63,7 +64,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
               color='SonicSilver'
               onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {`${isExpanded ? 'Collapse' : 'Display'} Positions`}
+              {`${isExpanded ? 'Collapse Details' : 'Position details'}`}
             </Button>
             <Button color='DarkElectricBlue'>Apply</Button>
           </ButtonsSection>
@@ -98,8 +99,9 @@ export default function PositionCard({ position, projectSlug }: Props) {
       </Section>
 
       <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
-        <OpportunityDetailsContainer>
-          {/* <TagsSection>
+        <CommitmentContainer>
+          <OpportunityDetailsContainer>
+            {/* <TagsSection>
             <h4>Position Tags</h4>
             <TagsList>
               <TagsListItem color='Dark'>{position.level}</TagsListItem>
@@ -110,49 +112,46 @@ export default function PositionCard({ position, projectSlug }: Props) {
               ))}
             </TagsList>
           </TagsSection> */}
-          <div>
-            <CommitmentSection>
-              <h4>Time Commitment</h4>
-              <p>{position.commitmentHoursPerWeek}</p>
-            </CommitmentSection>
-            <ExpectationsSection Expanded={isExpanded}>
-              <h4>Expectations</h4>
-              <ExpectationsList>
-                {position.expectations.map((item, index) => (
-                  <ExpectationsListItem key={index}>
-                    {item}
-                  </ExpectationsListItem>
-                ))}
-              </ExpectationsList>
-            </ExpectationsSection>
-          </div>
-        </OpportunityDetailsContainer>
-        <DescriptionSection Mobile={true} Expanded={isExpanded}>
-          <h3>Position Description</h3>
-          <p>
-            {isExpanded
-              ? position.description
-              : `${position.description.substring(0, 320)}...`}
-          </p>
-        </DescriptionSection>
-        <ButtonsSection expanded={isExpanded} Mobile={false}>
-          <Button
-            color='SonicSilver'
-            onClick={() => setIsExpanded((prev) => !prev)}
-          >
-            {`${
-              isExpanded
-                ? 'Collapse Position'
-                : 'Expectations and Full Description'
-            }`}
-          </Button>
-          <Link
-            href={`/${projectSlug}/apply?position=${position.title}`}
-            passHref
-          >
-            <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
-          </Link>
-        </ButtonsSection>
+            <div>
+              <CommitmentSection>
+                <h4>Time Commitment</h4>
+                <p>{position.commitmentHoursPerWeek}</p>
+              </CommitmentSection>
+              <ExpectationsSection Expanded={isExpanded}>
+                <h4>Expectations</h4>
+                <ExpectationsList>
+                  {position.expectations.map((item, index) => (
+                    <ExpectationsListItem key={index}>
+                      {item}
+                    </ExpectationsListItem>
+                  ))}
+                </ExpectationsList>
+              </ExpectationsSection>
+            </div>
+          </OpportunityDetailsContainer>
+          <DescriptionSection Mobile={true} Expanded={isExpanded}>
+            <h3>Position Description</h3>
+            <p>
+              {isExpanded
+                ? position.description
+                : `${position.description.substring(0, 320)}...`}
+            </p>
+          </DescriptionSection>
+          <ButtonsSection expanded={isExpanded} Mobile={false}>
+            <Button
+              color='SonicSilver'
+              onClick={() => setIsExpanded((prev) => !prev)}
+            >
+              {`${isExpanded ? 'Collapse Description' : 'Full Description'}`}
+            </Button>
+            <Link
+              href={`/${projectSlug}/apply?position=${position.title}`}
+              passHref
+            >
+              <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
+            </Link>
+          </ButtonsSection>
+        </CommitmentContainer>
       </Section>
     </Container>
   );

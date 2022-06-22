@@ -54,7 +54,7 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           </CardsContainer>
         </BoxContainer>
       </FeaturedProductsSection>
-      <BoxContainer paddingHorizontal={19} paddingVertical={32}>
+      <BoxContainer paddingHorizontal={20} paddingVertical={32}>
         <FilteringComponent projects={projects} opportunities={opportunities} />
       </BoxContainer>
     </Wrapper>

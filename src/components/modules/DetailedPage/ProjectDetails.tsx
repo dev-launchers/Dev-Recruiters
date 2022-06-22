@@ -89,7 +89,9 @@ export default function ProjectDetails({ project }: Props) {
                     <p key={elIndex}>{element}</p>
                   ))}
                 <CardButton onClick={() => handleExpand(title)}>
-                  Read Full Description
+                  {expanded.some((x) => x === title)
+                    ? 'Collapse Description'
+                    : 'Read Full Description'}
                 </CardButton>
               </CardContent>
             </Card>
@@ -115,7 +117,7 @@ export default function ProjectDetails({ project }: Props) {
                 dedicated to preparing people from diverse backgrounds to tackle
                 future-proof careers. We are made up of people just like you.
               </p>
-              <CardButton>Read Full Description</CardButton>
+              <CardButton></CardButton>
             </CardContent>
           </Card> */}
         </CardWrapper>
