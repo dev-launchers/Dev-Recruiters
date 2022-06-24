@@ -91,7 +91,7 @@ export default function ProjectDetails({ project }: Props) {
                 <CardButton onClick={() => handleExpand(title)}>
                   {expanded.some((x) => x === title)
                     ? 'Collapse Description'
-                    : 'Read Full Description'}
+                    : 'Expand Description'}
                 </CardButton>
               </CardContent>
             </Card>

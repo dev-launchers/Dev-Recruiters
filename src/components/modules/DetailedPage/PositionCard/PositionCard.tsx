@@ -142,7 +142,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
               color='SonicSilver'
               onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {`${isExpanded ? 'Collapse Description' : 'Full Description'}`}
+              {`${isExpanded ? 'Collapse Description' : 'Expand Description'}`}
             </Button>
             <Link
               href={`/${projectSlug}/apply?position=${position.title}`}
