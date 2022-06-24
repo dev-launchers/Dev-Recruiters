@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Opportunity } from 'src/models/opportunity';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 import {
   ApplyButton,
@@ -53,7 +56,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
         </LikeButton>
         <OpportunityInfoContainer>
           <TitleSection>
-            <h2>Web Developer </h2>
+            <h2>{position.title}</h2>
           </TitleSection>
           <PositionDetailsMobile>
             <p>{position.level}</p>
@@ -74,11 +77,36 @@ export default function PositionCard({ position, projectSlug }: Props) {
       <Section Mobile={true} color={'Light'}>
         <DescriptionSection Mobile={false} Expanded={isExpanded}>
           <h3>Position Description</h3>
-          <p>
+          {isExpanded ? (
+            <ReactMarkdown
+              components={{
+                // Map `h1` (`# heading`) to use `h2`s.
+                h1: 'h4',
+                // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
+              }}
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+            >
+              {position.description}
+            </ReactMarkdown>
+          ) : (
+            <ReactMarkdown
+              components={{
+                // Map `h1` (`# heading`) to use `h2`s.
+                h1: 'h4',
+                // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
+              }}
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+            >
+              {position.description.slice(0, position.description.length / 2)}
+            </ReactMarkdown>
+          )}
+          {/* <p>
             {isExpanded
               ? position.description
               : `${position.description.substring(0, 320)}...`}
-          </p>
+          </p> */}
         </DescriptionSection>
       </Section>
 
@@ -101,21 +129,13 @@ export default function PositionCard({ position, projectSlug }: Props) {
       <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
         <CommitmentContainer>
           <OpportunityDetailsContainer>
-            {/* <TagsSection>
-            <h4>Position Tags</h4>
-            <TagsList>
-              <TagsListItem color='Dark'>{position.level}</TagsListItem>
-              {position.skills.map((skill, index) => (
-                <TagsListItem color='Light' key={index}>
-                  {skill}
-                </TagsListItem>
-              ))}
-            </TagsList>
-          </TagsSection> */}
             <div>
               <CommitmentSection>
                 <h4>Time Commitment</h4>
-                <p>{position.commitmentHoursPerWeek}</p>
+                <div>
+                  <p>Min/Max</p>
+                  <p>{position.commitmentHoursPerWeek}</p>
+                </div>
               </CommitmentSection>
               <ExpectationsSection Expanded={isExpanded}>
                 <h4>Expectations</h4>

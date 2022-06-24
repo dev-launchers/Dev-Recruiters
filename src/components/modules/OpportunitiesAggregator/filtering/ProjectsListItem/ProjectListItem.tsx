@@ -37,7 +37,7 @@ export default function ProjectListItem({ project }: Props) {
         <DetailsSection>
           <DetailsWrapper>
             <PositionsContainer>
-              <Title>Positions Available / Levell</Title>
+              <Title>Positions Available / Level</Title>
               <ul>
                 {expanded
                   ? project.opportunities.map((opportunity) => (

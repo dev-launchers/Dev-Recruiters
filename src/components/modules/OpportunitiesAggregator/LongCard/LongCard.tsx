@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 import {
   Container,
   FooterCard,
   HeaderCard,
   TextBold,
-  Input,
+  Button,
   ButtonSection,
-} from "../LongCard/StyledLongCard";
+} from '../LongCard/StyledLongCard';
 
 export interface Props {
   description: string;
@@ -43,9 +43,9 @@ export default function LongCard({ description, details }: Props) {
           )}
         </FooterCard>
         <ButtonSection>
-          <Input onClick={() => setIsExpanded(!isExpanded)}>
-            {isExpanded ? "Collapse Description" : "Expand Description"}
-          </Input>
+          <Button onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? 'Collapse Description' : 'Expand Description'}
+          </Button>
         </ButtonSection>
       </Container>
     </>

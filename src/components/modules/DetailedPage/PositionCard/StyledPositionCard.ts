@@ -124,8 +124,7 @@ export const DescriptionSection = styled.div<{
 
 export const OpportunityDetailsContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: row;
+  
   margin: 0 auto;
   font-family: ${(props) => props.theme.fonts.normal};
   font-size: 1rem;
@@ -178,7 +177,7 @@ export const TagsListItem = styled.li<{ color: sectionTheme }>`
   filter: ${({ theme }) =>
     `drop-shadow(0px 0.18rem 0.18rem ${theme.colors.BlackT38})`};
 
-  border-radius: 1.8rem;
+  border-radius: 1.8125rem;
   font-family: ${(props) => props.theme.fonts.normal};
   font-weight: 400;
   font-size: 14px;
@@ -190,6 +189,10 @@ export const CommitmentSection = styled.div`
   margin-right: auto;
   min-width: 50%;
   padding: 0 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   & h4 {
     font-style: normal;
     font-size: 1rem;
@@ -200,9 +203,11 @@ export const CommitmentSection = styled.div`
     font-family: ${(props) => props.theme.fonts.normal};
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 19px;
+    margin: 0;
     margin-left: 1rem;
+    text-align: center;
   }
   @media (max-width: 760px) {
     display: none;

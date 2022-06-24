@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { CardButton } from "../../DetailedPage/styledProjectDetails";
+import styled from 'styled-components';
+import { CardButton } from '../../DetailedPage/styledProjectDetails';
 export const Container = styled.div`
   font-size: 1.2rem;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
-  background-color: ${({ theme }) => theme.colors.NEUTRAL_6};
+  background-color: ${({ theme }) => theme.colors.White};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   flex-direction: column;
@@ -50,11 +50,13 @@ export const ButtonSection = styled.div`
   justify-content: flex-end;
 `;
 
-export const Input = styled.button`
-  margin: 0 0.5rem 1rem 1rem;
+export const Button = styled.button`
+  margin: 20px;
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 50px;
   background-color: ${({ theme }) => theme.colors.DarkElectricBlue};
   color: ${({ theme }) => theme.colors.White};
+  font-family: ${({ theme }) => theme.fonts.normal};
+  font-size: 15px;
 `;

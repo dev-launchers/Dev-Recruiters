@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const FiltersWrapper = styled.div`
-   padding-left: 0;
-  @media (min-width: 1024px){
+  padding-left: 0;
+  @media (min-width: 1024px) {
     padding-left: 2rem;
   }
   @media (max-width: 760px) {
-   
   }
 `;
 
@@ -48,7 +47,7 @@ export const Container = styled.div`
 `;
 
 export const Section = styled.div`
-width:auto
+  width: auto;
 `;
 
 export const CommitmentSection = styled.div`
@@ -57,7 +56,7 @@ export const CommitmentSection = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
-   
+
     background-color: ${({ theme }) => theme.colors.BrightGray};
     color: ${({ theme }) => theme.colors.Black};
     border-radius: 10px;
@@ -66,7 +65,7 @@ export const CommitmentSection = styled.div`
       color: ${({ theme }) => theme.colors.Black};
     }
 
-    & #sliderContainer{
+    & #sliderContainer {
       margin: 0 auto;
       width: 100M;
     }
@@ -74,28 +73,25 @@ export const CommitmentSection = styled.div`
 `;
 
 export const DropDownContainer = styled.div`
- // display: flex;
-  //flex-direction: row;
-  display: grid; 
-  grid-template-columns: repeat(1, minmax(0, 1fr)); 
+  display: flex;
+  flex-direction: row;
+
+  //grid-template-columns: repeat(1, minmax(0, 1fr));
   width: 100%;
   column-gap: 1.25rem;
   row-gap: 10px;
 
-  
-
-  grid-template-columns: repeat(3, minmax(0, 1fr)); 
-  & #projectType{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  & #projectType {
+    width: 100%;
     max-width: 220px;
-    
   }
 
-  & #positions{
+  & #positions {
     max-width: 208px;
-    
   }
 
-  & #level{
+  & #level {
     max-width: 116px;
   }
 
@@ -103,14 +99,17 @@ export const DropDownContainer = styled.div`
     display: none;
   }
 
-  @media (max-width: 1024px) { 
-    & #projectType,  #positions, #level{
-    width:100%;
-    max-width:none
+  @media (max-width: 1110px) {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    
+    & #level,
+    #positions,
+    #projectType {
+      width: 100%;
+      max-width: none;
+    }
   }
-  grid-template-columns: repeat(1, minmax(0, 1fr)); 
- 
- }
 `;
 
 export const ChipsList = styled.ul`

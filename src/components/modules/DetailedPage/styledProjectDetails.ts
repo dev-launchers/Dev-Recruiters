@@ -94,7 +94,7 @@ export const CardButton = styled.button`
   padding: 12px 15px;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 11px;
   border: none;
   background: ${({ theme }) => theme.colors.DarkElectricBlue};
