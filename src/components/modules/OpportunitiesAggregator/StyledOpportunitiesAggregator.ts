@@ -47,6 +47,12 @@ export const FeaturedProductsSection = styled.div`
   position: relative;
   margin-top: 1rem;
   padding-block: 1.2rem;
+
+  .cards {
+    .slick-arrow {
+      display: none !important;
+    }
+  }
 `;
 
 export const FeaturedProducts = styled.div`
