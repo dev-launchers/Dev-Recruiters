@@ -88,9 +88,9 @@ export default function PositionCard({ position, projectSlug }: Props) {
             <h4>Position Tags</h4>
             <TagsList>
               <TagsListItem color='Dark'>{position.level}</TagsListItem>
-              {position.skills.map((skill, index) => (
+              {position?.skills?.map((skill, index) => (
                 <TagsListItem color='Light' key={index}>
-                  {skill}
+                  {skill?.interest}
                 </TagsListItem>
               ))}
             </TagsList>
