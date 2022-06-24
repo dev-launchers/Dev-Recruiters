@@ -21,7 +21,10 @@ import {
   TextArea,
   ErrorMsg,
 } from "./styledSignupForm";
-import { useState } from "react";
+
+interface FormFields extends Omit<NewApplicant, "level"> {
+  level: NewApplicant['level'] | "";
+}
 
 export default function SignUpForm() {
   const SignupSchema = Yup.object().shape({
@@ -37,13 +40,13 @@ export default function SignUpForm() {
 
   const router = useRouter();
   const { userData } = useUserDataContext();
-  const Formik = useFormik({
+  const Formik = useFormik<FormFields>({
     initialValues: {
       discordUsername: "",
       name: "",
       email: "",
       age: 0,
-      level: 0,
+      level: "",
       accepted: false,
       commitment: 0,
       extraInfo: "",
@@ -56,13 +59,12 @@ export default function SignUpForm() {
       project: router.query.slug as string,
       skills: [{ skill: "" }],
     },
-    onSubmit: (
-      values: NewApplicant,
-      { setSubmitting }: FormikHelpers<NewApplicant>
-    ) => {
+    onSubmit: (values: NewApplicant, { setSubmitting }: FormikHelpers<NewApplicant>) => {
       setSubmitting(true);
       agent.Applicant.post({
         ...values,
+        //@ts-ignore
+        level: values.level.toLowerCase(),
         skills: values.skills
           .toString()
           .split(",")
@@ -160,7 +162,7 @@ export default function SignUpForm() {
             <Radio
               id="level"
               name="level"
-              value={SkillLevel[1]}
+              value={SkillLevel[0]}
               onChange={Formik.handleChange}
             />
           </Row>
@@ -170,7 +172,7 @@ export default function SignUpForm() {
             <Radio
               name="level"
               id="level"
-              value={SkillLevel[2]}
+              value={SkillLevel[1]}
               onChange={Formik.handleChange}
             />
           </Row>
@@ -179,7 +181,7 @@ export default function SignUpForm() {
             <Radio
               id="level"
               name="level"
-              value={SkillLevel[3]}
+              value={SkillLevel[2]}
               onChange={Formik.handleChange}
             />
           </Row>
