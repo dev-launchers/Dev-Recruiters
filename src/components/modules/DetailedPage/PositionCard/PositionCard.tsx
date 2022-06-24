@@ -27,7 +27,7 @@ import {
 
 interface Props {
   projectSlug: string;
-  position: any;
+  position: Opportunity;
 }
 
 export default function PositionCard({ position, projectSlug }: Props) {
@@ -122,7 +122,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
                 <ExpectationsList>
                   {position.expectations.map((item, index) => (
                     <ExpectationsListItem key={index}>
-                      {item}
+                      {item.expectation}
                     </ExpectationsListItem>
                   ))}
                 </ExpectationsList>
