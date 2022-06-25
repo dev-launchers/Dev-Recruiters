@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { FormikHelpers, useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
+import { NewApplicant } from "@models/newApplicant";
+import { SkillLevel } from "@models/level";
+import agent from "@utils/agent";
 import {
   Label,
   Column,
@@ -19,41 +21,18 @@ import {
   TextArea,
   ErrorMsg,
 } from "./styledSignupForm";
-import { useState } from "react";
 
-enum Level {
-  beginner = 1,
-  intermediate = 2,
-  advanced = 3,
-}
-
-interface FormProps {
-  username: string;
-  name: string;
-  email: string;
-  age: number;
-  skills: string;
-  commitment: number;
-  additionalInfo: string;
-  resumeUrl: string;
-  experience: string;
-  reason: string;
-  accepted: boolean;
-  zip: number;
-  role: string;
-  id: string;
-  project: string;
+interface FormFields extends Omit<NewApplicant, "level"> {
+  level: NewApplicant['level'] | "";
 }
 
 export default function SignUpForm() {
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Name is Required"),
-    username: Yup.string().required("Username is Required"),
     email: Yup.string().email("Invalid email").required("Email is Required"),
     age: Yup.number().required("Age is Required"),
-    skills: Yup.string().required("Skills are Required"),
     commitment: Yup.number().required("Commitment is Required"),
-    additionalInfo: Yup.string().required("Additional Info is Required"),
+    extraInfo: Yup.string().required("Additional Info is Required"),
     experience: Yup.string().required("Experience is Required"),
     reason: Yup.string().required("Reason is Required"),
     accepted: Yup.boolean().required("Acceptance is Required"),
@@ -61,46 +40,39 @@ export default function SignUpForm() {
 
   const router = useRouter();
   const { userData } = useUserDataContext();
-  const Formik = useFormik({
+  const Formik = useFormik<FormFields>({
     initialValues: {
-      username: "",
+      discordUsername: "",
       name: "",
       email: "",
       age: 0,
-      skills: "",
+      level: "",
       accepted: false,
       commitment: 0,
-      additionalInfo: "",
-      resumeUrl: "",
+      extraInfo: "",
+      portfolioLink: "",
       experience: "",
       reason: "",
       zip: 0,
       role: router.query.position as string,
       id: router.query.slug as string,
-      project: router.query.slug,
+      project: router.query.slug as string,
+      skills: [{ skill: "" }],
     },
-    onSubmit: (
-      values: FormProps,
-      { setSubmitting }: FormikHelpers<FormProps>
-    ) => {
+    onSubmit: (values: NewApplicant, { setSubmitting }: FormikHelpers<NewApplicant>) => {
       setSubmitting(true);
-      axios
-        .post(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/applicants`,
-          {
-            ...values,
-            skills: values.skills.split(",").map((skill) => ({ skill: skill })),
-            role: router.query.position as string,
-            project: router.query.project,
-            id: router.query.slug as string,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          }
-        )
+      agent.Applicant.post({
+        ...values,
+        //@ts-ignore
+        level: values.level.toLowerCase(),
+        skills: values.skills
+          .toString()
+          .split(",")
+          .map((skill) => ({ skill: skill })),
+        role: router.query.position as string,
+        project: router.query.project as string,
+        id: router.query.slug as string,
+      })
         .then((res) => {
           if (res.status === 200) {
             setSubmitting(false);
@@ -108,13 +80,14 @@ export default function SignUpForm() {
           }
           setSubmitting(false);
           console.log(res);
+          console.log(values.skills);
         })
         .catch((error) => {
           setSubmitting(false);
           console.log(error);
-          console.log(error.response);
-          console.log(error.response.data);
-          console.log(error.response.status);
+          // console.log(error.response);
+          // console.log(error.response.data);
+          // console.log(error.response.status);
         });
     },
     validationSchema: SignupSchema,
@@ -151,10 +124,11 @@ export default function SignUpForm() {
           their progress.
         </Label>
 
-        <Input id="username" name="username" onChange={Formik.handleChange} />
-        {Formik.errors.username && Formik.touched.username ? (
-          <ErrorMsg>{Formik.errors.username}</ErrorMsg>
-        ) : null}
+        <Input
+          id="discordUsername"
+          name="discordUsername"
+          onChange={Formik.handleChange}
+        />
         <Label>Your Email</Label>
 
         <Input
@@ -175,42 +149,39 @@ export default function SignUpForm() {
           What are your Skills? <br />
           (Please enter skills separated with a comma and a space)
         </Label>
-
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
-        {Formik.errors.skills && Formik.touched.skills ? (
-          <ErrorMsg>{Formik.errors.skills}</ErrorMsg>
-        ) : null}
-        <Label>What is your Level of Skill?</Label>
+
+        <Label>What is your level of experience?</Label>
 
         <RadioWrapper>
           <CheckboxLabel>
             <Label>Please Choose One</Label>
           </CheckboxLabel>
           <Row>
-            <Label htmlFor="beginner">Beginner</Label>
+            <Label>Beginner</Label>
             <Radio
-              id="beginner"
+              id="level"
               name="level"
-              value={Level[1]}
+              value={SkillLevel[0]}
               onChange={Formik.handleChange}
             />
           </Row>
 
           <Row>
-            <Label htmlFor="intermediate">Intermediate</Label>
+            <Label>Intermediate</Label>
             <Radio
               name="level"
-              id="intermediate"
-              value={Level[2]}
+              id="level"
+              value={SkillLevel[1]}
               onChange={Formik.handleChange}
             />
           </Row>
           <Row>
-            <Label htmlFor="advanced">Advanced</Label>
+            <Label>Advanced</Label>
             <Radio
-              id="advanced"
+              id="level"
               name="level"
-              value={Level[3]}
+              value={SkillLevel[2]}
               onChange={Formik.handleChange}
             />
           </Row>
@@ -249,19 +220,19 @@ export default function SignUpForm() {
         ) : null}
         <Label>Anything else you want to share with us?</Label>
         <TextArea
-          id="additionalInfo"
-          name="additionalInfo"
+          id="extraInfo"
+          name="extraInfo"
           onChange={Formik.handleChange}
         />
-        {Formik.errors.additionalInfo && Formik.touched.additionalInfo ? (
-          <ErrorMsg>{Formik.errors.additionalInfo}</ErrorMsg>
+        {Formik.errors.extraInfo && Formik.touched.extraInfo ? (
+          <ErrorMsg>{Formik.errors.extraInfo}</ErrorMsg>
         ) : null}
         <Label> Optional - Upload your Resume or Portfolio</Label>
         <Row>
           <Label> Link from the Web </Label>
           <Input
-            id="resumeUrl"
-            name="resumeUrl"
+            id="portfolioLink"
+            name="portfolioLink"
             onChange={Formik.handleChange}
           />
         </Row>
