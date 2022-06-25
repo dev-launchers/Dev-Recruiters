@@ -5,10 +5,10 @@ import {
   FeaturedProducts,
   CardsContainer,
   HeadingContainer,
-} from "@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator";
+} from '@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator';
 
-import * as React from "react";
-import ShortCard from "./ShortCard";
+import * as React from 'react';
+import ShortCard from './ShortCard';
 import FilteringComponent, {
   FilteringComponentProps,
 } from "./filtering/FilteringComponent";
@@ -50,10 +50,10 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           <span>Find a Project to Join!</span>
         </HeadingContainer>
       </BoxContainer>
-      <div id="background" />
+      <div id='background' />
       <FeaturedProductsSection>
         <BoxContainer
-          bgColor="BlackCoral"
+          bgColor='BlackCoral'
           paddingVertical={35}
           paddingHorizontal={16}
         >
@@ -82,7 +82,7 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           </Slider>
         </BoxContainer>
       </FeaturedProductsSection>
-      <BoxContainer paddingHorizontal={19} paddingVertical={32}>
+      <BoxContainer paddingHorizontal={20} paddingVertical={32}>
         <FilteringComponent projects={projects} opportunities={opportunities} />
       </BoxContainer>
     </Wrapper>

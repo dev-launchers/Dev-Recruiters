@@ -88,7 +88,7 @@ export const FeaturedProducts = styled.div`
 
 export const CardsContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;

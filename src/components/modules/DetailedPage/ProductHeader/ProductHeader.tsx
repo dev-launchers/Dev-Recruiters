@@ -1,5 +1,5 @@
-import React from "react";
-import Avatar from "@images/avatar.png";
+import React from 'react';
+import Avatar from '@images/avatar.png';
 import {
   HeaderBlock,
   ColumnTitle,
@@ -12,15 +12,15 @@ import {
   Commitment,
   Vision,
   UsernameAvatar,
-} from "./StyledProductHeader";
-import { Leader2, Project, Team } from "@models/project";
+} from './StyledProductHeader';
+import { Leader2, Project, Team } from '@models/project';
 
 interface ProductHeaderProps
   extends Pick<
     Project,
-    "title" | "vision" | "isPlatform" | "interests" | "published_at" | "team"
+    'title' | 'vision' | 'isPlatform' | 'interests' | 'published_at' | 'team'
   > {
-  type: "Product" | "Project" | "Idea";
+  type: 'Product' | 'Project' | 'Idea';
   userAvatar?: string;
   minCommitmentHours: number;
   maxCommitmentHours: number;
@@ -41,16 +41,16 @@ export default function ProductHeader({
   const teamLeader = (team?.leaders[0] as Partial<Leader2>)?.username;
   const formattedDate = new Date(published_at)
     .toDateString()
-    .split(" ")
+    .split(' ')
     .slice(1)
-    .join(" ");
+    .join(' ');
   return (
     <HeaderBlock>
       <Row>
         <Column bgColor="#30363E" w="614px" style={{ flexGrow: 1 }}>
           <ColumnTitle>{title}</ColumnTitle>
           <Type>
-            {isPlatform ? "Platform" : "Independent"} {type}
+            {isPlatform ? 'Platform' : 'Independent'} {type}
           </Type>
           <Vision>{vision}</Vision>
         </Column>
@@ -66,7 +66,7 @@ export default function ProductHeader({
           <ColumnTitle style={{ width: "100%", textAlign: "left" }}>
             {type} Lead
           </ColumnTitle>
-          <Row style={{ marginTop: "1rem" }}>
+          <Row style={{ marginTop: '1rem' }}>
             <UsernameAvatar src={Avatar} />
             <Username>{teamLeader}</Username>
           </Row>

@@ -9,7 +9,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let projects: Project[] = [];
   let opportunities: Opportunity[] = [];
   try {
-    const result = await agent.Projects.list(new URLSearchParams("_publicationState=live"));
+    const result = await agent.Projects.list(
+      new URLSearchParams("_publicationState=live")
+    );
     projects = result.filter((p: Project) => p.opportunities.length > 0);
   } catch (error) {
     console.error("An error occurred while fetching Projects", error);
@@ -77,7 +79,10 @@ const IndexPage = ({ projects, opportunities }: Props) => (
       />
       <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
     </Head>
-    <OpportunitiesAggregator projects={projects} opportunities={opportunities}/>
+    <OpportunitiesAggregator
+      projects={projects}
+      opportunities={opportunities}
+    />
   </>
 );
 

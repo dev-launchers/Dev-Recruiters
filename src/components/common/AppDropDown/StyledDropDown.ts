@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   position: relative;
   width: auto;
-  min-width: 200px;
+  //min-width: 200px;
 `;
 
 export const Icon = styled.svg`
@@ -53,6 +53,7 @@ export const ContentContainer = styled.div<DropdownProps>`
   margin-top: 7px;
   height: auto;
   width: 100%;
+  min-width: 200px;
   color: white;
   border-radius: 7.59234px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
