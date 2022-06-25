@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: block;
@@ -51,6 +51,11 @@ export const FeaturedProductsSection = styled.div`
   .cards {
     .slick-arrow {
       display: none !important;
+    }
+    .slick-dots li button {
+      :before {
+        font-size: 0.5rem;
+      }
     }
   }
 `;
