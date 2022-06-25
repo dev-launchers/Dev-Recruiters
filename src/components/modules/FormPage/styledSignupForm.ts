@@ -93,6 +93,11 @@ export const Statement = styled.p`
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
   font-size: ${({ theme }) => theme.fontSizes.small};
+  width: 50%;
+  align-text: left;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 export const ErrorMsg = styled.div`
   color: ${({ theme }) => theme.colors.White};
@@ -120,4 +125,15 @@ export const Header = styled.h1`
   margin-bottom: 1rem;
   text-align: center;
   flex-grow: 1;
+`;
+
+export const Tooltip = styled.p`
+  color: ${({ theme }) => theme.colors.SilverSand};
+  font-family: ${({ theme }) => theme.fonts.normal};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  width: 50%;
+  text-align: left;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;

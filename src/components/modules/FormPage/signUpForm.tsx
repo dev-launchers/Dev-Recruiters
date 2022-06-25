@@ -21,10 +21,11 @@ import {
   TextArea,
   ErrorMsg,
   Header,
+  Tooltip,
 } from "./styledSignupForm";
 
 interface FormFields extends Omit<NewApplicant, "level"> {
-  level: NewApplicant['level'] | "";
+  level: NewApplicant["level"] | "";
 }
 
 export default function SignUpForm() {
@@ -60,7 +61,10 @@ export default function SignUpForm() {
       project: router.query.slug as string,
       skills: [{ skill: "" }],
     },
-    onSubmit: (values: NewApplicant, { setSubmitting }: FormikHelpers<NewApplicant>) => {
+    onSubmit: (
+      values: NewApplicant,
+      { setSubmitting }: FormikHelpers<NewApplicant>
+    ) => {
       setSubmitting(true);
       agent.Applicant.post({
         ...values,
@@ -108,11 +112,14 @@ export default function SignUpForm() {
       </Row>
       <Column>
         <Label>
-          Your Full Legal Name <br />
-          Why do I need to enter my full legal name?
-          <br />
-          At Dev Launchers part of our on-boarding process involves a background
-          check as a precaution to keep our members safe!
+          Your Full Legal Name*
+          <Tooltip>
+            Why do I need to enter my full legal name?
+            <br />
+            <br />
+            At Dev Launchers part of our on-boarding process involves a
+            background check as a precaution to keep our members safe!
+          </Tooltip>
         </Label>
 
         <Input id="name" name="name" onChange={Formik.handleChange} />
@@ -121,11 +128,13 @@ export default function SignUpForm() {
         ) : null}
         <Label>
           Discord Name
-          <br />
-          Why do I need to enter my Discord name?
-          <br />
-          We use Discord to connect with our members and to provide feedback on
-          their progress.
+          <Tooltip>
+            Why do I need to enter my Discord name?
+            <br />
+            <br />
+            We use Discord to connect with our members and to provide feedback
+            on their progress.
+          </Tooltip>
         </Label>
 
         <Input
@@ -133,7 +142,7 @@ export default function SignUpForm() {
           name="discordUsername"
           onChange={Formik.handleChange}
         />
-        <Label>Your Email</Label>
+        <Label>Your Email*</Label>
 
         <Input
           id="email"
@@ -144,7 +153,7 @@ export default function SignUpForm() {
         {Formik.errors.email && Formik.touched.email ? (
           <ErrorMsg>{Formik.errors.email}</ErrorMsg>
         ) : null}
-        <Label>What is your Age?</Label>
+        <Label>What is your Age?*</Label>
         <Input id="age" name="age" onChange={Formik.handleChange} />
         {Formik.errors.age && Formik.touched.age ? (
           <ErrorMsg>{Formik.errors.age}</ErrorMsg>
@@ -190,7 +199,7 @@ export default function SignUpForm() {
             />
           </Row>
         </RadioWrapper>
-        <Label>How many hours are you looking to commit per week?</Label>
+        <Label>How many hours are you looking to commit per week?*</Label>
         {Formik.errors.commitment && Formik.touched.commitment ? (
           <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
         ) : null}
@@ -204,7 +213,7 @@ export default function SignUpForm() {
         </div>
         <Label>
           Please briefly describe any relevant experience you have in
-          development or design.
+          development or design.*
         </Label>
         <TextArea
           id="experience"
@@ -222,7 +231,7 @@ export default function SignUpForm() {
         {Formik.errors.reason && Formik.touched.reason ? (
           <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
         ) : null}
-        <Label>Anything else you want to share with us?</Label>
+        <Label>Anything else you want to share with us?*</Label>
         <TextArea
           id="extraInfo"
           name="extraInfo"
@@ -253,7 +262,7 @@ export default function SignUpForm() {
             name="accepted"
             onChange={Formik.handleChange}
           />
-          <Label>I Understand</Label>
+          <Label>I Understand*</Label>
         </Row>
         {Formik.errors.accepted && Formik.touched.accepted ? (
           <ErrorMsg>{Formik.errors.accepted}</ErrorMsg>
