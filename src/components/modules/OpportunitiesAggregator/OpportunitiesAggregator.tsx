@@ -5,10 +5,10 @@ import {
   FeaturedProducts,
   CardsContainer,
   HeadingContainer,
-} from '@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator';
+} from "@components/modules/OpportunitiesAggregator/StyledOpportunitiesAggregator";
 
-import * as React from 'react';
-import ShortCard from './ShortCard';
+import * as React from "react";
+import ShortCard from "./ShortCard";
 import FilteringComponent, {
   FilteringComponentProps,
 } from "./filtering/FilteringComponent";
@@ -50,10 +50,10 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
           <span>Find a Project to Join!</span>
         </HeadingContainer>
       </BoxContainer>
-      <div id='background' />
+      <div id="background" />
       <FeaturedProductsSection>
         <BoxContainer
-          bgColor='BlackCoral'
+          bgColor="BlackCoral"
           paddingVertical={35}
           paddingHorizontal={16}
         >
@@ -64,21 +64,18 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
             ref={(slider) => (customSlider.current = slider)}
             {...settings}
           >
-            {projects.map(
-              (data, index) =>
-                data.opportunities.length >= 2 && (
-                  <ShortCard
-                    key={data.id}
-                    title={data.title}
-                    id={data.id}
-                    catchPhrase={data.catchPhrase}
-                    commitmentLevel={data.commitmentLevel}
-                    isPlatform={data.isPlatform}
-                    opportunities={data.opportunities}
-                    slug={data.slug}
-                  />
-                )
-            )}
+            {projects.map((project) => (
+              <ShortCard
+                key={project.id}
+                title={project.title}
+                id={project.id}
+                catchPhrase={project.catchPhrase}
+                commitmentLevel={project.commitmentLevel}
+                isPlatform={project.isPlatform}
+                opportunities={project.opportunities}
+                slug={project.slug}
+              />
+            ))}
           </Slider>
         </BoxContainer>
       </FeaturedProductsSection>

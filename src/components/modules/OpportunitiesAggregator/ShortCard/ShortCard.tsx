@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Id } from "react-toastify";
 import { useTheme } from "styled-components";
 
-
 import {
   Container,
   CardHeader,
@@ -38,6 +37,8 @@ const ShortCard = ({
   | "slug"
 >) => {
   const theme = useTheme();
+  const opp =
+    opportunities.length > 3 ? opportunities.slice(-3) : opportunities;
   return (
     <>
       <Container key={id}>
@@ -53,9 +54,9 @@ const ShortCard = ({
             <CategoryContainer>
               <Category>Position Available</Category>
               <ul>
-                {opportunities.map((e) => (
-                  <Content as={PositionContent} key={e.id}>
-                    <span>{e.title}</span>
+                {opp.map((position) => (
+                  <Content as={PositionContent} key={position.id}>
+                    <span>{position.title}</span>
                   </Content>
                 ))}
               </ul>
