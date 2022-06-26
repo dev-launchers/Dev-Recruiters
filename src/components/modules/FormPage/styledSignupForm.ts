@@ -57,12 +57,8 @@ export const Column = styled.div`
 export const RadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.BlackCoral};
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 
 export const CheckboxLabel = styled.label`
@@ -100,7 +96,7 @@ export const Statement = styled.p`
   }
 `;
 export const ErrorMsg = styled.div`
-  color: ${({ theme }) => theme.colors.White};
+  color: ${({ theme }) => theme.colors.SilverSand};
   font-family: ${({ theme }) => theme.fonts.normal};
   font-size: ${({ theme }) => theme.fontSizes.small};
   margin-left: 1rem;

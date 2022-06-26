@@ -6,6 +6,7 @@ import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
 import { NewApplicant } from "@models/newApplicant";
 import { SkillLevel } from "@models/level";
+import Collapsible from "@components/common/Collapsible";
 import agent from "@utils/agent";
 import {
   Label,
@@ -23,6 +24,7 @@ import {
   Header,
   Tooltip,
 } from "./styledSignupForm";
+import theme from "@styles/theme";
 
 interface FormFields extends Omit<NewApplicant, "level"> {
   level: NewApplicant["level"] | "";
@@ -165,40 +167,41 @@ export default function SignUpForm() {
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 
         <Label>What is your level of experience?</Label>
+        <Collapsible
+          title="Please Choose One"
+          transparent={theme.colors.SilverSand}
+        >
+          <RadioWrapper>
+            <Row>
+              <Label>Beginner</Label>
+              <Radio
+                id="level"
+                name="level"
+                value={SkillLevel[0]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
 
-        <RadioWrapper>
-          <CheckboxLabel>
-            <Label>Please Choose One</Label>
-          </CheckboxLabel>
-          <Row>
-            <Label>Beginner</Label>
-            <Radio
-              id="level"
-              name="level"
-              value={SkillLevel[0]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-
-          <Row>
-            <Label>Intermediate</Label>
-            <Radio
-              name="level"
-              id="level"
-              value={SkillLevel[1]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-          <Row>
-            <Label>Advanced</Label>
-            <Radio
-              id="level"
-              name="level"
-              value={SkillLevel[2]}
-              onChange={Formik.handleChange}
-            />
-          </Row>
-        </RadioWrapper>
+            <Row>
+              <Label>Intermediate</Label>
+              <Radio
+                name="level"
+                id="level"
+                value={SkillLevel[1]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
+            <Row>
+              <Label>Advanced</Label>
+              <Radio
+                id="level"
+                name="level"
+                value={SkillLevel[2]}
+                onChange={Formik.handleChange}
+              />
+            </Row>
+          </RadioWrapper>
+        </Collapsible>
         <Label>How many hours are you looking to commit per week?*</Label>
         {Formik.errors.commitment && Formik.touched.commitment ? (
           <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
