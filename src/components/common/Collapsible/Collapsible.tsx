@@ -4,7 +4,7 @@ import { Button, Container, Content } from './StyledCollapsible';
 
 interface Props {
   title: string;
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
   transparent?: boolean;
   bgButton?: string;
   bgContent?: string;
