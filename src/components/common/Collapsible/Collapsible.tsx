@@ -1,18 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
 import { Button, Container, Content } from './StyledCollapsible';
 
 interface Props {
   title: string;
   children: React.ReactElement;
   transparent?: boolean;
+  bgButton?: string;
+  bgContent?: string;
 }
 
 export default function Collapsible({
   title,
   children,
   transparent = false,
+  bgButton,
+  bgContent,
 }: Props) {
   const [collapsed, setCollapsed] = useState(true);
   const ref = useRef<HTMLDivElement>();
@@ -27,6 +30,7 @@ export default function Collapsible({
   return (
     <Container>
       <Button
+        background={bgContent}
         transparent={transparent}
         collapsed={collapsed}
         onClick={() => setCollapsed((prev) => !prev)}
@@ -47,6 +51,7 @@ export default function Collapsible({
         </svg>
       </Button>
       <Content
+        background={bgContent}
         transparent={transparent}
         ref={ref}
         collapsed={collapsed}
