@@ -32,14 +32,14 @@ export const HeaderCard = styled.div`
 
 export const FooterCard = styled.div`
   padding: 1rem 2.5rem;
-  width: 50%;
-
+  
   /* & > li {
     margin-left: 3rem;
     list-style: disc !important;
   } */
-  // @media (orientation: portrait) {
-  // }
+  @media (orientation: landscape) {
+    width: 50%; 
+  }
 `;
 
 export const TextBold = styled.div`
