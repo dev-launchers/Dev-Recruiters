@@ -24,7 +24,6 @@ import {
   Header,
   Tooltip,
 } from "./styledSignupForm";
-import theme from "@styles/theme";
 
 interface FormFields extends Omit<NewApplicant, "level"> {
   level: NewApplicant["level"] | "";
@@ -68,6 +67,7 @@ export default function SignUpForm() {
       { setSubmitting }: FormikHelpers<NewApplicant>
     ) => {
       setSubmitting(true);
+      
       agent.Applicant.post({
         ...values,
         //@ts-ignore
@@ -81,13 +81,8 @@ export default function SignUpForm() {
         id: router.query.slug as string,
       })
         .then((res) => {
-          if (res.status === 200) {
-            setSubmitting(false);
-            router.push("/confirmation");
-          }
           setSubmitting(false);
-          console.log(res);
-          console.log(values.skills);
+          router.push("/confirmation");
         })
         .catch((error) => {
           setSubmitting(false);
