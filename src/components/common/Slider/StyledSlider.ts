@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 19.6406rem;
   box-sizing: border-box;
   position: relative;
   font-family: ${({ theme }) => theme.fonts.normal};
@@ -11,10 +10,6 @@ export const Container = styled.div`
   //padding: 0 2rem;
   user-select: none;
   min-width: 315px;
-
-  @media (max-width: 760px) {
-    color: ${({ theme }) => theme.colors.Black};
-  }
 `;
 export const SliderInputContainer = styled.div`
   box-sizing: border-box;
