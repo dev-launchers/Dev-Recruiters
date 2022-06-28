@@ -93,9 +93,9 @@ export const FileUpload = styled.input.attrs({ type: "file" })`
 export const Statement = styled.p`
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: 0.9rem;
   width: 50%;
-  align-text: left;
+  text-align: left;
   @media (max-width: 768px) {
     width: 90%;
   }
