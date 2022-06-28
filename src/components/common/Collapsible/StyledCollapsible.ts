@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 export const Button = styled.button<{ collapsed: boolean; transparent?: boolean }>`
   background-color: ${({ theme, transparent }) =>
-        transparent ? 'transparent' : theme.colors.CoolGrey};
+        transparent ? 'transparent' : theme.colors.SilverSand};
   color: ${({ theme, transparent }) =>
         transparent ? 'inherit' : theme.colors.Black};
 
@@ -49,13 +49,13 @@ export const Content = styled.div<{
     transparent?: boolean;
 }>`
   height: ${({ collapsed, elemHeight }) =>
-        collapsed ? '0' : `${elemHeight}px`};
-  padding: ${({ collapsed }) => (collapsed ? '0 18px' : '10px 18px')};
+        collapsed ? '0' : `auto`};
+  /* padding: ${({ collapsed }) => (collapsed ? '0 18px' : '10px 18px')}; */
   overflow: hidden;
   color: ${({ theme, transparent }) =>
         transparent ? 'inherit' : theme.colors.Black};
   background-color: ${({ theme, transparent }) =>
-        transparent ? 'transparent' : theme.colors.White};
+        transparent ? 'transparent' : theme.colors.BlackCoral};
   transform-origin: top;
   transition: all 300ms 100ms ease-out;
 `;

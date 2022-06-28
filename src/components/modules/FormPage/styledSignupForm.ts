@@ -57,7 +57,6 @@ export const Column = styled.div`
 export const RadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.BlackCoral};
 `;
 
