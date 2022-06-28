@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const FiltersWrapper = styled.div`
-  padding-left: 2rem;
+  padding-left: 0;
+  @media (min-width: 1024px) {
+    padding-left: 2rem;
+  }
   @media (max-width: 760px) {
-    padding-left: 0;
   }
 `;
 
@@ -44,12 +46,17 @@ export const Container = styled.div`
   }
 `;
 
-export const Section = styled.div``;
+export const Section = styled.div`
+  width: auto;
+`;
 
 export const CommitmentSection = styled.div`
   box-sizing: border-box;
   @media (max-width: 760px) {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+
     background-color: ${({ theme }) => theme.colors.BrightGray};
     color: ${({ theme }) => theme.colors.Black};
     border-radius: 10px;
@@ -57,21 +64,57 @@ export const CommitmentSection = styled.div`
     & p {
       color: ${({ theme }) => theme.colors.Black};
     }
+
+    & #sliderContainer {
+      margin: 0 auto;
+      width: 100M;
+    }
   }
 `;
 
 export const DropDownContainer = styled.div`
   display: flex;
   flex-direction: row;
-  column-gap: 1.5rem;
+
+  //grid-template-columns: repeat(1, minmax(0, 1fr));
+  width: 100%;
+  column-gap: 1.25rem;
+  row-gap: 10px;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  & #projectType {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  & #positions {
+    max-width: 208px;
+  }
+
+  & #level {
+    max-width: 116px;
+  }
 
   @media (max-width: 760px) {
     display: none;
+  }
+
+  @media (max-width: 1110px) {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    
+    & #level,
+    #positions,
+    #projectType {
+      width: 100%;
+      max-width: none;
+    }
   }
 `;
 
 export const ChipsList = styled.ul`
   padding-top: 2rem;
+  padding-bottom: 2rem;
   padding-left: 0;
   list-style: none;
   display: flex;

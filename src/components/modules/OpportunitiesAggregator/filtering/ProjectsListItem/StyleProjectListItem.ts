@@ -85,7 +85,7 @@ export const DetailsSection = styled.div`
   display: block;
   height: 100%;
   box-sizing: border-box;
-  padding: 20px 28px;
+  //padding: 20px 20px;
   padding-bottom: 0;
   @media (max-width: 760px) {
     padding: 0;
@@ -108,6 +108,7 @@ export const Title = styled.h2`
 export const PositionsContainer = styled.div`
   & ul {
     list-style-type: disc;
+    padding-left: 1rem;
   }
 
   & li {
@@ -122,7 +123,7 @@ export const PositionTitle = styled.span`
 `;
 
 export const PositionLevel = styled.span`
-  padding-left: 0.5rem;
+  //padding-left: 0.5rem;
   font-style: italic;
   font-weight: 300;
 `;

@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+
 import {
   Container,
   FooterCard,
   HeaderCard,
   TextBold,
-  Input,
+  Button,
   ButtonSection,
-} from "../LongCard/StyledLongCard";
+} from '../LongCard/StyledLongCard';
 
 export interface Props {
-  longCard: {
-    description: string;
-    details: {
-      id: number;
-      detail: string;
-    }[];
-  };
+  description: string;
+  details: string;
 }
 
-export default function LongCard({ longCard }: Props) {
+export default function LongCard({ description, details }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
@@ -28,17 +27,25 @@ export default function LongCard({ longCard }: Props) {
         </HeaderCard>
         <FooterCard>
           {isExpanded ? (
-            longCard.details.map((data, index) => (
-              <li key={index}>{data.detail}</li>
-            ))
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+            >
+              {details}
+            </ReactMarkdown>
           ) : (
-            <li>{longCard.details[0].detail}</li>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+            >
+              {details.slice(0, details.length / 2)}
+            </ReactMarkdown>
           )}
         </FooterCard>
         <ButtonSection>
-          <Input onClick={() => setIsExpanded(!isExpanded)}>
-            <a>{isExpanded ? "Collapse" : "Read Full"} Description</a>
-          </Input>
+          <Button onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? 'Collapse Description' : 'Expand Description'}
+          </Button>
         </ButtonSection>
       </Container>
     </>

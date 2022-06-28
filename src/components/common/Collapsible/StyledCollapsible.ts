@@ -10,7 +10,7 @@ export const Button = styled.button<{ collapsed: boolean; transparent?: boolean 
   background-color: ${({ theme, transparent }) =>
         transparent ? 'transparent' : theme.colors.SilverSand};
   color: ${({ theme, transparent }) =>
-        transparent ? 'inherit' : theme.colors.Black};
+    transparent ? 'inherit' : theme.colors.Black};
 
   cursor: pointer;
   padding: 18px;
@@ -29,8 +29,8 @@ export const Button = styled.button<{ collapsed: boolean; transparent?: boolean 
     width: 40px;
     transition: transform 300ms ease-in;
     ${({ collapsed }) =>
-        !collapsed &&
-        css`
+    !collapsed &&
+    css`
         transform: rotate(180deg);
       `};
   }
@@ -43,11 +43,12 @@ export const Button = styled.button<{ collapsed: boolean; transparent?: boolean 
     line-height: 20px;
   }
 `;
-export const Content = styled.div<{
-    collapsed: boolean;
-    elemHeight: number;
-    transparent?: boolean;
-}>`
+export const Content = styled.div < {
+  collapsed: boolean,
+  elemHeight: number,
+  transparent?: boolean,
+  background?: string
+}> `
   height: ${({ collapsed, elemHeight }) =>
         collapsed ? '0' : `auto`};
   /* padding: ${({ collapsed }) => (collapsed ? '0 18px' : '10px 18px')}; */

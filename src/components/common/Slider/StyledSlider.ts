@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  // min-width: 350px;
+  max-width: 19.6406rem;
   box-sizing: border-box;
   position: relative;
   font-family: ${({ theme }) => theme.fonts.normal};

@@ -84,6 +84,7 @@ export const SectionTitle = styled.p`
   margin: 0;
   padding: 0;
   margin-bottom: 15px;
+  white-space: nowrap;
 `;
 
 export const FilterButton = styled.button`

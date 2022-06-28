@@ -13,6 +13,7 @@ import CheckboxList from '../CheckboxList';
  */
 
 interface Props {
+  id?: any;
   title: string;
   keyProperty?: any | undefined;
   valueProperty?: any | undefined;
