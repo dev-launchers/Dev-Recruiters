@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 435px;
+  min-height: 272.375px;
   margin: 0.5% auto;
   border-radius: 35px 35px 30px 30px;
   display: flex;
@@ -24,6 +25,8 @@ export const CardHeader = styled.div`
 export const CardBottom = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.NEUTRAL_4};
   color: ${({ theme }) => theme.colors.Black};
   text-align: center;
