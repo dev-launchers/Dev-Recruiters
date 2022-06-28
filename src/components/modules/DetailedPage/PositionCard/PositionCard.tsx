@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { useState } from 'react';
-import { Opportunity } from 'src/models/opportunity';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
+import Link from "next/link";
+import { useState } from "react";
+import { Opportunity } from "src/models/opportunity";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 import {
   ApplyButton,
@@ -26,7 +26,7 @@ import {
   TagsSection,
   TitleSection,
   CommitmentContainer,
-} from './StyledPositionCard';
+} from "./StyledPositionCard";
 
 interface Props {
   projectSlug: string;
@@ -38,19 +38,19 @@ export default function PositionCard({ position, projectSlug }: Props) {
   const [liked, setLiked] = useState(false);
   return (
     <Container>
-      <Section Mobile={false} color={'Dark'}>
+      <Section Mobile={false} color={"Dark"}>
         <LikeButton onClick={() => setLiked((prev) => !prev)}>
           <Icon
             Active={liked}
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-5 w-5'
-            viewBox='0 0 20 20'
-            fill='currentColor'
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
             <path
-              fillRule='evenodd'
-              d='M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z'
-              clipRule='evenodd'
+              fillRule="evenodd"
+              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+              clipRule="evenodd"
             />
           </Icon>
         </LikeButton>
@@ -64,24 +64,31 @@ export default function PositionCard({ position, projectSlug }: Props) {
           </PositionDetailsMobile>
           <ButtonsSection Mobile={true}>
             <Button
-              color='SonicSilver'
+              color="SonicSilver"
               onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {`${isExpanded ? 'Collapse Details' : 'Position details'}`}
+              {`${isExpanded ? "Collapse Details" : "Position details"}`}
             </Button>
-            <Button color='DarkElectricBlue'>Apply</Button>
+            <Link
+              href={`/${projectSlug}/apply?position=${position.title}`}
+              passHref
+            >
+              <Button as="a" color="DarkElectricBlue">
+                Apply
+              </Button>
+            </Link>
           </ButtonsSection>
         </OpportunityInfoContainer>
       </Section>
 
-      <Section Mobile={true} color={'Light'}>
+      <Section Mobile={true} color={"Light"}>
         <DescriptionSection Mobile={false} Expanded={isExpanded}>
           <h3>Position Description</h3>
           {isExpanded ? (
             <ReactMarkdown
               components={{
                 // Map `h1` (`# heading`) to use `h2`s.
-                h1: 'h4',
+                h1: "h4",
                 // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
               }}
               rehypePlugins={[rehypeRaw]}
@@ -93,7 +100,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
             <ReactMarkdown
               components={{
                 // Map `h1` (`# heading`) to use `h2`s.
-                h1: 'h4',
+                h1: "h4",
                 // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
               }}
               remarkPlugins={[remarkGfm]}
@@ -110,14 +117,14 @@ export default function PositionCard({ position, projectSlug }: Props) {
         </DescriptionSection>
       </Section>
 
-      <Section Mobile={true} color={'Light'}>
+      <Section Mobile={true} color={"Light"}>
         <OpportunityDetailsContainer>
           <TagsSection>
             <h4>Position Tags</h4>
             <TagsList>
-              <TagsListItem color='Dark'>{position.level}</TagsListItem>
+              <TagsListItem color="Dark">{position.level}</TagsListItem>
               {position?.skills?.map((skill, index) => (
-                <TagsListItem color='Light' key={index}>
+                <TagsListItem color="Light" key={index}>
                   {skill?.interest}
                 </TagsListItem>
               ))}
@@ -126,7 +133,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
         </OpportunityDetailsContainer>
       </Section>
 
-      <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
+      <Section Mobile={true} color={"Light"} Expanded={isExpanded}>
         <CommitmentContainer>
           <OpportunityDetailsContainer>
             <div>
@@ -159,16 +166,16 @@ export default function PositionCard({ position, projectSlug }: Props) {
           </DescriptionSection>
           <ButtonsSection expanded={isExpanded} Mobile={false}>
             <Button
-              color='SonicSilver'
+              color="SonicSilver"
               onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {`${isExpanded ? 'Collapse Description' : 'Expand Description'}`}
+              {`${isExpanded ? "Collapse Description" : "Expand Description"}`}
             </Button>
             <Link
               href={`/${projectSlug}/apply?position=${position.title}`}
               passHref
             >
-              <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
+              <ApplyButton color="DarkElectricBlue">Apply</ApplyButton>
             </Link>
           </ButtonsSection>
         </CommitmentContainer>
