@@ -3,9 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: relative;
   display: flex;
+ 
   background: ${(props) => props.theme.colors.White};
   border-radius: 1.8rem;
   overflow: hidden;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
 `;
 
 type sectionTheme = 'Dark' | 'Light';
@@ -15,6 +20,10 @@ export const Section = styled.div<{
   Mobile: boolean;
   Expanded?: boolean;
 }>`
+/* display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start; */
   width: ${(props) => (props.color === 'Dark' ? 'auto' : '100%')};
   border-radius: 1.8rem;
   padding: 1rem;
@@ -30,7 +39,7 @@ export const Section = styled.div<{
 
   @media (max-width: 760px) {
     display: ${({ Mobile, Expanded }) =>
-      Mobile ? (Expanded ? 'block' : 'none') : 'block'};
+    Mobile ? (Expanded ? 'block' : 'none') : 'block'};
     width: 100%;
   }
 `;
@@ -50,8 +59,10 @@ export const OpportunityInfoContainer = styled.div`
 
 export const TitleSection = styled.div`
   padding: 0;
+  padding: 10px 16.5px;
 
-  width: 10rem;
+
+  min-width: 10rem;
 
   & h2 {
     font-family: ${(props) => props.theme.fonts.normal};
@@ -72,7 +83,8 @@ export const DescriptionSection = styled.div<{
   Mobile: boolean;
 }>`
   display: ${(props) => (props.Mobile ? 'none' : 'block')};
-
+  height: 100%;
+  
   & h3 {
     font-family: ${(props) => props.theme.fonts.normal};
     font-style: normal;
@@ -112,10 +124,10 @@ export const DescriptionSection = styled.div<{
 
 export const OpportunityDetailsContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin: auto auto;
+  
+  margin: 0 auto;
   font-family: ${(props) => props.theme.fonts.normal};
+  font-size: 1rem;
 
   & h4 {
     font-style: normal;
@@ -145,12 +157,13 @@ export const TagsList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 6px; 
   padding: 0;
   margin: 0;
 `;
 export const TagsListItem = styled.li<{ color: sectionTheme }>`
-  padding: 0.2rem 1rem;
-  margin: 0 3px;
+  padding: 0  8px;
+ 
   background-color: ${(props) =>
     props.color === 'Dark'
       ? props.theme.colors.OuterSpace
@@ -164,8 +177,7 @@ export const TagsListItem = styled.li<{ color: sectionTheme }>`
   filter: ${({ theme }) =>
     `drop-shadow(0px 0.18rem 0.18rem ${theme.colors.BlackT38})`};
 
-  border-radius: 1.8rem;
-
+  border-radius: 1.8125rem;
   font-family: ${(props) => props.theme.fonts.normal};
   font-weight: 400;
   font-size: 14px;
@@ -177,6 +189,10 @@ export const CommitmentSection = styled.div`
   margin-right: auto;
   min-width: 50%;
   padding: 0 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   & h4 {
     font-style: normal;
     font-size: 1rem;
@@ -187,9 +203,11 @@ export const CommitmentSection = styled.div`
     font-family: ${(props) => props.theme.fonts.normal};
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 19px;
+    margin: 0;
     margin-left: 1rem;
+    text-align: center;
   }
   @media (max-width: 760px) {
     display: none;
@@ -203,9 +221,13 @@ export const ExpectationsSection = styled.div<{ Expanded: boolean }>`
 
   padding: 0 1rem;
   & h4 {
-    font-weight: 400;
-    font-size: 15.9138px;
+    font-family: ${(props) => props.theme.fonts.normal};
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 22px;
+    margin: 0;
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 760px) {
@@ -215,16 +237,19 @@ export const ExpectationsSection = styled.div<{ Expanded: boolean }>`
 `;
 
 export const ExpectationsList = styled.ul`
+
   list-style: disc;
   padding: 0;
   margin: 0;
-  margin-left: 1.25rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
 `;
 export const ExpectationsListItem = styled.li`
+padding: 5px ;
   font-family: ${(props) => props.theme.fonts.normal};
   font-style: normal;
   font-weight: 400;
-  font-size: 13.0204px;
+  //font-size: 13.0204px;
   line-height: 9px;
 `;
 
@@ -233,11 +258,15 @@ export const ButtonsSection = styled.div<{
   expanded?: boolean;
 }>`
   display: ${(props) => (props.Mobile ? 'none' : 'flex')};
-  width: 100%;
-  flex-direction: ${({ expanded }) => (expanded ? 'row-reverse' : 'row')};
-  justify-content: flex-end;
   margin-left: auto;
-  margin-top: 2rem;
+  margin-top: auto;
+  justify-content: flex-end;
+  width: 100%;
+  //flex-direction: ${({ expanded }) => (expanded ? 'row-reverse' : 'row')};
+  
+  align-items: center;
+  //align-self: flex-end;
+  
 
   @media (max-width: 760px) {
     display: ${(props) => (props.Mobile ? 'flex' : 'none')};
@@ -254,7 +283,8 @@ export const Button = styled.button<{ color?: string }>`
       : props.theme.colors.OuterSpace};
   color: ${(props) => props.theme.colors.White};
   border-radius: 1.8rem;
-  padding: 0.75rem;
+  padding: 10px 20px;
+  white-space: nowrap;
   margin: 0 3px;
   border: none;
   font-style: normal;
@@ -265,7 +295,7 @@ export const Button = styled.button<{ color?: string }>`
 `;
 
 export const PositionDetailsMobile = styled.div`
-  padding: 0 12px;
+  padding: 0 1rem;
   & p {
     font-family: ${(props) => props.theme.fonts.normal};
     font-style: normal;
@@ -308,7 +338,8 @@ export const ApplyButton = styled.a<{ color?: string }>`
       : props.theme.colors.OuterSpace};
   color: ${(props) => props.theme.colors.White};
   border-radius: 1.8rem;
-  padding: 0.75rem 2rem;
+  padding: 10px 20px;
+  white-space: nowrap;
   margin: 0 3px;
   border: none;
   font-style: normal;
@@ -316,4 +347,11 @@ export const ApplyButton = styled.a<{ color?: string }>`
   font-size: 0.9rem;
   line-height: 11px;
   text-align: center;
+`;
+
+export const CommitmentContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height:100%
 `;

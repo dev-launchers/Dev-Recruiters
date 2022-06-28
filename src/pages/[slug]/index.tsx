@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { Project } from "../../models/project";
 import ProjectDetails from "@components/modules/DetailedPage";
+import { Opportunity } from "@models/opportunity";
 
 export const getProjectsSlugs = async () => {
   const res = await fetch(
@@ -29,20 +30,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(
+  const projectsRes = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/projects/${params.slug}`
   );
-  const project: Project = await res.json();
+  const opportuntiesRes = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/opportunities?projects.slug=${params.slug}`
+  );
+
+  const project: any = await projectsRes.json();
+  const opportunites: any = await opportuntiesRes.json();
 
   return {
     props: {
-      project,
+      project: project,
+      opportunites: opportunites,
     },
     revalidate: 10,
   };
 };
 
-export default function DetailedPage({ project }: {project: Project}) {
+export default function DetailedPage({
+  project,
+  opportunites,
+}: {
+  project: Project;
+  opportunites: Opportunity[];
+}) {
   return (
     <>
       <Head>
@@ -81,7 +94,7 @@ export default function DetailedPage({ project }: {project: Project}) {
         />
         <meta content="#ff7f0e" data-react-helmet="true" name="theme-color" />
       </Head>
-      <ProjectDetails project={project} />
+      <ProjectDetails project={project} opportunites={opportunites} />
     </>
   );
 }

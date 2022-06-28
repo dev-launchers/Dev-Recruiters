@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Opportunity } from 'src/models/opportunity';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 import {
   ApplyButton,
@@ -22,11 +25,12 @@ import {
   TagsListItem,
   TagsSection,
   TitleSection,
+  CommitmentContainer,
 } from './StyledPositionCard';
 
 interface Props {
   projectSlug: string;
-  position: any;
+  position: Opportunity;
 }
 
 export default function PositionCard({ position, projectSlug }: Props) {
@@ -52,7 +56,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
         </LikeButton>
         <OpportunityInfoContainer>
           <TitleSection>
-            <h2>Web Developer </h2>
+            <h2>{position.title}</h2>
           </TitleSection>
           <PositionDetailsMobile>
             <p>{position.level}</p>
@@ -63,7 +67,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
               color='SonicSilver'
               onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {`${isExpanded ? 'Collapse' : 'Display'} Positions`}
+              {`${isExpanded ? 'Collapse Details' : 'Position details'}`}
             </Button>
             <Button color='DarkElectricBlue'>Apply</Button>
           </ButtonsSection>
@@ -73,11 +77,36 @@ export default function PositionCard({ position, projectSlug }: Props) {
       <Section Mobile={true} color={'Light'}>
         <DescriptionSection Mobile={false} Expanded={isExpanded}>
           <h3>Position Description</h3>
-          <p>
+          {isExpanded ? (
+            <ReactMarkdown
+              components={{
+                // Map `h1` (`# heading`) to use `h2`s.
+                h1: 'h4',
+                // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
+              }}
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+            >
+              {position.description}
+            </ReactMarkdown>
+          ) : (
+            <ReactMarkdown
+              components={{
+                // Map `h1` (`# heading`) to use `h2`s.
+                h1: 'h4',
+                // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
+              }}
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+            >
+              {position.description.slice(0, position.description.length / 2)}
+            </ReactMarkdown>
+          )}
+          {/* <p>
             {isExpanded
               ? position.description
               : `${position.description.substring(0, 320)}...`}
-          </p>
+          </p> */}
         </DescriptionSection>
       </Section>
 
@@ -87,9 +116,9 @@ export default function PositionCard({ position, projectSlug }: Props) {
             <h4>Position Tags</h4>
             <TagsList>
               <TagsListItem color='Dark'>{position.level}</TagsListItem>
-              {position.skills.map((skill, index) => (
+              {position?.skills?.map((skill, index) => (
                 <TagsListItem color='Light' key={index}>
-                  {skill}
+                  {skill?.interest}
                 </TagsListItem>
               ))}
             </TagsList>
@@ -98,61 +127,51 @@ export default function PositionCard({ position, projectSlug }: Props) {
       </Section>
 
       <Section Mobile={true} color={'Light'} Expanded={isExpanded}>
-        <OpportunityDetailsContainer>
-          {/* <TagsSection>
-            <h4>Position Tags</h4>
-            <TagsList>
-              <TagsListItem color='Dark'>{position.level}</TagsListItem>
-              {position.skills.map((skill, index) => (
-                <TagsListItem color='Light' key={index}>
-                  {skill}
-                </TagsListItem>
-              ))}
-            </TagsList>
-          </TagsSection> */}
-          <div>
-            <CommitmentSection>
-              <h4>Time Commitment</h4>
-              <p>{position.commitmentHoursPerWeek}</p>
-            </CommitmentSection>
-            <ExpectationsSection Expanded={isExpanded}>
-              <h4>Expectations</h4>
-              <ExpectationsList>
-                {position.expectations.map((item, index) => (
-                  <ExpectationsListItem key={index}>
-                    {item}
-                  </ExpectationsListItem>
-                ))}
-              </ExpectationsList>
-            </ExpectationsSection>
-          </div>
-        </OpportunityDetailsContainer>
-        <DescriptionSection Mobile={true} Expanded={isExpanded}>
-          <h3>Position Description</h3>
-          <p>
-            {isExpanded
-              ? position.description
-              : `${position.description.substring(0, 320)}...`}
-          </p>
-        </DescriptionSection>
-        <ButtonsSection expanded={isExpanded} Mobile={false}>
-          <Button
-            color='SonicSilver'
-            onClick={() => setIsExpanded((prev) => !prev)}
-          >
-            {`${
-              isExpanded
-                ? 'Collapse Position'
-                : 'Expectations and Full Description'
-            }`}
-          </Button>
-          <Link
-            href={`/${projectSlug}/apply?position=${position.title}`}
-            passHref
-          >
-            <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
-          </Link>
-        </ButtonsSection>
+        <CommitmentContainer>
+          <OpportunityDetailsContainer>
+            <div>
+              <CommitmentSection>
+                <h4>Time Commitment</h4>
+                <div>
+                  <p>Min/Max</p>
+                  <p>{position.commitmentHoursPerWeek}</p>
+                </div>
+              </CommitmentSection>
+              <ExpectationsSection Expanded={isExpanded}>
+                <h4>Expectations</h4>
+                <ExpectationsList>
+                  {position.expectations.map((item, index) => (
+                    <ExpectationsListItem key={index}>
+                      {item.expectation}
+                    </ExpectationsListItem>
+                  ))}
+                </ExpectationsList>
+              </ExpectationsSection>
+            </div>
+          </OpportunityDetailsContainer>
+          <DescriptionSection Mobile={true} Expanded={isExpanded}>
+            <h3>Position Description</h3>
+            <p>
+              {isExpanded
+                ? position.description
+                : `${position.description.substring(0, 320)}...`}
+            </p>
+          </DescriptionSection>
+          <ButtonsSection expanded={isExpanded} Mobile={false}>
+            <Button
+              color='SonicSilver'
+              onClick={() => setIsExpanded((prev) => !prev)}
+            >
+              {`${isExpanded ? 'Collapse Description' : 'Expand Description'}`}
+            </Button>
+            <Link
+              href={`/${projectSlug}/apply?position=${position.title}`}
+              passHref
+            >
+              <ApplyButton color='DarkElectricBlue'>Apply</ApplyButton>
+            </Link>
+          </ButtonsSection>
+        </CommitmentContainer>
       </Section>
     </Container>
   );

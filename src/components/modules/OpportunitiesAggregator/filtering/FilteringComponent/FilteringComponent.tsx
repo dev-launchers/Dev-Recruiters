@@ -29,8 +29,11 @@ export interface FilteringComponentProps {
   opportunities: Opportunity[];
 }
 
-export default function FilteringComponent({ projects, opportunities }: FilteringComponentProps) {
-  const [commitment, setCommitment] = useState({ min: 0, max: 0 });
+export default function FilteringComponent({
+  projects,
+  opportunities,
+}: FilteringComponentProps) {
+  //const [commitment, setCommitment] = useState({ min: 0, max: 0 });
   const [Mobile, setMobile] = useState(false);
   const [visible, setVisible] = useState(false);
   const {
@@ -57,23 +60,23 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
     }
   }, [projects, fetchProjects, projectsLoaded]);
 
-  const getCommitments = useCallback((opportunities: Opportunity[]) => {
-    const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
-    if (commitments && commitments.length > 0) {
-      const min = Math.min(...commitments);
-      const max = Math.max(...commitments);
-      setCommitment({ min, max });
+  // const getCommitments = useCallback((opportunities: Opportunity[]) => {
+  //   const commitments = opportunities.map((o) => o.commitmentHoursPerWeek);
+  //   if (commitments && commitments.length > 0) {
+  //     const min = Math.min(...commitments);
+  //     const max = Math.max(...commitments);
+  //     setCommitment({ min, max });
 
-      //setCommitmentsLoaded(true);
-    }
-  }, []);
+  //     //setCommitmentsLoaded(true);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (opportunities && !opportunitiesLoaded) {
       fetchOpportunities(opportunities);
-      getCommitments(opportunities);
+      // getCommitments(opportunities);
     }
-  }, [opportunities, fetchOpportunities, opportunitiesLoaded, getCommitments]);
+  }, [opportunities, fetchOpportunities, opportunitiesLoaded]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -90,30 +93,35 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
             <Section>
               <SectionTitle>Filters</SectionTitle>
               <DropDownContainer>
-                <CheckboxDropdown
-                  title='Platform or Independent'
-                  keyProperty={'name'}
-                  items={EnumToArray(ProjectType)}
-                  onChange={handlePlatformChange}
-                  selectedItems={projectParams.projectType}
-                />
-                {opportunitiesLoaded && (
+                <div id='projectType'>
                   <CheckboxDropdown
-                    title='Positions'
-                    keyProperty={'title'}
-                    items={opportunities}
-                    onChange={handleOpportunityChange}
-                    selectedItems={projectParams.opportunity}
+                    title='Platform or Independent'
+                    keyProperty={'name'}
+                    items={EnumToArray(ProjectType)}
+                    onChange={handlePlatformChange}
+                    selectedItems={projectParams.projectType}
                   />
+                </div>
+                {opportunitiesLoaded && (
+                  <div id='positions'>
+                    <CheckboxDropdown
+                      title='Positions'
+                      keyProperty={'title'}
+                      items={opportunities}
+                      onChange={handleOpportunityChange}
+                      selectedItems={projectParams.opportunity}
+                    />
+                  </div>
                 )}
-
-                <CheckboxDropdown
-                  title='Level'
-                  keyProperty={'name'}
-                  items={EnumToArray(SkillLevel)}
-                  onChange={handleLevelChange}
-                  selectedItems={projectParams.level}
-                />
+                <div id='level'>
+                  <CheckboxDropdown
+                    title='Level'
+                    keyProperty={'name'}
+                    items={EnumToArray(SkillLevel)}
+                    onChange={handleLevelChange}
+                    selectedItems={projectParams.level}
+                  />
+                </div>
               </DropDownContainer>
             </Section>
           ) : (
@@ -131,20 +139,20 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
             </>
           )}
 
-          {commitment.max > 0 && (
-            <CommitmentSection>
-              <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+          <CommitmentSection>
+            <SectionTitle Mobile={true}>Time Commitment</SectionTitle>
+            <div id='sliderContainer'>
               <Slider
-                min={commitment.min ?? 0}
-                max={commitment.max ?? 10}
+                min={3}
+                max={10}
                 onChange={(value) =>
                   handleCommitmentChange({ min: 1, max: value })
                 }
                 prefix='hrs'
-                initialValue={commitment.max}
+                initialValue={10}
               />
-            </CommitmentSection>
-          )}
+            </div>
+          </CommitmentSection>
           <FilterMenuButton onClick={() => setVisible(true)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -187,7 +195,23 @@ export default function FilteringComponent({ projects, opportunities }: Filterin
                 key={`platform${index + 1}`}
               >
                 <p>{item}</p>
-                <button type='button'>x</button>
+                <button type='button'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    height={7}
+                    width={7}
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M6 18L18 6M6 6l12 12'
+                    />
+                  </svg>
+                </button>
               </ChipsListItem>
             ))}
           {projectParams.level &&

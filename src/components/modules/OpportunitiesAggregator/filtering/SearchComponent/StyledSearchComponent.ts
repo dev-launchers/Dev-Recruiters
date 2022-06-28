@@ -10,7 +10,7 @@ export const Container = styled.div`
   padding: 0 12px;
   border-radius: 1.25rem;
   height: 32.78px;
-  width: 20.625rem;
+  width: 15.4688rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media (max-width: 760px) {
     height: 40px;

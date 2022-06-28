@@ -5,7 +5,7 @@ export const List = styled.ul`
   padding: 0;
   display: block;
   margin: 0;
-  width: 100%;
+  width: auto;
   list-style-type: none;
 `;
 

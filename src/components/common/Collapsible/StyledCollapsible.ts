@@ -6,11 +6,11 @@ export const Container = styled.div`
   overflow: hidden;
   margin: 10px;
 `;
-export const Button = styled.button<{ collapsed: boolean; transparent?: boolean }>`
-  background-color: ${({ theme, transparent }) =>
-        transparent ? 'transparent' : theme.colors.SilverSand};
+export const Button = styled.button<{ collapsed: boolean; transparent?: boolean, background?: string }>`
+  background-color: ${({ theme, transparent, background }) =>
+    transparent ? 'transparent' : background ? theme.colors[background] : theme.colors.CoolGrey};
   color: ${({ theme, transparent }) =>
-        transparent ? 'inherit' : theme.colors.Black};
+    transparent ? 'inherit' : theme.colors.Black};
 
   cursor: pointer;
   padding: 18px;
@@ -29,8 +29,8 @@ export const Button = styled.button<{ collapsed: boolean; transparent?: boolean 
     width: 40px;
     transition: transform 300ms ease-in;
     ${({ collapsed }) =>
-        !collapsed &&
-        css`
+    !collapsed &&
+    css`
         transform: rotate(180deg);
       `};
   }
@@ -43,19 +43,20 @@ export const Button = styled.button<{ collapsed: boolean; transparent?: boolean 
     line-height: 20px;
   }
 `;
-export const Content = styled.div<{
-    collapsed: boolean;
-    elemHeight: number;
-    transparent?: boolean;
-}>`
+export const Content = styled.div < {
+  collapsed: boolean,
+  elemHeight: number,
+  transparent?: boolean,
+  background?: string
+}> `
   height: ${({ collapsed, elemHeight }) =>
-        collapsed ? '0' : `auto`};
-  /* padding: ${({ collapsed }) => (collapsed ? '0 18px' : '10px 18px')}; */
+    collapsed ? '0' : `${elemHeight}px`};
+  padding: ${({ collapsed }) => (collapsed ? '0 18px' : '10px 18px')};
   overflow: hidden;
   color: ${({ theme, transparent }) =>
-        transparent ? 'inherit' : theme.colors.Black};
-  background-color: ${({ theme, transparent }) =>
-        transparent ? 'transparent' : theme.colors.BlackCoral};
+    transparent ? 'inherit' : theme.colors.Black};
+  background-color: ${({ theme, transparent, background }) =>
+    transparent ? 'transparent' : background ? theme.colors[background] : theme.colors.White};
   transform-origin: top;
   transition: all 300ms 100ms ease-out;
 `;

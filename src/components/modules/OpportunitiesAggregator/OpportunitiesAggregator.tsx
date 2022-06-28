@@ -13,13 +13,35 @@ import FilteringComponent, {
   FilteringComponentProps,
 } from "./filtering/FilteringComponent";
 import BoxContainer from "@components/common/BoxContainer";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 interface Props extends FilteringComponentProps {}
 
 const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
   projects,
   opportunities,
 }) => {
+  const customSlider = React.useRef();
+  const settings = {
+    className: "cards",
+    dots: true,
+    speed: 1000,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    responsive: [
+      {
+        breakpoint: 1535,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+    ],
+  };
   return (
     <Wrapper>
       <BoxContainer paddingVertical={32}>
@@ -33,28 +55,31 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
         <BoxContainer
           bgColor="BlackCoral"
           paddingVertical={35}
-          paddingHorizontal={20}
+          paddingHorizontal={16}
         >
           <FeaturedProducts>
             <h2>Featured Products</h2>
           </FeaturedProducts>
-          <CardsContainer>
-            {projects.map((data, index) => (
+          <Slider
+            ref={(slider) => (customSlider.current = slider)}
+            {...settings}
+          >
+            {projects.map((project) => (
               <ShortCard
-                key={index}
-                title={data.title}
-                id={data.id}
-                catchPhrase={data.catchPhrase}
-                commitmentLevel={data.commitmentLevel}
-                isPlatform={data.isPlatform}
-                opportunities={data.opportunities}
-                slug={data.slug}
+                key={project.id}
+                title={project.title}
+                id={project.id}
+                catchPhrase={project.catchPhrase}
+                commitmentLevel={project.commitmentLevel}
+                isPlatform={project.isPlatform}
+                opportunities={project.opportunities}
+                slug={project.slug}
               />
             ))}
-          </CardsContainer>
+          </Slider>
         </BoxContainer>
       </FeaturedProductsSection>
-      <BoxContainer paddingHorizontal={19} paddingVertical={32}>
+      <BoxContainer paddingHorizontal={20} paddingVertical={32}>
         <FilteringComponent projects={projects} opportunities={opportunities} />
       </BoxContainer>
     </Wrapper>

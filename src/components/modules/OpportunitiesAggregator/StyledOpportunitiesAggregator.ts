@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: block;
@@ -47,6 +47,17 @@ export const FeaturedProductsSection = styled.div`
   position: relative;
   margin-top: 1rem;
   padding-block: 1.2rem;
+
+  .cards {
+    .slick-arrow {
+      display: none !important;
+    }
+    .slick-dots li button {
+      :before {
+        font-size: 0.5rem;
+      }
+    }
+  }
 `;
 
 export const FeaturedProducts = styled.div`
@@ -82,7 +93,7 @@ export const FeaturedProducts = styled.div`
 
 export const CardsContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
