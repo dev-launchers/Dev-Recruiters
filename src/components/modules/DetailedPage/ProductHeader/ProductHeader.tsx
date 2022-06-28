@@ -71,7 +71,14 @@ export default function ProductHeader({
           <ColumnTitle style={{ width: "100%", textAlign: "left" }}>
             {type} Lead
           </ColumnTitle>
-          <Row style={{ width: "100%", textAlign: "left", marginTop: "1rem" }}>
+          <Row
+            css={`
+              width: 100%;
+              text-align: left;
+              margin-top: 1rem;
+              gap: 0.5rem;
+            `}
+          >
             <UsernameAvatar src={Avatar} />
             <Username>{teamLeader}</Username>
           </Row>

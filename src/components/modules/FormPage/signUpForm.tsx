@@ -157,7 +157,13 @@ export default function SignUpForm() {
         ) : null}
         <Label>
           What are your Skills? <br />
-          <Tooltip>(Please enter skills separated with a comma and a space)</Tooltip>
+          <Tooltip
+            css={`
+              width: 100%;
+            `}
+          >
+            (Please enter skills separated with a comma and a space)
+          </Tooltip>
         </Label>
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 
@@ -224,7 +230,7 @@ export default function SignUpForm() {
         ) : null}
         <Label>
           Why would you like to be a Dev Launcher/ Volunteer? <br />
-          (This can help us guide you to meet your goals!)
+          <Tooltip>(This can help us guide you to meet your goals!)</Tooltip>
         </Label>
         <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
         {Formik.errors.reason && Formik.touched.reason ? (
@@ -261,7 +267,14 @@ export default function SignUpForm() {
             name="accepted"
             onChange={Formik.handleChange}
           />
-          <Label>I Understand*</Label>
+          <Label
+            css={`
+              font-size: 0.9rem;
+            `}
+            style={{ fontSize: "0.9rem" }}
+          >
+            I Understand*
+          </Label>
         </Row>
         {Formik.errors.accepted && Formik.touched.accepted ? (
           <ErrorMsg>{Formik.errors.accepted}</ErrorMsg>
