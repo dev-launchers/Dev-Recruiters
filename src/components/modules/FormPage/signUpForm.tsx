@@ -36,7 +36,7 @@ export default function SignUpForm() {
     email: Yup.string().email("Invalid email").required("Email is Required"),
     age: Yup.number().required("Age is Required"),
     commitment: Yup.number().required("Commitment is Required"),
-    extraInfo: Yup.string().required("Additional Info is Required"),
+    extraInfo: Yup.string(),
     experience: Yup.string().required("Experience is Required"),
     reason: Yup.string().required("Reason is Required"),
     accepted: Yup.boolean().required("Acceptance is Required"),
