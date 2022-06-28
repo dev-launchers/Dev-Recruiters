@@ -57,12 +57,7 @@ export const Column = styled.div`
 export const RadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
-  border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.BlackCoral};
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 
 export const CheckboxLabel = styled.label`
@@ -93,9 +88,14 @@ export const Statement = styled.p`
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.normal};
   font-size: ${({ theme }) => theme.fontSizes.small};
+  width: 50%;
+  align-text: left;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 export const ErrorMsg = styled.div`
-  color: ${({ theme }) => theme.colors.White};
+  color: ${({ theme }) => theme.colors.SilverSand};
   font-family: ${({ theme }) => theme.fonts.normal};
   font-size: ${({ theme }) => theme.fontSizes.small};
   margin-left: 1rem;
@@ -108,6 +108,26 @@ export const SubmitButton = styled.button.attrs({ type: "submit" })`
   width: 15%;
   color: ${({ theme }) => theme.colors.Black};
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+export const Header = styled.h1`
+  color: ${({ theme }) => theme.colors.White};
+  border-bottom: none;
+  font-family: ${({ theme }) => theme.fonts.headline};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  margin-bottom: 1rem;
+  text-align: center;
+  flex-grow: 1;
+`;
+
+export const Tooltip = styled.p`
+  color: ${({ theme }) => theme.colors.SilverSand};
+  font-family: ${({ theme }) => theme.fonts.normal};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  width: 50%;
+  text-align: left;
   @media (max-width: 768px) {
     width: 100%;
   }

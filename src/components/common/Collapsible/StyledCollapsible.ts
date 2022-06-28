@@ -1,3 +1,4 @@
+import { Theme } from "@styles/theme";
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`
@@ -6,7 +7,7 @@ export const Container = styled.div`
   overflow: hidden;
   margin: 10px;
 `;
-export const Button = styled.button<{ collapsed: boolean; transparent?: boolean, background?: string }>`
+export const Button = styled.button<{ collapsed: boolean; transparent?: boolean, background?: keyof Theme["colors"] }>`
   background-color: ${({ theme, transparent, background }) =>
     transparent ? 'transparent' : background ? theme.colors[background] : theme.colors.CoolGrey};
   color: ${({ theme, transparent }) =>
@@ -47,7 +48,7 @@ export const Content = styled.div < {
   collapsed: boolean,
   elemHeight: number,
   transparent?: boolean,
-  background?: string
+  background?: keyof Theme["colors"]
 }> `
   height: ${({ collapsed, elemHeight }) =>
     collapsed ? '0' : `${elemHeight}px`};
