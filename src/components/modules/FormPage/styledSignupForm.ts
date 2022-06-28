@@ -22,6 +22,7 @@ export const Input = styled.input<{ height?: string; width?: string }>`
   }
 `;
 export const TextArea = styled.textarea.attrs({ wrap: "hard" })`
+  resize: none;
   background-color: ${({ theme }) => theme.colors.SilverSand};
   height: 175.5px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
