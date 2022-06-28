@@ -35,7 +35,6 @@ export default function Slider({
   };
 
   return (
-    <div>
       <Container>
         <BubbleContainer>
           <Bubble newVal={getBubblePosition()}>
@@ -68,6 +67,5 @@ export default function Slider({
           </p>
         </LabelsContainer>
       </Container>
-    </div>
   );
 }
