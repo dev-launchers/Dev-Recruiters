@@ -132,7 +132,7 @@ export const Header = styled.h1`
 export const Tooltip = styled.p`
   color: ${({ theme }) => theme.colors.SilverSand};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: 1rem;
   width: 50%;
   text-align: left;
   @media (max-width: 768px) {
