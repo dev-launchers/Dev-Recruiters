@@ -34,6 +34,10 @@ export const FooterCard = styled.div`
   padding: 1rem 2.5rem;
   width: 50%;
 
+  p {
+    margin-left: 0.7rem;
+  }
+
   /* & > li {
     margin-left: 3rem;
     list-style: disc !important;
