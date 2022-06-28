@@ -54,6 +54,11 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  #commitment {
+    width: 40%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 `;
 export const RadioWrapper = styled.div`
   display: flex;
