@@ -120,6 +120,7 @@ export const SubmitButton = styled.button.attrs({ type: "submit" })`
 `;
 export const Header = styled.h1`
   color: ${({ theme }) => theme.colors.White};
+  line-height: 3.5rem;
   border-bottom: none;
   font-family: ${({ theme }) => theme.fonts.headline};
   font-size: ${({ theme }) => theme.fontSizes.medium};
