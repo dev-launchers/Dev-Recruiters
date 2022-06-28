@@ -67,7 +67,7 @@ export default function SignUpForm() {
       { setSubmitting }: FormikHelpers<NewApplicant>
     ) => {
       setSubmitting(true);
-      
+
       agent.Applicant.post({
         ...values,
         //@ts-ignore
@@ -157,7 +157,7 @@ export default function SignUpForm() {
         ) : null}
         <Label>
           What are your Skills? <br />
-          (Please enter skills separated with a comma and a space)
+          <Tooltip>(Please enter skills separated with a comma and a space)</Tooltip>
         </Label>
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 

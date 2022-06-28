@@ -68,25 +68,21 @@ export const Username = styled.div`
   color: ${({ theme }) => theme.colors.SilverSand};
   font-size: 1.5rem;
   font-weight: 400;
-  margin-right: 1rem;
   line-height: 2.1875rem;
 `;
 export const UsernameAvatar = styled.img`
   width: 2.1875rem;
   height: 2.1875rem;
-  margin-right: 1rem;
 `;
 export const CreationDate = styled.div`
   color: ${({ theme }) => theme.colors.SilverSand};
   font-size: 1.5rem;
   font-weight: 400;
-  margin-right: 1rem;
   line-height: 2.1875rem;
 `;
 export const Commitment = styled.div`
   color: ${({ theme }) => theme.colors.SilverSand};
   font-size: 1.5rem;
   font-weight: 400;
-  margin-right: 1rem;
   line-height: 2.1875rem;
 `;
