@@ -84,6 +84,7 @@ export const CardContent = styled.div`
     display: list-item;
     flex: 1 1 auto;
     height: 100%;
+    margin-left: 1rem;
   }
 `;
 
