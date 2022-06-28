@@ -167,7 +167,11 @@ export default function SignUpForm() {
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 
         <Label>What is your level of experience?</Label>
-        <Collapsible title="Please Choose One">
+        <Collapsible
+          title="Please Choose One"
+          bgButton="SilverSand"
+          bgContent="BlackCoral"
+        >
           <RadioWrapper>
             <Row>
               <Label>Beginner</Label>
