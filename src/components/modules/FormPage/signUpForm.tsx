@@ -103,7 +103,7 @@ export default function SignUpForm() {
   // }, [router, userData.id]);
 
   return (
-    <form onSubmit={Formik.handleSubmit}>
+    <form style={{ padding: "2rem" }} onSubmit={Formik.handleSubmit}>
       <Row>
         <Header>Apply with Dev Launchers!</Header>
       </Row>

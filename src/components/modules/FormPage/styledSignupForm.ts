@@ -22,6 +22,7 @@ export const Input = styled.input<{ height?: string; width?: string }>`
   }
 `;
 export const TextArea = styled.textarea.attrs({ wrap: "hard" })`
+  resize: none;
   background-color: ${({ theme }) => theme.colors.SilverSand};
   height: 175.5px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
@@ -53,6 +54,11 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  #commitment {
+    width: 40%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 `;
 export const RadioWrapper = styled.div`
   display: flex;
@@ -114,6 +120,7 @@ export const SubmitButton = styled.button.attrs({ type: "submit" })`
 `;
 export const Header = styled.h1`
   color: ${({ theme }) => theme.colors.White};
+  line-height: 3.5rem;
   border-bottom: none;
   font-family: ${({ theme }) => theme.fonts.headline};
   font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -125,7 +132,7 @@ export const Header = styled.h1`
 export const Tooltip = styled.p`
   color: ${({ theme }) => theme.colors.SilverSand};
   font-family: ${({ theme }) => theme.fonts.normal};
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: 1rem;
   width: 50%;
   text-align: left;
   @media (max-width: 768px) {

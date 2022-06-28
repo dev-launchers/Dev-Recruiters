@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.OuterSpace};
-  padding: 2rem 0;
+  padding: 1rem;
 `;
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.Argent};
