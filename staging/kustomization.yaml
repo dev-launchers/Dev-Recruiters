@@ -6,4 +6,4 @@ bases:
 images:
 - name: devlaunchers/dev-recruiters
   newName: devlaunchers/dev-recruiters
-  newTag: "039bfa3-202206281631" # {"$imagepolicy": "recruiting-staging:recruiting:tag"}
+  newTag: "2aea9f7-202206290444" # {"$imagepolicy": "recruiting-staging:recruiting:tag"}
