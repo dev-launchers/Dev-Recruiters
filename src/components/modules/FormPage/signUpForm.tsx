@@ -31,14 +31,16 @@ interface FormFields extends Omit<NewApplicant, "level"> {
 
 export default function SignUpForm() {
   const SignupSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
-    email: Yup.string().email("Invalid email").required("Email is Required"),
-    age: Yup.number().required("Age is Required"),
-    commitment: Yup.number().required("Commitment is Required"),
+    name: Yup.string().required("Name Field Entry is Required"),
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email Field Entry is Required"),
+    age: Yup.number().required("Age Field Entry is Required"),
+    commitment: Yup.number().required("Commitment Field Entry is Required"),
     extraInfo: Yup.string(),
-    experience: Yup.string().required("Experience is Required"),
-    reason: Yup.string().required("Reason is Required"),
-    accepted: Yup.boolean().required("Acceptance is Required"),
+    experience: Yup.string().required("Experience Field Entry is Required"),
+    reason: Yup.string().required("Reason Field Entry is Required"),
+    accepted: Yup.boolean().required("Acceptance Field Entry is Required"),
   });
 
   const router = useRouter();
