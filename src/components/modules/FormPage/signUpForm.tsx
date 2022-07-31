@@ -167,7 +167,7 @@ export default function SignUpForm() {
         </Label>
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 
-        <Label>What is your level of experience?</Label>
+        {/* <Label>What is your level of experience?</Label>
         <Collapsible
           title="Please Choose One"
           bgButton="SilverSand"
@@ -203,7 +203,7 @@ export default function SignUpForm() {
               />
             </Row>
           </RadioWrapper>
-        </Collapsible>
+        </Collapsible> */}
         <Label>How many hours are you looking to commit per week? *</Label>
         {Formik.errors.commitment && Formik.touched.commitment ? (
           <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
