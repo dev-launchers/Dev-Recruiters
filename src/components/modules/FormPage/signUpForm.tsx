@@ -109,7 +109,7 @@ export default function SignUpForm() {
       </Row>
       <Column>
         <Label>
-          Your Full Legal Name*
+          Your Full Legal Name *
           <Tooltip>
             Why do I need to enter my full legal name?
             <br />
@@ -139,7 +139,7 @@ export default function SignUpForm() {
           name="discordUsername"
           onChange={Formik.handleChange}
         />
-        <Label>Your Email*</Label>
+        <Label>Your Email *</Label>
 
         <Input
           id="email"
@@ -150,7 +150,7 @@ export default function SignUpForm() {
         {Formik.errors.email && Formik.touched.email ? (
           <ErrorMsg>{Formik.errors.email}</ErrorMsg>
         ) : null}
-        <Label>What is your Age?*</Label>
+        <Label>What is your Age? *</Label>
         <Input id="age" name="age" onChange={Formik.handleChange} />
         {Formik.errors.age && Formik.touched.age ? (
           <ErrorMsg>{Formik.errors.age}</ErrorMsg>
@@ -204,7 +204,7 @@ export default function SignUpForm() {
             </Row>
           </RadioWrapper>
         </Collapsible>
-        <Label>How many hours are you looking to commit per week?*</Label>
+        <Label>How many hours are you looking to commit per week? *</Label>
         {Formik.errors.commitment && Formik.touched.commitment ? (
           <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
         ) : null}
@@ -218,7 +218,7 @@ export default function SignUpForm() {
         </div>
         <Label>
           Please briefly describe any relevant experience you have in
-          development or design.*
+          development or design. *
         </Label>
         <TextArea
           id="experience"
@@ -229,14 +229,14 @@ export default function SignUpForm() {
           <ErrorMsg>{Formik.errors.experience}</ErrorMsg>
         ) : null}
         <Label>
-          Why would you like to be a Dev Launcher/ Volunteer? <br />
+          Why would you like to be a Dev Launcher/ Volunteer? * <br />
           <Tooltip>(This can help us guide you to meet your goals!)</Tooltip>
         </Label>
         <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
         {Formik.errors.reason && Formik.touched.reason ? (
           <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
         ) : null}
-        <Label>Anything else you want to share with us?*</Label>
+        <Label>Anything else you want to share with us?</Label>
         <TextArea
           id="extraInfo"
           name="extraInfo"
@@ -273,7 +273,7 @@ export default function SignUpForm() {
             `}
             style={{ fontSize: "0.9rem" }}
           >
-            I Understand*
+            I Understand *
           </Label>
         </Row>
         {Formik.errors.accepted && Formik.touched.accepted ? (
