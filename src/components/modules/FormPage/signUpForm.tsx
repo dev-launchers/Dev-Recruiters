@@ -255,11 +255,11 @@ export default function SignUpForm() {
           />
         </Row>
         <Statement>
-          I understand that all members are expected to attend weekly meetings
-          and honor commitments they have made when joining a product team. If
-          for any reason you have a conflict in your schedule to attend any of
-          your commitments please let your team lead know within a reasonable
-          time frame so that they may adjust the plan and reassign the tasks.
+          I agree that I am expected to attend weekly meetings and honor
+          commitments made when joining a product team. If I have a conflict for
+          any reason, I will let my team lead know within a reasonable time
+          frame so that they may adjust the plan and reassign the tasks and I
+          agree to the User Agreement.
         </Statement>
         <Row>
           <Checkbox
