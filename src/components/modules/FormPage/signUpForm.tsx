@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
 import { NewApplicant } from "@models/newApplicant";
-import { SkillLevel } from "@models/level";
-import Collapsible from "@components/common/Collapsible";
+//import { SkillLevel } from "@models/level";
+//import Collapsible from "@components/common/Collapsible";
 import agent from "@utils/agent";
 import {
   Label,
@@ -39,7 +39,6 @@ export default function SignUpForm() {
     commitment: Yup.number().required("Commitment Field Entry is Required"),
     extraInfo: Yup.string(),
     experience: Yup.string().required("Experience Field Entry is Required"),
-    reason: Yup.string().required("Reason Field Entry is Required"),
     accepted: Yup.boolean().required("Acceptance Field Entry is Required"),
   });
 
@@ -235,9 +234,6 @@ export default function SignUpForm() {
           <Tooltip>(This can help us guide you to meet your goals!)</Tooltip>
         </Label>
         <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
-        {Formik.errors.reason && Formik.touched.reason ? (
-          <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
-        ) : null}
         <Label>Anything else you want to share with us?</Label>
         <TextArea
           id="extraInfo"
