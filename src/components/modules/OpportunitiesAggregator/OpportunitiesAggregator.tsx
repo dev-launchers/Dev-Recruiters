@@ -26,11 +26,11 @@ const OpportunitiesAggregator: React.FunctionComponent<Props> = ({
   const settings = {
     className: "cards",
     dots: true,
+    arrows: true,
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true,
-    autoplaySpeed: 4000,
+    autoplay: false,
     responsive: [
       {
         breakpoint: 1535,
