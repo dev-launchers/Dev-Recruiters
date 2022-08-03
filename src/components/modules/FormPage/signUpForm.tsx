@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useUserDataContext } from "@contexts/UserDataContext";
 import Slider from "@components/common/Slider";
 import { NewApplicant } from "@models/newApplicant";
-import { SkillLevel } from "@models/level";
-import Collapsible from "@components/common/Collapsible";
+//import { SkillLevel } from "@models/level";
+//import Collapsible from "@components/common/Collapsible";
 import agent from "@utils/agent";
 import {
   Label,
@@ -31,14 +31,15 @@ interface FormFields extends Omit<NewApplicant, "level"> {
 
 export default function SignUpForm() {
   const SignupSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
-    email: Yup.string().email("Invalid email").required("Email is Required"),
-    age: Yup.number().required("Age is Required"),
-    commitment: Yup.number().required("Commitment is Required"),
+    name: Yup.string().required("Name Field Entry is Required"),
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email Field Entry is Required"),
+    age: Yup.number().required("Age Field Entry is Required"),
+    commitment: Yup.number().required("Commitment Field Entry is Required"),
     extraInfo: Yup.string(),
-    experience: Yup.string().required("Experience is Required"),
-    reason: Yup.string().required("Reason is Required"),
-    accepted: Yup.boolean().required("Acceptance is Required"),
+    experience: Yup.string().required("Experience Field Entry is Required"),
+    accepted: Yup.boolean().required("Acceptance Field Entry is Required"),
   });
 
   const router = useRouter();
@@ -167,7 +168,7 @@ export default function SignUpForm() {
         </Label>
         <Input id="skills" name="skills" onChange={Formik.handleChange} />
 
-        <Label>What is your level of experience?</Label>
+        {/* <Label>What is your level of experience?</Label>
         <Collapsible
           title="Please Choose One"
           bgButton="SilverSand"
@@ -203,7 +204,7 @@ export default function SignUpForm() {
               />
             </Row>
           </RadioWrapper>
-        </Collapsible>
+        </Collapsible> */}
         <Label>How many hours are you looking to commit per week? *</Label>
         {Formik.errors.commitment && Formik.touched.commitment ? (
           <ErrorMsg>{Formik.errors.commitment}</ErrorMsg>
@@ -233,9 +234,6 @@ export default function SignUpForm() {
           <Tooltip>(This can help us guide you to meet your goals!)</Tooltip>
         </Label>
         <TextArea id="reason" name="reason" onChange={Formik.handleChange} />
-        {Formik.errors.reason && Formik.touched.reason ? (
-          <ErrorMsg>{Formik.errors.reason}</ErrorMsg>
-        ) : null}
         <Label>Anything else you want to share with us?</Label>
         <TextArea
           id="extraInfo"
@@ -255,11 +253,11 @@ export default function SignUpForm() {
           />
         </Row>
         <Statement>
-          I understand that all members are expected to attend weekly meetings
-          and honor commitments they have made when joining a product team. If
-          for any reason you have a conflict in your schedule to attend any of
-          your commitments please let your team lead know within a reasonable
-          time frame so that they may adjust the plan and reassign the tasks.
+          I agree that I am expected to attend weekly meetings and honor
+          commitments made when joining a product team. If I have a conflict for
+          any reason, I will let my team lead know within a reasonable time
+          frame so that they may adjust the plan and reassign the tasks and I
+          agree to the User Agreement.
         </Statement>
         <Row>
           <Checkbox
