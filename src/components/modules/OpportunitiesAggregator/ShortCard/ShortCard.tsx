@@ -63,7 +63,7 @@ const ShortCard = ({
             </CategoryContainer>
             <CategoryContainer>
               <Category>Time Commitment</Category>
-              <Content>{commitmentLevel}</Content>
+              <Content>{commitmentLevel} hrs</Content>
             </CategoryContainer>
           </CategoriesContainer>
           <ButtonsContainer>
