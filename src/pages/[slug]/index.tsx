@@ -38,6 +38,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   );
 
   const project: any = await projectsRes.json();
+  project.map((projects) => {
+    const commitments = project.opportunities.map(
+      (opp) => opp.commitmentHoursPerWeek
+    );
+    const maxCommitment = Math.max(...commitments);
+    const minCommitment = Math.min(...commitments);
+    projects.commitmentLevel = `${minCommitment} - ${maxCommitment}`;
+    return project;
+  });
   const opportunites: any = await opportuntiesRes.json();
 
   return {

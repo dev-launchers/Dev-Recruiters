@@ -60,7 +60,7 @@ export default function PositionCard({ position, projectSlug }: Props) {
           </TitleSection>
           <PositionDetailsMobile>
             <p>{position.level}</p>
-            <p>{position.commitmentHoursPerWeek}</p>
+            <p>{position.commitmentHoursPerWeek} hrs</p>
           </PositionDetailsMobile>
           <ButtonsSection Mobile={true}>
             <Button
