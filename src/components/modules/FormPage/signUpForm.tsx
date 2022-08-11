@@ -151,6 +151,9 @@ export default function SignUpForm() {
           <ErrorMsg>{Formik.errors.email}</ErrorMsg>
         ) : null}
         <Label>What is your Age? *</Label>
+        <Tooltip>
+          Currently Dev Launchers is only accepting applicants 18+
+        </Tooltip>
         <Input id="age" name="age" onChange={Formik.handleChange} />
         {Formik.errors.age && Formik.touched.age ? (
           <ErrorMsg>{Formik.errors.age}</ErrorMsg>
@@ -255,11 +258,11 @@ export default function SignUpForm() {
           />
         </Row>
         <Statement>
-          I understand that all members are expected to attend weekly meetings
-          and honor commitments they have made when joining a product team. If
-          for any reason you have a conflict in your schedule to attend any of
-          your commitments please let your team lead know within a reasonable
-          time frame so that they may adjust the plan and reassign the tasks.
+          I agree that all members are expected to attend weekly meetings and
+          honor commitments they have made when joining a product team. If for
+          any reason you have a conflict in your schedule to attend any of your
+          commitments please let your team lead know within a reasonable time
+          frame so that they may adjust the plan and reassign the tasks.
         </Statement>
         <Row>
           <Checkbox
