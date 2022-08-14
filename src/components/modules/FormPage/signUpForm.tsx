@@ -35,7 +35,7 @@ export default function SignUpForm() {
     email: Yup.string()
       .email("Invalid email")
       .required("Email Field Entry is Required"),
-    age: Yup.number().required("Age Field Entry is Required"),
+    age: Yup.number().moreThan(17, 'DevLaunchers is only accepting 18+').required("Age Field Entry is Required"),
     commitment: Yup.number().required("Commitment Field Entry is Required"),
     extraInfo: Yup.string(),
     experience: Yup.string().required("Experience Field Entry is Required"),
@@ -151,7 +151,12 @@ export default function SignUpForm() {
         {Formik.errors.email && Formik.touched.email ? (
           <ErrorMsg>{Formik.errors.email}</ErrorMsg>
         ) : null}
-        <Label>What is your Age? *</Label>
+        <Label>
+          What is your Age? *
+          <Tooltip>
+            Currently Dev Launchers is only accepting applicants 18+
+          </Tooltip>
+        </Label>
         <Input id="age" name="age" onChange={Formik.handleChange} />
         {Formik.errors.age && Formik.touched.age ? (
           <ErrorMsg>{Formik.errors.age}</ErrorMsg>
@@ -253,11 +258,11 @@ export default function SignUpForm() {
           />
         </Row>
         <Statement>
-          I agree that I am expected to attend weekly meetings and honor
-          commitments made when joining a product team. If I have a conflict for
-          any reason, I will let my team lead know within a reasonable time
-          frame so that they may adjust the plan and reassign the tasks and I
-          agree to the User Agreement.
+          I agree that all members are expected to attend weekly meetings and
+          honor commitments they have made when joining a product team. If for
+          any reason you have a conflict in your schedule to attend any of your
+          commitments please let your team lead know within a reasonable time
+          frame so that they may adjust the plan and reassign the tasks.
         </Statement>
         <Row>
           <Checkbox

@@ -24,7 +24,7 @@ export const Container = styled.div`
 export const Icon = styled.svg`
   height: 23px;
   width: 23px;
-  margin-right: 13.5px;
+  margin-right: 8px;
 `;
 
 export const SearchField = styled.input`
