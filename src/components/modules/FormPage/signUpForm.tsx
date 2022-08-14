@@ -35,7 +35,7 @@ export default function SignUpForm() {
     email: Yup.string()
       .email("Invalid email")
       .required("Email Field Entry is Required"),
-    age: Yup.number().required("Age Field Entry is Required"),
+    age: Yup.number().moreThan(17, 'DevLaunchers is only accepting 18+').required("Age Field Entry is Required"),
     commitment: Yup.number().required("Commitment Field Entry is Required"),
     extraInfo: Yup.string(),
     experience: Yup.string().required("Experience Field Entry is Required"),
@@ -151,10 +151,12 @@ export default function SignUpForm() {
         {Formik.errors.email && Formik.touched.email ? (
           <ErrorMsg>{Formik.errors.email}</ErrorMsg>
         ) : null}
-        <Label>What is your Age? *</Label>
-        <Tooltip>
-          Currently Dev Launchers is only accepting applicants 18+
-        </Tooltip>
+        <Label>
+          What is your Age? *
+          <Tooltip>
+            Currently Dev Launchers is only accepting applicants 18+
+          </Tooltip>
+        </Label>
         <Input id="age" name="age" onChange={Formik.handleChange} />
         {Formik.errors.age && Formik.touched.age ? (
           <ErrorMsg>{Formik.errors.age}</ErrorMsg>
